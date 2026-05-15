@@ -9,23 +9,21 @@
 
   <style>
     :root {
-      --bg0: #030814;
+      --bg0: #020713;
       --bg1: #061834;
       --blue: #1D75FF;
-      --blue2: #37D8FF;
-      --cyan: #88EEFF;
-      --purple: #A88BFF;
-      --pink: #FFB7D5;
-      --green: #73F2B6;
-      --red: #FF8FA8;
-      --white: #FFFFFF;
-      --text: #FFFFFF;
-      --sub: rgba(255,255,255,0.72);
-      --muted: rgba(255,255,255,0.52);
-      --line: rgba(255,255,255,0.16);
-      --glass: rgba(9, 26, 58, 0.72);
-      --shadow: 0 30px 90px rgba(0,0,0,0.48);
-      --blue-shadow: 0 20px 46px rgba(29,117,255,0.34);
+      --cyan: #37D8FF;
+      --text: #F7FAFF;
+      --sub: rgba(247,250,255,0.72);
+      --muted: rgba(247,250,255,0.52);
+      --line: rgba(255,255,255,0.14);
+      --panel: rgba(8, 24, 54, 0.82);
+      --field: rgba(255,255,255,0.085);
+      --field-focus: rgba(255,255,255,0.12);
+      --green: #72F0B5;
+      --danger: #FF8FA8;
+      --shadow: 0 28px 80px rgba(0,0,0,0.42);
+      --radius: 28px;
     }
 
     * {
@@ -51,106 +49,25 @@
     .page {
       position: relative;
       min-height: 100dvh;
-      padding: max(16px, env(safe-area-inset-top)) 16px max(20px, env(safe-area-inset-bottom));
+      padding: max(18px, env(safe-area-inset-top)) 16px max(22px, env(safe-area-inset-bottom));
       display: flex;
       justify-content: center;
       overflow: hidden;
       background:
-        radial-gradient(circle at 50% -10%, rgba(55,216,255,0.34) 0 13%, transparent 34%),
-        radial-gradient(circle at 8% 14%, rgba(29,117,255,0.42) 0 13%, transparent 34%),
-        radial-gradient(circle at 96% 5%, rgba(168,139,255,0.34) 0 12%, transparent 31%),
-        radial-gradient(circle at 86% 86%, rgba(255,183,213,0.17) 0 14%, transparent 34%),
-        linear-gradient(180deg, #061834 0%, #081E46 42%, #030814 100%);
+        radial-gradient(circle at 50% -12%, rgba(55,216,255,0.20) 0 14%, transparent 34%),
+        radial-gradient(circle at 8% 12%, rgba(29,117,255,0.22) 0 14%, transparent 34%),
+        radial-gradient(circle at 92% 82%, rgba(29,117,255,0.15) 0 18%, transparent 38%),
+        linear-gradient(180deg, #061834 0%, #071D43 48%, #020713 100%);
     }
 
     .page:before {
       content: "";
       position: absolute;
       inset: 0;
-      background-image:
-        radial-gradient(circle, rgba(255,255,255,0.45) 0 1px, transparent 1.6px),
-        radial-gradient(circle, rgba(136,238,255,0.28) 0 1px, transparent 1.7px);
-      background-size: 58px 58px, 92px 92px;
-      background-position: 0 0, 20px 26px;
-      opacity: 0.28;
+      background:
+        linear-gradient(120deg, transparent 0 42%, rgba(255,255,255,0.032) 42% 43%, transparent 43% 100%),
+        linear-gradient(180deg, rgba(255,255,255,0.035), transparent 38%);
       pointer-events: none;
-    }
-
-    .aurora {
-      position: absolute;
-      pointer-events: none;
-      filter: blur(28px);
-      opacity: 0.75;
-      border-radius: 999px;
-      mix-blend-mode: screen;
-    }
-
-    .aurora.a1 {
-      width: 270px;
-      height: 270px;
-      left: -130px;
-      top: 110px;
-      background: rgba(29,117,255,0.58);
-      animation: drift 9s ease-in-out infinite;
-    }
-
-    .aurora.a2 {
-      width: 230px;
-      height: 230px;
-      right: -110px;
-      top: 42px;
-      background: rgba(55,216,255,0.42);
-      animation: drift 10s ease-in-out infinite reverse;
-    }
-
-    .aurora.a3 {
-      width: 260px;
-      height: 260px;
-      right: -125px;
-      bottom: 22px;
-      background: rgba(168,139,255,0.38);
-      animation: drift 11s ease-in-out infinite;
-    }
-
-    @keyframes drift {
-      0%, 100% {
-        transform: translate3d(0, 0, 0) scale(1);
-      }
-      50% {
-        transform: translate3d(18px, -18px, 0) scale(1.07);
-      }
-    }
-
-    .stars {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      overflow: hidden;
-    }
-
-    .star {
-      position: absolute;
-      color: rgba(255,255,255,0.78);
-      text-shadow: 0 0 18px rgba(136,238,255,0.72);
-      animation: twinkle 3.8s ease-in-out infinite;
-    }
-
-    .star.s1 { left: 9%; top: 10%; font-size: 13px; animation-delay: 0s; }
-    .star.s2 { right: 13%; top: 18%; font-size: 18px; animation-delay: .7s; }
-    .star.s3 { left: 15%; top: 44%; font-size: 11px; animation-delay: 1.2s; }
-    .star.s4 { right: 8%; top: 56%; font-size: 12px; animation-delay: 1.9s; }
-    .star.s5 { left: 10%; bottom: 12%; font-size: 17px; animation-delay: 2.5s; }
-    .star.s6 { right: 24%; bottom: 8%; font-size: 11px; animation-delay: 1.4s; }
-
-    @keyframes twinkle {
-      0%, 100% {
-        opacity: .42;
-        transform: scale(1) rotate(0deg);
-      }
-      50% {
-        opacity: 1;
-        transform: scale(1.25) rotate(12deg);
-      }
     }
 
     .phone {
@@ -158,44 +75,52 @@
       z-index: 2;
       width: 100%;
       max-width: 500px;
-      min-height: calc(100dvh - 36px);
+      min-height: calc(100dvh - 40px);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 16px;
+      gap: 18px;
     }
 
     .topbar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
+      gap: 12px;
       padding: 2px 2px 0;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       min-width: 0;
     }
 
     .brand-logo {
-      width: 44px;
-      height: 44px;
-      border-radius: 17px;
+      width: 42px;
+      height: 42px;
+      border-radius: 15px;
       display: grid;
       place-items: center;
       background:
-        linear-gradient(135deg, rgba(255,255,255,0.28), transparent 38%),
-        linear-gradient(135deg, var(--blue), var(--blue2));
-      box-shadow: var(--blue-shadow);
-      font-size: 22px;
+        linear-gradient(135deg, rgba(255,255,255,0.18), transparent 38%),
+        linear-gradient(135deg, #1D75FF, #37D8FF);
+      box-shadow: 0 14px 32px rgba(29,117,255,0.25);
+      position: relative;
+    }
+
+    .brand-logo:before {
+      content: "";
+      width: 17px;
+      height: 17px;
+      border-radius: 5px;
+      border: 2px solid rgba(255,255,255,0.92);
     }
 
     .brand-title {
       font-size: 15px;
-      font-weight: 1000;
+      font-weight: 900;
       letter-spacing: .2px;
       white-space: nowrap;
     }
@@ -204,208 +129,117 @@
       margin-top: 2px;
       color: var(--sub);
       font-size: 11px;
-      font-weight: 760;
+      font-weight: 600;
       white-space: nowrap;
     }
 
     .badge-4k {
       flex: 0 0 auto;
-      border: 1px solid rgba(255,255,255,0.24);
-      background: rgba(255,255,255,0.12);
-      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.07);
+      color: rgba(255,255,255,0.88);
       border-radius: 999px;
-      padding: 9px 12px;
+      padding: 8px 12px;
       font-size: 12px;
-      font-weight: 1000;
+      font-weight: 800;
       letter-spacing: .35px;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.18);
       backdrop-filter: blur(14px);
     }
 
     .hero {
       text-align: center;
-      padding-top: 4px;
+      padding-top: 6px;
     }
 
-    .hero-card {
-      width: min(82vw, 330px);
-      aspect-ratio: 1.25;
-      margin: 0 auto 10px;
-      position: relative;
-      display: grid;
-      place-items: center;
-    }
-
-    .hero-circle {
-      position: absolute;
-      width: 80%;
-      aspect-ratio: 1;
-      border-radius: 999px;
-      background:
-        radial-gradient(circle at 32% 23%, rgba(255,255,255,0.94) 0 4%, transparent 13%),
-        radial-gradient(circle at 64% 72%, rgba(255,183,213,0.46) 0 8%, transparent 22%),
-        linear-gradient(135deg, #153E91 0%, #1D75FF 48%, #37D8FF 100%);
-      box-shadow:
-        inset -18px -24px 46px rgba(0,0,0,0.18),
-        inset 0 0 0 1px rgba(255,255,255,0.34),
-        0 28px 70px rgba(29,117,255,0.36);
-    }
-
-    .hero-screen {
-      position: relative;
-      width: 78%;
+    .hero-visual {
+      width: min(72vw, 280px);
       aspect-ratio: 1.45;
-      border-radius: 34px;
+      margin: 0 auto 18px;
+      border-radius: 30px;
       padding: 13px;
       background:
-        linear-gradient(180deg, rgba(255,255,255,0.20), rgba(255,255,255,0.08)),
-        rgba(5, 16, 37, 0.62);
-      border: 1px solid rgba(255,255,255,0.22);
+        linear-gradient(180deg, rgba(255,255,255,0.13), rgba(255,255,255,0.055)),
+        rgba(5,16,37,0.62);
+      border: 1px solid rgba(255,255,255,0.15);
       box-shadow:
-        0 24px 58px rgba(0,0,0,0.34),
-        inset 0 1px 0 rgba(255,255,255,0.24);
+        0 24px 62px rgba(0,0,0,0.30),
+        inset 0 1px 0 rgba(255,255,255,0.14);
       backdrop-filter: blur(16px);
-      transform: rotate(-2deg);
       overflow: hidden;
     }
 
-    .hero-screen-inner {
-      position: relative;
+    .hero-visual-inner {
       height: 100%;
-      border-radius: 24px;
+      border-radius: 22px;
       overflow: hidden;
       background:
-        linear-gradient(180deg, rgba(13,44,98,0.92), rgba(4,12,30,0.96));
-      border: 1px solid rgba(255,255,255,0.14);
+        radial-gradient(circle at 30% 20%, rgba(55,216,255,0.24), transparent 36%),
+        linear-gradient(180deg, rgba(13,44,98,0.92), rgba(4,12,30,0.98));
+      border: 1px solid rgba(255,255,255,0.11);
       display: grid;
       place-items: center;
+      position: relative;
     }
 
-    .hero-screen-inner:after {
+    .hero-visual-inner:before {
+      content: "OTP";
+      font-size: 40px;
+      font-weight: 1000;
+      letter-spacing: 3px;
+      color: rgba(255,255,255,0.92);
+    }
+
+    .hero-visual-inner:after {
       content: "";
       position: absolute;
-      left: 14%;
-      right: 14%;
-      bottom: 16%;
-      height: 5px;
+      left: 20%;
+      right: 20%;
+      bottom: 20%;
+      height: 3px;
       border-radius: 999px;
-      background: linear-gradient(90deg, var(--blue), var(--blue2), var(--pink));
-      box-shadow: 0 0 22px rgba(55,216,255,0.36);
-    }
-
-    .play {
-      width: 78px;
-      height: 78px;
-      border-radius: 999px;
-      background:
-        linear-gradient(135deg, rgba(255,255,255,0.30), transparent 40%),
-        linear-gradient(135deg, var(--blue), var(--blue2));
-      box-shadow:
-        0 16px 34px rgba(29,117,255,0.42),
-        0 0 0 10px rgba(255,255,255,0.06);
-      display: grid;
-      place-items: center;
-      font-size: 34px;
-    }
-
-    .bubble {
-      position: absolute;
-      display: grid;
-      place-items: center;
-      width: 44px;
-      height: 44px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.14);
-      border: 1px solid rgba(255,255,255,0.22);
-      box-shadow: 0 14px 30px rgba(0,0,0,0.22);
-      backdrop-filter: blur(12px);
-      font-size: 19px;
-      animation: floaty 5s ease-in-out infinite;
-    }
-
-    .bubble.b1 { top: 10px; right: 34px; animation-delay: 0s; }
-    .bubble.b2 { left: 22px; bottom: 28px; animation-delay: .8s; }
-    .bubble.b3 { right: 28px; bottom: 15px; font-size: 13px; font-weight: 1000; animation-delay: 1.4s; }
-
-    @keyframes floaty {
-      0%, 100% { translate: 0 0; }
-      50% { translate: 0 -8px; }
+      background: linear-gradient(90deg, var(--blue), var(--cyan));
     }
 
     h1 {
       margin: 0;
-      font-size: clamp(29px, 8vw, 43px);
-      line-height: 1.08;
-      letter-spacing: -0.8px;
-      color: var(--white);
-      text-shadow: 0 14px 36px rgba(0,0,0,0.34);
+      font-size: clamp(28px, 7.8vw, 42px);
+      line-height: 1.1;
+      letter-spacing: -0.7px;
+      color: #FFFFFF;
+      text-shadow: 0 14px 36px rgba(0,0,0,0.28);
     }
 
     .gradient-text {
-      background: linear-gradient(90deg, #FFFFFF 0%, #88EEFF 44%, #FFB7D5 100%);
+      background: linear-gradient(90deg, #FFFFFF 0%, #88EEFF 52%, #FFFFFF 100%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
     }
 
     .subtitle {
-      margin: 10px auto 0;
-      max-width: 370px;
+      margin: 11px auto 0;
+      max-width: 380px;
       color: var(--sub);
       font-size: 15px;
       line-height: 1.68;
-      font-weight: 580;
-    }
-
-    .chips {
-      margin: 14px auto 0;
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .chip {
-      padding: 7px 10px;
-      border-radius: 999px;
-      color: rgba(255,255,255,0.88);
-      background: rgba(255,255,255,0.10);
-      border: 1px solid rgba(255,255,255,0.16);
-      font-size: 11px;
-      font-weight: 900;
-      backdrop-filter: blur(12px);
+      font-weight: 500;
     }
 
     .panel {
       position: relative;
       background:
-        linear-gradient(180deg, rgba(255,255,255,0.15), rgba(255,255,255,0.08)),
-        var(--glass);
-      border: 1px solid rgba(255,255,255,0.18);
-      border-radius: 36px;
+        linear-gradient(180deg, rgba(255,255,255,0.105), rgba(255,255,255,0.055)),
+        var(--panel);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: var(--radius);
       box-shadow: var(--shadow);
       padding: 18px;
       backdrop-filter: blur(22px);
       overflow: hidden;
     }
 
-    .panel:before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 22% 0%, rgba(136,238,255,0.16), transparent 34%),
-        radial-gradient(circle at 100% 15%, rgba(255,183,213,0.11), transparent 28%);
-      pointer-events: none;
-    }
-
-    .panel > * {
-      position: relative;
-      z-index: 1;
-    }
-
     .field {
-      margin-bottom: 13px;
+      margin-bottom: 14px;
     }
 
     .label {
@@ -414,73 +248,53 @@
       justify-content: space-between;
       gap: 8px;
       margin: 0 4px 8px;
-      color: rgba(255,255,255,0.80);
+      color: rgba(255,255,255,0.82);
       font-size: 13px;
-      font-weight: 900;
+      font-weight: 780;
     }
 
-    .pill {
+    .required {
       font-size: 11px;
-      color: #C9F7FF;
-      background: rgba(136,238,255,0.10);
-      border: 1px solid rgba(136,238,255,0.28);
-      border-radius: 999px;
-      padding: 5px 10px;
-      font-weight: 1000;
+      color: rgba(255,255,255,0.52);
+      font-weight: 760;
       letter-spacing: .25px;
-    }
-
-    .input-wrap {
-      position: relative;
     }
 
     input {
       width: 100%;
-      height: 60px;
-      border: 1px solid rgba(255,255,255,0.16);
+      height: 58px;
+      border: 1px solid rgba(255,255,255,0.14);
       outline: none;
-      border-radius: 23px;
-      background: rgba(255,255,255,0.11);
-      padding: 0 50px 0 16px;
-      color: var(--white);
+      border-radius: 18px;
+      background: var(--field);
+      padding: 0 16px;
+      color: #FFFFFF;
       font-size: 16px;
-      font-weight: 760;
+      font-weight: 660;
       transition: 0.18s ease;
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.12),
-        0 12px 28px rgba(0,0,0,0.12);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
       backdrop-filter: blur(12px);
     }
 
     input::placeholder {
-      color: rgba(255,255,255,0.42);
-      font-weight: 620;
+      color: rgba(255,255,255,0.40);
+      font-weight: 520;
     }
 
     input:focus {
-      border-color: rgba(136,238,255,0.72);
+      border-color: rgba(136,238,255,0.58);
       box-shadow:
-        0 0 0 5px rgba(55,216,255,0.14),
-        0 0 28px rgba(55,216,255,0.18),
-        inset 0 1px 0 rgba(255,255,255,0.16);
-      background: rgba(255,255,255,0.15);
-    }
-
-    .input-emoji {
-      position: absolute;
-      right: 15px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 20px;
-      opacity: 0.92;
+        0 0 0 3px rgba(55,216,255,0.10),
+        inset 0 1px 0 rgba(255,255,255,0.12);
+      background: var(--field-focus);
     }
 
     .hint {
       margin: 8px 5px 0;
-      color: rgba(255,255,255,0.58);
+      color: rgba(255,255,255,0.54);
       font-size: 12px;
-      line-height: 1.5;
-      font-weight: 680;
+      line-height: 1.55;
+      font-weight: 520;
     }
 
     .screen-grid {
@@ -489,26 +303,50 @@
       gap: 8px;
     }
 
+    button {
+      width: 100%;
+      min-height: 56px;
+      border-radius: 18px;
+      font-size: 15px;
+      font-weight: 820;
+      cursor: pointer;
+      transition: transform 0.14s ease, background 0.14s ease, border-color 0.14s ease, opacity 0.14s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: inherit;
+    }
+
+    button:active {
+      transform: scale(0.985);
+    }
+
+    button:disabled {
+      opacity: 0.42;
+      cursor: not-allowed;
+    }
+
+    button:disabled:active {
+      transform: none;
+    }
+
     .screen-btn {
-      min-height: 48px;
-      border-radius: 17px;
-      border: 1px solid rgba(255,255,255,0.16);
-      background: rgba(255,255,255,0.10);
-      color: rgba(255,255,255,0.86);
-      font-size: 16px;
-      font-weight: 1000;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.12);
+      min-height: 46px;
+      border-radius: 15px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.075);
+      color: rgba(255,255,255,0.82);
+      box-shadow: none;
+      font-size: 15px;
+      font-weight: 780;
     }
 
     .screen-btn.selected {
       color: #061834;
-      background:
-        linear-gradient(135deg, rgba(255,255,255,0.65), rgba(255,255,255,0.20)),
-        linear-gradient(135deg, #88EEFF, #37D8FF);
-      border-color: rgba(136,238,255,0.72);
-      box-shadow:
-        0 12px 26px rgba(55,216,255,0.24),
-        inset 0 1px 0 rgba(255,255,255,0.45);
+      background: #C9F7FF;
+      border-color: #C9F7FF;
+      box-shadow: none;
     }
 
     .pin-field {
@@ -522,88 +360,52 @@
       margin-top: 14px;
     }
 
-    button {
-      width: 100%;
-      min-height: 60px;
-      border: none;
-      border-radius: 23px;
-      font-size: 16px;
-      font-weight: 1000;
-      cursor: pointer;
-      transition: transform 0.16s ease, box-shadow 0.16s ease, opacity 0.16s ease, filter 0.16s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 9px;
-    }
-
-    button:active {
-      transform: scale(0.985);
-    }
-
-    button:disabled {
-      opacity: 0.46;
-      cursor: not-allowed;
-      filter: grayscale(0.25);
-      box-shadow: none !important;
-    }
-
-    button:disabled:active {
-      transform: none;
-    }
-
     .btn-primary {
-      color: white;
-      background:
-        linear-gradient(135deg, rgba(255,255,255,0.28), transparent 36%),
-        linear-gradient(135deg, #1D75FF 0%, #37D8FF 100%);
-      box-shadow:
-        0 18px 40px rgba(29,117,255,0.34),
-        0 0 28px rgba(55,216,255,0.22);
+      color: #FFFFFF;
+      background: transparent;
+      border: 1px solid rgba(136,238,255,0.62);
+      box-shadow: none;
+    }
+
+    .btn-primary:not(:disabled):hover {
+      background: rgba(136,238,255,0.10);
     }
 
     .btn-copy {
+      margin-top: 16px;
       display: none;
-      color: #DDF9FF;
-      background: rgba(255,255,255,0.11);
-      border: 1px solid rgba(136,238,255,0.28);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.90);
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.22);
+      box-shadow: none;
+    }
+
+    .btn-copy:hover {
+      background: rgba(255,255,255,0.08);
     }
 
     .status {
-      margin-top: 14px;
+      margin-top: 16px;
       display: none;
-      border-radius: 29px;
-      border: 1px solid rgba(255,255,255,0.16);
-      background:
-        radial-gradient(circle at 22% 0%, rgba(136,238,255,0.18), transparent 38%),
-        rgba(255,255,255,0.09);
-      padding: 18px;
-      min-height: 100px;
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.12),
-        0 14px 32px rgba(0,0,0,0.16);
-      backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(255,255,255,0.14);
+      padding-top: 16px;
     }
 
     .save-ok {
       display: none;
       margin-bottom: 12px;
       text-align: center;
-      color: #D9FFE9;
-      background: rgba(115,242,182,0.12);
-      border: 1px solid rgba(115,242,182,0.22);
-      border-radius: 999px;
-      padding: 9px 12px;
+      color: rgba(217,255,233,0.94);
       font-size: 13px;
-      font-weight: 900;
+      font-weight: 700;
+      line-height: 1.5;
     }
 
     .status-title {
       text-align: center;
-      color: rgba(255,255,255,0.72);
+      color: rgba(255,255,255,0.68);
       font-size: 14px;
-      font-weight: 900;
+      font-weight: 760;
       margin-bottom: 10px;
     }
 
@@ -613,87 +415,112 @@
     }
 
     .otp-code {
-      margin: 4px auto 12px;
+      margin: 6px auto 12px;
       width: fit-content;
       max-width: 100%;
-      border-radius: 27px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0.10)),
-        rgba(255,255,255,0.12);
-      border: 1px solid rgba(136,238,255,0.32);
+      border-radius: 20px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(136,238,255,0.24);
       padding: 15px 19px 14px;
       color: #FFFFFF;
       font-size: clamp(38px, 12vw, 58px);
       line-height: 1;
       font-weight: 1000;
       letter-spacing: 8px;
-      text-shadow: 0 0 24px rgba(136,238,255,0.58);
-      box-shadow:
-        0 16px 36px rgba(0,0,0,0.20),
-        0 0 28px rgba(55,216,255,0.16),
-        inset 0 1px 0 rgba(255,255,255,0.18);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.12);
       user-select: all;
       overflow-wrap: anywhere;
     }
 
     .otp-note {
-      color: rgba(255,255,255,0.82);
+      color: rgba(255,255,255,0.76);
       font-size: 14px;
-      line-height: 1.68;
+      line-height: 1.65;
       white-space: pre-line;
-      font-weight: 680;
+      font-weight: 520;
     }
 
     .not-found {
       display: none;
       text-align: center;
-      color: rgba(255,255,255,0.92);
-      font-size: 17px;
-      font-weight: 1000;
-      padding: 10px 4px;
-      line-height: 1.55;
+      color: rgba(255,255,255,0.86);
+      font-size: 15px;
+      font-weight: 640;
+      padding: 8px 4px;
+      line-height: 1.65;
     }
 
     .mini-info {
       margin-top: 13px;
       display: flex;
       justify-content: center;
-      gap: 8px;
+      gap: 12px;
       flex-wrap: wrap;
-      color: rgba(255,255,255,0.72);
+      color: rgba(255,255,255,0.58);
       font-size: 12px;
     }
 
     .mini-info span {
-      padding: 7px 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.10);
-      border: 1px solid rgba(255,255,255,0.14);
-      font-weight: 780;
+      font-weight: 620;
+      border-bottom: 1px solid rgba(255,255,255,0.14);
+      padding-bottom: 3px;
+    }
+
+    .usage {
+      margin-top: 16px;
+      padding: 16px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.045);
+    }
+
+    .usage-title {
+      margin: 0 0 10px;
+      color: rgba(255,255,255,0.88);
+      font-size: 14px;
+      font-weight: 840;
+      letter-spacing: .2px;
+    }
+
+    .usage-list {
+      margin: 0;
+      padding-left: 20px;
+      color: rgba(255,255,255,0.66);
+      font-size: 13px;
+      line-height: 1.75;
+      font-weight: 520;
+    }
+
+    .usage-note {
+      margin: 10px 0 0;
+      color: rgba(255,255,255,0.50);
+      font-size: 12px;
+      line-height: 1.65;
+      font-weight: 500;
     }
 
     .footer {
       text-align: center;
-      color: rgba(255,255,255,0.55);
+      color: rgba(255,255,255,0.48);
       font-size: 12px;
       line-height: 1.6;
       padding: 0 16px 4px;
     }
 
     .footer strong {
-      color: rgba(255,255,255,0.82);
+      color: rgba(255,255,255,0.76);
     }
 
     .loading .btn-primary {
-      opacity: 0.78;
+      opacity: 0.74;
       pointer-events: none;
     }
 
     .spinner {
-      width: 18px;
-      height: 18px;
+      width: 17px;
+      height: 17px;
       border-radius: 999px;
-      border: 3px solid rgba(255,255,255,0.42);
+      border: 2px solid rgba(255,255,255,0.30);
       border-top-color: white;
       animation: spin 0.75s linear infinite;
       display: none;
@@ -715,13 +542,13 @@
       bottom: calc(22px + env(safe-area-inset-bottom));
       transform: translateX(-50%) translateY(20px);
       z-index: 50;
-      background: rgba(255,255,255,0.95);
+      background: rgba(255,255,255,0.96);
       color: #061834;
       border-radius: 999px;
       padding: 12px 16px;
       font-size: 14px;
-      font-weight: 1000;
-      box-shadow: 0 18px 42px rgba(0,0,0,0.28);
+      font-weight: 820;
+      box-shadow: 0 18px 42px rgba(0,0,0,0.24);
       opacity: 0;
       pointer-events: none;
       transition: 0.22s ease;
@@ -737,9 +564,9 @@
     }
 
     @media (max-height: 760px) {
-      .hero-card {
-        width: min(66vw, 260px);
-        margin-bottom: 0;
+      .hero-visual {
+        width: min(66vw, 245px);
+        margin-bottom: 12px;
       }
 
       h1 {
@@ -751,19 +578,15 @@
         font-size: 14px;
       }
 
-      .chips {
-        margin-top: 9px;
-      }
-
       .panel {
-        border-radius: 31px;
+        border-radius: 25px;
         padding: 16px;
       }
 
       input,
       button {
-        height: 56px;
-        min-height: 56px;
+        height: 54px;
+        min-height: 54px;
       }
     }
 
@@ -774,8 +597,12 @@
 
       .screen-btn {
         min-height: 44px;
-        border-radius: 15px;
+        border-radius: 14px;
         font-size: 15px;
+      }
+
+      .otp-code {
+        letter-spacing: 6px;
       }
     }
 
@@ -804,26 +631,13 @@
 
 <body>
   <main class="page">
-    <div class="aurora a1"></div>
-    <div class="aurora a2"></div>
-    <div class="aurora a3"></div>
-
-    <div class="stars">
-      <div class="star s1">✦</div>
-      <div class="star s2">✧</div>
-      <div class="star s3">•</div>
-      <div class="star s4">✦</div>
-      <div class="star s5">✧</div>
-      <div class="star s6">•</div>
-    </div>
-
     <section class="phone" id="app">
       <div class="topbar">
         <div class="brand">
-          <div class="brand-logo">✨</div>
+          <div class="brand-logo"></div>
           <div>
             <div class="brand-title">Disney+ 4K Verify</div>
-            <div class="brand-sub">OTP + Device + Screen</div>
+            <div class="brand-sub">OTP verification system</div>
           </div>
         </div>
 
@@ -831,18 +645,8 @@
       </div>
 
       <div class="hero">
-        <div class="hero-card">
-          <div class="hero-circle"></div>
-
-          <div class="hero-screen">
-            <div class="hero-screen-inner">
-              <div class="play">▶</div>
-            </div>
-          </div>
-
-          <div class="bubble b1">🔐</div>
-          <div class="bubble b2">📱</div>
-          <div class="bubble b3">1–6</div>
+        <div class="hero-visual">
+          <div class="hero-visual-inner"></div>
         </div>
 
         <h1>
@@ -851,57 +655,44 @@
         </h1>
 
         <p class="subtitle">
-          กรอกอีเมล แจ้งอุปกรณ์ และเลือกจอที่ใช้งาน
-          ระบบจะบันทึกข้อมูลก่อนแสดงรหัสให้ลูกค้า
+          กรอกข้อมูลให้ครบถ้วน ระบบจะบันทึกรายละเอียดการใช้งาน และแสดงรหัสยืนยันล่าสุดจากอีเมลที่ระบุ
         </p>
-
-        <div class="chips">
-          <div class="chip">บันทึกข้อมูล</div>
-          <div class="chip">เลือกจอ 1–6</div>
-          <div class="chip">คัดลอกรหัสได้</div>
-        </div>
       </div>
 
       <div class="panel">
         <div class="field">
           <div class="label">
             <span>อีเมลสำหรับรับรหัส</span>
-            <span class="pill">Required</span>
+            <span class="required">Required</span>
           </div>
 
-          <div class="input-wrap">
-            <input id="email" type="email" placeholder="test@lico.moe" autocomplete="email" inputmode="email">
-            <div class="input-emoji">📮</div>
-          </div>
+          <input id="email" type="email" placeholder="example@email.com" autocomplete="email" inputmode="email">
         </div>
 
         <div class="field">
           <div class="label">
             <span>อุปกรณ์ที่ใช้งาน</span>
-            <span class="pill">Required</span>
+            <span class="required">Required</span>
           </div>
 
-          <div class="input-wrap">
-            <input
-              id="device"
-              type="text"
-              placeholder="เช่น iPhone / Android / iPad / TV / Chrome"
-              autocomplete="off"
-              inputmode="text"
-              maxlength="80"
-            >
-            <div class="input-emoji">📱</div>
-          </div>
+          <input
+            id="device"
+            type="text"
+            placeholder="เช่น iPhone / Android / iPad / TV / Chrome"
+            autocomplete="off"
+            inputmode="text"
+            maxlength="80"
+          >
 
           <div class="hint">
-            ต้องแจ้งอุปกรณ์ก่อนรับรหัส เช่น iPhone, Android, TV, iPad หรือ Chrome
+            ระบุอุปกรณ์ที่ใช้เข้าสู่ระบบ เพื่อให้สามารถตรวจสอบรายการย้อนหลังได้อย่างถูกต้อง
           </div>
         </div>
 
         <div class="field">
           <div class="label">
-            <span>เลือกจอที่ใช้งาน</span>
-            <span class="pill">Screen</span>
+            <span>เลือกหมายเลขจอ</span>
+            <span class="required">Screen 1–6</span>
           </div>
 
           <div class="screen-grid" id="screenGrid">
@@ -914,32 +705,24 @@
           </div>
 
           <div class="hint">
-            กรุณาเลือกหมายเลขจอที่ลูกค้าใช้งาน เพื่อให้ร้านบันทึกข้อมูลได้ถูกต้อง
+            เลือกหมายเลขจอให้ตรงกับรายการของลูกค้า
           </div>
         </div>
 
         <div class="field pin-field" id="pinField">
           <div class="label">
-            <span>PIN หน้าเว็บ</span>
-            <span class="pill">Private</span>
+            <span>PIN สำหรับเข้าใช้งาน</span>
+            <span class="required">Private</span>
           </div>
 
-          <div class="input-wrap">
-            <input id="pin" type="password" placeholder="กรอก PIN ถ้ามีการตั้งค่าไว้" autocomplete="off">
-            <div class="input-emoji">🔑</div>
-          </div>
+          <input id="pin" type="password" placeholder="กรอก PIN หากระบบกำหนดไว้" autocomplete="off">
         </div>
 
         <div class="actions">
           <button class="btn-primary" id="checkBtn" onclick="checkOtp()" disabled>
             <span class="spinner"></span>
             <span id="btnText">รับรหัส OTP</span>
-            <span id="btnIcon">📩</span>
-          </button>
-
-          <button class="btn-copy" id="copyBtn" onclick="copyOtp()">
-            <span>คัดลอกรหัส OTP</span>
-            <span>📋</span>
+            <span id="btnIcon"></span>
           </button>
         </div>
 
@@ -949,24 +732,45 @@
           <div class="otp-box" id="otpBox">
             <div class="status-title">รหัสยืนยันล่าสุด</div>
             <div class="otp-code" id="otpCode"></div>
+
             <div class="otp-note" id="otpNote"></div>
 
+            <button class="btn-copy" id="copyBtn" onclick="copyOtp()">
+              <span>คัดลอกรหัส OTP</span>
+            </button>
+
             <div class="mini-info">
-              <span>ใช้ได้ 15 นาที</span>
-              <span>ห้ามเปิดเผยรหัส</span>
+              <span>รหัสมีอายุ 15 นาที</span>
+              <span>โปรดใช้รหัสเฉพาะสำหรับการยืนยันครั้งนี้</span>
             </div>
           </div>
 
           <div class="not-found" id="notFound">
-            ไม่พบข้อมูลในระบบ<br>
-            กรุณาตรวจสอบอีเมลหรือรอสักครู่แล้วลองใหม่
+            ไม่พบรหัส OTP ล่าสุด<br>
+            กรุณาตรวจสอบอีเมล หรือรอสักครู่แล้วลองใหม่อีกครั้ง
           </div>
+        </div>
+
+        <div class="usage">
+          <p class="usage-title">วิธีการใช้งาน</p>
+
+          <ol class="usage-list">
+            <li>กรอกอีเมลที่ต้องการรับรหัส OTP ให้ถูกต้อง</li>
+            <li>ระบุอุปกรณ์ที่ใช้เข้าสู่ระบบ เช่น iPhone, Android, iPad, TV หรือ Chrome</li>
+            <li>เลือกหมายเลขจอให้ตรงกับรายการของลูกค้า</li>
+            <li>กดปุ่ม “รับรหัส OTP” เพื่อให้ระบบค้นหารหัสล่าสุด</li>
+            <li>เมื่อรหัสแสดงขึ้นมา สามารถกด “คัดลอกรหัส OTP” เพื่อนำไปใช้งานได้ทันที</li>
+          </ol>
+
+          <p class="usage-note">
+            ระบบจะบันทึกอีเมล อุปกรณ์ หมายเลขจอ และเวลาที่ทำรายการลงใน Google Sheet เพื่อใช้ตรวจสอบย้อนหลัง
+          </p>
         </div>
       </div>
 
       <div class="footer">
         <strong>Disney+ 4K OTP Verify</strong><br>
-        ระบบจะบันทึกอีเมล อุปกรณ์ และจอที่ใช้งานลง Google Sheet
+        Secure OTP verification and customer activity logging
       </div>
     </section>
   </main>
@@ -1020,37 +824,21 @@
       const device = deviceInput.value.trim();
 
       btnText.textContent = 'รับรหัส OTP';
-      btnIcon.textContent = '📩';
+      btnIcon.textContent = '';
 
-      if (!email) {
-        checkBtn.disabled = true;
-        return;
-      }
-
-      if (!isEmail(email)) {
-        checkBtn.disabled = true;
-        return;
-      }
-
-      if (!device) {
-        checkBtn.disabled = true;
-        return;
-      }
-
-      if (!selectedScreen) {
+      if (!email || !isEmail(email) || !device || !selectedScreen) {
         checkBtn.disabled = true;
         return;
       }
 
       checkBtn.disabled = false;
-      btnIcon.textContent = '💫';
     }
 
     function setLoading(isLoading) {
       if (isLoading) {
         app.classList.add('loading');
-        btnText.textContent = 'กำลังค้นหา...';
-        btnIcon.textContent = '✨';
+        btnText.textContent = 'กำลังค้นหารหัส...';
+        btnIcon.textContent = '';
         checkBtn.disabled = true;
       } else {
         app.classList.remove('loading');
@@ -1089,7 +877,7 @@
       otpCode.textContent = latestOtp;
       otpNote.textContent =
         'รหัสนี้มีอายุการใช้งาน ' + (expireMinutes || 15) + ' นาที\n' +
-        'ระบบบันทึกอุปกรณ์และจอที่ใช้งานแล้ว';
+        'ระบบได้บันทึกอุปกรณ์และหมายเลขจอที่ใช้งานแล้ว';
     }
 
     function showNotFound(savedMessage) {
@@ -1116,7 +904,7 @@
 
       if (!WEB_APP_URL || WEB_APP_URL.indexOf('ใส่_GOOGLE_APPS_SCRIPT') !== -1) {
         showNotFound('');
-        showToast('กรุณาตั้งค่า WEB_APP_URL ก่อน');
+        showToast('กรุณาตั้งค่า WEB_APP_URL ก่อนใช้งาน');
         return;
       }
 
@@ -1129,14 +917,14 @@
 
       if (!device) {
         showNotFound('');
-        showToast('กรุณาแจ้งอุปกรณ์ที่ใช้งาน');
+        showToast('กรุณาระบุอุปกรณ์ที่ใช้งาน');
         updateCheckButtonState();
         return;
       }
 
       if (!selectedScreen) {
         showNotFound('');
-        showToast('กรุณาเลือกจอที่ใช้งาน');
+        showToast('กรุณาเลือกหมายเลขจอ');
         updateCheckButtonState();
         return;
       }
@@ -1172,7 +960,7 @@
       }, function() {
         setLoading(false);
         showNotFound('');
-        showToast('เชื่อมต่อระบบไม่สำเร็จ');
+        showToast('ไม่สามารถเชื่อมต่อระบบได้ กรุณาลองใหม่อีกครั้ง');
       });
     }
 
@@ -1248,7 +1036,7 @@
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(latestOtp)
           .then(function() {
-            showToast('คัดลอกรหัสแล้ว');
+            showToast('คัดลอกรหัส OTP แล้ว');
           })
           .catch(function() {
             fallbackCopy(latestOtp);
@@ -1274,9 +1062,9 @@
 
       try {
         document.execCommand('copy');
-        showToast('คัดลอกรหัสแล้ว');
+        showToast('คัดลอกรหัส OTP แล้ว');
       } catch (e) {
-        showToast('คัดลอกไม่สำเร็จ');
+        showToast('ไม่สามารถคัดลอกรหัสได้');
       }
 
       document.body.removeChild(area);
