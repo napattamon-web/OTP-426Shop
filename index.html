@@ -3,24 +3,39 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#FFE8F0">
+  <meta name="theme-color" content="#061834">
 
-  <title>เช็กรหัสยืนยัน</title>
+  <title>Disney+ 4K OTP Verify</title>
 
   <style>
     :root {
-      --primary: #F2B7C8;
-      --primary-dark: #D97D98;
-      --primary-deep: #B7607D;
-      --soft: #FFF7FA;
-      --soft2: #FFE8F0;
-      --line: #F1DEE5;
-      --text: #3A3040;
-      --sub: #8A7B8D;
+      --bg0: #030814;
+      --bg1: #061834;
+      --bg2: #0A275A;
+      --blue: #1D75FF;
+      --blue2: #37D8FF;
+      --cyan: #88EEFF;
+      --purple: #A88BFF;
+      --pink: #FFB7D5;
+      --gold: #FFD86B;
+      --green: #73F2B6;
+      --red: #FF8FA8;
+
       --white: #FFFFFF;
-      --danger: #D97C7C;
-      --success: #59A779;
-      --shadow: 0 24px 70px rgba(183, 96, 125, 0.24);
+      --text: #FFFFFF;
+      --sub: rgba(255,255,255,0.72);
+      --muted: rgba(255,255,255,0.52);
+      --line: rgba(255,255,255,0.16);
+      --line2: rgba(136,238,255,0.28);
+      --glass: rgba(9, 26, 58, 0.72);
+      --glass2: rgba(255,255,255,0.10);
+
+      --radius-xl: 36px;
+      --radius-lg: 26px;
+      --radius-md: 20px;
+
+      --shadow: 0 30px 90px rgba(0,0,0,0.48);
+      --blue-shadow: 0 20px 46px rgba(29,117,255,0.34);
     }
 
     * {
@@ -33,9 +48,9 @@
       width: 100%;
       min-height: 100%;
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Prompt", sans-serif;
       color: var(--text);
-      background: var(--soft);
+      background: var(--bg0);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Prompt", "Noto Sans Thai", sans-serif;
     }
 
     body {
@@ -46,182 +61,426 @@
     .page {
       position: relative;
       min-height: 100dvh;
-      padding: max(18px, env(safe-area-inset-top)) 18px max(22px, env(safe-area-inset-bottom));
+      padding: max(16px, env(safe-area-inset-top)) 16px max(20px, env(safe-area-inset-bottom));
       display: flex;
-      align-items: stretch;
       justify-content: center;
-      background:
-        radial-gradient(circle at 15% 8%, rgba(255, 255, 255, 0.95) 0 12%, transparent 28%),
-        radial-gradient(circle at 88% 0%, rgba(242, 183, 200, 0.6) 0 18%, transparent 36%),
-        radial-gradient(circle at 100% 92%, rgba(255, 232, 240, 0.95) 0 16%, transparent 34%),
-        linear-gradient(180deg, #FFF7FA 0%, #FFFFFF 52%, #FFF7FA 100%);
       overflow: hidden;
+      background:
+        radial-gradient(circle at 50% -10%, rgba(55,216,255,0.34) 0 13%, transparent 34%),
+        radial-gradient(circle at 8% 14%, rgba(29,117,255,0.42) 0 13%, transparent 34%),
+        radial-gradient(circle at 96% 5%, rgba(168,139,255,0.34) 0 12%, transparent 31%),
+        radial-gradient(circle at 86% 86%, rgba(255,183,213,0.17) 0 14%, transparent 34%),
+        linear-gradient(180deg, #061834 0%, #081E46 42%, #030814 100%);
     }
 
-    .blob {
+    .page:before {
+      content: "";
       position: absolute;
-      border-radius: 999px;
-      filter: blur(2px);
-      opacity: 0.95;
+      inset: 0;
+      background-image:
+        radial-gradient(circle, rgba(255,255,255,0.45) 0 1px, transparent 1.6px),
+        radial-gradient(circle, rgba(136,238,255,0.28) 0 1px, transparent 1.7px);
+      background-size: 58px 58px, 92px 92px;
+      background-position: 0 0, 20px 26px;
+      opacity: 0.28;
       pointer-events: none;
     }
 
-    .blob.b1 {
+    .aurora {
+      position: absolute;
+      pointer-events: none;
+      filter: blur(28px);
+      opacity: 0.75;
+      border-radius: 999px;
+      mix-blend-mode: screen;
+    }
+
+    .aurora.a1 {
+      width: 270px;
+      height: 270px;
+      left: -130px;
+      top: 110px;
+      background: rgba(29,117,255,0.58);
+      animation: drift 9s ease-in-out infinite;
+    }
+
+    .aurora.a2 {
+      width: 230px;
+      height: 230px;
+      right: -110px;
+      top: 42px;
+      background: rgba(55,216,255,0.42);
+      animation: drift 10s ease-in-out infinite reverse;
+    }
+
+    .aurora.a3 {
+      width: 260px;
+      height: 260px;
+      right: -125px;
+      bottom: 22px;
+      background: rgba(168,139,255,0.38);
+      animation: drift 11s ease-in-out infinite;
+    }
+
+    .aurora.a4 {
       width: 160px;
       height: 160px;
-      left: -70px;
-      top: 72px;
-      background: rgba(242, 183, 200, 0.42);
+      left: 50%;
+      bottom: -80px;
+      background: rgba(255,183,213,0.25);
+      animation: drift 12s ease-in-out infinite reverse;
     }
 
-    .blob.b2 {
-      width: 120px;
-      height: 120px;
-      right: -38px;
-      top: 190px;
-      background: rgba(255, 232, 240, 0.9);
+    @keyframes drift {
+      0%, 100% {
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+      50% {
+        transform: translate3d(18px, -18px, 0) scale(1.07);
+      }
     }
 
-    .blob.b3 {
-      width: 150px;
-      height: 150px;
-      left: 42px;
-      bottom: -78px;
-      background: rgba(249, 203, 216, 0.55);
+    .stars {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .star {
+      position: absolute;
+      color: rgba(255,255,255,0.78);
+      text-shadow: 0 0 18px rgba(136,238,255,0.72);
+      animation: twinkle 3.8s ease-in-out infinite;
+    }
+
+    .star.s1 { left: 9%; top: 10%; font-size: 13px; animation-delay: 0s; }
+    .star.s2 { right: 13%; top: 18%; font-size: 18px; animation-delay: .7s; }
+    .star.s3 { left: 15%; top: 44%; font-size: 11px; animation-delay: 1.2s; }
+    .star.s4 { right: 8%; top: 56%; font-size: 12px; animation-delay: 1.9s; }
+    .star.s5 { left: 10%; bottom: 12%; font-size: 17px; animation-delay: 2.5s; }
+    .star.s6 { right: 24%; bottom: 8%; font-size: 11px; animation-delay: 1.4s; }
+    .star.s7 { left: 45%; top: 7%; font-size: 10px; animation-delay: 2.2s; }
+    .star.s8 { right: 44%; bottom: 18%; font-size: 12px; animation-delay: .4s; }
+
+    @keyframes twinkle {
+      0%, 100% {
+        opacity: .42;
+        transform: scale(1) rotate(0deg);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.25) rotate(12deg);
+      }
     }
 
     .phone {
       position: relative;
       z-index: 2;
       width: 100%;
-      max-width: 480px;
-      min-height: calc(100dvh - 40px);
+      max-width: 500px;
+      min-height: calc(100dvh - 36px);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 18px;
+      gap: 16px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 2px 2px 0;
+    }
+
+    .brand {
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 17px;
+      display: grid;
+      place-items: center;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.28), transparent 38%),
+        linear-gradient(135deg, var(--blue), var(--blue2));
+      box-shadow: var(--blue-shadow);
+      font-size: 22px;
+    }
+
+    .brand-title {
+      font-size: 15px;
+      font-weight: 1000;
+      letter-spacing: .2px;
+      white-space: nowrap;
+    }
+
+    .brand-sub {
+      margin-top: 2px;
+      color: var(--sub);
+      font-size: 11px;
+      font-weight: 760;
+      white-space: nowrap;
+    }
+
+    .badge-4k {
+      flex: 0 0 auto;
+      border: 1px solid rgba(255,255,255,0.24);
+      background: rgba(255,255,255,0.12);
+      color: var(--white);
+      border-radius: 999px;
+      padding: 9px 12px;
+      font-size: 12px;
+      font-weight: 1000;
+      letter-spacing: .35px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.18);
+      backdrop-filter: blur(14px);
     }
 
     .hero {
-      padding-top: 10px;
       text-align: center;
+      padding-top: 4px;
     }
 
     .hero-art {
-      width: min(82vw, 330px);
-      aspect-ratio: 1 / 0.78;
-      margin: 0 auto 8px;
+      width: min(82vw, 340px);
+      aspect-ratio: 1 / .82;
+      margin: 0 auto 6px;
       position: relative;
       display: grid;
       place-items: center;
     }
 
-    .circle {
+    .planet {
       position: absolute;
       width: 82%;
       aspect-ratio: 1;
       border-radius: 999px;
       background:
-        radial-gradient(circle at 35% 26%, #ffffff 0 10%, transparent 22%),
-        linear-gradient(135deg, #FFE8F0, #F2B7C8);
+        radial-gradient(circle at 32% 23%, rgba(255,255,255,0.94) 0 4%, transparent 13%),
+        radial-gradient(circle at 64% 72%, rgba(255,183,213,0.46) 0 8%, transparent 22%),
+        linear-gradient(135deg, #153E91 0%, #1D75FF 48%, #37D8FF 100%);
       box-shadow:
-        inset 0 0 0 1px rgba(255,255,255,0.86),
-        0 22px 45px rgba(217, 125, 152, 0.22);
+        inset -18px -24px 46px rgba(0,0,0,0.18),
+        inset 0 0 0 1px rgba(255,255,255,0.34),
+        0 28px 70px rgba(29,117,255,0.36);
     }
 
-    .mail-card {
+    .orbit {
+      position: absolute;
+      width: 100%;
+      height: 54%;
+      border: 1.5px solid rgba(255,255,255,0.34);
+      border-radius: 999px;
+      transform: rotate(-13deg);
+      box-shadow: 0 0 24px rgba(136,238,255,0.28);
+    }
+
+    .screen-card {
       position: relative;
-      width: 74%;
-      aspect-ratio: 1.28;
-      border-radius: 34px;
-      background: rgba(255,255,255,0.95);
-      box-shadow: 0 22px 50px rgba(183, 96, 125, 0.18);
-      border: 1px solid rgba(241, 222, 229, 0.96);
-      display: grid;
-      place-items: center;
+      width: 79%;
+      aspect-ratio: 1.38;
+      border-radius: 36px;
+      padding: 13px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.20), rgba(255,255,255,0.08)),
+        rgba(5, 16, 37, 0.62);
+      border: 1px solid rgba(255,255,255,0.22);
+      box-shadow:
+        0 24px 58px rgba(0,0,0,0.34),
+        inset 0 1px 0 rgba(255,255,255,0.24);
+      backdrop-filter: blur(16px);
       transform: rotate(-2deg);
       overflow: hidden;
     }
 
-    .mail-card:before {
+    .screen-card:before {
       content: "";
       position: absolute;
-      inset: 0;
+      inset: -1px;
       background:
-        linear-gradient(140deg, transparent 0 49%, rgba(217, 125, 152, 0.12) 50%, transparent 51%),
-        linear-gradient(40deg, transparent 0 49%, rgba(242, 183, 200, 0.18) 50%, transparent 51%);
+        radial-gradient(circle at 30% 15%, rgba(136,238,255,0.24), transparent 34%),
+        linear-gradient(135deg, transparent 0 48%, rgba(255,255,255,0.08) 49%, transparent 52%);
+      pointer-events: none;
     }
 
-    .mail-icon {
+    .screen-inner {
       position: relative;
-      width: 92px;
-      height: 92px;
-      border-radius: 30px;
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      height: 100%;
+      border-radius: 26px;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(13,44,98,0.92), rgba(4,12,30,0.96));
+      border: 1px solid rgba(255,255,255,0.14);
       display: grid;
       place-items: center;
-      color: white;
-      font-size: 46px;
-      box-shadow: 0 14px 30px rgba(217, 125, 152, 0.26);
     }
 
-    .spark {
+    .screen-inner:before {
+      content: "";
+      position: absolute;
+      left: 12%;
+      right: 12%;
+      bottom: 15%;
+      height: 5px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--blue), var(--blue2), var(--pink));
+      box-shadow: 0 0 22px rgba(55,216,255,0.36);
+    }
+
+    .play-circle {
+      width: 80px;
+      height: 80px;
+      border-radius: 999px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.30), transparent 40%),
+        linear-gradient(135deg, var(--blue), var(--blue2));
+      box-shadow:
+        0 16px 34px rgba(29,117,255,0.42),
+        0 0 0 10px rgba(255,255,255,0.06);
+      display: grid;
+      place-items: center;
+      font-size: 34px;
+    }
+
+    .mini-tag {
+      position: absolute;
+      left: 14px;
+      top: 14px;
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.16);
+      color: rgba(255,255,255,0.9);
+      font-size: 11px;
+      font-weight: 1000;
+      letter-spacing: .4px;
+    }
+
+    .float-bubble {
       position: absolute;
       display: grid;
       place-items: center;
-      width: 40px;
-      height: 40px;
+      width: 44px;
+      height: 44px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.88);
-      border: 1px solid rgba(241, 222, 229, 0.92);
-      box-shadow: 0 10px 24px rgba(183,96,125,0.12);
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.22);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.22);
+      backdrop-filter: blur(12px);
       font-size: 19px;
+      animation: bubbleFloat 5s ease-in-out infinite;
     }
 
-    .spark.s1 {
-      top: 18px;
-      right: 36px;
-    }
-
-    .spark.s2 {
-      left: 30px;
-      bottom: 30px;
-      transform: rotate(-10deg);
-    }
-
-    .spark.s3 {
+    .float-bubble.b1 {
+      top: 12px;
       right: 34px;
-      bottom: 20px;
+      animation-delay: 0s;
+    }
+
+    .float-bubble.b2 {
+      left: 22px;
+      bottom: 26px;
+      transform: rotate(-9deg);
+      animation-delay: .9s;
+    }
+
+    .float-bubble.b3 {
+      right: 28px;
+      bottom: 15px;
       transform: rotate(8deg);
+      animation-delay: 1.5s;
+    }
+
+    @keyframes bubbleFloat {
+      0%, 100% {
+        translate: 0 0;
+      }
+      50% {
+        translate: 0 -8px;
+      }
     }
 
     h1 {
       margin: 0;
-      font-size: clamp(28px, 8vw, 40px);
-      line-height: 1.12;
+      font-size: clamp(29px, 8vw, 43px);
+      line-height: 1.08;
       letter-spacing: -0.8px;
-      color: var(--text);
+      color: var(--white);
+      text-shadow: 0 14px 36px rgba(0,0,0,0.34);
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #FFFFFF 0%, #88EEFF 44%, #FFB7D5 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
     .subtitle {
       margin: 10px auto 0;
-      max-width: 330px;
+      max-width: 370px;
       color: var(--sub);
       font-size: 15px;
-      line-height: 1.65;
+      line-height: 1.68;
+      font-weight: 580;
+    }
+
+    .premium-row {
+      margin: 14px auto 0;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .premium-chip {
+      padding: 7px 10px;
+      border-radius: 999px;
+      color: rgba(255,255,255,0.88);
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.16);
+      font-size: 11px;
+      font-weight: 900;
+      backdrop-filter: blur(12px);
     }
 
     .panel {
-      background: rgba(255,255,255,0.92);
-      border: 1px solid rgba(241, 222, 229, 0.94);
-      border-radius: 32px;
+      position: relative;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.15), rgba(255,255,255,0.08)),
+        var(--glass);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: var(--radius-xl);
       box-shadow: var(--shadow);
       padding: 18px;
-      backdrop-filter: blur(16px);
+      backdrop-filter: blur(22px);
+      overflow: hidden;
+    }
+
+    .panel:before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 22% 0%, rgba(136,238,255,0.16), transparent 34%),
+        radial-gradient(circle at 100% 15%, rgba(255,183,213,0.11), transparent 28%);
+      pointer-events: none;
+    }
+
+    .panel > * {
+      position: relative;
+      z-index: 1;
     }
 
     .field {
-      margin-bottom: 12px;
+      margin-bottom: 13px;
     }
 
     .label {
@@ -230,18 +489,20 @@
       justify-content: space-between;
       gap: 8px;
       margin: 0 4px 8px;
-      color: var(--sub);
+      color: rgba(255,255,255,0.80);
       font-size: 13px;
-      font-weight: 700;
+      font-weight: 900;
     }
 
     .pill {
       font-size: 11px;
-      color: var(--primary-deep);
-      background: var(--soft);
-      border: 1px solid var(--line);
+      color: #C9F7FF;
+      background: rgba(136,238,255,0.10);
+      border: 1px solid rgba(136,238,255,0.28);
       border-radius: 999px;
-      padding: 5px 9px;
+      padding: 5px 10px;
+      font-weight: 1000;
+      letter-spacing: .25px;
     }
 
     .input-wrap {
@@ -250,29 +511,34 @@
 
     input {
       width: 100%;
-      height: 58px;
-      border: 1px solid var(--line);
+      height: 61px;
+      border: 1px solid rgba(255,255,255,0.16);
       outline: none;
-      border-radius: 20px;
-      background: #FFFDFE;
-      padding: 0 48px 0 16px;
-      color: var(--text);
+      border-radius: 23px;
+      background: rgba(255,255,255,0.11);
+      padding: 0 50px 0 16px;
+      color: var(--white);
       font-size: 16px;
-      font-weight: 650;
+      font-weight: 760;
       transition: 0.18s ease;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.95);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.12),
+        0 12px 28px rgba(0,0,0,0.12);
+      backdrop-filter: blur(12px);
     }
 
     input::placeholder {
-      color: #C1AEB7;
-      font-weight: 500;
+      color: rgba(255,255,255,0.42);
+      font-weight: 620;
     }
 
     input:focus {
-      border-color: var(--primary-dark);
+      border-color: rgba(136,238,255,0.72);
       box-shadow:
-        0 0 0 5px rgba(217,125,152,0.12),
-        inset 0 1px 0 rgba(255,255,255,0.95);
+        0 0 0 5px rgba(55,216,255,0.14),
+        0 0 28px rgba(55,216,255,0.18),
+        inset 0 1px 0 rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.15);
     }
 
     .input-emoji {
@@ -281,7 +547,43 @@
       top: 50%;
       transform: translateY(-50%);
       font-size: 20px;
-      opacity: 0.8;
+      opacity: 0.92;
+    }
+
+    .field-hint {
+      margin: 8px 5px 0;
+      color: rgba(255,255,255,0.58);
+      font-size: 12px;
+      line-height: 1.5;
+      font-weight: 680;
+    }
+
+    .screen-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 8px;
+    }
+
+    .screen-btn {
+      min-height: 48px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.10);
+      color: rgba(255,255,255,0.82);
+      font-size: 16px;
+      font-weight: 1000;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.10);
+    }
+
+    .screen-btn.active {
+      color: #061834;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.75), rgba(255,255,255,0.22)),
+        linear-gradient(135deg, var(--cyan), var(--pink));
+      border-color: rgba(255,255,255,0.48);
+      box-shadow:
+        0 12px 26px rgba(55,216,255,0.22),
+        inset 0 1px 0 rgba(255,255,255,0.46);
     }
 
     .pin-field {
@@ -297,13 +599,13 @@
 
     button {
       width: 100%;
-      min-height: 58px;
+      min-height: 61px;
       border: none;
-      border-radius: 21px;
+      border-radius: 23px;
       font-size: 16px;
-      font-weight: 850;
+      font-weight: 1000;
       cursor: pointer;
-      transition: transform 0.16s ease, box-shadow 0.16s ease, opacity 0.16s ease;
+      transition: transform 0.16s ease, box-shadow 0.16s ease, opacity 0.16s ease, filter 0.16s ease;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -314,38 +616,56 @@
       transform: scale(0.985);
     }
 
+    button:disabled {
+      opacity: 0.46;
+      cursor: not-allowed;
+      filter: grayscale(0.25);
+      box-shadow: none !important;
+    }
+
+    button:disabled:active {
+      transform: none;
+    }
+
     .btn-primary {
       color: white;
       background:
         linear-gradient(135deg, rgba(255,255,255,0.28), transparent 36%),
-        linear-gradient(135deg, var(--primary-dark), var(--primary-deep));
-      box-shadow: 0 18px 34px rgba(183,96,125,0.25);
+        linear-gradient(135deg, #1D75FF 0%, #37D8FF 100%);
+      box-shadow:
+        0 18px 40px rgba(29,117,255,0.34),
+        0 0 28px rgba(55,216,255,0.22);
     }
 
     .btn-copy {
       display: none;
-      color: var(--primary-deep);
-      background: var(--soft);
-      border: 1px solid var(--line);
+      color: #DDF9FF;
+      background: rgba(255,255,255,0.11);
+      border: 1px solid rgba(136,238,255,0.28);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.12);
     }
 
     .status {
       margin-top: 14px;
       display: none;
-      border-radius: 24px;
-      border: 1px solid var(--line);
+      border-radius: 29px;
+      border: 1px solid rgba(255,255,255,0.16);
       background:
-        radial-gradient(circle at 20% 0%, rgba(255,255,255,0.96), transparent 38%),
-        #FFF7FA;
+        radial-gradient(circle at 22% 0%, rgba(136,238,255,0.18), transparent 38%),
+        rgba(255,255,255,0.09);
       padding: 18px;
-      min-height: 92px;
+      min-height: 100px;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.12),
+        0 14px 32px rgba(0,0,0,0.16);
+      backdrop-filter: blur(12px);
     }
 
     .status-title {
       text-align: center;
-      color: var(--sub);
+      color: rgba(255,255,255,0.72);
       font-size: 14px;
-      font-weight: 750;
+      font-weight: 900;
       margin-bottom: 10px;
     }
 
@@ -358,63 +678,85 @@
       margin: 4px auto 12px;
       width: fit-content;
       max-width: 100%;
-      border-radius: 24px;
-      background: white;
-      border: 1px solid rgba(241, 222, 229, 0.98);
-      padding: 14px 18px 13px;
-      color: var(--primary-deep);
-      font-size: clamp(38px, 12vw, 56px);
+      border-radius: 27px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0.10)),
+        rgba(255,255,255,0.12);
+      border: 1px solid rgba(136,238,255,0.32);
+      padding: 15px 19px 14px;
+      color: #FFFFFF;
+      font-size: clamp(38px, 12vw, 58px);
       line-height: 1;
-      font-weight: 950;
+      font-weight: 1000;
       letter-spacing: 8px;
-      box-shadow: 0 14px 30px rgba(183,96,125,0.12);
+      text-shadow: 0 0 24px rgba(136,238,255,0.58);
+      box-shadow:
+        0 16px 36px rgba(0,0,0,0.20),
+        0 0 28px rgba(55,216,255,0.16),
+        inset 0 1px 0 rgba(255,255,255,0.18);
       user-select: all;
       overflow-wrap: anywhere;
     }
 
     .otp-note {
-      color: var(--text);
+      color: rgba(255,255,255,0.82);
       font-size: 14px;
-      line-height: 1.65;
+      line-height: 1.68;
       white-space: pre-line;
+      font-weight: 680;
+    }
+
+    .saved-note {
+      margin-top: 12px;
+      display: none;
+      text-align: center;
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 900;
     }
 
     .not-found {
       display: none;
       text-align: center;
-      color: var(--text);
+      color: rgba(255,255,255,0.92);
       font-size: 17px;
-      font-weight: 800;
+      font-weight: 1000;
       padding: 10px 4px;
+      line-height: 1.55;
     }
 
     .mini-info {
-      margin-top: 12px;
+      margin-top: 13px;
       display: flex;
       justify-content: center;
       gap: 8px;
       flex-wrap: wrap;
-      color: var(--sub);
+      color: rgba(255,255,255,0.72);
       font-size: 12px;
     }
 
     .mini-info span {
       padding: 7px 10px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.78);
-      border: 1px solid rgba(241,222,229,0.9);
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.14);
+      font-weight: 780;
     }
 
     .footer {
       text-align: center;
-      color: var(--sub);
+      color: rgba(255,255,255,0.55);
       font-size: 12px;
-      line-height: 1.55;
+      line-height: 1.6;
       padding: 0 16px 4px;
     }
 
+    .footer strong {
+      color: rgba(255,255,255,0.82);
+    }
+
     .loading .btn-primary {
-      opacity: 0.76;
+      opacity: 0.78;
       pointer-events: none;
     }
 
@@ -444,17 +786,20 @@
       bottom: calc(22px + env(safe-area-inset-bottom));
       transform: translateX(-50%) translateY(20px);
       z-index: 50;
-      background: rgba(58,48,64,0.94);
-      color: white;
+      background: rgba(255,255,255,0.95);
+      color: #061834;
       border-radius: 999px;
       padding: 12px 16px;
       font-size: 14px;
-      font-weight: 750;
-      box-shadow: 0 16px 34px rgba(58,48,64,0.24);
+      font-weight: 1000;
+      box-shadow: 0 18px 42px rgba(0,0,0,0.28);
       opacity: 0;
       pointer-events: none;
       transition: 0.22s ease;
       white-space: nowrap;
+      max-width: calc(100vw - 28px);
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .toast.show {
@@ -462,38 +807,14 @@
       transform: translateX(-50%) translateY(0);
     }
 
-    .tiny-hearts {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      overflow: hidden;
-    }
-
-    .heart {
-      position: absolute;
-      color: rgba(183,96,125,0.25);
-      font-size: 18px;
-      animation: float 7s ease-in-out infinite;
-    }
-
-    .heart.h1 { left: 7%; top: 18%; animation-delay: 0s; }
-    .heart.h2 { right: 8%; top: 35%; animation-delay: 1.2s; }
-    .heart.h3 { left: 12%; bottom: 18%; animation-delay: 2.1s; }
-    .heart.h4 { right: 18%; bottom: 10%; animation-delay: 3.4s; }
-
-    @keyframes float {
-      0%, 100% {
-        transform: translateY(0) rotate(0);
-      }
-      50% {
-        transform: translateY(-18px) rotate(10deg);
-      }
-    }
-
-    @media (max-height: 700px) {
+    @media (max-height: 820px) {
       .hero-art {
-        width: min(66vw, 260px);
+        width: min(64vw, 252px);
         margin-bottom: 0;
+      }
+
+      .topbar {
+        padding-top: 0;
       }
 
       h1 {
@@ -502,17 +823,37 @@
 
       .subtitle {
         margin-top: 6px;
+        font-size: 14px;
+      }
+
+      .premium-row {
+        margin-top: 9px;
       }
 
       .panel {
-        border-radius: 28px;
+        border-radius: 31px;
         padding: 16px;
       }
 
       input,
       button {
-        height: 54px;
-        min-height: 54px;
+        height: 56px;
+        min-height: 56px;
+      }
+
+      .screen-btn {
+        min-height: 44px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .screen-grid {
+        gap: 6px;
+      }
+
+      .screen-btn {
+        border-radius: 15px;
+        font-size: 15px;
       }
     }
 
@@ -526,52 +867,137 @@
         padding: 22px;
       }
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *:before,
+      *:after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+      }
+    }
   </style>
 </head>
 
 <body>
   <main class="page">
-    <div class="blob b1"></div>
-    <div class="blob b2"></div>
-    <div class="blob b3"></div>
+    <div class="aurora a1"></div>
+    <div class="aurora a2"></div>
+    <div class="aurora a3"></div>
+    <div class="aurora a4"></div>
 
-    <div class="tiny-hearts">
-      <div class="heart h1">♡</div>
-      <div class="heart h2">✦</div>
-      <div class="heart h3">♡</div>
-      <div class="heart h4">✧</div>
+    <div class="stars">
+      <div class="star s1">✦</div>
+      <div class="star s2">✧</div>
+      <div class="star s3">•</div>
+      <div class="star s4">✦</div>
+      <div class="star s5">✧</div>
+      <div class="star s6">•</div>
+      <div class="star s7">✦</div>
+      <div class="star s8">✧</div>
     </div>
 
     <section class="phone" id="app">
-      <div class="hero">
-        <div class="hero-art">
-          <div class="circle"></div>
-
-          <div class="mail-card">
-            <div class="mail-icon">✉️</div>
+      <div class="topbar">
+        <div class="brand">
+          <div class="brand-logo">✨</div>
+          <div>
+            <div class="brand-title">Disney+ 4K Verify</div>
+            <div class="brand-sub">Premium OTP Checker</div>
           </div>
-
-          <div class="spark s1">🔐</div>
-          <div class="spark s2">💗</div>
-          <div class="spark s3">✨</div>
         </div>
 
-        <h1>เช็กรหัสยืนยัน</h1>
+        <div class="badge-4k">4K UHD</div>
+      </div>
+
+      <div class="hero">
+        <div class="hero-art">
+          <div class="planet"></div>
+          <div class="orbit"></div>
+
+          <div class="screen-card">
+            <div class="screen-inner">
+              <div class="mini-tag">STREAMING</div>
+              <div class="play-circle">▶</div>
+            </div>
+          </div>
+
+          <div class="float-bubble b1">🔐</div>
+          <div class="float-bubble b2">💌</div>
+          <div class="float-bubble b3">📺</div>
+        </div>
+
+        <h1>
+          รับรหัส OTP<br>
+          <span class="gradient-text">Disney+ 4K</span>
+        </h1>
+
         <p class="subtitle">
-          กรอกอีเมลของคุณ เพื่อค้นหา OTP ล่าสุดจากระบบอย่างรวดเร็ว
+          กรอกอีเมล แจ้งอุปกรณ์ และเลือกจอที่ใช้งานก่อนรับรหัส
+          ระบบจะบันทึกข้อมูลให้อัตโนมัติ
         </p>
+
+        <div class="premium-row">
+          <div class="premium-chip">บันทึกอุปกรณ์</div>
+          <div class="premium-chip">เลือกจอ 1-6</div>
+          <div class="premium-chip">เหมาะกับมือถือ</div>
+        </div>
       </div>
 
       <div class="panel">
         <div class="field">
           <div class="label">
             <span>อีเมลสำหรับรับรหัส</span>
-            <span class="pill">OTP</span>
+            <span class="pill">Email</span>
           </div>
 
           <div class="input-wrap">
             <input id="email" type="email" placeholder="test@lico.moe" autocomplete="email" inputmode="email">
             <div class="input-emoji">📮</div>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="label">
+            <span>อุปกรณ์ที่ใช้งาน</span>
+            <span class="pill">Required</span>
+          </div>
+
+          <div class="input-wrap">
+            <input
+              id="device"
+              type="text"
+              placeholder="เช่น iPhone / Android / iPad / TV / Chrome"
+              autocomplete="off"
+              inputmode="text"
+              maxlength="80"
+            >
+            <div class="input-emoji">📱</div>
+          </div>
+
+          <div class="field-hint">
+            ต้องแจ้งอุปกรณ์ก่อนรับรหัส เช่น iPhone, Android, TV, iPad หรือ Chrome
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="label">
+            <span>เลือกชื่อจอที่ใช้งาน</span>
+            <span class="pill">Screen</span>
+          </div>
+
+          <div class="screen-grid" id="screenGrid">
+            <button type="button" class="screen-btn" data-screen="1" onclick="selectScreen('1')">1</button>
+            <button type="button" class="screen-btn" data-screen="2" onclick="selectScreen('2')">2</button>
+            <button type="button" class="screen-btn" data-screen="3" onclick="selectScreen('3')">3</button>
+            <button type="button" class="screen-btn" data-screen="4" onclick="selectScreen('4')">4</button>
+            <button type="button" class="screen-btn" data-screen="5" onclick="selectScreen('5')">5</button>
+            <button type="button" class="screen-btn" data-screen="6" onclick="selectScreen('6')">6</button>
+          </div>
+
+          <div class="field-hint">
+            กรุณาเลือกจอที่ใช้งาน เพื่อให้แอดมินตรวจสอบและบันทึกข้อมูลได้ถูกต้อง
           </div>
         </div>
 
@@ -588,23 +1014,24 @@
         </div>
 
         <div class="actions">
-          <button class="btn-primary" id="checkBtn" onclick="checkOtp()">
+          <button class="btn-primary" id="checkBtn" onclick="checkOtp()" disabled>
             <span class="spinner"></span>
-            <span id="btnText">เช็กรหัสเลย</span>
-            <span>💌</span>
+            <span id="btnText">กรอกเมลก่อน</span>
+            <span>💫</span>
           </button>
 
           <button class="btn-copy" id="copyBtn" onclick="copyOtp()">
-            <span>คัดลอกรหัส</span>
+            <span>คัดลอกรหัส OTP</span>
             <span>📋</span>
           </button>
         </div>
 
         <div class="status" id="status">
           <div class="otp-box" id="otpBox">
-            <div class="status-title">รหัสยืนยันของคุณคือ</div>
+            <div class="status-title">รหัสยืนยันล่าสุด</div>
             <div class="otp-code" id="otpCode"></div>
             <div class="otp-note" id="otpNote"></div>
+            <div class="saved-note" id="savedNote">บันทึกข้อมูลเรียบร้อย</div>
 
             <div class="mini-info">
               <span>ใช้ได้ 15 นาที</span>
@@ -612,29 +1039,31 @@
             </div>
           </div>
 
-          <div class="not-found" id="notFound">ไม่พบข้อมูลในระบบ</div>
+          <div class="not-found" id="notFound">
+            ไม่พบข้อมูลในระบบ<br>
+            กรุณาตรวจสอบอีเมลหรือรอสักครู่แล้วลองใหม่
+          </div>
         </div>
       </div>
 
       <div class="footer">
-        ระบบค้นหารหัสจากอีเมลล่าสุด<br>
-        โปรดตรวจสอบอีเมลให้ถูกต้องก่อนกดเช็ก
+        <strong>Disney+ 4K OTP Verify</strong><br>
+        ระบบค้นหารหัสจากอีเมลล่าสุด และบันทึกอุปกรณ์/จอที่ลูกค้าแจ้งไว้ใน Google Sheet
       </div>
     </section>
   </main>
 
-  <div class="toast" id="toast">คัดลอกแล้ว</div>
+  <div class="toast" id="toast">เรียบร้อย</div>
 
   <script>
     /************************************************************
      * CONFIG
-     * ใส่ URL ของ Google Apps Script Web App ตรงนี้
      ************************************************************/
 
-    const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxchA3jvdipTB3kj343x78Fj4EFuvO8pYUOhl6jq-pm5adIANAfU-rksJrjmagIZfNceA/exec';
+    const WEB_APP_URL = 'ใส่_GOOGLE_APPS_SCRIPT_WEB_APP_URL_ตรงนี้';
 
     /************************************************************
-     * OPTIONAL
+     * OPTIONAL PIN
      * ถ้าเปิด PIN ใน Apps Script ด้วย setupWebPin()
      * ให้เปลี่ยน SHOW_PIN_FIELD = true
      ************************************************************/
@@ -642,10 +1071,12 @@
     const SHOW_PIN_FIELD = false;
 
     let latestOtp = '';
+    let selectedScreen = '';
     let jsonpCounter = 0;
 
     const app = document.getElementById('app');
     const emailInput = document.getElementById('email');
+    const deviceInput = document.getElementById('device');
     const pinInput = document.getElementById('pin');
     const pinField = document.getElementById('pinField');
     const checkBtn = document.getElementById('checkBtn');
@@ -655,6 +1086,7 @@
     const otpBox = document.getElementById('otpBox');
     const otpCode = document.getElementById('otpCode');
     const otpNote = document.getElementById('otpNote');
+    const savedNote = document.getElementById('savedNote');
     const notFound = document.getElementById('notFound');
     const toast = document.getElementById('toast');
 
@@ -662,13 +1094,61 @@
       pinField.style.display = 'block';
     }
 
+    function selectScreen(screenNo) {
+      selectedScreen = String(screenNo || '').trim();
+
+      const buttons = document.querySelectorAll('.screen-btn');
+      buttons.forEach(function(btn) {
+        if (btn.getAttribute('data-screen') === selectedScreen) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+
+      updateCheckButtonState();
+    }
+
+    function updateCheckButtonState() {
+      const email = emailInput.value.trim();
+      const device = deviceInput.value.trim();
+
+      if (!email) {
+        checkBtn.disabled = true;
+        btnText.textContent = 'กรอกเมลก่อน';
+        return;
+      }
+
+      if (!isEmail(email)) {
+        checkBtn.disabled = true;
+        btnText.textContent = 'เมลไม่ถูกต้อง';
+        return;
+      }
+
+      if (!device) {
+        checkBtn.disabled = true;
+        btnText.textContent = 'แจ้งอุปกรณ์';
+        return;
+      }
+
+      if (!selectedScreen) {
+        checkBtn.disabled = true;
+        btnText.textContent = 'เลือกจอก่อน';
+        return;
+      }
+
+      checkBtn.disabled = false;
+      btnText.textContent = 'รับรหัส OTP';
+    }
+
     function setLoading(isLoading) {
       if (isLoading) {
         app.classList.add('loading');
-        btnText.textContent = 'กำลังตรวจสอบ...';
+        btnText.textContent = 'กำลังค้นหา...';
+        checkBtn.disabled = true;
       } else {
         app.classList.remove('loading');
-        btnText.textContent = 'เช็กรหัสเลย';
+        updateCheckButtonState();
       }
     }
 
@@ -678,47 +1158,73 @@
       statusBox.style.display = 'none';
       otpBox.style.display = 'none';
       notFound.style.display = 'none';
+      savedNote.style.display = 'none';
       otpCode.textContent = '';
       otpNote.textContent = '';
     }
 
-    function showOtp(otp, expireMinutes) {
+    function showOtp(otp, expireMinutes, screenNo) {
       latestOtp = String(otp || '').trim();
 
       statusBox.style.display = 'block';
       otpBox.style.display = 'block';
       notFound.style.display = 'none';
+      savedNote.style.display = 'block';
       copyBtn.style.display = 'flex';
 
       otpCode.textContent = latestOtp;
       otpNote.textContent =
         'รหัสนี้มีอายุการใช้งาน ' + (expireMinutes || 15) + ' นาที\n' +
-        'ห้ามเปิดเผยรหัสนี้กับบุคคลอื่น';
+        'จอที่ใช้งาน: จอ ' + (screenNo || selectedScreen || '-') + '\n' +
+        'บันทึกข้อมูลอุปกรณ์และจอเรียบร้อยแล้ว';
     }
 
-    function showNotFound() {
+    function showNotFound(message) {
       latestOtp = '';
 
       statusBox.style.display = 'block';
       otpBox.style.display = 'none';
       notFound.style.display = 'block';
       copyBtn.style.display = 'none';
+
+      if (message) {
+        notFound.innerHTML = escapeHtml(message);
+      } else {
+        notFound.innerHTML = 'ไม่พบข้อมูลในระบบ<br>กรุณาตรวจสอบอีเมลหรือรอสักครู่แล้วลองใหม่';
+      }
     }
 
     function checkOtp() {
       const email = emailInput.value.trim();
+      const device = deviceInput.value.trim();
       const pin = pinInput.value.trim();
 
       resetResult();
 
       if (!WEB_APP_URL || WEB_APP_URL.indexOf('ใส่_GOOGLE_APPS_SCRIPT') !== -1) {
-        showNotFound();
+        showNotFound('กรุณาตั้งค่า WEB_APP_URL ก่อน');
         showToast('กรุณาตั้งค่า WEB_APP_URL ก่อน');
         return;
       }
 
       if (!email || !isEmail(email)) {
-        showNotFound();
+        showNotFound('กรุณากรอกอีเมลให้ถูกต้อง');
+        showToast('กรอกเมลก่อน');
+        updateCheckButtonState();
+        return;
+      }
+
+      if (!device) {
+        showNotFound('กรุณาแจ้งอุปกรณ์ที่ใช้งานก่อนรับรหัส');
+        showToast('แจ้งอุปกรณ์ก่อน');
+        updateCheckButtonState();
+        return;
+      }
+
+      if (!selectedScreen) {
+        showNotFound('กรุณาเลือกจอที่ใช้งานก่อนรับรหัส');
+        showToast('เลือกจอก่อน');
+        updateCheckButtonState();
         return;
       }
 
@@ -727,19 +1233,25 @@
       jsonpRequest({
         action: 'otp',
         email: email,
+        device: device,
+        screen: selectedScreen,
+        userAgent: navigator.userAgent || '',
         pin: pin
       }, function(res) {
         setLoading(false);
 
         if (!res || !res.ok || !res.otp) {
-          showNotFound();
+          showNotFound(res && res.message ? res.message : '');
+          showToast(res && res.saved ? 'บันทึกข้อมูลเรียบร้อย' : 'ไม่พบรหัส');
           return;
         }
 
-        showOtp(res.otp, res.expireMinutes || 15);
+        showOtp(res.otp, res.expireMinutes || 15, res.screen || selectedScreen);
+        showToast('บันทึกข้อมูลเรียบร้อย');
       }, function() {
         setLoading(false);
-        showNotFound();
+        showNotFound('เชื่อมต่อระบบไม่สำเร็จ');
+        showToast('เชื่อมต่อระบบไม่สำเร็จ');
       });
     }
 
@@ -855,14 +1367,33 @@
 
       setTimeout(function() {
         toast.classList.remove('show');
-      }, 1700);
+      }, 1800);
     }
 
     function isEmail(value) {
       return /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(String(value || '').trim());
     }
 
+    function escapeHtml(value) {
+      return String(value || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;')
+        .replace(/\n/g, '<br>');
+    }
+
+    emailInput.addEventListener('input', updateCheckButtonState);
+    deviceInput.addEventListener('input', updateCheckButtonState);
+
     emailInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        checkOtp();
+      }
+    });
+
+    deviceInput.addEventListener('keydown', function(e) {
       if (e.key === 'Enter') {
         checkOtp();
       }
@@ -873,6 +1404,8 @@
         checkOtp();
       }
     });
+
+    updateCheckButtonState();
   </script>
 </body>
 </html>
