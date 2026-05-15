@@ -1,0 +1,878 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#FFE8F0">
+
+  <title>เช็กรหัสยืนยัน</title>
+
+  <style>
+    :root {
+      --primary: #F2B7C8;
+      --primary-dark: #D97D98;
+      --primary-deep: #B7607D;
+      --soft: #FFF7FA;
+      --soft2: #FFE8F0;
+      --line: #F1DEE5;
+      --text: #3A3040;
+      --sub: #8A7B8D;
+      --white: #FFFFFF;
+      --danger: #D97C7C;
+      --success: #59A779;
+      --shadow: 0 24px 70px rgba(183, 96, 125, 0.24);
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Prompt", sans-serif;
+      color: var(--text);
+      background: var(--soft);
+    }
+
+    body {
+      min-height: 100dvh;
+      overflow-x: hidden;
+    }
+
+    .page {
+      position: relative;
+      min-height: 100dvh;
+      padding: max(18px, env(safe-area-inset-top)) 18px max(22px, env(safe-area-inset-bottom));
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      background:
+        radial-gradient(circle at 15% 8%, rgba(255, 255, 255, 0.95) 0 12%, transparent 28%),
+        radial-gradient(circle at 88% 0%, rgba(242, 183, 200, 0.6) 0 18%, transparent 36%),
+        radial-gradient(circle at 100% 92%, rgba(255, 232, 240, 0.95) 0 16%, transparent 34%),
+        linear-gradient(180deg, #FFF7FA 0%, #FFFFFF 52%, #FFF7FA 100%);
+      overflow: hidden;
+    }
+
+    .blob {
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(2px);
+      opacity: 0.95;
+      pointer-events: none;
+    }
+
+    .blob.b1 {
+      width: 160px;
+      height: 160px;
+      left: -70px;
+      top: 72px;
+      background: rgba(242, 183, 200, 0.42);
+    }
+
+    .blob.b2 {
+      width: 120px;
+      height: 120px;
+      right: -38px;
+      top: 190px;
+      background: rgba(255, 232, 240, 0.9);
+    }
+
+    .blob.b3 {
+      width: 150px;
+      height: 150px;
+      left: 42px;
+      bottom: -78px;
+      background: rgba(249, 203, 216, 0.55);
+    }
+
+    .phone {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 480px;
+      min-height: calc(100dvh - 40px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .hero {
+      padding-top: 10px;
+      text-align: center;
+    }
+
+    .hero-art {
+      width: min(82vw, 330px);
+      aspect-ratio: 1 / 0.78;
+      margin: 0 auto 8px;
+      position: relative;
+      display: grid;
+      place-items: center;
+    }
+
+    .circle {
+      position: absolute;
+      width: 82%;
+      aspect-ratio: 1;
+      border-radius: 999px;
+      background:
+        radial-gradient(circle at 35% 26%, #ffffff 0 10%, transparent 22%),
+        linear-gradient(135deg, #FFE8F0, #F2B7C8);
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.86),
+        0 22px 45px rgba(217, 125, 152, 0.22);
+    }
+
+    .mail-card {
+      position: relative;
+      width: 74%;
+      aspect-ratio: 1.28;
+      border-radius: 34px;
+      background: rgba(255,255,255,0.95);
+      box-shadow: 0 22px 50px rgba(183, 96, 125, 0.18);
+      border: 1px solid rgba(241, 222, 229, 0.96);
+      display: grid;
+      place-items: center;
+      transform: rotate(-2deg);
+      overflow: hidden;
+    }
+
+    .mail-card:before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(140deg, transparent 0 49%, rgba(217, 125, 152, 0.12) 50%, transparent 51%),
+        linear-gradient(40deg, transparent 0 49%, rgba(242, 183, 200, 0.18) 50%, transparent 51%);
+    }
+
+    .mail-icon {
+      position: relative;
+      width: 92px;
+      height: 92px;
+      border-radius: 30px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      display: grid;
+      place-items: center;
+      color: white;
+      font-size: 46px;
+      box-shadow: 0 14px 30px rgba(217, 125, 152, 0.26);
+    }
+
+    .spark {
+      position: absolute;
+      display: grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.88);
+      border: 1px solid rgba(241, 222, 229, 0.92);
+      box-shadow: 0 10px 24px rgba(183,96,125,0.12);
+      font-size: 19px;
+    }
+
+    .spark.s1 {
+      top: 18px;
+      right: 36px;
+    }
+
+    .spark.s2 {
+      left: 30px;
+      bottom: 30px;
+      transform: rotate(-10deg);
+    }
+
+    .spark.s3 {
+      right: 34px;
+      bottom: 20px;
+      transform: rotate(8deg);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(28px, 8vw, 40px);
+      line-height: 1.12;
+      letter-spacing: -0.8px;
+      color: var(--text);
+    }
+
+    .subtitle {
+      margin: 10px auto 0;
+      max-width: 330px;
+      color: var(--sub);
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    .panel {
+      background: rgba(255,255,255,0.92);
+      border: 1px solid rgba(241, 222, 229, 0.94);
+      border-radius: 32px;
+      box-shadow: var(--shadow);
+      padding: 18px;
+      backdrop-filter: blur(16px);
+    }
+
+    .field {
+      margin-bottom: 12px;
+    }
+
+    .label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin: 0 4px 8px;
+      color: var(--sub);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .pill {
+      font-size: 11px;
+      color: var(--primary-deep);
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 5px 9px;
+    }
+
+    .input-wrap {
+      position: relative;
+    }
+
+    input {
+      width: 100%;
+      height: 58px;
+      border: 1px solid var(--line);
+      outline: none;
+      border-radius: 20px;
+      background: #FFFDFE;
+      padding: 0 48px 0 16px;
+      color: var(--text);
+      font-size: 16px;
+      font-weight: 650;
+      transition: 0.18s ease;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.95);
+    }
+
+    input::placeholder {
+      color: #C1AEB7;
+      font-weight: 500;
+    }
+
+    input:focus {
+      border-color: var(--primary-dark);
+      box-shadow:
+        0 0 0 5px rgba(217,125,152,0.12),
+        inset 0 1px 0 rgba(255,255,255,0.95);
+    }
+
+    .input-emoji {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 20px;
+      opacity: 0.8;
+    }
+
+    .pin-field {
+      display: none;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    button {
+      width: 100%;
+      min-height: 58px;
+      border: none;
+      border-radius: 21px;
+      font-size: 16px;
+      font-weight: 850;
+      cursor: pointer;
+      transition: transform 0.16s ease, box-shadow 0.16s ease, opacity 0.16s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+    }
+
+    button:active {
+      transform: scale(0.985);
+    }
+
+    .btn-primary {
+      color: white;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.28), transparent 36%),
+        linear-gradient(135deg, var(--primary-dark), var(--primary-deep));
+      box-shadow: 0 18px 34px rgba(183,96,125,0.25);
+    }
+
+    .btn-copy {
+      display: none;
+      color: var(--primary-deep);
+      background: var(--soft);
+      border: 1px solid var(--line);
+    }
+
+    .status {
+      margin-top: 14px;
+      display: none;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(circle at 20% 0%, rgba(255,255,255,0.96), transparent 38%),
+        #FFF7FA;
+      padding: 18px;
+      min-height: 92px;
+    }
+
+    .status-title {
+      text-align: center;
+      color: var(--sub);
+      font-size: 14px;
+      font-weight: 750;
+      margin-bottom: 10px;
+    }
+
+    .otp-box {
+      display: none;
+      text-align: center;
+    }
+
+    .otp-code {
+      margin: 4px auto 12px;
+      width: fit-content;
+      max-width: 100%;
+      border-radius: 24px;
+      background: white;
+      border: 1px solid rgba(241, 222, 229, 0.98);
+      padding: 14px 18px 13px;
+      color: var(--primary-deep);
+      font-size: clamp(38px, 12vw, 56px);
+      line-height: 1;
+      font-weight: 950;
+      letter-spacing: 8px;
+      box-shadow: 0 14px 30px rgba(183,96,125,0.12);
+      user-select: all;
+      overflow-wrap: anywhere;
+    }
+
+    .otp-note {
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.65;
+      white-space: pre-line;
+    }
+
+    .not-found {
+      display: none;
+      text-align: center;
+      color: var(--text);
+      font-size: 17px;
+      font-weight: 800;
+      padding: 10px 4px;
+    }
+
+    .mini-info {
+      margin-top: 12px;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      color: var(--sub);
+      font-size: 12px;
+    }
+
+    .mini-info span {
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.78);
+      border: 1px solid rgba(241,222,229,0.9);
+    }
+
+    .footer {
+      text-align: center;
+      color: var(--sub);
+      font-size: 12px;
+      line-height: 1.55;
+      padding: 0 16px 4px;
+    }
+
+    .loading .btn-primary {
+      opacity: 0.76;
+      pointer-events: none;
+    }
+
+    .spinner {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      border: 3px solid rgba(255,255,255,0.42);
+      border-top-color: white;
+      animation: spin 0.75s linear infinite;
+      display: none;
+    }
+
+    .loading .spinner {
+      display: inline-block;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: calc(22px + env(safe-area-inset-bottom));
+      transform: translateX(-50%) translateY(20px);
+      z-index: 50;
+      background: rgba(58,48,64,0.94);
+      color: white;
+      border-radius: 999px;
+      padding: 12px 16px;
+      font-size: 14px;
+      font-weight: 750;
+      box-shadow: 0 16px 34px rgba(58,48,64,0.24);
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.22s ease;
+      white-space: nowrap;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .tiny-hearts {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .heart {
+      position: absolute;
+      color: rgba(183,96,125,0.25);
+      font-size: 18px;
+      animation: float 7s ease-in-out infinite;
+    }
+
+    .heart.h1 { left: 7%; top: 18%; animation-delay: 0s; }
+    .heart.h2 { right: 8%; top: 35%; animation-delay: 1.2s; }
+    .heart.h3 { left: 12%; bottom: 18%; animation-delay: 2.1s; }
+    .heart.h4 { right: 18%; bottom: 10%; animation-delay: 3.4s; }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0) rotate(0);
+      }
+      50% {
+        transform: translateY(-18px) rotate(10deg);
+      }
+    }
+
+    @media (max-height: 700px) {
+      .hero-art {
+        width: min(66vw, 260px);
+        margin-bottom: 0;
+      }
+
+      h1 {
+        font-size: clamp(25px, 7vw, 34px);
+      }
+
+      .subtitle {
+        margin-top: 6px;
+      }
+
+      .panel {
+        border-radius: 28px;
+        padding: 16px;
+      }
+
+      input,
+      button {
+        height: 54px;
+        min-height: 54px;
+      }
+    }
+
+    @media (min-width: 720px) {
+      .phone {
+        min-height: auto;
+        justify-content: center;
+      }
+
+      .panel {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+
+    <div class="tiny-hearts">
+      <div class="heart h1">♡</div>
+      <div class="heart h2">✦</div>
+      <div class="heart h3">♡</div>
+      <div class="heart h4">✧</div>
+    </div>
+
+    <section class="phone" id="app">
+      <div class="hero">
+        <div class="hero-art">
+          <div class="circle"></div>
+
+          <div class="mail-card">
+            <div class="mail-icon">✉️</div>
+          </div>
+
+          <div class="spark s1">🔐</div>
+          <div class="spark s2">💗</div>
+          <div class="spark s3">✨</div>
+        </div>
+
+        <h1>เช็กรหัสยืนยัน</h1>
+        <p class="subtitle">
+          กรอกอีเมลของคุณ เพื่อค้นหา OTP ล่าสุดจากระบบอย่างรวดเร็ว
+        </p>
+      </div>
+
+      <div class="panel">
+        <div class="field">
+          <div class="label">
+            <span>อีเมลสำหรับรับรหัส</span>
+            <span class="pill">OTP</span>
+          </div>
+
+          <div class="input-wrap">
+            <input id="email" type="email" placeholder="test@lico.moe" autocomplete="email" inputmode="email">
+            <div class="input-emoji">📮</div>
+          </div>
+        </div>
+
+        <div class="field pin-field" id="pinField">
+          <div class="label">
+            <span>PIN หน้าเว็บ</span>
+            <span class="pill">Private</span>
+          </div>
+
+          <div class="input-wrap">
+            <input id="pin" type="password" placeholder="กรอก PIN ถ้ามีการตั้งค่าไว้" autocomplete="off">
+            <div class="input-emoji">🔑</div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="btn-primary" id="checkBtn" onclick="checkOtp()">
+            <span class="spinner"></span>
+            <span id="btnText">เช็กรหัสเลย</span>
+            <span>💌</span>
+          </button>
+
+          <button class="btn-copy" id="copyBtn" onclick="copyOtp()">
+            <span>คัดลอกรหัส</span>
+            <span>📋</span>
+          </button>
+        </div>
+
+        <div class="status" id="status">
+          <div class="otp-box" id="otpBox">
+            <div class="status-title">รหัสยืนยันของคุณคือ</div>
+            <div class="otp-code" id="otpCode"></div>
+            <div class="otp-note" id="otpNote"></div>
+
+            <div class="mini-info">
+              <span>ใช้ได้ 15 นาที</span>
+              <span>ห้ามเปิดเผยรหัส</span>
+            </div>
+          </div>
+
+          <div class="not-found" id="notFound">ไม่พบข้อมูลในระบบ</div>
+        </div>
+      </div>
+
+      <div class="footer">
+        ระบบค้นหารหัสจากอีเมลล่าสุด<br>
+        โปรดตรวจสอบอีเมลให้ถูกต้องก่อนกดเช็ก
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast">คัดลอกแล้ว</div>
+
+  <script>
+    /************************************************************
+     * CONFIG
+     * ใส่ URL ของ Google Apps Script Web App ตรงนี้
+     ************************************************************/
+
+    const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxchA3jvdipTB3kj343x78Fj4EFuvO8pYUOhl6jq-pm5adIANAfU-rksJrjmagIZfNceA/exec';
+
+    /************************************************************
+     * OPTIONAL
+     * ถ้าเปิด PIN ใน Apps Script ด้วย setupWebPin()
+     * ให้เปลี่ยน SHOW_PIN_FIELD = true
+     ************************************************************/
+
+    const SHOW_PIN_FIELD = false;
+
+    let latestOtp = '';
+    let jsonpCounter = 0;
+
+    const app = document.getElementById('app');
+    const emailInput = document.getElementById('email');
+    const pinInput = document.getElementById('pin');
+    const pinField = document.getElementById('pinField');
+    const checkBtn = document.getElementById('checkBtn');
+    const btnText = document.getElementById('btnText');
+    const copyBtn = document.getElementById('copyBtn');
+    const statusBox = document.getElementById('status');
+    const otpBox = document.getElementById('otpBox');
+    const otpCode = document.getElementById('otpCode');
+    const otpNote = document.getElementById('otpNote');
+    const notFound = document.getElementById('notFound');
+    const toast = document.getElementById('toast');
+
+    if (SHOW_PIN_FIELD) {
+      pinField.style.display = 'block';
+    }
+
+    function setLoading(isLoading) {
+      if (isLoading) {
+        app.classList.add('loading');
+        btnText.textContent = 'กำลังตรวจสอบ...';
+      } else {
+        app.classList.remove('loading');
+        btnText.textContent = 'เช็กรหัสเลย';
+      }
+    }
+
+    function resetResult() {
+      latestOtp = '';
+      copyBtn.style.display = 'none';
+      statusBox.style.display = 'none';
+      otpBox.style.display = 'none';
+      notFound.style.display = 'none';
+      otpCode.textContent = '';
+      otpNote.textContent = '';
+    }
+
+    function showOtp(otp, expireMinutes) {
+      latestOtp = String(otp || '').trim();
+
+      statusBox.style.display = 'block';
+      otpBox.style.display = 'block';
+      notFound.style.display = 'none';
+      copyBtn.style.display = 'flex';
+
+      otpCode.textContent = latestOtp;
+      otpNote.textContent =
+        'รหัสนี้มีอายุการใช้งาน ' + (expireMinutes || 15) + ' นาที\n' +
+        'ห้ามเปิดเผยรหัสนี้กับบุคคลอื่น';
+    }
+
+    function showNotFound() {
+      latestOtp = '';
+
+      statusBox.style.display = 'block';
+      otpBox.style.display = 'none';
+      notFound.style.display = 'block';
+      copyBtn.style.display = 'none';
+    }
+
+    function checkOtp() {
+      const email = emailInput.value.trim();
+      const pin = pinInput.value.trim();
+
+      resetResult();
+
+      if (!WEB_APP_URL || WEB_APP_URL.indexOf('ใส่_GOOGLE_APPS_SCRIPT') !== -1) {
+        showNotFound();
+        showToast('กรุณาตั้งค่า WEB_APP_URL ก่อน');
+        return;
+      }
+
+      if (!email || !isEmail(email)) {
+        showNotFound();
+        return;
+      }
+
+      setLoading(true);
+
+      jsonpRequest({
+        action: 'otp',
+        email: email,
+        pin: pin
+      }, function(res) {
+        setLoading(false);
+
+        if (!res || !res.ok || !res.otp) {
+          showNotFound();
+          return;
+        }
+
+        showOtp(res.otp, res.expireMinutes || 15);
+      }, function() {
+        setLoading(false);
+        showNotFound();
+      });
+    }
+
+    function jsonpRequest(params, onSuccess, onError) {
+      const callbackName = '__otpCallback_' + Date.now() + '_' + (++jsonpCounter);
+      const script = document.createElement('script');
+
+      params.callback = callbackName;
+
+      const query = Object.keys(params)
+        .map(function(key) {
+          return encodeURIComponent(key) + '=' + encodeURIComponent(params[key]);
+        })
+        .join('&');
+
+      const sep = WEB_APP_URL.indexOf('?') === -1 ? '?' : '&';
+      const url = WEB_APP_URL + sep + query;
+
+      let done = false;
+
+      window[callbackName] = function(data) {
+        done = true;
+        cleanup();
+
+        if (typeof onSuccess === 'function') {
+          onSuccess(data);
+        }
+      };
+
+      script.onerror = function() {
+        if (done) return;
+
+        done = true;
+        cleanup();
+
+        if (typeof onError === 'function') {
+          onError();
+        }
+      };
+
+      const timer = setTimeout(function() {
+        if (done) return;
+
+        done = true;
+        cleanup();
+
+        if (typeof onError === 'function') {
+          onError();
+        }
+      }, 18000);
+
+      function cleanup() {
+        clearTimeout(timer);
+
+        try {
+          delete window[callbackName];
+        } catch (e) {
+          window[callbackName] = undefined;
+        }
+
+        if (script && script.parentNode) {
+          script.parentNode.removeChild(script);
+        }
+      }
+
+      script.src = url;
+      document.body.appendChild(script);
+    }
+
+    function copyOtp() {
+      if (!latestOtp) return;
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(latestOtp)
+          .then(function() {
+            showToast('คัดลอกรหัสแล้ว');
+          })
+          .catch(function() {
+            fallbackCopy(latestOtp);
+          });
+
+        return;
+      }
+
+      fallbackCopy(latestOtp);
+    }
+
+    function fallbackCopy(text) {
+      const area = document.createElement('textarea');
+      area.value = text;
+      area.setAttribute('readonly', '');
+      area.style.position = 'fixed';
+      area.style.left = '-9999px';
+      area.style.top = '-9999px';
+
+      document.body.appendChild(area);
+      area.focus();
+      area.select();
+
+      try {
+        document.execCommand('copy');
+        showToast('คัดลอกรหัสแล้ว');
+      } catch (e) {
+        showToast('คัดลอกไม่สำเร็จ');
+      }
+
+      document.body.removeChild(area);
+    }
+
+    function showToast(message) {
+      toast.textContent = message || 'เรียบร้อย';
+      toast.classList.add('show');
+
+      setTimeout(function() {
+        toast.classList.remove('show');
+      }, 1700);
+    }
+
+    function isEmail(value) {
+      return /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(String(value || '').trim());
+    }
+
+    emailInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        checkOtp();
+      }
+    });
+
+    pinInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        checkOtp();
+      }
+    });
+  </script>
+</body>
+</html>
