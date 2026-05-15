@@ -13,6 +13,7 @@
       --bg1: #061834;
       --blue: #1D75FF;
       --cyan: #37D8FF;
+      --copy: #C9F7FF;
       --text: #F7FAFF;
       --sub: rgba(247,250,255,0.72);
       --muted: rgba(247,250,255,0.52);
@@ -68,6 +69,35 @@
         linear-gradient(120deg, transparent 0 42%, rgba(255,255,255,0.032) 42% 43%, transparent 43% 100%),
         linear-gradient(180deg, rgba(255,255,255,0.035), transparent 38%);
       pointer-events: none;
+    }
+
+    .page:after {
+      content: "";
+      position: absolute;
+      width: 520px;
+      height: 520px;
+      left: 50%;
+      top: 18%;
+      transform: translateX(-50%);
+      background:
+        radial-gradient(circle, rgba(55,216,255,0.16), transparent 62%),
+        radial-gradient(circle at 70% 30%, rgba(201,247,255,0.10), transparent 48%);
+      filter: blur(24px);
+      opacity: 0.78;
+      pointer-events: none;
+      animation: ambientMove 9s ease-in-out infinite;
+    }
+
+    @keyframes ambientMove {
+      0%, 100% {
+        transform: translateX(-50%) translateY(0) scale(1);
+        opacity: 0.62;
+      }
+
+      50% {
+        transform: translateX(-50%) translateY(-18px) scale(1.05);
+        opacity: 0.9;
+      }
     }
 
     .phone {
@@ -228,7 +258,7 @@
     .panel {
       position: relative;
       background:
-        linear-gradient(180deg, rgba(255,255,255,0.105), rgba(255,255,255,0.055)),
+        linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.055)),
         var(--panel);
       border: 1px solid rgba(255,255,255,0.15);
       border-radius: var(--radius);
@@ -236,6 +266,21 @@
       padding: 18px;
       backdrop-filter: blur(22px);
       overflow: hidden;
+    }
+
+    .panel:before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 18% 0%, rgba(201,247,255,0.12), transparent 28%),
+        radial-gradient(circle at 100% 20%, rgba(29,117,255,0.10), transparent 30%);
+      pointer-events: none;
+    }
+
+    .panel > * {
+      position: relative;
+      z-index: 1;
     }
 
     .field {
@@ -255,9 +300,13 @@
 
     .required {
       font-size: 11px;
-      color: rgba(255,255,255,0.52);
+      color: rgba(201,247,255,0.92);
       font-weight: 760;
-      letter-spacing: .25px;
+      letter-spacing: .2px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(201,247,255,0.20);
+      background: rgba(201,247,255,0.055);
     }
 
     input {
@@ -286,7 +335,7 @@
       box-shadow:
         0 0 0 3px rgba(55,216,255,0.10),
         inset 0 1px 0 rgba(255,255,255,0.12);
-      background: var(--field-focus);
+      background: rgba(255,255,255,0.12);
     }
 
     .hint {
@@ -310,7 +359,7 @@
       font-size: 15px;
       font-weight: 820;
       cursor: pointer;
-      transition: transform 0.14s ease, background 0.14s ease, border-color 0.14s ease, opacity 0.14s ease;
+      transition: transform 0.14s ease, background 0.14s ease, border-color 0.14s ease, opacity 0.14s ease, color 0.14s ease;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -346,7 +395,10 @@
       color: #061834;
       background: #C9F7FF;
       border-color: #C9F7FF;
-      box-shadow: none;
+      box-shadow:
+        0 10px 24px rgba(201,247,255,0.15),
+        0 0 0 4px rgba(201,247,255,0.055);
+      transform: translateY(-1px);
     }
 
     .pin-field {
@@ -361,27 +413,42 @@
     }
 
     .btn-primary {
+      position: relative;
+      overflow: hidden;
       color: #FFFFFF;
-      background: transparent;
+      background: rgba(255,255,255,0.035);
       border: 1px solid rgba(136,238,255,0.62);
-      box-shadow: none;
+      box-shadow:
+        0 12px 28px rgba(29,117,255,0.12),
+        inset 0 1px 0 rgba(255,255,255,0.10);
+    }
+
+    .btn-primary:before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      transform: translateX(-120%);
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(201,247,255,0.16),
+        transparent
+      );
+      transition: transform 0.55s ease;
     }
 
     .btn-primary:not(:disabled):hover {
-      background: rgba(136,238,255,0.10);
+      background: rgba(136,238,255,0.085);
+      border-color: rgba(201,247,255,0.86);
     }
 
-    .btn-copy {
-      margin-top: 16px;
-      display: none;
-      color: rgba(255,255,255,0.90);
-      background: transparent;
-      border: 1px solid rgba(255,255,255,0.22);
-      box-shadow: none;
+    .btn-primary:not(:disabled):hover:before {
+      transform: translateX(120%);
     }
 
-    .btn-copy:hover {
-      background: rgba(255,255,255,0.08);
+    .btn-primary span {
+      position: relative;
+      z-index: 1;
     }
 
     .status {
@@ -412,24 +479,60 @@
     .otp-box {
       display: none;
       text-align: center;
+      animation: resultIn 0.34s ease both;
+    }
+
+    @keyframes resultIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.985);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
 
     .otp-code {
+      position: relative;
       margin: 6px auto 12px;
       width: fit-content;
       max-width: 100%;
-      border-radius: 20px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(136,238,255,0.24);
-      padding: 15px 19px 14px;
+      border-radius: 22px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.065)),
+        rgba(255,255,255,0.08);
+      border: 1px solid rgba(201,247,255,0.32);
+      padding: 16px 20px 15px;
       color: #FFFFFF;
       font-size: clamp(38px, 12vw, 58px);
       line-height: 1;
       font-weight: 1000;
       letter-spacing: 8px;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.12);
+      box-shadow:
+        0 18px 38px rgba(0,0,0,0.18),
+        0 0 34px rgba(201,247,255,0.12),
+        inset 0 1px 0 rgba(255,255,255,0.14);
       user-select: all;
       overflow-wrap: anywhere;
+      animation: otpGlow 2.8s ease-in-out infinite;
+    }
+
+    @keyframes otpGlow {
+      0%, 100% {
+        box-shadow:
+          0 18px 38px rgba(0,0,0,0.18),
+          0 0 28px rgba(201,247,255,0.10),
+          inset 0 1px 0 rgba(255,255,255,0.14);
+      }
+
+      50% {
+        box-shadow:
+          0 18px 38px rgba(0,0,0,0.18),
+          0 0 44px rgba(201,247,255,0.22),
+          inset 0 1px 0 rgba(255,255,255,0.18);
+      }
     }
 
     .otp-note {
@@ -438,6 +541,121 @@
       line-height: 1.65;
       white-space: pre-line;
       font-weight: 520;
+    }
+
+    .copy-area {
+      margin-top: 16px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .btn-copy {
+      display: none;
+      width: auto;
+      min-width: 220px;
+      min-height: 54px;
+      padding: 0 22px;
+      border-radius: 999px;
+      color: #061834;
+      background: var(--copy);
+      border: 1px solid var(--copy);
+      box-shadow:
+        0 16px 34px rgba(201,247,255,0.20),
+        0 0 0 6px rgba(201,247,255,0.06),
+        inset 0 1px 0 rgba(255,255,255,0.42);
+      font-size: 15px;
+      font-weight: 900;
+      animation: copyPulse 2.2s ease-in-out infinite;
+    }
+
+    .btn-copy:hover {
+      background: #FFFFFF;
+      border-color: #FFFFFF;
+      transform: translateY(-1px);
+    }
+
+    .btn-copy:active {
+      transform: scale(0.98);
+    }
+
+    .btn-copy.copied {
+      color: #06351F;
+      background: var(--green);
+      border-color: var(--green);
+      animation: none;
+      box-shadow:
+        0 16px 34px rgba(114,240,181,0.18),
+        0 0 0 6px rgba(114,240,181,0.06),
+        inset 0 1px 0 rgba(255,255,255,0.32);
+    }
+
+    @keyframes copyPulse {
+      0%, 100% {
+        box-shadow:
+          0 16px 34px rgba(201,247,255,0.18),
+          0 0 0 4px rgba(201,247,255,0.045),
+          inset 0 1px 0 rgba(255,255,255,0.42);
+      }
+
+      50% {
+        box-shadow:
+          0 18px 38px rgba(201,247,255,0.28),
+          0 0 0 8px rgba(201,247,255,0.075),
+          inset 0 1px 0 rgba(255,255,255,0.50);
+      }
+    }
+
+    .copy-icon {
+      position: relative;
+      width: 18px;
+      height: 18px;
+      flex: 0 0 auto;
+    }
+
+    .copy-icon:before,
+    .copy-icon:after {
+      content: "";
+      position: absolute;
+      width: 12px;
+      height: 14px;
+      border: 2px solid currentColor;
+      border-radius: 4px;
+      background: transparent;
+    }
+
+    .copy-icon:before {
+      left: 1px;
+      top: 3px;
+      opacity: 0.45;
+    }
+
+    .copy-icon:after {
+      left: 5px;
+      top: 0;
+      background: transparent;
+    }
+
+    .btn-copy.copied .copy-icon:before {
+      display: none;
+    }
+
+    .btn-copy.copied .copy-icon:after {
+      width: 14px;
+      height: 8px;
+      border-radius: 0;
+      border-top: none;
+      border-right: none;
+      transform: rotate(-45deg);
+      left: 2px;
+      top: 3px;
+    }
+
+    .copy-helper {
+      margin-top: 8px;
+      color: rgba(255,255,255,0.52);
+      font-size: 12px;
+      font-weight: 520;
+      line-height: 1.5;
     }
 
     .not-found {
@@ -467,33 +685,89 @@
     }
 
     .usage {
-      margin-top: 16px;
-      padding: 16px;
-      border-radius: 20px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.045);
+      position: relative;
+      overflow: hidden;
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: 22px;
+      border: 1px solid rgba(201,247,255,0.18);
+      background:
+        linear-gradient(180deg, rgba(201,247,255,0.075), rgba(255,255,255,0.035)),
+        rgba(255,255,255,0.035);
+    }
+
+    .usage:after {
+      content: "";
+      position: absolute;
+      inset: auto 18px 0 18px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,247,255,0.55), transparent);
+      opacity: 0.8;
     }
 
     .usage-title {
-      margin: 0 0 10px;
-      color: rgba(255,255,255,0.88);
-      font-size: 14px;
-      font-weight: 840;
+      margin: 0 0 14px;
+      color: #FFFFFF;
+      font-size: 15px;
+      font-weight: 900;
       letter-spacing: .2px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .usage-title:before {
+      content: "";
+      width: 4px;
+      height: 18px;
+      border-radius: 999px;
+      background: #C9F7FF;
+      box-shadow: 0 0 18px rgba(201,247,255,0.28);
     }
 
     .usage-list {
       margin: 0;
-      padding-left: 20px;
-      color: rgba(255,255,255,0.66);
+      padding: 0;
+      list-style: none;
+      color: rgba(255,255,255,0.72);
       font-size: 13px;
-      line-height: 1.75;
+      line-height: 1.7;
       font-weight: 520;
+      counter-reset: usageStep;
+    }
+
+    .usage-list li {
+      position: relative;
+      padding-left: 34px;
+      margin-bottom: 10px;
+    }
+
+    .usage-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    .usage-list li:before {
+      counter-increment: usageStep;
+      content: counter(usageStep);
+      position: absolute;
+      left: 0;
+      top: 1px;
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      color: #061834;
+      background: #C9F7FF;
+      font-size: 12px;
+      font-weight: 900;
     }
 
     .usage-note {
-      margin: 10px 0 0;
-      color: rgba(255,255,255,0.50);
+      margin: 14px 0 0;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255,255,255,0.10);
+      color: rgba(255,255,255,0.54);
       font-size: 12px;
       line-height: 1.65;
       font-weight: 500;
@@ -604,6 +878,11 @@
       .otp-code {
         letter-spacing: 6px;
       }
+
+      .btn-copy {
+        width: 100%;
+        min-width: 0;
+      }
     }
 
     @media (min-width: 720px) {
@@ -663,7 +942,7 @@
         <div class="field">
           <div class="label">
             <span>อีเมลสำหรับรับรหัส</span>
-            <span class="required">Required</span>
+            <span class="required">จำเป็น</span>
           </div>
 
           <input id="email" type="email" placeholder="example@email.com" autocomplete="email" inputmode="email">
@@ -672,7 +951,7 @@
         <div class="field">
           <div class="label">
             <span>อุปกรณ์ที่ใช้งาน</span>
-            <span class="required">Required</span>
+            <span class="required">จำเป็น</span>
           </div>
 
           <input
@@ -692,7 +971,7 @@
         <div class="field">
           <div class="label">
             <span>เลือกหมายเลขจอ</span>
-            <span class="required">Screen 1–6</span>
+            <span class="required">จอ 1–6</span>
           </div>
 
           <div class="screen-grid" id="screenGrid">
@@ -712,7 +991,7 @@
         <div class="field pin-field" id="pinField">
           <div class="label">
             <span>PIN สำหรับเข้าใช้งาน</span>
-            <span class="required">Private</span>
+            <span class="required">ส่วนตัว</span>
           </div>
 
           <input id="pin" type="password" placeholder="กรอก PIN หากระบบกำหนดไว้" autocomplete="off">
@@ -735,9 +1014,16 @@
 
             <div class="otp-note" id="otpNote"></div>
 
-            <button class="btn-copy" id="copyBtn" onclick="copyOtp()">
-              <span>คัดลอกรหัส OTP</span>
-            </button>
+            <div class="copy-area">
+              <button class="btn-copy" id="copyBtn" onclick="copyOtp()" type="button">
+                <span class="copy-icon"></span>
+                <span id="copyBtnText">คัดลอกรหัสนี้</span>
+              </button>
+            </div>
+
+            <div class="copy-helper" id="copyHelper">
+              กดปุ่มด้านบนเพื่อคัดลอกรหัส OTP ไปใช้งาน
+            </div>
 
             <div class="mini-info">
               <span>รหัสมีอายุ 15 นาที</span>
@@ -752,18 +1038,18 @@
         </div>
 
         <div class="usage">
-          <p class="usage-title">วิธีการใช้งาน</p>
+          <p class="usage-title">ขั้นตอนการรับรหัส OTP</p>
 
           <ol class="usage-list">
             <li>กรอกอีเมลที่ต้องการรับรหัส OTP ให้ถูกต้อง</li>
             <li>ระบุอุปกรณ์ที่ใช้เข้าสู่ระบบ เช่น iPhone, Android, iPad, TV หรือ Chrome</li>
             <li>เลือกหมายเลขจอให้ตรงกับรายการของลูกค้า</li>
             <li>กดปุ่ม “รับรหัส OTP” เพื่อให้ระบบค้นหารหัสล่าสุด</li>
-            <li>เมื่อรหัสแสดงขึ้นมา สามารถกด “คัดลอกรหัส OTP” เพื่อนำไปใช้งานได้ทันที</li>
+            <li>เมื่อรหัสแสดงขึ้นมา กด “คัดลอกรหัสนี้” เพื่อนำไปใช้งาน</li>
           </ol>
 
           <p class="usage-note">
-            ระบบจะบันทึกอีเมล อุปกรณ์ หมายเลขจอ และเวลาที่ทำรายการลงใน Google Sheet เพื่อใช้ตรวจสอบย้อนหลัง
+            ข้อมูลอีเมล อุปกรณ์ หมายเลขจอ และเวลาทำรายการ จะถูกบันทึกไว้สำหรับตรวจสอบย้อนหลัง
           </p>
         </div>
       </div>
@@ -796,6 +1082,7 @@
     let latestOtp = '';
     let selectedScreen = '';
     let jsonpCounter = 0;
+    let copyResetTimer = null;
 
     const app = document.getElementById('app');
     const emailInput = document.getElementById('email');
@@ -806,6 +1093,8 @@
     const btnText = document.getElementById('btnText');
     const btnIcon = document.getElementById('btnIcon');
     const copyBtn = document.getElementById('copyBtn');
+    const copyBtnText = document.getElementById('copyBtnText');
+    const copyHelper = document.getElementById('copyHelper');
     const statusBox = document.getElementById('status');
     const saveOk = document.getElementById('saveOk');
     const otpBox = document.getElementById('otpBox');
@@ -846,9 +1135,35 @@
       }
     }
 
+    function resetCopyButton() {
+      if (copyResetTimer) {
+        clearTimeout(copyResetTimer);
+        copyResetTimer = null;
+      }
+
+      copyBtn.classList.remove('copied');
+      copyBtnText.textContent = 'คัดลอกรหัสนี้';
+      copyHelper.textContent = 'กดปุ่มด้านบนเพื่อคัดลอกรหัส OTP ไปใช้งาน';
+    }
+
+    function setCopyButtonCopied() {
+      copyBtn.classList.add('copied');
+      copyBtnText.textContent = 'คัดลอกแล้ว';
+      copyHelper.textContent = 'คัดลอกรหัสเรียบร้อย สามารถนำไปใช้งานได้ทันที';
+
+      if (copyResetTimer) {
+        clearTimeout(copyResetTimer);
+      }
+
+      copyResetTimer = setTimeout(function() {
+        resetCopyButton();
+      }, 2200);
+    }
+
     function resetResult() {
       latestOtp = '';
       copyBtn.style.display = 'none';
+      resetCopyButton();
       statusBox.style.display = 'none';
       saveOk.style.display = 'none';
       otpBox.style.display = 'none';
@@ -873,6 +1188,7 @@
       otpBox.style.display = 'block';
       notFound.style.display = 'none';
       copyBtn.style.display = 'flex';
+      resetCopyButton();
 
       otpCode.textContent = latestOtp;
       otpNote.textContent =
@@ -893,6 +1209,7 @@
       otpBox.style.display = 'none';
       notFound.style.display = 'block';
       copyBtn.style.display = 'none';
+      resetCopyButton();
     }
 
     function checkOtp() {
@@ -1036,6 +1353,7 @@
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(latestOtp)
           .then(function() {
+            setCopyButtonCopied();
             showToast('คัดลอกรหัส OTP แล้ว');
           })
           .catch(function() {
@@ -1062,6 +1380,7 @@
 
       try {
         document.execCommand('copy');
+        setCopyButtonCopied();
         showToast('คัดลอกรหัส OTP แล้ว');
       } catch (e) {
         showToast('ไม่สามารถคัดลอกรหัสได้');
