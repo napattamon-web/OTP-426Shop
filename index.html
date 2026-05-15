@@ -171,6 +171,97 @@
     .bubble-dot.b3 { right: 24%; bottom: 8%; animation-delay: 2.2s; }
     .bubble-dot.b4 { right: 14%; bottom: 18%; animation-delay: 3.4s; background: rgba(255,242,191,0.72); }
 
+    .cute-moon {
+      position: absolute;
+      right: 13%;
+      top: 10%;
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      color: #FFF2BF;
+      font-size: 34px;
+      text-shadow:
+        0 0 18px rgba(255,242,191,0.58),
+        0 0 34px rgba(255,215,234,0.22);
+      animation: moonFloat 5.8s ease-in-out infinite;
+      opacity: .88;
+    }
+
+    .cute-ribbon {
+      position: absolute;
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      color: #05112A;
+      background:
+        radial-gradient(circle at 30% 20%, rgba(255,255,255,0.95), transparent 26%),
+        linear-gradient(135deg, #DDFBFF, #FFFFFF 52%, #FFD7EA);
+      border: 1px solid rgba(255,255,255,0.35);
+      box-shadow:
+        0 14px 30px rgba(0,0,0,0.14),
+        0 0 24px rgba(255,215,234,0.20),
+        inset 0 1px 0 rgba(255,255,255,0.72);
+      font-size: 14px;
+      font-weight: 1000;
+      animation: ribbonFloat 6s ease-in-out infinite;
+    }
+
+    .cute-ribbon.r1 { left: 9%; top: 20%; animation-delay: .4s; }
+    .cute-ribbon.r2 { right: 8%; top: 47%; animation-delay: 1.6s; }
+    .cute-ribbon.r3 { left: 13%; bottom: 17%; animation-delay: 2.6s; }
+
+    .mini-cloud {
+      position: absolute;
+      width: 74px;
+      height: 28px;
+      border-radius: 999px;
+      background:
+        linear-gradient(135deg, rgba(221,251,255,0.16), rgba(255,215,234,0.13)),
+        rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.13);
+      backdrop-filter: blur(12px);
+      box-shadow:
+        0 16px 32px rgba(0,0,0,0.12),
+        0 0 24px rgba(221,251,255,0.08);
+      animation: cloudDrift 9s ease-in-out infinite;
+    }
+
+    .mini-cloud:before,
+    .mini-cloud:after {
+      content: "";
+      position: absolute;
+      bottom: 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .mini-cloud:before {
+      width: 28px;
+      height: 28px;
+      left: 11px;
+    }
+
+    .mini-cloud:after {
+      width: 36px;
+      height: 36px;
+      right: 10px;
+    }
+
+    .mini-cloud.cloud1 {
+      left: -24px;
+      top: 34%;
+    }
+
+    .mini-cloud.cloud2 {
+      right: -28px;
+      bottom: 31%;
+      animation-delay: 2.8s;
+    }
+
     @keyframes orbFloat {
       0%, 100% { transform: translate3d(0,0,0) scale(1); }
       50% { transform: translate3d(18px,-16px,0) scale(1.06); }
@@ -190,6 +281,35 @@
       0% { transform: translateY(0) scale(.75); opacity: 0; }
       18% { opacity: .9; }
       100% { transform: translateY(-120px) scale(1.18); opacity: 0; }
+    }
+
+    @keyframes moonFloat {
+      0%, 100% { transform: translateY(0) rotate(-8deg); }
+      50% { transform: translateY(-10px) rotate(5deg); }
+    }
+
+    @keyframes ribbonFloat {
+      0%, 100% {
+        transform: translateY(0) rotate(-6deg) scale(1);
+        opacity: .72;
+      }
+
+      50% {
+        transform: translateY(-12px) rotate(8deg) scale(1.08);
+        opacity: 1;
+      }
+    }
+
+    @keyframes cloudDrift {
+      0%, 100% {
+        transform: translateX(0) translateY(0);
+        opacity: .45;
+      }
+
+      50% {
+        transform: translateX(18px) translateY(-8px);
+        opacity: .78;
+      }
     }
 
     .app {
@@ -313,7 +433,9 @@
         0 0 0 8px rgba(255,215,234,0.045),
         0 0 42px rgba(255,215,234,0.13);
       overflow: hidden;
-      animation: heroLift 5.5s ease-in-out infinite;
+      animation:
+        heroLift 5.5s ease-in-out infinite,
+        disneySoftGlow 4.6s ease-in-out infinite;
     }
 
     .hero-shell:before {
@@ -348,6 +470,23 @@
     @keyframes heroLift {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-6px); }
+    }
+
+    @keyframes disneySoftGlow {
+      0%, 100% {
+        box-shadow:
+          0 30px 76px rgba(0,0,0,0.34),
+          0 0 0 8px rgba(255,215,234,0.045),
+          0 0 42px rgba(255,215,234,0.13);
+      }
+
+      50% {
+        box-shadow:
+          0 34px 82px rgba(0,0,0,0.36),
+          0 0 0 9px rgba(221,251,255,0.05),
+          0 0 52px rgba(221,251,255,0.12),
+          0 0 46px rgba(255,215,234,0.16);
+      }
     }
 
     .hero-card {
@@ -389,6 +528,26 @@
       pointer-events: none;
       z-index: 2;
       opacity: .9;
+    }
+
+    .image-frame:after {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.09);
+      background:
+        radial-gradient(circle at 18% 18%, rgba(255,255,255,0.20), transparent 5%),
+        radial-gradient(circle at 82% 22%, rgba(255,215,234,0.20), transparent 6%),
+        radial-gradient(circle at 50% 86%, rgba(221,251,255,0.15), transparent 8%);
+      pointer-events: none;
+      z-index: 3;
+      animation: disneyFrameTwinkle 3.8s ease-in-out infinite;
+    }
+
+    @keyframes disneyFrameTwinkle {
+      0%, 100% { opacity: .55; }
+      50% { opacity: .95; }
     }
 
     .hero-img {
@@ -494,13 +653,14 @@
       position: relative;
       margin: 12px auto 0;
       max-width: 400px;
-      padding: 15px 16px 16px;
+      padding: 15px 16px 24px;
       border-radius: 26px;
       border: 1px solid rgba(255,215,234,0.26);
       background:
-        radial-gradient(circle at 18% 0%, rgba(221,251,255,0.18), transparent 34%),
-        radial-gradient(circle at 100% 34%, rgba(255,215,234,0.20), transparent 34%),
-        linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.055)),
+        radial-gradient(circle at 18% 0%, rgba(221,251,255,0.20), transparent 34%),
+        radial-gradient(circle at 92% 28%, rgba(255,215,234,0.18), transparent 34%),
+        radial-gradient(circle at 50% 120%, rgba(255,242,191,0.10), transparent 38%),
+        linear-gradient(180deg, rgba(255,255,255,0.13), rgba(255,255,255,0.055)),
         rgba(255,255,255,0.05);
       box-shadow:
         0 16px 34px rgba(0,0,0,0.18),
@@ -508,6 +668,17 @@
       backdrop-filter: blur(16px);
       overflow: hidden;
       animation: cardBreathe 5.2s ease-in-out infinite;
+      transition: .18s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px) scale(1.012);
+      border-color: rgba(221,251,255,0.30);
+      box-shadow:
+        0 24px 52px rgba(0,0,0,0.22),
+        0 0 42px rgba(221,251,255,0.10),
+        0 0 38px rgba(255,215,234,0.10),
+        inset 0 1px 0 rgba(255,255,255,0.16);
     }
 
     .service-card:before {
@@ -518,16 +689,74 @@
         radial-gradient(circle at 20% 0%, rgba(221,251,255,0.16), transparent 34%),
         radial-gradient(circle at 100% 30%, rgba(255,215,234,0.13), transparent 32%);
       pointer-events: none;
+      animation: dreamyAura 4.8s ease-in-out infinite;
     }
 
     .service-card:after {
       content: "";
       position: absolute;
-      left: 22%;
-      right: 22%;
+      height: 2px;
+      left: 28%;
+      right: 28%;
       bottom: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(221,251,255,0.72), rgba(255,215,234,0.55), transparent);
+      border-radius: 999px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,215,234,0.72),
+        rgba(221,251,255,0.72),
+        transparent
+      );
+    }
+
+    .disney-progress {
+      position: absolute;
+      left: 50%;
+      bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      transform: translateX(-50%);
+      z-index: 2;
+    }
+
+    .disney-progress span {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: rgba(221,251,255,0.82);
+      box-shadow:
+        0 0 12px rgba(221,251,255,0.56),
+        0 0 22px rgba(221,251,255,0.18);
+      animation: disneyDotBounce 1.9s ease-in-out infinite;
+    }
+
+    .disney-progress span:nth-child(2) {
+      background: rgba(255,215,234,0.82);
+      box-shadow:
+        0 0 12px rgba(255,215,234,0.56),
+        0 0 22px rgba(255,215,234,0.18);
+      animation-delay: .22s;
+    }
+
+    .disney-progress span:nth-child(3) {
+      background: rgba(255,242,191,0.82);
+      box-shadow:
+        0 0 12px rgba(255,242,191,0.48),
+        0 0 22px rgba(255,242,191,0.16);
+      animation-delay: .44s;
+    }
+
+    @keyframes disneyDotBounce {
+      0%, 100% {
+        transform: translateY(0) scale(.9);
+        opacity: .58;
+      }
+
+      50% {
+        transform: translateY(-5px) scale(1.15);
+        opacity: 1;
+      }
     }
 
     @keyframes cardBreathe {
@@ -547,6 +776,18 @@
       }
     }
 
+    @keyframes dreamyAura {
+      0%, 100% {
+        opacity: .65;
+        filter: blur(0);
+      }
+
+      50% {
+        opacity: 1;
+        filter: blur(.4px);
+      }
+    }
+
     .service-pill,
     .service-title,
     .service-desc {
@@ -562,7 +803,9 @@
       padding: 6px 11px;
       border-radius: 999px;
       color: var(--dark);
-      background: linear-gradient(135deg, #DDFBFF, #FFFFFF 50%, #FFD7EA);
+      background:
+        radial-gradient(circle at 30% 20%, rgba(255,255,255,0.95), transparent 24%),
+        linear-gradient(135deg, #DDFBFF, #FFFFFF 48%, #FFD7EA);
       font-size: 11px;
       font-weight: 950;
       letter-spacing: .35px;
@@ -570,6 +813,13 @@
         0 12px 26px rgba(255,215,234,0.18),
         0 0 0 5px rgba(221,251,255,0.05),
         inset 0 1px 0 rgba(255,255,255,0.65);
+      animation: disneyPillFloat 3.2s ease-in-out infinite;
+    }
+
+    .service-pill:before {
+      content: "✦";
+      margin-right: 5px;
+      color: rgba(5,17,42,0.68);
     }
 
     .service-pill:after {
@@ -586,28 +836,30 @@
       75%, 100% { transform: translateX(120%); }
     }
 
+    @keyframes disneyPillFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-2px); }
+    }
+
     .service-title {
       color: #FFFFFF;
-      font-size: 19px;
+      font-size: 18px;
       line-height: 1.35;
       font-weight: 1000;
-      letter-spacing: -0.2px;
+      letter-spacing: -0.15px;
       text-shadow: 0 0 22px rgba(255,215,234,0.16);
     }
 
     .service-title:after {
-      content: " ♡";
-      color: #FFD7EA;
-      font-size: 14px;
-      text-shadow: 0 0 14px rgba(255,215,234,0.72);
+      content: "";
     }
 
     .service-desc {
       margin: 6px auto 0;
       max-width: 340px;
-      color: var(--sub);
+      color: rgba(248,251,255,0.74);
       font-size: 12.5px;
-      line-height: 1.7;
+      line-height: 1.72;
       font-weight: 540;
     }
 
@@ -620,6 +872,8 @@
     }
 
     .cute-chip {
+      position: relative;
+      overflow: hidden;
       padding: 7px 10px;
       border-radius: 999px;
       color: rgba(255,255,255,0.82);
@@ -631,6 +885,20 @@
       font-weight: 760;
       backdrop-filter: blur(12px);
       transition: .18s ease;
+    }
+
+    .cute-chip:after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      transform: translateX(-120%);
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+      animation: chipCuteSweep 4s ease-in-out infinite;
+    }
+
+    @keyframes chipCuteSweep {
+      0%, 48% { transform: translateX(-120%); }
+      78%, 100% { transform: translateX(120%); }
     }
 
     .cute-chip:hover {
@@ -692,13 +960,19 @@
       overflow: hidden;
       border: 1px solid rgba(255,215,234,0.22);
       background:
-        radial-gradient(circle at 14% 0%, rgba(221,251,255,0.20), transparent 34%),
-        radial-gradient(circle at 100% 20%, rgba(255,215,234,0.20), transparent 32%),
-        linear-gradient(135deg, rgba(255,255,255,0.11), rgba(255,255,255,0.05));
+        radial-gradient(circle at 14% 0%, rgba(221,251,255,0.22), transparent 34%),
+        radial-gradient(circle at 100% 20%, rgba(255,215,234,0.18), transparent 32%),
+        linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.052));
       box-shadow:
         0 16px 34px rgba(0,0,0,0.16),
         inset 0 1px 0 rgba(255,255,255,0.13);
       backdrop-filter: blur(16px);
+      transition: .18s ease;
+    }
+
+    .cute-form-banner:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255,215,234,0.34);
     }
 
     .cute-form-banner:before {
@@ -746,7 +1020,26 @@
         inset 0 1px 0 rgba(255,255,255,0.70);
       font-size: 18px;
       font-weight: 1000;
-      animation: cuteIconBob 3.6s ease-in-out infinite;
+      animation:
+        cuteIconBob 3.6s ease-in-out infinite,
+        disneyIconGlow 2.8s ease-in-out infinite;
+    }
+
+    .cute-banner-icon:after {
+      content: "♡";
+      position: absolute;
+      right: -5px;
+      top: -6px;
+      width: 18px;
+      height: 18px;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      color: #05112A;
+      background: #FFD7EA;
+      font-size: 10px;
+      box-shadow: 0 0 16px rgba(255,215,234,0.62);
+      animation: tinyPop 1.8s ease-in-out infinite;
     }
 
     .cute-banner-text {
@@ -789,6 +1082,23 @@
       box-shadow: 0 0 18px rgba(221,251,255,0.08);
     }
 
+    @keyframes disneyIconGlow {
+      0%, 100% {
+        box-shadow:
+          0 14px 28px rgba(255,215,234,0.18),
+          0 0 0 5px rgba(221,251,255,0.055),
+          inset 0 1px 0 rgba(255,255,255,0.70);
+      }
+
+      50% {
+        box-shadow:
+          0 16px 32px rgba(255,215,234,0.24),
+          0 0 0 6px rgba(221,251,255,0.07),
+          0 0 24px rgba(221,251,255,0.14),
+          inset 0 1px 0 rgba(255,255,255,0.74);
+      }
+    }
+
     @keyframes cuteBannerSweep {
       0%, 45% { transform: translateX(-120%); }
       75%, 100% { transform: translateX(120%); }
@@ -804,6 +1114,11 @@
       50% { transform: translateY(-4px) rotate(4deg); }
     }
 
+    @keyframes tinyPop {
+      0%, 100% { transform: scale(.9) rotate(-8deg); }
+      50% { transform: scale(1.18) rotate(8deg); }
+    }
+
     .info-strip {
       display: grid;
       grid-template-columns: 1fr;
@@ -812,18 +1127,46 @@
     }
 
     .info-card {
+      position: relative;
+      overflow: hidden;
       display: flex;
       align-items: flex-start;
       gap: 10px;
       padding: 11px 12px;
       border-radius: 18px;
-      border: 1px solid rgba(255,215,234,0.20);
+      border: 1px solid rgba(221,251,255,0.18);
       background:
         linear-gradient(135deg, rgba(221,251,255,0.095), rgba(255,215,234,0.105)),
         rgba(255,255,255,0.06);
       box-shadow:
         0 14px 30px rgba(0,0,0,0.14),
         inset 0 1px 0 rgba(255,255,255,0.11);
+      transition: .18s ease;
+    }
+
+    .info-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255,215,234,0.28);
+      box-shadow:
+        0 18px 34px rgba(0,0,0,0.16),
+        0 0 28px rgba(255,215,234,0.08),
+        inset 0 1px 0 rgba(255,255,255,0.13);
+    }
+
+    .info-card:after {
+      content: "✦";
+      position: absolute;
+      right: 13px;
+      top: 10px;
+      color: rgba(255,215,234,0.74);
+      text-shadow: 0 0 14px rgba(255,215,234,0.56);
+      font-size: 12px;
+      animation: infoStar 2.6s ease-in-out infinite;
+    }
+
+    @keyframes infoStar {
+      0%, 100% { transform: scale(1) rotate(0deg); opacity: .45; }
+      50% { transform: scale(1.28) rotate(14deg); opacity: 1; }
     }
 
     .info-icon {
@@ -952,6 +1295,13 @@
       font-weight: 520;
     }
 
+    input:hover {
+      border-color: rgba(255,215,234,0.32);
+      background:
+        linear-gradient(135deg, rgba(221,251,255,0.05), rgba(255,215,234,0.055)),
+        rgba(255,255,255,0.105);
+    }
+
     input:focus {
       border-color: rgba(255,215,234,0.58);
       background:
@@ -1027,6 +1377,7 @@
       flex-direction: column;
       gap: 1px;
       overflow: hidden;
+      isolation: isolate;
       background:
         radial-gradient(circle at 50% 0%, rgba(255,255,255,0.16), transparent 48%),
         linear-gradient(180deg, rgba(255,255,255,0.09), rgba(255,255,255,0.055));
@@ -1034,6 +1385,18 @@
       box-shadow:
         inset 0 1px 0 rgba(255,255,255,0.13),
         0 10px 24px rgba(0,0,0,0.11);
+      animation: screenIdleFloat 4.8s ease-in-out infinite;
+    }
+
+    .cute-screen-btn:nth-child(2) { animation-delay: .2s; }
+    .cute-screen-btn:nth-child(3) { animation-delay: .4s; }
+    .cute-screen-btn:nth-child(4) { animation-delay: .6s; }
+    .cute-screen-btn:nth-child(5) { animation-delay: .8s; }
+    .cute-screen-btn:nth-child(6) { animation-delay: 1s; }
+
+    @keyframes screenIdleFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-1px); }
     }
 
     .cute-screen-btn:before {
@@ -1072,6 +1435,10 @@
         radial-gradient(circle at 50% 0%, rgba(255,215,234,0.20), transparent 48%),
         rgba(221,251,255,0.08);
       transform: translateY(-2px);
+      box-shadow:
+        0 16px 28px rgba(0,0,0,0.14),
+        0 0 28px rgba(255,215,234,0.13),
+        inset 0 1px 0 rgba(255,255,255,0.16);
     }
 
     .cute-screen-btn:hover:before {
@@ -1101,6 +1468,11 @@
       font-size: 20px;
       line-height: 1;
       font-weight: 1000;
+      transition: transform .18s ease;
+    }
+
+    .cute-screen-btn:hover .screen-number {
+      transform: translateY(-1px) scale(1.08);
     }
 
     .screen-label {
@@ -1126,11 +1498,17 @@
       transform: translateY(-3px) scale(1.035);
       animation:
         selectedScreenPop .38s ease both,
-        selectedScreenGlow 2.4s ease-in-out infinite .4s;
+        selectedScreenGlow 2.4s ease-in-out infinite .4s,
+        selectedScreenCuteFloat 2.6s ease-in-out infinite .5s;
+    }
+
+    .cute-screen-btn.selected:before {
+      animation: selectedCandySweep 2.6s ease-in-out infinite;
     }
 
     .cute-screen-btn.selected .screen-number {
       color: var(--dark);
+      animation: numberCutePop 1.15s ease-in-out infinite;
     }
 
     .cute-screen-btn.selected .screen-label {
@@ -1219,6 +1597,21 @@
       }
     }
 
+    @keyframes selectedCandySweep {
+      0%, 42% { transform: translateX(-120%); }
+      72%, 100% { transform: translateX(120%); }
+    }
+
+    @keyframes numberCutePop {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-1px) scale(1.12); }
+    }
+
+    @keyframes selectedScreenCuteFloat {
+      0%, 100% { translate: 0 0; }
+      50% { translate: 0 -2px; }
+    }
+
     @keyframes notePop {
       from { opacity: 0; transform: translateY(6px); }
       to { opacity: 1; transform: translateY(0); }
@@ -1235,13 +1628,15 @@
     .btn-primary {
       position: relative;
       overflow: hidden;
+      isolation: isolate;
       min-height: 60px;
       border-radius: 22px;
       color: #FFFFFF;
       background:
-        radial-gradient(circle at 20% 0%, rgba(255,255,255,0.20), transparent 32%),
-        linear-gradient(135deg, rgba(94,162,255,0.34), rgba(183,242,255,0.18), rgba(255,215,234,0.20)),
-        rgba(46,123,255,0.20);
+        radial-gradient(circle at 15% 0%, rgba(255,255,255,0.26), transparent 30%),
+        radial-gradient(circle at 86% 100%, rgba(255,215,234,0.28), transparent 34%),
+        linear-gradient(135deg, rgba(94,162,255,0.42), rgba(183,242,255,0.22), rgba(255,215,234,0.26)),
+        rgba(46,123,255,0.24);
       border: 1px solid rgba(255,215,234,0.32);
       box-shadow:
         0 16px 34px rgba(46,123,255,0.18),
@@ -1281,7 +1676,16 @@
 
     .btn-primary:not(:disabled):hover {
       border-color: rgba(255,215,234,0.52);
-      transform: translateY(-1px);
+      transform: translateY(-2px) scale(1.006);
+      box-shadow:
+        0 20px 44px rgba(255,215,234,0.22),
+        0 0 0 7px rgba(221,251,255,0.055),
+        0 0 38px rgba(221,251,255,0.12),
+        inset 0 1px 0 rgba(255,255,255,0.20);
+    }
+
+    .btn-primary:not(:disabled):active {
+      transform: scale(.982);
     }
 
     .btn-primary:not(:disabled):hover:before {
@@ -1339,9 +1743,47 @@
       animation: resultIn .35s ease both;
     }
 
+    .otp-box:before {
+      content: "♡";
+      display: inline-grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      margin-bottom: 8px;
+      border-radius: 999px;
+      color: #05112A;
+      background: linear-gradient(135deg, #DDFBFF, #FFFFFF 52%, #FFD7EA);
+      box-shadow:
+        0 12px 24px rgba(255,215,234,0.16),
+        inset 0 1px 0 rgba(255,255,255,0.68);
+      animation:
+        otpHeartFloat 2.8s ease-in-out infinite,
+        otpBadgeGlow 2.6s ease-in-out infinite;
+    }
+
     @keyframes resultIn {
       from { opacity: 0; transform: translateY(10px) scale(.985); }
       to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes otpHeartFloat {
+      0%, 100% { transform: translateY(0) rotate(-6deg); }
+      50% { transform: translateY(-5px) rotate(8deg); }
+    }
+
+    @keyframes otpBadgeGlow {
+      0%, 100% {
+        box-shadow:
+          0 12px 24px rgba(255,215,234,0.16),
+          inset 0 1px 0 rgba(255,255,255,0.68);
+      }
+
+      50% {
+        box-shadow:
+          0 14px 28px rgba(255,215,234,0.24),
+          0 0 22px rgba(221,251,255,0.12),
+          inset 0 1px 0 rgba(255,255,255,0.72);
+      }
     }
 
     .status-title {
@@ -1374,7 +1816,10 @@
         inset 0 1px 0 rgba(255,255,255,0.17);
       user-select: all;
       overflow-wrap: anywhere;
-      animation: otpGlow 2.8s ease-in-out infinite;
+      animation:
+        otpGlow 2.8s ease-in-out infinite,
+        otpSoftFloat 4.6s ease-in-out infinite,
+        otpEntrancePulse 5.2s ease-in-out infinite;
     }
 
     .otp-code:before,
@@ -1414,6 +1859,16 @@
       }
     }
 
+    @keyframes otpSoftFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-3px); }
+    }
+
+    @keyframes otpEntrancePulse {
+      0%, 100% { border-color: rgba(255,215,234,0.35); }
+      50% { border-color: rgba(221,251,255,0.44); }
+    }
+
     .otp-note {
       color: rgba(255,255,255,0.76);
       font-size: 14px;
@@ -1431,12 +1886,14 @@
     .btn-copy {
       display: none;
       width: auto;
-      min-width: 220px;
+      min-width: 240px;
       min-height: 54px;
       padding: 0 22px;
       border-radius: 999px;
       color: var(--dark);
-      background: linear-gradient(135deg, #DDFBFF, #FFFFFF 48%, #FFD7EA);
+      background:
+        radial-gradient(circle at 20% 0%, rgba(255,255,255,0.95), transparent 24%),
+        linear-gradient(135deg, #DDFBFF, #FFFFFF 48%, #FFD7EA);
       border: 1px solid rgba(255,215,234,0.34);
       box-shadow:
         0 18px 38px rgba(255,215,234,0.20),
@@ -1458,10 +1915,26 @@
       animation: copySweep 2.8s ease-in-out infinite;
     }
 
+    .btn-copy:after {
+      content: "♡";
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #FF9FC8;
+      font-size: 14px;
+      text-shadow: 0 0 14px rgba(255,159,200,0.56);
+      animation: btnHeartBeat 1.9s ease-in-out infinite;
+    }
+
     .btn-copy:hover {
       background: #FFFFFF;
       border-color: #FFFFFF;
-      transform: translateY(-1px);
+      transform: translateY(-2px) scale(1.01);
+      box-shadow:
+        0 22px 44px rgba(255,215,234,0.26),
+        0 0 0 8px rgba(221,251,255,0.07),
+        inset 0 1px 0 rgba(255,255,255,0.56);
     }
 
     .btn-copy.copied {
@@ -1473,6 +1946,12 @@
         0 16px 34px rgba(164,255,212,0.18),
         0 0 0 6px rgba(164,255,212,0.06),
         inset 0 1px 0 rgba(255,255,255,0.32);
+    }
+
+    .btn-copy.copied:after {
+      content: "✓";
+      color: #06351F;
+      text-shadow: none;
     }
 
     .btn-copy span {
@@ -1545,16 +2024,8 @@
       top: 3px;
     }
 
-    .copy-helper {
-      margin-top: 8px;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.5;
-      font-weight: 520;
-    }
-
     .mini-info {
-      margin-top: 13px;
+      margin-top: 15px;
       display: flex;
       justify-content: center;
       gap: 12px;
@@ -1564,9 +2035,19 @@
     }
 
     .mini-info span {
-      border-bottom: 1px solid rgba(255,255,255,0.14);
-      padding-bottom: 3px;
+      border-bottom: 0;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(255,215,234,0.13);
       font-weight: 620;
+      transition: .18s ease;
+    }
+
+    .mini-info span:hover {
+      transform: translateY(-2px);
+      border-color: rgba(221,251,255,0.22);
+      background: rgba(255,255,255,0.075);
     }
 
     .not-found {
@@ -1587,8 +2068,13 @@
       border-radius: 24px;
       border: 1px solid rgba(255,215,234,0.18);
       background:
-        linear-gradient(180deg, rgba(221,251,255,0.07), rgba(255,215,234,0.045)),
+        radial-gradient(circle at 18% 0%, rgba(221,251,255,0.08), transparent 32%),
+        radial-gradient(circle at 100% 18%, rgba(255,215,234,0.08), transparent 32%),
+        linear-gradient(180deg, rgba(221,251,255,0.065), rgba(255,215,234,0.04)),
         rgba(255,255,255,0.04);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.08),
+        0 16px 32px rgba(0,0,0,0.11);
     }
 
     .usage:after {
@@ -1635,6 +2121,12 @@
       position: relative;
       padding-left: 34px;
       margin-bottom: 10px;
+      transition: .18s ease;
+    }
+
+    .usage-list li:hover {
+      color: rgba(255,255,255,0.86);
+      transform: translateX(2px);
     }
 
     .usage-list li:last-child {
@@ -1656,6 +2148,7 @@
       background: linear-gradient(135deg, #DDFBFF, #FFFFFF 52%, #FFD7EA);
       font-size: 12px;
       font-weight: 950;
+      animation: usageBubble 3.4s ease-in-out infinite;
     }
 
     .usage-note {
@@ -1666,6 +2159,21 @@
       font-size: 12px;
       line-height: 1.65;
       font-weight: 500;
+    }
+
+    @keyframes usageBubble {
+      0%, 100% {
+        box-shadow:
+          0 0 0 0 rgba(255,215,234,0),
+          inset 0 1px 0 rgba(255,255,255,0.45);
+      }
+
+      50% {
+        box-shadow:
+          0 0 0 5px rgba(255,215,234,0.055),
+          0 0 18px rgba(255,215,234,0.12),
+          inset 0 1px 0 rgba(255,255,255,0.58);
+      }
     }
 
     .footer {
@@ -1728,6 +2236,17 @@
     .toast.show {
       opacity: 1;
       transform: translateX(-50%) translateY(0);
+      animation: toastPop .25s ease both;
+    }
+
+    @keyframes toastPop {
+      from {
+        transform: translateX(-50%) translateY(10px) scale(.96);
+      }
+
+      to {
+        transform: translateX(-50%) translateY(0) scale(1);
+      }
     }
 
     @media (max-height: 760px) {
@@ -1737,7 +2256,7 @@
       }
 
       .service-card {
-        padding: 12px 14px 13px;
+        padding: 12px 14px 24px;
       }
 
       .service-title {
@@ -1850,6 +2369,14 @@
       <div class="bubble-dot b2"></div>
       <div class="bubble-dot b3"></div>
       <div class="bubble-dot b4"></div>
+
+      <div class="cute-moon">☾</div>
+      <div class="cute-ribbon r1">♡</div>
+      <div class="cute-ribbon r2">✦</div>
+      <div class="cute-ribbon r3">♡</div>
+
+      <div class="mini-cloud cloud1"></div>
+      <div class="mini-cloud cloud2"></div>
     </div>
 
     <section class="app" id="app">
@@ -1879,13 +2406,19 @@
           </div>
         </div>
 
-        <div class="service-card">
-          <div class="service-pill">Disney+ 4K OTP Verify</div>
+        <div class="service-card disney-card">
+          <div class="service-pill">Disney+ 4K Verify</div>
 
-          <div class="service-title">รับรหัส OTP ล่าสุด</div>
+          <div class="service-title">ระบบรับรหัส OTP</div>
 
           <div class="service-desc">
-            กรอกอีเมล อุปกรณ์ และหมายเลขจอ ระบบจะค้นหา OTP ล่าสุดจากอีเมลที่ลูกค้าแจ้งเท่านั้น
+            กรอกอีเมล อุปกรณ์ และหมายเลขจอ ระบบจะตรวจสอบรหัสจากอีเมลที่ระบุเท่านั้น
+          </div>
+
+          <div class="disney-progress">
+            <span></span>
+            <span></span>
+            <span></span>
           </div>
         </div>
 
@@ -1901,8 +2434,8 @@
           <div class="cute-banner-icon">✉</div>
 
           <div class="cute-banner-text">
-            <strong>รับรหัสจากอีเมลล่าสุด</strong>
-            <span>กรอกอีเมล อุปกรณ์ และหมายเลขจอให้ตรงกับรายการของลูกค้า</span>
+            <strong>ข้อมูลสำหรับตรวจสอบ OTP</strong>
+            <span>กรุณากรอกข้อมูลให้ถูกต้อง เพื่อให้ระบบค้นหารหัสจากอีเมลที่ระบุ</span>
           </div>
 
           <div class="cute-banner-badge">Secure</div>
@@ -2025,12 +2558,8 @@
             <div class="copy-area">
               <button class="btn-copy" id="copyBtn" onclick="copyOtp()" type="button">
                 <span class="copy-icon"></span>
-                <span id="copyBtnText">คัดลอกรหัสนี้</span>
+                <span id="copyBtnText">แตะเพื่อคัดลอก</span>
               </button>
-            </div>
-
-            <div class="copy-helper" id="copyHelper">
-              กดปุ่มด้านบนเพื่อคัดลอกรหัส OTP ไปใช้งาน
             </div>
 
             <div class="mini-info">
@@ -2053,7 +2582,7 @@
             <li>ระบุอุปกรณ์ที่ใช้งาน เช่น iPhone, Android, iPad, TV หรือ Chrome</li>
             <li>เลือกหมายเลขจอให้ตรงกับรายการของลูกค้า</li>
             <li>กดปุ่ม “รับรหัส OTP เลย” เพื่อค้นหารหัสล่าสุด</li>
-            <li>เมื่อรหัสแสดงขึ้นมา กด “คัดลอกรหัสนี้” เพื่อนำไปใช้งาน</li>
+            <li>เมื่อรหัสแสดงขึ้นมา กด “แตะเพื่อคัดลอก” เพื่อนำไปใช้งาน</li>
           </ol>
 
           <p class="usage-note">
@@ -2096,7 +2625,6 @@
     const btnIcon = document.getElementById('btnIcon');
     const copyBtn = document.getElementById('copyBtn');
     const copyBtnText = document.getElementById('copyBtnText');
-    const copyHelper = document.getElementById('copyHelper');
     const statusBox = document.getElementById('status');
     const saveOk = document.getElementById('saveOk');
     const otpBox = document.getElementById('otpBox');
@@ -2161,14 +2689,12 @@
       }
 
       copyBtn.classList.remove('copied');
-      copyBtnText.textContent = 'คัดลอกรหัสนี้';
-      copyHelper.textContent = 'กดปุ่มด้านบนเพื่อคัดลอกรหัส OTP ไปใช้งาน';
+      copyBtnText.textContent = 'แตะเพื่อคัดลอก';
     }
 
     function setCopyButtonCopied() {
       copyBtn.classList.add('copied');
       copyBtnText.textContent = 'คัดลอกแล้ว';
-      copyHelper.textContent = 'คัดลอกรหัสเรียบร้อย สามารถนำไปใช้งานได้ทันที';
 
       if (copyResetTimer) {
         clearTimeout(copyResetTimer);
