@@ -1161,6 +1161,52 @@
       overflow-wrap: anywhere;
     }
 
+    .otp-box {
+      margin: 14px auto 0;
+      max-width: 360px;
+      padding: 14px;
+      border-radius: 24px;
+      text-align: center;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(255,242,191,0.16), transparent 34%),
+        linear-gradient(135deg, rgba(221,251,255,0.08), rgba(255,215,234,0.08)),
+        rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,242,191,0.22);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.10),
+        0 16px 32px rgba(0,0,0,0.14);
+    }
+
+    .otp-label {
+      color: rgba(255,255,255,0.68);
+      font-size: 12px;
+      font-weight: 850;
+      line-height: 1.45;
+    }
+
+    .otp-code {
+      margin-top: 6px;
+      color: var(--dark);
+      background:
+        radial-gradient(circle at 30% 20%, rgba(255,255,255,0.95), transparent 24%),
+        linear-gradient(135deg, #FFF2BF, #FFFFFF 55%, #FFD7EA);
+      border-radius: 18px;
+      padding: 12px 14px;
+      font-size: 28px;
+      font-weight: 1000;
+      letter-spacing: 4px;
+      line-height: 1.2;
+      user-select: all;
+    }
+
+    .otp-hint {
+      margin-top: 8px;
+      color: rgba(255,255,255,0.56);
+      font-size: 11px;
+      font-weight: 650;
+      line-height: 1.55;
+    }
+
     .copy-area {
       margin-top: 18px;
       display: flex;
@@ -1676,6 +1722,19 @@
         line-height: 1.65;
       }
 
+      .otp-box {
+        margin-top: 10px;
+        padding: 11px;
+        border-radius: 20px;
+      }
+
+      .otp-code {
+        font-size: 24px;
+        letter-spacing: 3px;
+        padding: 10px 12px;
+        border-radius: 16px;
+      }
+
       .copy-area {
         margin-top: 12px;
         gap: 8px;
@@ -1838,12 +1897,12 @@
               </div>
               <div class="how-item">
                 <div class="how-num">3</div>
-                <div class="how-text">ตรวจสอบข้อมูล แล้วกดส่งคำขอให้ระบบบันทึก</div>
+                <div class="how-text">ตรวจสอบข้อมูล แล้วกดส่งคำขอเพื่อรับ OTP</div>
               </div>
             </div>
 
             <div class="safe-note">
-              เพื่อความปลอดภัย ระบบนี้ไม่ขอรหัสผ่าน ไม่ขอรหัส OTP และไม่แสดงรหัสลับบนหน้าเว็บ
+              ระบบจะแสดงเฉพาะรหัส OTP ที่ระบบร้านออกให้เท่านั้น ไม่ขอรหัสผ่านหรือข้อมูลลับส่วนตัวของลูกค้า
             </div>
 
             <div class="use-tip" id="useTip">
@@ -1992,18 +2051,26 @@
               <div class="result-icon">✓</div>
               <h3 class="result-title">ส่งคำขอเรียบร้อยแล้ว</h3>
               <div class="result-message" id="successMessage">
-                ร้านได้รับข้อมูลแล้ว กรุณาดำเนินการยืนยันผ่านช่องทางที่ถูกต้องและปลอดภัย
+                ร้านได้รับข้อมูลแล้ว กรุณาแจ้งรหัส OTP ให้ลูกค้าตามช่องทางที่กำหนด
               </div>
+
               <div class="request-id" id="requestIdBox">เลขคำขอ: -</div>
 
+              <div class="otp-box" id="otpBox" style="display:none;">
+                <div class="otp-label">รหัส OTP สำหรับแจ้งลูกค้า</div>
+                <div class="otp-code" id="otpCodeText">-</div>
+                <div class="otp-hint">แจ้งรหัสนี้ให้ลูกค้าใช้งานภายในเวลาที่กำหนด</div>
+              </div>
+
               <div class="copy-area">
+                <button class="btn-copy" id="copyOtpBtn" onclick="copyOtpMessage()" type="button" style="display:none;">คัดลอกข้อความแจ้งลูกค้า</button>
                 <button class="btn-copy" id="copyIdBtn" onclick="copyRequestId()" type="button">คัดลอกเลขคำขอ</button>
                 <button class="btn-retry" id="retryBtn" onclick="retryRequest()" type="button">ส่งคำขออีกครั้ง</button>
                 <button class="btn-reset" id="resetBtn" onclick="startNewRequest()" type="button">เริ่มรายการใหม่</button>
               </div>
 
               <div class="mini-info">
-                <span>ไม่แสดงรหัสลับบนหน้าเว็บ</span>
+                <span>แสดงเฉพาะ OTP ที่ระบบร้านออกให้</span>
                 <span>บันทึกรายการเพื่อใช้ตรวจสอบย้อนหลัง</span>
               </div>
             </div>
@@ -2059,6 +2126,7 @@
     let loadingTextTimer = null;
     let loadingTextIndex = 0;
     let lastRequestId = '';
+    let lastOtpCode = '';
     let tipTimer = null;
     let tipIndex = 0;
 
@@ -2072,7 +2140,7 @@
     const useTips = [
       'เคล็ดลับ: ใส่หมายเหตุสั้น ๆ จะช่วยให้ร้านค้นรายการย้อนหลังง่ายขึ้น',
       'แนะนำ: ตรวจสอบอีเมลให้ถูกต้องก่อนกดส่งคำขอ',
-      'ปลอดภัย: ระบบนี้ไม่ขอรหัสผ่านหรือ OTP จากลูกค้า',
+      'ปลอดภัย: แจ้งเฉพาะ OTP ที่ระบบร้านออกให้ลูกค้าเท่านั้น',
       'Tip: หากลูกค้าใช้ TV ให้เลือกอุปกรณ์ TV และระบุจอให้ตรงรายการ'
     ];
 
@@ -2094,6 +2162,10 @@
     const errorBox = document.getElementById('errorBox');
     const successMessage = document.getElementById('successMessage');
     const requestIdBox = document.getElementById('requestIdBox');
+
+    const otpBox = document.getElementById('otpBox');
+    const otpCodeText = document.getElementById('otpCodeText');
+    const copyOtpBtn = document.getElementById('copyOtpBtn');
 
     const toast = document.getElementById('toast');
     const loadingOverlay = document.getElementById('loadingOverlay');
@@ -2205,7 +2277,7 @@
       }
 
       formTitle.textContent = 'สถานะคำขอ';
-      formSubtitle.textContent = 'ดูสถานะหรือเริ่มรายการใหม่ได้จากหน้านี้';
+      formSubtitle.textContent = 'ดูรหัส OTP หรือเริ่มรายการใหม่ได้จากหน้านี้';
     }
 
     function scrollFormIntoView() {
@@ -2217,6 +2289,8 @@
     }
 
     function focusStepInput() {
+      if (window.innerWidth <= 430) return;
+
       setTimeout(function() {
         try {
           if (currentStep === 1) {
@@ -2422,15 +2496,22 @@
       successBox.style.display = 'none';
       errorBox.style.display = 'none';
       requestIdBox.textContent = 'เลขคำขอ: -';
+
+      if (otpBox && otpCodeText && copyOtpBtn) {
+        otpCodeText.textContent = '-';
+        otpBox.style.display = 'none';
+        copyOtpBtn.style.display = 'none';
+      }
     }
 
-    function showSuccess(message, requestId) {
+    function showSuccess(message, requestId, otpCode) {
       saveLatestHistory();
       vibrateSuccess();
       launchConfetti();
 
       const finalRequestId = requestId || createLocalRequestId();
       lastRequestId = finalRequestId;
+      lastOtpCode = String(otpCode || '').trim();
 
       goToStep(4);
 
@@ -2440,9 +2521,21 @@
 
       successMessage.textContent =
         message ||
-        'ร้านได้รับข้อมูลแล้ว กรุณาดำเนินการยืนยันผ่านช่องทางที่ถูกต้องและปลอดภัย';
+        'ร้านได้รับข้อมูลแล้ว กรุณาแจ้งรหัส OTP ให้ลูกค้าตามช่องทางที่กำหนด';
 
       requestIdBox.textContent = 'เลขคำขอ: ' + finalRequestId;
+
+      if (otpBox && otpCodeText && copyOtpBtn) {
+        if (lastOtpCode) {
+          otpCodeText.textContent = lastOtpCode;
+          otpBox.style.display = 'block';
+          copyOtpBtn.style.display = 'flex';
+        } else {
+          otpCodeText.textContent = '-';
+          otpBox.style.display = 'none';
+          copyOtpBtn.style.display = 'none';
+        }
+      }
 
       showToast('ส่งคำขอเรียบร้อยแล้ว');
     }
@@ -2483,6 +2576,7 @@
       const device = deviceInput.value.trim();
       const customerNote = customerNoteInput.value.trim();
 
+      lastOtpCode = '';
       resetResult();
 
       if (!WEB_APP_URL || WEB_APP_URL.indexOf('ใส่_GOOGLE_APPS_SCRIPT') !== -1) {
@@ -2533,8 +2627,9 @@
 
         if (res.ok || res.saved) {
           showSuccess(
-            res.message || res.savedMessage || 'บันทึกคำขอเรียบร้อยแล้ว ร้านสามารถตรวจสอบรายการนี้ต่อได้',
-            res.requestId || res.id || ''
+            res.message || res.savedMessage || 'บันทึกคำขอเรียบร้อยแล้ว กรุณาแจ้งรหัส OTP ให้ลูกค้า',
+            res.requestId || res.id || '',
+            res.otp || res.otpCode || res.code || ''
           );
           return;
         }
@@ -2559,6 +2654,7 @@
       selectedScreen = '';
       selectedDeviceQuick = '';
       lastRequestId = '';
+      lastOtpCode = '';
 
       customerNameInput.value = '';
       emailInput.value = '';
@@ -2578,6 +2674,12 @@
         screenSelectedNote.classList.remove('active');
       }
 
+      if (otpBox && otpCodeText && copyOtpBtn) {
+        otpCodeText.textContent = '-';
+        otpBox.style.display = 'none';
+        copyOtpBtn.style.display = 'none';
+      }
+
       updateNoteCount();
       resetResult();
       goToStep(1);
@@ -2593,26 +2695,51 @@
         return;
       }
 
+      copyText(text, 'คัดลอกเลขคำขอแล้ว');
+    }
+
+    function copyOtpMessage() {
+      if (!lastOtpCode) {
+        showToast('ยังไม่มีรหัส OTP');
+        return;
+      }
+
+      const customerName = customerNameInput.value.trim();
+      const nameText = customerName ? customerName + ' ' : '';
+
+      const text =
+        nameText +
+        'รหัส OTP ของคุณคือ: ' + lastOtpCode +
+        '\nกรุณาใช้รหัสนี้ภายในเวลาที่กำหนด';
+
+      copyText(text, 'คัดลอกข้อความแจ้งลูกค้าแล้ว');
+    }
+
+    function copyText(text, successMessageText) {
       try {
         navigator.clipboard.writeText(text).then(function() {
-          showToast('คัดลอกเลขคำขอแล้ว');
+          showToast(successMessageText || 'คัดลอกแล้ว');
         }).catch(function() {
-          fallbackCopyText(text);
+          fallbackCopyText(text, successMessageText);
         });
       } catch (err) {
-        fallbackCopyText(text);
+        fallbackCopyText(text, successMessageText);
       }
     }
 
-    function fallbackCopyText(text) {
-      const input = document.createElement('input');
+    function fallbackCopyText(text, successMessageText) {
+      const input = document.createElement('textarea');
       input.value = text;
+      input.style.position = 'fixed';
+      input.style.left = '-9999px';
+      input.style.top = '0';
       document.body.appendChild(input);
+      input.focus();
       input.select();
 
       try {
         document.execCommand('copy');
-        showToast('คัดลอกเลขคำขอแล้ว');
+        showToast(successMessageText || 'คัดลอกแล้ว');
       } catch (err) {
         showToast('คัดลอกไม่สำเร็จ');
       }
