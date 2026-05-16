@@ -3,27 +3,34 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#07162F">
-  <meta name="description" content="LINE Verify Request - ระบบส่งคำขอตรวจสอบสำหรับลูกค้า">
-  <title>LINE Verify Request</title>
+  <meta name="theme-color" content="#06C755">
+  <meta name="description" content="LINE OTP Verify - ระบบรับรหัส OTP สำหรับลูกค้า">
+
+  <title>LINE OTP Verify</title>
 
   <style>
     :root {
-      --bg: #030712;
-      --card: rgba(8, 20, 43, 0.84);
-      --text: #F8FBFF;
-      --sub: rgba(248,251,255,0.74);
-      --muted: rgba(248,251,255,0.54);
-      --blue: #5EA2FF;
-      --cyan: #B7F2FF;
-      --cyan-soft: #DDFBFF;
-      --pink: #FFD7EA;
-      --pink-strong: #FF9FC8;
-      --yellow: #FFF2BF;
-      --green: #A4FFD4;
-      --danger: #FFB4B4;
-      --dark: #05112A;
-      --shadow: 0 30px 90px rgba(0,0,0,0.48);
+      --line: #06C755;
+      --line-dark: #04A947;
+      --line-soft: #EFFFF5;
+      --bg: #F5FFF8;
+      --bg2: #EAFBF0;
+      --card: rgba(255,255,255,0.88);
+      --text: #122018;
+      --sub: #53675B;
+      --muted: #7B8E82;
+      --border: rgba(18,32,24,0.10);
+      --green-glow: rgba(6,199,85,0.22);
+      --pink: #FFD8E8;
+      --pink-strong: #FF8FBD;
+      --yellow: #FFF4BF;
+      --cyan: #DDF9FF;
+      --danger: #E05757;
+      --success: #087D3B;
+      --shadow: 0 24px 70px rgba(6, 50, 24, 0.14);
+      --radius-xl: 32px;
+      --radius-lg: 22px;
+      --radius-md: 17px;
     }
 
     * {
@@ -39,8 +46,6 @@
       color: var(--text);
       background: var(--bg);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Prompt", "Noto Sans Thai", sans-serif;
-      text-rendering: geometricPrecision;
-      -webkit-font-smoothing: antialiased;
     }
 
     body {
@@ -49,27 +54,23 @@
     }
 
     button,
-    input,
-    textarea {
+    input {
       font-family: inherit;
     }
 
     .page {
       position: relative;
       min-height: 100dvh;
-      padding: max(20px, env(safe-area-inset-top)) 14px max(24px, env(safe-area-inset-bottom));
+      padding: max(18px, env(safe-area-inset-top)) 14px max(24px, env(safe-area-inset-bottom));
       display: flex;
-      align-items: center;
       justify-content: center;
-      overflow-x: hidden;
-      overflow-y: auto;
+      overflow: hidden;
       background:
-        radial-gradient(circle at 50% -8%, rgba(183,242,255,0.34), transparent 34%),
-        radial-gradient(circle at 7% 14%, rgba(94,162,255,0.24), transparent 34%),
-        radial-gradient(circle at 95% 24%, rgba(255,159,200,0.20), transparent 30%),
-        radial-gradient(circle at 90% 84%, rgba(255,215,234,0.28), transparent 38%),
-        radial-gradient(circle at 8% 88%, rgba(255,242,191,0.14), transparent 32%),
-        linear-gradient(180deg, #071A3D 0%, #07152F 46%, #030712 100%);
+        radial-gradient(circle at 50% -10%, rgba(6,199,85,0.20), transparent 34%),
+        radial-gradient(circle at 8% 12%, rgba(221,249,255,0.70), transparent 32%),
+        radial-gradient(circle at 92% 18%, rgba(255,216,232,0.58), transparent 30%),
+        radial-gradient(circle at 86% 88%, rgba(255,244,191,0.48), transparent 34%),
+        linear-gradient(180deg, #F8FFF9 0%, #EFFFF5 48%, #F5FFF8 100%);
     }
 
     .page:before {
@@ -78,14 +79,14 @@
       inset: 0;
       pointer-events: none;
       background-image:
-        radial-gradient(circle, rgba(255,255,255,0.34) 0 1px, transparent 1.6px),
-        radial-gradient(circle, rgba(255,215,234,0.24) 0 1px, transparent 1.7px),
-        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-      background-size: 54px 54px, 86px 86px, 44px 44px, 44px 44px;
-      background-position: 0 0, 18px 26px, 0 0, 0 0;
+        radial-gradient(circle, rgba(6,199,85,0.12) 0 1px, transparent 1.7px),
+        radial-gradient(circle, rgba(255,143,189,0.13) 0 1px, transparent 1.7px),
+        linear-gradient(rgba(18,32,24,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(18,32,24,0.025) 1px, transparent 1px);
+      background-size: 58px 58px, 86px 86px, 44px 44px, 44px 44px;
+      background-position: 0 0, 20px 28px, 0 0, 0 0;
       opacity: .72;
-      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.72), transparent 78%);
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.7), transparent 78%);
     }
 
     .orb {
@@ -93,60 +94,71 @@
       border-radius: 999px;
       pointer-events: none;
       filter: blur(34px);
-      opacity: .72;
-      animation: orbFloat 10s ease-in-out infinite;
+      opacity: .62;
+      animation: orbFloat 9s ease-in-out infinite;
     }
 
     .orb.one {
       width: 260px;
       height: 260px;
       left: -130px;
-      top: 110px;
-      background: rgba(94,162,255,0.38);
+      top: 100px;
+      background: rgba(6,199,85,0.24);
     }
 
     .orb.two {
-      width: 240px;
-      height: 240px;
+      width: 230px;
+      height: 230px;
       right: -120px;
-      top: 64px;
-      background: rgba(183,242,255,0.34);
-      animation-delay: 1.4s;
+      top: 72px;
+      background: rgba(255,216,232,0.58);
+      animation-delay: 1.2s;
     }
 
     .orb.three {
-      width: 330px;
-      height: 330px;
+      width: 300px;
+      height: 300px;
       left: 50%;
-      bottom: -205px;
+      bottom: -190px;
       transform: translateX(-50%);
-      background: rgba(255,215,234,0.24);
-      animation-delay: 2.3s;
+      background: rgba(221,249,255,0.70);
+      animation-delay: 2.2s;
     }
 
     @keyframes orbFloat {
-      0%, 100% { transform: translate3d(0,0,0) scale(1); }
-      50% { transform: translate3d(18px,-16px,0) scale(1.06); }
+      0%, 100% {
+        transform: translate3d(0,0,0) scale(1);
+      }
+
+      50% {
+        transform: translate3d(18px,-14px,0) scale(1.05);
+      }
     }
 
     .cute {
       position: absolute;
       pointer-events: none;
-      color: rgba(255,255,255,0.70);
+      color: rgba(6,199,85,0.26);
       font-weight: 1000;
-      text-shadow: 0 0 22px rgba(183,242,255,0.50);
-      animation: cuteFloat 4.8s ease-in-out infinite;
-      line-height: 1.4;
+      text-shadow: 0 0 22px rgba(6,199,85,0.16);
+      animation: cuteFloat 4.6s ease-in-out infinite;
     }
 
-    .cute.c1 { left: 8%; top: 16%; font-size: 16px; }
-    .cute.c2 { right: 9%; top: 30%; font-size: 18px; color: rgba(255,215,234,0.82); animation-delay: .9s; }
-    .cute.c3 { left: 12%; bottom: 18%; font-size: 14px; color: rgba(255,242,191,0.76); animation-delay: 1.6s; }
-    .cute.c4 { right: 16%; bottom: 12%; font-size: 13px; color: rgba(221,251,255,0.84); animation-delay: 2.4s; }
+    .cute.c1 { left: 8%; top: 18%; font-size: 16px; }
+    .cute.c2 { right: 9%; top: 30%; font-size: 18px; color: rgba(255,143,189,0.36); animation-delay: .9s; }
+    .cute.c3 { left: 12%; bottom: 18%; font-size: 14px; color: rgba(255,143,189,0.32); animation-delay: 1.6s; }
+    .cute.c4 { right: 16%; bottom: 12%; font-size: 13px; animation-delay: 2.4s; }
 
     @keyframes cuteFloat {
-      0%, 100% { transform: translateY(0) rotate(-5deg); opacity: .48; }
-      50% { transform: translateY(-12px) rotate(6deg); opacity: 1; }
+      0%, 100% {
+        transform: translateY(0) rotate(-5deg);
+        opacity: .58;
+      }
+
+      50% {
+        transform: translateY(-12px) rotate(6deg);
+        opacity: 1;
+      }
     }
 
     .wrap {
@@ -154,7 +166,6 @@
       z-index: 2;
       width: 100%;
       max-width: 1080px;
-      margin: auto;
       display: grid;
       grid-template-columns: minmax(0, 1fr) minmax(390px, 470px);
       gap: 22px;
@@ -162,23 +173,26 @@
     }
 
     .hero {
-      min-height: min(680px, calc(100dvh - 48px));
+      min-height: 680px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: space-between;
       gap: 22px;
       padding: 8px 0;
     }
 
-    .topbar,
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
     .brand {
       display: flex;
       align-items: center;
       gap: 12px;
-    }
-
-    .topbar {
-      justify-content: space-between;
+      min-width: 0;
     }
 
     .logo {
@@ -187,24 +201,22 @@
       border-radius: 20px;
       display: grid;
       place-items: center;
+      color: #FFFFFF;
       background:
-        radial-gradient(circle at 28% 18%, rgba(255,255,255,0.42), transparent 26%),
-        linear-gradient(135deg, #7DB5FF, #C9F7FF 52%, #FFD7EA);
+        radial-gradient(circle at 28% 18%, rgba(255,255,255,0.34), transparent 26%),
+        linear-gradient(135deg, #06C755, #10D765);
       box-shadow:
-        0 18px 42px rgba(183,242,255,0.24),
-        0 0 0 6px rgba(255,215,234,0.05),
-        inset 0 1px 0 rgba(255,255,255,0.55);
+        0 18px 40px rgba(6,199,85,0.24),
+        inset 0 1px 0 rgba(255,255,255,0.40);
       position: relative;
       flex: 0 0 auto;
-      animation: logoFloat 4.8s ease-in-out infinite;
     }
 
     .logo:before {
       content: "LINE";
       font-size: 12px;
       font-weight: 1000;
-      color: var(--dark);
-      line-height: 1;
+      letter-spacing: -.2px;
     }
 
     .logo:after {
@@ -216,22 +228,15 @@
       height: 14px;
       border-radius: 999px;
       background: var(--pink-strong);
-      box-shadow: 0 0 18px rgba(255,159,200,0.85), 0 0 34px rgba(255,215,234,0.32);
-      border: 2px solid rgba(255,255,255,0.82);
-    }
-
-    @keyframes logoFloat {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-3px); }
+      box-shadow: 0 0 20px rgba(255,143,189,0.70);
+      border: 2px solid #FFFFFF;
     }
 
     .brand-title {
       font-size: 16px;
       font-weight: 1000;
-      color: #FFFFFF;
-      line-height: 1.35;
-      overflow: visible;
-      white-space: normal;
+      letter-spacing: .1px;
+      white-space: nowrap;
     }
 
     .brand-sub {
@@ -239,9 +244,7 @@
       color: var(--sub);
       font-size: 12px;
       font-weight: 650;
-      line-height: 1.45;
-      overflow: visible;
-      white-space: normal;
+      white-space: nowrap;
     }
 
     .online {
@@ -250,17 +253,14 @@
       gap: 7px;
       padding: 9px 12px;
       border-radius: 999px;
-      color: #FFFFFF;
-      background:
-        linear-gradient(135deg, rgba(221,251,255,0.16), rgba(255,215,234,0.15)),
-        rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,215,234,0.24);
-      box-shadow: 0 10px 26px rgba(0,0,0,0.12);
-      backdrop-filter: blur(14px);
+      color: var(--success);
+      background: rgba(255,255,255,0.68);
+      border: 1px solid rgba(6,199,85,0.16);
+      box-shadow: 0 12px 28px rgba(6,50,24,0.08);
+      backdrop-filter: blur(16px);
       font-size: 12px;
       font-weight: 950;
       white-space: nowrap;
-      line-height: 1.35;
     }
 
     .online:before {
@@ -268,13 +268,12 @@
       width: 7px;
       height: 7px;
       border-radius: 999px;
-      background: var(--green);
-      box-shadow: 0 0 14px rgba(164,255,212,0.8);
+      background: var(--line);
+      box-shadow: 0 0 14px rgba(6,199,85,0.78);
     }
 
     .hero-main {
       max-width: 590px;
-      overflow: visible;
     }
 
     .eyebrow {
@@ -283,47 +282,38 @@
       align-items: center;
       gap: 8px;
       margin-bottom: 18px;
-      padding: 9px 13px;
+      padding: 8px 13px;
       border-radius: 999px;
-      color: var(--cyan-soft);
-      background: rgba(221,251,255,0.08);
-      border: 1px solid rgba(221,251,255,0.18);
-      box-shadow: 0 12px 26px rgba(0,0,0,0.10);
+      color: var(--success);
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(6,199,85,0.16);
+      box-shadow: 0 12px 26px rgba(6,50,24,0.07);
       font-size: 12px;
       font-weight: 900;
-      line-height: 1.45;
-      backdrop-filter: blur(14px);
-      white-space: normal;
+      letter-spacing: .18px;
     }
 
     .eyebrow:before {
       content: "♡";
-      color: var(--pink);
-      line-height: 1;
+      color: var(--pink-strong);
+      text-shadow: 0 0 12px rgba(255,143,189,.45);
     }
 
     h1 {
       margin: 0;
-      padding-top: 4px;
-      padding-bottom: 4px;
-      color: #FFFFFF;
-      font-size: clamp(38px, 6.8vw, 72px);
-      line-height: 1.12;
-      letter-spacing: -2.2px;
+      color: var(--text);
+      font-size: clamp(40px, 7vw, 74px);
+      line-height: 1;
+      letter-spacing: -2.5px;
       font-weight: 1000;
-      overflow: visible;
-      text-wrap: balance;
     }
 
     .gradient-text {
       display: block;
-      padding-bottom: 3px;
-      background: linear-gradient(135deg, #FFFFFF 8%, #DDFBFF 44%, #FFD7EA 78%);
+      background: linear-gradient(135deg, #06C755 6%, #0EA34A 42%, #FF8FBD 88%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      line-height: 1.14;
-      overflow: visible;
     }
 
     .lead {
@@ -331,42 +321,157 @@
       max-width: 540px;
       color: var(--sub);
       font-size: 16px;
-      line-height: 1.9;
+      line-height: 1.86;
       font-weight: 540;
-      overflow: visible;
     }
 
-    .latest-card {
-      display: none;
+    .hero-panel {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
       max-width: 560px;
-      padding: 14px;
+    }
+
+    .metric {
+      min-height: 96px;
+      padding: 15px;
       border-radius: 24px;
       background:
-        radial-gradient(circle at 18% 0%, rgba(164,255,212,0.10), transparent 34%),
-        rgba(255,255,255,0.055);
-      border: 1px solid rgba(164,255,212,0.18);
-      color: rgba(255,255,255,0.82);
-      font-size: 13px;
-      line-height: 1.65;
-      box-shadow: 0 16px 34px rgba(0,0,0,0.12);
-      overflow-wrap: anywhere;
+        radial-gradient(circle at 20% 0%, rgba(6,199,85,0.08), transparent 34%),
+        rgba(255,255,255,0.74);
+      border: 1px solid rgba(18,32,24,0.08);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 16px 34px rgba(6,50,24,0.08);
     }
 
-    .latest-card strong {
-      color: var(--green);
+    .metric strong {
+      display: block;
+      color: var(--text);
+      font-size: 20px;
+      font-weight: 1000;
+      line-height: 1.15;
+    }
+
+    .metric span {
+      display: block;
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.48;
+      font-weight: 650;
+    }
+
+    .preview-card {
+      max-width: 560px;
+      padding: 18px;
+      border-radius: 30px;
+      background:
+        radial-gradient(circle at 18% 0%, rgba(6,199,85,0.09), transparent 34%),
+        radial-gradient(circle at 100% 26%, rgba(255,216,232,0.26), transparent 34%),
+        rgba(255,255,255,0.76);
+      border: 1px solid rgba(18,32,24,0.08);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 20px 54px rgba(6,50,24,0.11);
+    }
+
+    .preview-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .preview-label {
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .preview-status {
+      color: var(--success);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .preview-window {
+      position: relative;
+      min-height: 210px;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(18,32,24,0.08);
+      background:
+        radial-gradient(circle at 24% 18%, rgba(6,199,85,0.20), transparent 34%),
+        radial-gradient(circle at 78% 66%, rgba(255,216,232,0.44), transparent 38%),
+        linear-gradient(180deg, #FFFFFF, #F0FFF5);
+    }
+
+    .hero-img {
+      display: none;
+      width: 100%;
+      height: 100%;
+      min-height: 210px;
+      object-fit: cover;
+    }
+
+    .placeholder {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 26px;
+    }
+
+    .phone-card {
+      width: min(250px, 76%);
+      aspect-ratio: 1.18;
+      border-radius: 34px;
+      display: grid;
+      place-items: center;
+      position: relative;
+      background:
+        radial-gradient(circle at 28% 14%, rgba(255,255,255,0.88), transparent 28%),
+        linear-gradient(135deg, #06C755, #10D765);
+      box-shadow:
+        0 24px 56px rgba(6,199,85,0.22),
+        inset 0 1px 0 rgba(255,255,255,0.34);
+      color: #FFFFFF;
+      overflow: hidden;
+    }
+
+    .phone-card:before {
+      content: "OTP";
+      font-size: 44px;
+      font-weight: 1000;
+      letter-spacing: 5px;
+    }
+
+    .phone-card:after {
+      content: "LINE Verify";
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 22px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.22);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .2px;
     }
 
     .form-card {
       position: relative;
       border-radius: 34px;
       padding: 20px;
-      overflow: visible;
-      border: 1px solid rgba(255,215,234,0.18);
+      overflow: hidden;
+      border: 1px solid rgba(18,32,24,0.09);
       background:
-        radial-gradient(circle at 20% 0%, rgba(221,251,255,0.13), transparent 30%),
-        radial-gradient(circle at 100% 20%, rgba(255,215,234,0.12), transparent 34%),
-        linear-gradient(180deg, rgba(255,255,255,0.14), rgba(255,255,255,0.06)),
-        rgba(8,20,43,0.84);
+        radial-gradient(circle at 20% 0%, rgba(6,199,85,0.10), transparent 30%),
+        radial-gradient(circle at 100% 20%, rgba(255,216,232,0.22), transparent 34%),
+        rgba(255,255,255,0.90);
       box-shadow: var(--shadow);
       backdrop-filter: blur(24px);
     }
@@ -378,7 +483,7 @@
       right: 24px;
       top: 0;
       height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255,215,234,0.42), rgba(221,251,255,0.42), transparent);
+      background: linear-gradient(90deg, transparent, rgba(6,199,85,0.28), rgba(255,143,189,0.28), transparent);
     }
 
     .form-head {
@@ -389,286 +494,43 @@
       margin-bottom: 16px;
       padding: 15px;
       border-radius: 24px;
-      border: 1px solid rgba(221,251,255,0.16);
+      border: 1px solid rgba(18,32,24,0.08);
       background:
-        radial-gradient(circle at 15% 0%, rgba(221,251,255,0.16), transparent 34%),
-        linear-gradient(135deg, rgba(221,251,255,0.08), rgba(255,215,234,0.08)),
-        rgba(255,255,255,0.05);
-      overflow: visible;
+        radial-gradient(circle at 15% 0%, rgba(6,199,85,0.08), transparent 34%),
+        linear-gradient(135deg, rgba(6,199,85,0.055), rgba(255,216,232,0.18)),
+        rgba(255,255,255,0.72);
     }
 
     .form-head h2 {
       margin: 0;
-      color: #FFFFFF;
+      color: var(--text);
       font-size: 18px;
-      line-height: 1.45;
+      line-height: 1.35;
       font-weight: 1000;
-      overflow: visible;
+      letter-spacing: -.2px;
     }
 
     .form-head p {
       margin: 5px 0 0;
       color: var(--muted);
       font-size: 12px;
-      line-height: 1.7;
+      line-height: 1.62;
       font-weight: 540;
-      overflow: visible;
     }
 
     .secure-pill {
       flex: 0 0 auto;
-      padding: 8px 10px;
-      border-radius: 999px;
-      color: var(--dark);
-      background:
-        radial-gradient(circle at 30% 20%, rgba(255,255,255,0.95), transparent 24%),
-        linear-gradient(135deg, #DDFBFF, #FFFFFF 52%, #FFD7EA);
-      font-size: 11px;
-      font-weight: 950;
-      line-height: 1.25;
-      box-shadow: 0 14px 26px rgba(255,215,234,0.16);
-      white-space: nowrap;
-    }
-
-    .stepper {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 8px;
-      margin: 0 0 10px;
-      padding: 8px;
-      border-radius: 24px;
-      background:
-        linear-gradient(135deg, rgba(221,251,255,0.055), rgba(255,215,234,0.055)),
-        rgba(255,255,255,0.045);
-      border: 1px solid rgba(255,255,255,0.10);
-      overflow: visible;
-    }
-
-    .step-item {
-      padding: 9px 6px;
-      border-radius: 18px;
-      text-align: center;
-      color: rgba(255,255,255,0.48);
-      border: 1px solid transparent;
-      transition: .18s ease;
-      min-width: 0;
-      overflow: visible;
-    }
-
-    .step-number {
-      width: 24px;
-      height: 24px;
-      margin: 0 auto 6px;
-      border-radius: 999px;
-      display: grid;
-      place-items: center;
-      font-size: 12px;
-      font-weight: 1000;
-      color: rgba(255,255,255,0.72);
-      background: rgba(255,255,255,0.085);
-      border: 1px solid rgba(255,255,255,0.10);
-      line-height: 1;
-    }
-
-    .step-label {
-      display: block;
-      font-size: 10px;
-      font-weight: 850;
-      line-height: 1.35;
-      white-space: normal;
-      overflow: visible;
-      text-overflow: clip;
-    }
-
-    .step-item.active {
-      color: #FFFFFF;
-      background:
-        radial-gradient(circle at 20% 0%, rgba(221,251,255,0.13), transparent 34%),
-        rgba(255,255,255,0.08);
-      border-color: rgba(255,215,234,0.18);
-      box-shadow: 0 10px 22px rgba(0,0,0,0.10);
-    }
-
-    .step-item.active .step-number {
-      color: var(--dark);
-      background:
-        radial-gradient(circle at 30% 20%, rgba(255,255,255,0.95), transparent 24%),
-        linear-gradient(135deg, #DDFBFF, #FFFFFF 52%, #FFD7EA);
-      border-color: rgba(255,215,234,0.30);
-    }
-
-    .step-item.done {
-      color: rgba(217,255,233,0.86);
-    }
-
-    .step-item.done .step-number {
-      color: #06351F;
-      background: var(--green);
-    }
-
-    .progress-wrap {
-      height: 8px;
-      margin: 0 2px 14px;
-      border-radius: 999px;
-      overflow: hidden;
-      background: rgba(255,255,255,0.075);
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .progress-bar {
-      width: 0%;
-      height: 100%;
-      border-radius: inherit;
-      background:
-        linear-gradient(90deg, #DDFBFF, #FFFFFF, #FFD7EA);
-      box-shadow: 0 0 22px rgba(255,215,234,0.28);
-      transition: width .28s ease;
-    }
-
-    .step-panel {
-      display: none;
-      animation: stepIn .24s ease both;
-      overflow: visible;
-    }
-
-    .step-panel.active {
-      display: block;
-    }
-
-    @keyframes stepIn {
-      from { opacity: 0; transform: translateY(8px) scale(.99); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    .how-card {
-      position: relative;
-      margin-bottom: 14px;
-      padding: 14px;
-      border-radius: 24px;
-      border: 1px solid rgba(221,251,255,0.16);
-      background:
-        radial-gradient(circle at 15% 0%, rgba(221,251,255,0.16), transparent 34%),
-        radial-gradient(circle at 100% 20%, rgba(255,215,234,0.12), transparent 34%),
-        rgba(255,255,255,0.055);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
-      overflow: hidden;
-    }
-
-    .how-card:before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.055), transparent);
-      transform: translateX(-120%);
-      animation: softShine 4.5s ease-in-out infinite;
-      pointer-events: none;
-    }
-
-    @keyframes softShine {
-      0%, 45% { transform: translateX(-120%); }
-      75%, 100% { transform: translateX(120%); }
-    }
-
-    .how-head {
-      position: relative;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 10px;
-      line-height: 1.45;
-      flex-wrap: wrap;
-    }
-
-    .how-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
       padding: 7px 10px;
       border-radius: 999px;
-      color: var(--dark);
-      background:
-        radial-gradient(circle at 30% 20%, rgba(255,255,255,0.95), transparent 24%),
-        linear-gradient(135deg, #DDFBFF, #FFFFFF 52%, #FFD7EA);
-      font-size: 11px;
-      font-weight: 1000;
-      white-space: nowrap;
-    }
-
-    .how-badge:before {
-      content: "♡";
-      line-height: 1;
-    }
-
-    .how-title {
       color: #FFFFFF;
-      font-size: 14px;
+      background: linear-gradient(135deg, #06C755, #10D765);
+      font-size: 11px;
       font-weight: 950;
-    }
-
-    .how-list {
-      position: relative;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-    }
-
-    .how-item {
-      min-width: 0;
-      padding: 10px;
-      border-radius: 18px;
-      background:
-        linear-gradient(135deg, rgba(221,251,255,0.065), rgba(255,215,234,0.055)),
-        rgba(255,255,255,0.045);
-      border: 1px solid rgba(255,255,255,0.10);
-    }
-
-    .how-num {
-      width: 23px;
-      height: 23px;
-      margin-bottom: 7px;
-      border-radius: 999px;
-      display: grid;
-      place-items: center;
-      color: var(--dark);
-      background:
-        linear-gradient(135deg, #DDFBFF, #FFFFFF 55%, #FFD7EA);
-      font-size: 11px;
-      font-weight: 1000;
-      line-height: 1;
-    }
-
-    .how-text {
-      color: rgba(255,255,255,0.78);
-      font-size: 11px;
-      line-height: 1.55;
-      font-weight: 720;
-    }
-
-    .safe-note {
-      position: relative;
-      margin-top: 10px;
-      padding: 9px 11px;
-      border-radius: 16px;
-      color: rgba(217,255,233,0.96);
-      background: rgba(164,255,212,0.075);
-      border: 1px solid rgba(164,255,212,0.18);
-      font-size: 12px;
-      line-height: 1.65;
-      font-weight: 760;
-    }
-
-    .use-tip {
-      position: relative;
-      margin-top: 9px;
-      color: rgba(255,255,255,0.62);
-      font-size: 11px;
-      line-height: 1.55;
-      font-weight: 680;
+      box-shadow: 0 14px 26px rgba(6,199,85,0.18);
     }
 
     .field {
       margin-bottom: 14px;
-      overflow: visible;
     }
 
     .label {
@@ -677,11 +539,9 @@
       justify-content: space-between;
       gap: 10px;
       margin: 0 4px 8px;
-      color: rgba(255,255,255,0.88);
+      color: var(--text);
       font-size: 13px;
       font-weight: 850;
-      line-height: 1.5;
-      overflow: visible;
     }
 
     .label-main {
@@ -689,16 +549,14 @@
       align-items: center;
       gap: 8px;
       min-width: 0;
-      line-height: 1.45;
-      overflow: visible;
     }
 
     .label-dot {
       width: 7px;
       height: 7px;
       border-radius: 999px;
-      background: var(--pink-strong);
-      box-shadow: 0 0 13px rgba(255,159,200,0.72), 0 0 22px rgba(255,215,234,0.22);
+      background: var(--line);
+      box-shadow: 0 0 13px rgba(6,199,85,0.60);
       flex: 0 0 auto;
     }
 
@@ -706,70 +564,52 @@
     .required {
       font-size: 11px;
       font-weight: 850;
-      padding: 5px 8px;
+      padding: 4px 8px;
       border-radius: 999px;
       white-space: nowrap;
-      line-height: 1.25;
     }
 
     .required {
-      color: var(--cyan-soft);
-      background: rgba(221,251,255,0.075);
-      border: 1px solid rgba(221,251,255,0.20);
+      color: var(--success);
+      background: rgba(6,199,85,0.075);
+      border: 1px solid rgba(6,199,85,0.16);
     }
 
     .optional {
-      color: rgba(255,255,255,0.58);
-      background: rgba(255,255,255,0.055);
-      border: 1px solid rgba(255,255,255,0.10);
-    }
-
-    input,
-    textarea {
-      width: 100%;
-      border: 1px solid rgba(255,255,255,0.15);
-      outline: none;
-      border-radius: 19px;
-      background:
-        linear-gradient(135deg, rgba(221,251,255,0.035), rgba(255,215,234,0.035)),
-        rgba(255,255,255,0.09);
-      color: #FFFFFF;
-      font-size: 16px;
-      font-weight: 650;
-      transition: .18s ease;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
-      backdrop-filter: blur(12px);
-      line-height: 1.55;
+      color: var(--muted);
+      background: rgba(18,32,24,0.035);
+      border: 1px solid rgba(18,32,24,0.08);
     }
 
     input {
-      min-height: 58px;
-      padding: 13px 15px;
+      width: 100%;
+      height: 58px;
+      border: 1px solid rgba(18,32,24,0.10);
+      outline: none;
+      border-radius: 19px;
+      background:
+        linear-gradient(135deg, rgba(6,199,85,0.025), rgba(255,216,232,0.08)),
+        rgba(255,255,255,0.86);
+      padding: 0 15px;
+      color: var(--text);
+      font-size: 16px;
+      font-weight: 650;
+      transition: .18s ease;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.72);
     }
 
-    textarea {
-      min-height: 104px;
-      resize: vertical;
-      padding: 14px 15px;
-      line-height: 1.65;
-    }
-
-    input::placeholder,
-    textarea::placeholder {
-      color: rgba(255,255,255,0.38);
+    input::placeholder {
+      color: rgba(83,103,91,0.50);
       font-weight: 520;
     }
 
-    input:focus,
-    textarea:focus {
-      border-color: rgba(255,215,234,0.58);
-      background:
-        linear-gradient(135deg, rgba(221,251,255,0.055), rgba(255,215,234,0.045)),
-        rgba(255,255,255,0.12);
+    input:focus {
+      border-color: rgba(6,199,85,0.42);
+      background: #FFFFFF;
       box-shadow:
-        0 0 0 4px rgba(255,215,234,0.10),
-        0 0 30px rgba(221,251,255,0.12),
-        inset 0 1px 0 rgba(255,255,255,0.15);
+        0 0 0 4px rgba(6,199,85,0.10),
+        0 14px 30px rgba(6,50,24,0.07),
+        inset 0 1px 0 rgba(255,255,255,0.9);
       transform: translateY(-1px);
     }
 
@@ -777,96 +617,22 @@
       margin: 8px 5px 0;
       color: var(--muted);
       font-size: 12px;
-      line-height: 1.65;
+      line-height: 1.55;
       font-weight: 520;
-      overflow: visible;
-    }
-
-    .quick-device-btn,
-    .quick-note-btn {
-      min-height: 38px;
-      border-radius: 15px;
-      color: rgba(255,255,255,0.88);
-      background:
-        radial-gradient(circle at 20% 0%, rgba(221,251,255,0.10), transparent 32%),
-        rgba(255,255,255,0.065);
-      border: 1px solid rgba(255,255,255,0.12);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.08),
-        0 10px 20px rgba(0,0,0,0.08);
-      font-size: 12px;
-      font-weight: 850;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      padding: 8px 12px;
-      width: auto;
-      line-height: 1.35;
-      overflow: visible;
-    }
-
-    .quick-device-btn:hover,
-    .quick-note-btn:hover {
-      transform: translateY(-2px);
-      border-color: rgba(221,251,255,0.25);
-      background:
-        linear-gradient(135deg, rgba(221,251,255,0.10), rgba(255,215,234,0.08)),
-        rgba(255,255,255,0.085);
-    }
-
-    .quick-device-wrap,
-    .quick-note-wrap {
-      margin-top: 10px;
-    }
-
-    .quick-device-title,
-    .quick-note-title {
-      margin: 0 5px 8px;
-      color: rgba(255,255,255,0.60);
-      font-size: 12px;
-      font-weight: 760;
-      line-height: 1.5;
-    }
-
-    .quick-device-grid,
-    .quick-note-grid {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      overflow: visible;
-    }
-
-    .quick-device-btn.selected {
-      color: var(--dark);
-      border-color: rgba(255,215,234,0.60);
-      background:
-        radial-gradient(circle at 30% 20%, rgba(255,255,255,0.95), transparent 24%),
-        linear-gradient(135deg, #DDFBFF, #FFFFFF 52%, #FFD7EA);
-    }
-
-    .note-count {
-      margin-top: 7px;
-      text-align: right;
-      color: rgba(255,255,255,0.46);
-      font-size: 11px;
-      font-weight: 760;
-      line-height: 1.4;
     }
 
     .screen-grid {
       display: grid;
       grid-template-columns: repeat(6, minmax(0, 1fr));
       gap: 8px;
-      overflow: visible;
     }
 
     button {
       appearance: none;
       border: none;
+      width: 100%;
       cursor: pointer;
       transition: transform .15s ease, box-shadow .15s ease, background .15s ease, border-color .15s ease, opacity .15s ease;
-      line-height: 1.35;
     }
 
     button:active {
@@ -874,7 +640,7 @@
     }
 
     button:disabled {
-      opacity: .42;
+      opacity: .48;
       cursor: not-allowed;
       box-shadow: none !important;
     }
@@ -883,20 +649,19 @@
       position: relative;
       min-height: 60px;
       border-radius: 19px;
-      color: rgba(255,255,255,0.90);
+      overflow: hidden;
+      color: var(--text);
       background:
-        radial-gradient(circle at 50% 0%, rgba(255,255,255,0.13), transparent 48%),
-        linear-gradient(180deg, rgba(255,255,255,0.085), rgba(255,255,255,0.052));
-      border: 1px solid rgba(255,255,255,0.13);
+        radial-gradient(circle at 50% 0%, rgba(6,199,85,0.08), transparent 48%),
+        rgba(255,255,255,0.82);
+      border: 1px solid rgba(18,32,24,0.09);
       box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.12),
-        0 10px 22px rgba(0,0,0,0.10);
+        inset 0 1px 0 rgba(255,255,255,0.78),
+        0 10px 22px rgba(6,50,24,0.06);
       display: grid;
       place-items: center;
       gap: 2px;
-      padding: 8px 4px;
-      width: 100%;
-      overflow: visible;
+      padding: 7px 4px;
     }
 
     .screen-btn:before {
@@ -904,49 +669,51 @@
       position: absolute;
       right: 7px;
       top: 6px;
-      color: rgba(255,215,234,0.58);
+      color: rgba(255,143,189,0.55);
       font-size: 10px;
       opacity: .8;
-      line-height: 1;
     }
 
     .screen-btn strong {
       font-size: 20px;
-      line-height: 1.15;
+      line-height: 1;
       font-weight: 1000;
     }
 
     .screen-btn span {
-      color: rgba(255,255,255,0.48);
+      color: var(--muted);
       font-size: 10px;
       font-weight: 850;
-      line-height: 1.2;
     }
 
     .screen-btn:hover {
       transform: translateY(-2px);
-      border-color: rgba(221,251,255,0.26);
-      background:
-        radial-gradient(circle at 50% 0%, rgba(221,251,255,0.16), transparent 48%),
-        rgba(255,255,255,0.075);
+      border-color: rgba(6,199,85,0.22);
+      background: #FFFFFF;
+      box-shadow:
+        0 15px 28px rgba(6,50,24,0.08),
+        0 0 0 5px rgba(6,199,85,0.045);
     }
 
     .screen-btn.selected {
-      color: var(--dark);
-      border-color: rgba(255,215,234,0.70);
+      color: #FFFFFF;
+      border-color: rgba(6,199,85,0.54);
       background:
-        radial-gradient(circle at 24% 18%, rgba(255,255,255,0.92), transparent 18%),
-        linear-gradient(135deg, #DDFBFF, #FFFFFF 52%, #FFD7EA);
+        radial-gradient(circle at 24% 18%, rgba(255,255,255,0.34), transparent 18%),
+        linear-gradient(135deg, #06C755, #10D765);
       box-shadow:
-        0 16px 34px rgba(255,215,234,0.24),
-        0 0 0 7px rgba(221,251,255,0.07),
-        0 0 38px rgba(255,215,234,0.22),
-        inset 0 1px 0 rgba(255,255,255,0.75);
+        0 16px 34px rgba(6,199,85,0.22),
+        0 0 0 6px rgba(6,199,85,0.08),
+        inset 0 1px 0 rgba(255,255,255,0.34);
       transform: translateY(-3px);
     }
 
     .screen-btn.selected span {
-      color: rgba(5,17,42,0.64);
+      color: rgba(255,255,255,0.78);
+    }
+
+    .screen-btn.selected:before {
+      color: rgba(255,255,255,0.88);
     }
 
     .screen-note {
@@ -954,297 +721,211 @@
       min-height: 22px;
       color: var(--muted);
       font-size: 12px;
-      line-height: 1.65;
+      line-height: 1.55;
       font-weight: 560;
       text-align: center;
-      overflow: visible;
     }
 
     .screen-note.active {
-      color: rgba(217,255,233,0.96);
+      color: var(--success);
       font-weight: 850;
       width: fit-content;
       margin-left: auto;
       margin-right: auto;
-      padding: 8px 12px;
+      padding: 7px 12px;
       border-radius: 999px;
-      background:
-        linear-gradient(135deg, rgba(164,255,212,0.10), rgba(221,251,255,0.08));
-      border: 1px solid rgba(164,255,212,0.22);
+      background: rgba(6,199,85,0.075);
+      border: 1px solid rgba(6,199,85,0.16);
     }
 
-    .summary-box {
-      border-radius: 24px;
-      padding: 14px;
-      background:
-        radial-gradient(circle at 18% 0%, rgba(221,251,255,0.09), transparent 32%),
-        radial-gradient(circle at 100% 16%, rgba(255,215,234,0.08), transparent 32%),
-        rgba(255,255,255,0.052);
-      border: 1px solid rgba(255,255,255,0.12);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
-      overflow: visible;
+    .pin-field {
+      display: none;
     }
 
-    .summary-title {
-      margin: 0 0 12px;
-      color: #FFFFFF;
-      font-size: 15px;
-      font-weight: 950;
-      line-height: 1.5;
-    }
-
-    .summary-row {
-      display: grid;
-      grid-template-columns: 118px minmax(0, 1fr);
-      gap: 10px;
-      padding: 9px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      font-size: 13px;
-      line-height: 1.6;
-      overflow: visible;
-    }
-
-    .summary-row:last-child {
-      border-bottom: none;
-    }
-
-    .summary-key {
-      color: rgba(255,255,255,0.50);
-      font-weight: 760;
-      line-height: 1.6;
-    }
-
-    .summary-value {
-      color: rgba(255,255,255,0.88);
-      font-weight: 720;
-      overflow-wrap: anywhere;
-      line-height: 1.6;
-    }
-
-    .step-actions {
+    .actions {
       margin-top: 16px;
-      display: flex;
-      gap: 10px;
-      overflow: visible;
     }
 
-    .btn-primary,
-    .btn-secondary {
+    .btn-primary {
       position: relative;
-      overflow: visible;
-      min-height: 58px;
+      overflow: hidden;
+      min-height: 60px;
       border-radius: 22px;
+      color: #FFFFFF;
+      background:
+        radial-gradient(circle at 15% 0%, rgba(255,255,255,0.26), transparent 30%),
+        linear-gradient(135deg, #06C755, #11D765);
+      border: 1px solid rgba(6,199,85,0.34);
+      box-shadow:
+        0 17px 36px rgba(6,199,85,0.22),
+        inset 0 1px 0 rgba(255,255,255,0.22);
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 9px;
       font-size: 15px;
       font-weight: 950;
-      width: 100%;
-      padding: 12px 14px;
-      line-height: 1.45;
-      text-align: center;
-    }
-
-    .btn-primary {
-      color: #FFFFFF;
-      background:
-        radial-gradient(circle at 15% 0%, rgba(255,255,255,0.26), transparent 30%),
-        radial-gradient(circle at 86% 100%, rgba(255,215,234,0.28), transparent 34%),
-        linear-gradient(135deg, rgba(94,162,255,0.54), rgba(183,242,255,0.25), rgba(255,215,234,0.28)),
-        rgba(46,123,255,0.24);
-      border: 1px solid rgba(255,215,234,0.32);
-      box-shadow:
-        0 17px 36px rgba(46,123,255,0.18),
-        inset 0 1px 0 rgba(255,255,255,0.14);
-      flex: 1;
     }
 
     .btn-primary:before {
       content: "";
       position: absolute;
       inset: 0;
-      border-radius: inherit;
       transform: translateX(-120%);
-      background: linear-gradient(90deg, transparent, rgba(221,251,255,0.20), transparent);
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.26), transparent);
       transition: transform .55s ease;
-      pointer-events: none;
+    }
+
+    .btn-primary:not(:disabled):hover {
+      transform: translateY(-2px);
+      box-shadow:
+        0 22px 44px rgba(6,199,85,0.26),
+        0 0 0 7px rgba(6,199,85,0.07),
+        inset 0 1px 0 rgba(255,255,255,0.28);
     }
 
     .btn-primary:not(:disabled):hover:before {
       transform: translateX(120%);
     }
 
-    .btn-secondary {
-      flex: 0 0 128px;
-      color: rgba(255,255,255,0.84);
-      background:
-        linear-gradient(135deg, rgba(221,251,255,0.055), rgba(255,215,234,0.055)),
-        rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.12);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+    .btn-primary span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .spinner {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      border: 2px solid rgba(255,255,255,0.34);
+      border-top-color: #FFFFFF;
+      animation: spin .75s linear infinite;
+      display: none;
+    }
+
+    .loading .spinner {
+      display: inline-block;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
     }
 
     .status {
       display: none;
-      margin-top: 4px;
-      padding-top: 6px;
-      overflow: visible;
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(18,32,24,0.10);
     }
 
-    .result-box {
+    .save-ok {
       display: none;
+      margin-bottom: 12px;
       text-align: center;
-      animation: resultIn .28s ease both;
-      overflow: visible;
-    }
-
-    @keyframes resultIn {
-      from { opacity: 0; transform: translateY(10px) scale(.985); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    .result-icon {
-      width: 68px;
-      height: 68px;
-      margin: 4px auto 14px;
-      border-radius: 25px;
-      display: grid;
-      place-items: center;
-      color: #06351F;
-      background:
-        radial-gradient(circle at 30% 20%, rgba(255,255,255,0.95), transparent 24%),
-        linear-gradient(135deg, #DDFBFF, #FFFFFF 52%, #A4FFD4);
-      font-size: 30px;
-      font-weight: 1000;
-      box-shadow:
-        0 18px 40px rgba(164,255,212,0.18),
-        0 0 0 8px rgba(164,255,212,0.06),
-        inset 0 1px 0 rgba(255,255,255,0.55);
-      line-height: 1;
-    }
-
-    .result-title {
-      margin: 0;
-      color: #FFFFFF;
-      font-size: 22px;
-      font-weight: 1000;
-      line-height: 1.45;
-      overflow: visible;
-    }
-
-    .result-message {
-      margin: 10px auto 0;
-      max-width: 360px;
-      color: rgba(255,255,255,0.74);
-      font-size: 14px;
-      line-height: 1.8;
-      font-weight: 560;
-      white-space: pre-line;
-      overflow: visible;
-    }
-
-    .request-id {
-      margin: 14px auto 0;
-      width: fit-content;
-      max-width: 100%;
-      padding: 10px 13px;
-      border-radius: 999px;
-      color: rgba(255,255,255,0.88);
-      background:
-        linear-gradient(135deg, rgba(221,251,255,0.08), rgba(255,215,234,0.08)),
-        rgba(255,255,255,0.06);
-      border: 1px solid rgba(221,251,255,0.15);
-      font-size: 12px;
+      color: var(--success);
+      font-size: 13px;
       font-weight: 850;
-      line-height: 1.45;
-      overflow-wrap: anywhere;
+      line-height: 1.5;
     }
 
     .otp-box {
-      margin: 14px auto 0;
-      max-width: 360px;
-      padding: 14px;
-      border-radius: 24px;
+      display: none;
       text-align: center;
-      background:
-        radial-gradient(circle at 20% 0%, rgba(255,242,191,0.16), transparent 34%),
-        linear-gradient(135deg, rgba(221,251,255,0.08), rgba(255,215,234,0.08)),
-        rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,242,191,0.22);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.10),
-        0 16px 32px rgba(0,0,0,0.14);
+      animation: resultIn .28s ease both;
     }
 
-    .otp-label {
-      color: rgba(255,255,255,0.68);
-      font-size: 12px;
-      font-weight: 850;
-      line-height: 1.45;
+    @keyframes resultIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px) scale(.985);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .status-title {
+      margin-bottom: 10px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 800;
     }
 
     .otp-code {
-      margin-top: 6px;
-      color: var(--dark);
-      background:
-        radial-gradient(circle at 30% 20%, rgba(255,255,255,0.95), transparent 24%),
-        linear-gradient(135deg, #FFF2BF, #FFFFFF 55%, #FFD7EA);
-      border-radius: 18px;
-      padding: 12px 14px;
-      font-size: 28px;
+      width: fit-content;
+      max-width: 100%;
+      margin: 6px auto 12px;
+      padding: 16px 20px 15px;
+      border-radius: 24px;
+      color: #FFFFFF;
+      font-size: clamp(40px, 11vw, 58px);
+      line-height: 1;
       font-weight: 1000;
-      letter-spacing: 4px;
-      line-height: 1.2;
+      letter-spacing: 8px;
+      border: 1px solid rgba(6,199,85,0.24);
+      background:
+        radial-gradient(circle at 20% 0%, rgba(255,255,255,0.28), transparent 30%),
+        linear-gradient(135deg, #06C755, #10D765);
+      box-shadow:
+        0 20px 44px rgba(6,199,85,0.20),
+        0 0 0 7px rgba(6,199,85,0.055),
+        inset 0 1px 0 rgba(255,255,255,0.28);
       user-select: all;
+      overflow-wrap: anywhere;
     }
 
-    .otp-hint {
-      margin-top: 8px;
-      color: rgba(255,255,255,0.56);
-      font-size: 11px;
-      font-weight: 650;
-      line-height: 1.55;
+    .otp-note {
+      color: var(--sub);
+      font-size: 14px;
+      line-height: 1.65;
+      white-space: pre-line;
+      font-weight: 540;
     }
 
     .copy-area {
-      margin-top: 18px;
+      margin-top: 16px;
       display: flex;
       justify-content: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      overflow: visible;
     }
 
-    .btn-reset,
-    .btn-retry,
     .btn-copy {
-      display: flex;
+      display: none;
       width: auto;
-      min-width: 170px;
+      min-width: 240px;
       min-height: 54px;
-      padding: 12px 18px;
+      padding: 0 22px;
       border-radius: 999px;
+      color: #FFFFFF;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(255,255,255,0.24), transparent 24%),
+        linear-gradient(135deg, #122018, #254033);
+      border: 1px solid rgba(18,32,24,0.12);
+      box-shadow:
+        0 18px 38px rgba(18,32,24,0.16),
+        inset 0 1px 0 rgba(255,255,255,0.18);
       font-size: 15px;
       font-weight: 950;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      line-height: 1.45;
-      text-align: center;
-      color: rgba(255,255,255,0.84);
-      background:
-        linear-gradient(135deg, rgba(221,251,255,0.055), rgba(255,215,234,0.055)),
-        rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.12);
     }
 
-    .btn-copy {
-      color: var(--dark);
-      background:
-        radial-gradient(circle at 30% 20%, rgba(255,255,255,0.95), transparent 24%),
-        linear-gradient(135deg, #DDFBFF, #FFFFFF 52%, #FFD7EA);
-      border-color: rgba(255,215,234,0.42);
+    .btn-copy:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-copy.copied {
+      color: #FFFFFF;
+      background: linear-gradient(135deg, #06C755, #10D765);
+      border-color: rgba(6,199,85,0.28);
+      box-shadow:
+        0 16px 34px rgba(6,199,85,0.18),
+        0 0 0 6px rgba(6,199,85,0.06),
+        inset 0 1px 0 rgba(255,255,255,0.24);
     }
 
     .mini-info {
@@ -1253,43 +934,94 @@
       justify-content: center;
       gap: 10px;
       flex-wrap: wrap;
-      color: rgba(255,255,255,0.58);
+      color: var(--muted);
       font-size: 12px;
-      line-height: 1.45;
-      overflow: visible;
     }
 
     .mini-info span {
-      padding: 7px 10px;
+      padding: 6px 10px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.055);
-      border: 1px solid rgba(255,215,234,0.13);
+      background: rgba(6,199,85,0.055);
+      border: 1px solid rgba(6,199,85,0.12);
       font-weight: 680;
-      line-height: 1.45;
     }
 
-    .error-box {
+    .not-found {
       display: none;
       text-align: center;
-      color: rgba(255,255,255,0.88);
+      color: var(--sub);
       font-size: 15px;
       font-weight: 650;
       padding: 8px 4px;
-      line-height: 1.8;
-      overflow: visible;
+      line-height: 1.65;
     }
 
-    .error-box strong {
+    .not-found strong {
       color: var(--danger);
+    }
+
+    .guide {
+      margin-top: 18px;
+      padding: 17px;
+      border-radius: 24px;
+      border: 1px solid rgba(18,32,24,0.08);
+      background:
+        radial-gradient(circle at 18% 0%, rgba(6,199,85,0.07), transparent 32%),
+        rgba(255,255,255,0.64);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.74);
+    }
+
+    .guide-title {
+      margin: 0 0 12px;
+      color: var(--text);
+      font-size: 15px;
+      font-weight: 1000;
+    }
+
+    .guide-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: step;
+      color: var(--sub);
+      font-size: 13px;
+      line-height: 1.7;
+      font-weight: 540;
+    }
+
+    .guide-list li {
+      position: relative;
+      padding-left: 34px;
+      margin-bottom: 10px;
+    }
+
+    .guide-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    .guide-list li:before {
+      counter-increment: step;
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 1px;
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      color: #FFFFFF;
+      background: linear-gradient(135deg, #06C755, #10D765);
+      font-size: 12px;
+      font-weight: 950;
     }
 
     .privacy {
       margin-top: 14px;
-      color: rgba(255,255,255,0.48);
+      color: var(--muted);
       font-size: 12px;
-      line-height: 1.75;
+      line-height: 1.65;
       text-align: center;
-      overflow: visible;
     }
 
     .toast {
@@ -1297,22 +1029,21 @@
       left: 50%;
       bottom: calc(22px + env(safe-area-inset-bottom));
       transform: translateX(-50%) translateY(20px);
-      z-index: 80;
+      z-index: 50;
       max-width: calc(100vw - 28px);
-      overflow: visible;
-      white-space: normal;
-      background: rgba(255,255,255,0.96);
-      color: var(--dark);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: #FFFFFF;
+      background: rgba(18,32,24,0.94);
       border-radius: 999px;
       padding: 12px 16px;
       font-size: 14px;
       font-weight: 850;
-      line-height: 1.45;
-      box-shadow: 0 18px 42px rgba(0,0,0,0.24);
+      box-shadow: 0 18px 42px rgba(6,50,24,0.24);
       opacity: 0;
       pointer-events: none;
       transition: .22s ease;
-      text-align: center;
     }
 
     .toast.show {
@@ -1320,473 +1051,121 @@
       transform: translateX(-50%) translateY(0);
     }
 
-    .loading-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 70;
-      display: none;
-      place-items: center;
-      padding: 20px;
-      background: rgba(3,7,18,0.58);
-      backdrop-filter: blur(14px);
-    }
-
-    .loading-overlay.show {
-      display: grid;
-    }
-
-    .loading-card {
-      width: min(360px, 100%);
-      border-radius: 30px;
-      padding: 22px;
-      text-align: center;
-      border: 1px solid rgba(255,215,234,0.22);
-      background:
-        radial-gradient(circle at 20% 0%, rgba(221,251,255,0.14), transparent 32%),
-        radial-gradient(circle at 100% 24%, rgba(255,215,234,0.13), transparent 32%),
-        rgba(8,20,43,0.88);
-      box-shadow: 0 30px 90px rgba(0,0,0,0.40);
-      overflow: visible;
-    }
-
-    .loader-heart {
-      width: 54px;
-      height: 54px;
-      margin: 0 auto 14px;
-      border-radius: 20px;
-      display: grid;
-      place-items: center;
-      color: var(--dark);
-      background:
-        radial-gradient(circle at 30% 20%, rgba(255,255,255,0.95), transparent 24%),
-        linear-gradient(135deg, #DDFBFF, #FFFFFF 52%, #FFD7EA);
-      font-size: 22px;
-      font-weight: 1000;
-      animation: loaderPulse 1.3s ease-in-out infinite;
-      line-height: 1;
-    }
-
-    @keyframes loaderPulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.08) rotate(3deg); }
-    }
-
-    .loading-title {
-      color: #FFFFFF;
-      font-size: 17px;
-      font-weight: 950;
-      margin-bottom: 7px;
-      line-height: 1.45;
-    }
-
-    .loading-message {
-      color: var(--sub);
-      font-size: 13px;
-      line-height: 1.75;
-      font-weight: 560;
-    }
-
-    .confetti-layer {
-      position: fixed;
-      inset: 0;
-      z-index: 90;
-      pointer-events: none;
-      overflow: hidden;
-    }
-
-    .confetti-piece {
-      position: absolute;
-      bottom: 20%;
-      font-size: 17px;
-      animation: confettiUp 1.15s ease-out forwards;
-      line-height: 1;
-    }
-
-    @keyframes confettiUp {
-      0% { transform: translate3d(0,0,0) scale(.8) rotate(0deg); opacity: 0; }
-      12% { opacity: 1; }
-      100% { transform: translate3d(var(--x), -240px, 0) scale(1.25) rotate(180deg); opacity: 0; }
-    }
-
     @media (max-width: 920px) {
-      .page {
-        align-items: flex-start;
-        padding-top: max(10px, env(safe-area-inset-top));
-        padding-bottom: max(12px, env(safe-area-inset-bottom));
-      }
-
       .wrap {
         max-width: 540px;
         display: flex;
         flex-direction: column;
         align-items: stretch;
-        justify-content: center;
-        gap: 10px;
+        gap: 18px;
       }
 
       .hero {
         min-height: auto;
-        gap: 10px;
+        gap: 18px;
         padding: 0;
-        justify-content: center;
-      }
-
-      .topbar {
-        padding: 10px;
-        border-radius: 24px;
-        background:
-          linear-gradient(135deg, rgba(221,251,255,0.08), rgba(255,215,234,0.06)),
-          rgba(255,255,255,0.045);
-        border: 1px solid rgba(255,255,255,0.10);
-        backdrop-filter: blur(14px);
       }
 
       .hero-main {
+        text-align: center;
+        margin: 0 auto;
+      }
+
+      .eyebrow {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .lead {
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 14px;
+      }
+
+      .hero-panel {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        margin: 20px auto 0;
+      }
+
+      .preview-card {
         display: none;
       }
 
-      .latest-card {
-        display: none !important;
+      h1 {
+        font-size: clamp(38px, 11vw, 58px);
       }
     }
 
     @media (max-width: 430px) {
       .page {
-        padding-left: 8px;
-        padding-right: 8px;
+        padding-left: 12px;
+        padding-right: 12px;
       }
 
-      .topbar {
-        align-items: center;
-        gap: 8px;
-        padding: 8px;
-        border-radius: 20px;
+      .brand-title {
+        font-size: 14px;
       }
 
-      .brand {
-        align-items: center;
-        min-width: 0;
-        gap: 9px;
+      .brand-sub {
+        font-size: 11px;
       }
 
-      .brand-title { font-size: 13px; line-height: 1.35; }
-      .brand-sub { font-size: 10px; line-height: 1.45; }
-      .online { padding: 7px 9px; font-size: 10px; }
-      .logo { width: 40px; height: 40px; border-radius: 15px; }
-      .logo:before { font-size: 10px; }
-      .logo:after { width: 11px; height: 11px; }
+      .online {
+        padding: 8px 10px;
+        font-size: 11px;
+      }
+
+      .logo {
+        width: 46px;
+        height: 46px;
+        border-radius: 17px;
+      }
+
+      .hero-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .metric {
+        min-height: auto;
+        padding: 13px 14px;
+      }
 
       .form-card {
-        padding: 12px;
-        border-radius: 25px;
+        padding: 16px;
+        border-radius: 30px;
       }
 
       .form-head {
-        padding: 11px;
-        border-radius: 20px;
-        margin-bottom: 10px;
-      }
-
-      .form-head h2 {
-        font-size: 15px;
-      }
-
-      .form-head p {
-        font-size: 11px;
-        line-height: 1.55;
+        padding: 14px;
+        border-radius: 22px;
       }
 
       .secure-pill {
         display: none;
       }
 
-      .stepper {
-        gap: 5px;
-        padding: 5px;
-        margin-bottom: 8px;
-        border-radius: 18px;
-      }
-
-      .step-item {
-        padding: 6px 3px;
-        border-radius: 13px;
-      }
-
-      .step-number {
-        width: 20px;
-        height: 20px;
-        font-size: 10px;
-        margin-bottom: 4px;
-      }
-
-      .step-label {
-        font-size: 9px;
-        line-height: 1.25;
-      }
-
-      .progress-wrap {
-        height: 6px;
-        margin-bottom: 10px;
-      }
-
-      .how-card {
-        padding: 10px;
-        border-radius: 19px;
-        margin-bottom: 10px;
-      }
-
-      .how-head {
-        margin-bottom: 8px;
-      }
-
-      .how-badge {
-        padding: 6px 9px;
-        font-size: 10px;
-      }
-
-      .how-title {
-        font-size: 12px;
-      }
-
-      .how-list {
-        grid-template-columns: 1fr;
-        gap: 6px;
-      }
-
-      .how-item {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 8px;
-        border-radius: 15px;
-      }
-
-      .how-num {
-        margin-bottom: 0;
-        width: 20px;
-        height: 20px;
-        font-size: 10px;
-        flex: 0 0 auto;
-      }
-
-      .how-text {
-        font-size: 11px;
-        line-height: 1.45;
-      }
-
-      .safe-note,
-      .use-tip {
-        font-size: 11px;
-        line-height: 1.45;
-      }
-
-      .field {
-        margin-bottom: 10px;
-      }
-
-      .label {
-        margin-bottom: 6px;
-        font-size: 12px;
-      }
-
-      .required,
-      .optional {
-        font-size: 10px;
-        padding: 4px 7px;
-      }
-
-      input {
-        min-height: 46px;
-        padding: 9px 12px;
-        border-radius: 15px;
-        font-size: 15px;
-      }
-
-      textarea {
-        min-height: 72px;
-        padding: 10px 12px;
-        border-radius: 15px;
-        font-size: 15px;
-        line-height: 1.5;
-      }
-
-      .hint {
-        margin-top: 6px;
-        font-size: 11px;
-        line-height: 1.45;
-      }
-
-      .quick-device-wrap,
-      .quick-note-wrap {
-        margin-top: 8px;
-      }
-
-      .quick-device-title,
-      .quick-note-title {
-        margin-bottom: 6px;
-        font-size: 11px;
-      }
-
-      .quick-device-grid,
-      .quick-note-grid {
-        gap: 6px;
-      }
-
-      .quick-device-btn,
-      .quick-note-btn {
-        min-height: 32px;
-        padding: 6px 9px;
-        border-radius: 12px;
-        font-size: 11px;
-      }
-
       .screen-grid {
-        gap: 5px;
+        gap: 6px;
       }
 
       .screen-btn {
-        min-height: 48px;
-        border-radius: 15px;
-        padding: 6px 3px;
+        min-height: 56px;
+        border-radius: 17px;
       }
 
       .screen-btn strong {
-        font-size: 17px;
-      }
-
-      .screen-btn span {
-        font-size: 9px;
-      }
-
-      .screen-note {
-        margin-top: 7px;
-        font-size: 11px;
-        line-height: 1.45;
-      }
-
-      .summary-box {
-        padding: 10px;
-        border-radius: 18px;
-      }
-
-      .summary-title {
-        margin-bottom: 8px;
-        font-size: 13px;
-      }
-
-      .summary-row {
-        grid-template-columns: 82px minmax(0, 1fr);
-        gap: 8px;
-        padding: 6px 0;
-        font-size: 12px;
-        line-height: 1.45;
-      }
-
-      .step-actions {
-        margin-top: 10px;
-        flex-direction: column;
-        gap: 8px;
-      }
-
-      .btn-primary,
-      .btn-secondary {
-        min-height: 46px;
-        border-radius: 17px;
-        font-size: 14px;
-        padding: 10px 12px;
-      }
-
-      .btn-secondary {
-        flex: 1;
-      }
-
-      .privacy {
-        margin-top: 9px;
-        font-size: 10px;
-        line-height: 1.5;
-      }
-
-      .result-icon {
-        width: 56px;
-        height: 56px;
-        border-radius: 20px;
-        font-size: 26px;
-      }
-
-      .result-title {
         font-size: 18px;
       }
 
-      .result-message {
-        font-size: 12px;
-        line-height: 1.65;
-      }
-
-      .otp-box {
-        margin-top: 10px;
-        padding: 11px;
-        border-radius: 20px;
-      }
-
       .otp-code {
-        font-size: 24px;
-        letter-spacing: 3px;
-        padding: 10px 12px;
-        border-radius: 16px;
+        letter-spacing: 6px;
+        padding-left: 16px;
+        padding-right: 16px;
       }
 
-      .copy-area {
-        margin-top: 12px;
-        gap: 8px;
-      }
-
-      .btn-reset,
-      .btn-retry,
       .btn-copy {
         width: 100%;
         min-width: 0;
-        min-height: 46px;
-        font-size: 13px;
-      }
-
-      .mini-info {
-        margin-top: 10px;
-        gap: 6px;
-        font-size: 10px;
-      }
-
-      .mini-info span {
-        padding: 6px 8px;
-      }
-    }
-
-    @media (max-width: 430px) and (max-height: 720px) {
-      .brand-sub {
-        display: none;
-      }
-
-      .form-head p {
-        display: none;
-      }
-
-      .privacy {
-        display: none;
-      }
-
-      .step-label {
-        display: none;
-      }
-
-      .step-number {
-        margin-bottom: 0;
-      }
-
-      .form-card {
-        padding: 10px;
-      }
-
-      .how-card {
-        padding: 9px;
       }
     }
 
@@ -1819,8 +1198,8 @@
           <div class="brand">
             <div class="logo" aria-hidden="true"></div>
             <div>
-              <div class="brand-title" id="brandTitle">LINE Verify Request</div>
-              <div class="brand-sub" id="brandSub">ระบบส่งคำขอตรวจสอบสำหรับลูกค้า</div>
+              <div class="brand-title" id="brandTitle">LINE OTP Verify</div>
+              <div class="brand-sub" id="brandSub">ระบบรับรหัส OTP สำหรับลูกค้า</div>
             </div>
           </div>
 
@@ -1831,927 +1210,527 @@
           <div class="eyebrow">LINE Customer Verification</div>
 
           <h1>
-            ระบบส่งคำขอ
+            ระบบรับรหัส OTP
             <span class="gradient-text">สำหรับร้านค้า</span>
           </h1>
 
           <p class="lead">
-            กรอกข้อมูลทีละขั้นตอน ระบบจะช่วยจัดระเบียบคำขอตรวจสอบของลูกค้าให้ร้านใช้งานง่าย ดูเป็นมืออาชีพ และบันทึกรายการล่าสุดไว้ให้ตรวจสอบย้อนหลัง
+            กรอกชื่อ LINE อีเมล อุปกรณ์ และหมายเลขจอ ระบบจะค้นหารหัส OTP ล่าสุด พร้อมบันทึกข้อมูลให้ตรวจสอบย้อนหลังได้อย่างเป็นระเบียบ
           </p>
+
+          <div class="hero-panel">
+            <div class="metric">
+              <strong>LINE</strong>
+              <span>เหมาะสำหรับร้านค้าที่ดูแลลูกค้าผ่าน LINE</span>
+            </div>
+
+            <div class="metric">
+              <strong>OTP</strong>
+              <span>ดึงรหัสล่าสุดจากอีเมลที่ลูกค้าแจ้ง</span>
+            </div>
+
+            <div class="metric">
+              <strong>LOG</strong>
+              <span>บันทึกข้อมูลลูกค้าและอุปกรณ์ครบถ้วน</span>
+            </div>
+          </div>
         </div>
 
-        <div class="latest-card" id="latestCard">
-          <strong>รายการล่าสุด:</strong>
-          <span id="latestText">-</span>
+        <div class="preview-card">
+          <div class="preview-top">
+            <div class="preview-label">LINE Shop OTP Center</div>
+            <div class="preview-status">Online</div>
+          </div>
+
+          <div class="preview-window">
+            <img id="heroImg" class="hero-img" alt="LINE OTP Verify Image">
+            <div class="placeholder" id="heroPlaceholder">
+              <div class="phone-card"></div>
+            </div>
+          </div>
         </div>
       </div>
 
       <div class="form-card" id="app">
         <div class="form-head">
           <div>
-            <h2 id="formTitle">วิธีใช้และข้อมูลลูกค้า</h2>
-            <p id="formSubtitle">อ่านวิธีใช้สั้น ๆ แล้วกรอกอีเมลสำหรับส่งคำขอตรวจสอบ</p>
+            <h2>ขอรหัส OTP ให้ลูกค้า</h2>
+            <p>กรอกข้อมูลให้ครบ ระบบจะบันทึกประวัติและส่งข้อมูลเข้าแอดมินอัตโนมัติ</p>
           </div>
+
           <div class="secure-pill">Verified</div>
         </div>
 
-        <div class="stepper" id="stepper">
-          <div class="step-item active" data-step-indicator="1">
-            <div class="step-number">1</div>
-            <span class="step-label">ลูกค้า</span>
+        <div class="field">
+          <div class="label">
+            <span class="label-main"><span class="label-dot"></span>ชื่อ LINE / ชื่อลูกค้า</span>
+            <span class="optional">แนะนำ</span>
           </div>
-          <div class="step-item" data-step-indicator="2">
-            <div class="step-number">2</div>
-            <span class="step-label">อุปกรณ์</span>
+
+          <input
+            id="customerName"
+            type="text"
+            placeholder="เช่น @lineuser หรือ คุณสมชาย"
+            autocomplete="name"
+            maxlength="120"
+          >
+        </div>
+
+        <div class="field">
+          <div class="label">
+            <span class="label-main"><span class="label-dot"></span>อีเมลสำหรับรับรหัส</span>
+            <span class="required">จำเป็น</span>
           </div>
-          <div class="step-item" data-step-indicator="3">
-            <div class="step-number">3</div>
-            <span class="step-label">ยืนยัน</span>
+
+          <input
+            id="email"
+            type="email"
+            placeholder="example@email.com"
+            autocomplete="email"
+            inputmode="email"
+            maxlength="160"
+          >
+        </div>
+
+        <div class="field">
+          <div class="label">
+            <span class="label-main"><span class="label-dot"></span>อุปกรณ์ที่ใช้งาน</span>
+            <span class="required">จำเป็น</span>
           </div>
-          <div class="step-item" data-step-indicator="4">
-            <div class="step-number">4</div>
-            <span class="step-label">สถานะ</span>
+
+          <input
+            id="device"
+            type="text"
+            placeholder="เช่น iPhone / Android / iPad / TV / Chrome"
+            autocomplete="off"
+            inputmode="text"
+            maxlength="80"
+          >
+
+          <div class="hint">
+            ระบุอุปกรณ์ของลูกค้า เพื่อให้ร้านตรวจสอบรายการย้อนหลังได้ง่าย
           </div>
         </div>
 
-        <div class="progress-wrap">
-          <div class="progress-bar" id="progressBar"></div>
-        </div>
-
-        <!-- STEP 1 -->
-        <div class="step-panel active" data-step="1">
-          <div class="how-card">
-            <div class="how-head">
-              <span class="how-badge">วิธีใช้</span>
-              <span class="how-title">ส่งคำขอใน 3 ขั้นตอน</span>
-            </div>
-
-            <div class="how-list">
-              <div class="how-item">
-                <div class="how-num">1</div>
-                <div class="how-text">กรอกชื่อ LINE หรือชื่อลูกค้า และกรอกอีเมล</div>
-              </div>
-              <div class="how-item">
-                <div class="how-num">2</div>
-                <div class="how-text">เลือกอุปกรณ์ และหมายเลขจอให้ตรงกับลูกค้า</div>
-              </div>
-              <div class="how-item">
-                <div class="how-num">3</div>
-                <div class="how-text">ตรวจสอบข้อมูล แล้วกดส่งคำขอเพื่อรับ OTP</div>
-              </div>
-            </div>
-
-            <div class="safe-note">
-              ระบบจะแสดงเฉพาะรหัส OTP ที่ระบบร้านออกให้เท่านั้น ไม่ขอรหัสผ่านหรือข้อมูลลับส่วนตัวของลูกค้า
-            </div>
-
-            <div class="use-tip" id="useTip">
-              เคล็ดลับ: ใส่หมายเหตุสั้น ๆ จะช่วยให้ร้านค้นรายการย้อนหลังง่ายขึ้น
-            </div>
+        <div class="field">
+          <div class="label">
+            <span class="label-main"><span class="label-dot"></span>เลือกหมายเลขจอ</span>
+            <span class="required">จอ 1–6</span>
           </div>
 
-          <div class="field">
-            <div class="label">
-              <span class="label-main"><span class="label-dot"></span>ชื่อ LINE / ชื่อลูกค้า</span>
-              <span class="optional">แนะนำ</span>
-            </div>
-            <input id="customerName" type="text" placeholder="เช่น @lineuser หรือ คุณสมชาย" autocomplete="name" maxlength="120">
-            <div class="hint">ใส่ชื่อ LINE หรือชื่อลูกค้า เพื่อช่วยให้ร้านค้นรายการย้อนหลังได้ง่าย</div>
-          </div>
+          <div class="screen-grid" id="screenGrid">
+            <button type="button" class="screen-btn" data-screen="1">
+              <strong>1</strong>
+              <span>จอ</span>
+            </button>
 
-          <div class="field">
-            <div class="label">
-              <span class="label-main"><span class="label-dot"></span>กรอกอีเมล</span>
-              <span class="required">จำเป็น</span>
-            </div>
-            <input id="email" type="email" placeholder="example@email.com" autocomplete="email" inputmode="email" maxlength="160">
-          </div>
+            <button type="button" class="screen-btn" data-screen="2">
+              <strong>2</strong>
+              <span>จอ</span>
+            </button>
 
-          <div class="step-actions">
-            <button class="btn-primary" type="button" onclick="goNextFromStep1()">
-              <span>ถัดไป</span>
+            <button type="button" class="screen-btn" data-screen="3">
+              <strong>3</strong>
+              <span>จอ</span>
+            </button>
+
+            <button type="button" class="screen-btn" data-screen="4">
+              <strong>4</strong>
+              <span>จอ</span>
+            </button>
+
+            <button type="button" class="screen-btn" data-screen="5">
+              <strong>5</strong>
+              <span>จอ</span>
+            </button>
+
+            <button type="button" class="screen-btn" data-screen="6">
+              <strong>6</strong>
+              <span>จอ</span>
             </button>
           </div>
-        </div>
 
-        <!-- STEP 2 -->
-        <div class="step-panel" data-step="2">
-          <div class="field">
-            <div class="label">
-              <span class="label-main"><span class="label-dot"></span>อุปกรณ์ที่ใช้งาน</span>
-              <span class="required">จำเป็น</span>
-            </div>
-
-            <input id="device" type="text" placeholder="เช่น iPhone / Android / iPad / TV / Chrome" autocomplete="off" inputmode="text" maxlength="80">
-
-            <div class="quick-device-wrap">
-              <div class="quick-device-title">เลือกอุปกรณ์เร็ว</div>
-              <div class="quick-device-grid" id="quickDeviceGrid">
-                <button type="button" class="quick-device-btn" id="autoDeviceBtn" data-device="AUTO">เครื่องนี้</button>
-                <button type="button" class="quick-device-btn" data-device="iPhone">iPhone</button>
-                <button type="button" class="quick-device-btn" data-device="Android">Android</button>
-                <button type="button" class="quick-device-btn" data-device="iPad">iPad</button>
-                <button type="button" class="quick-device-btn" data-device="TV">TV</button>
-                <button type="button" class="quick-device-btn" data-device="Chrome">Chrome</button>
-                <button type="button" class="quick-device-btn" data-device="Other">Other</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="field">
-            <div class="label">
-              <span class="label-main"><span class="label-dot"></span>เลือกหมายเลขจอ</span>
-              <span class="required">จอ 1–6</span>
-            </div>
-
-            <div class="screen-grid" id="screenGrid">
-              <button type="button" class="screen-btn" data-screen="1"><strong>1</strong><span>จอ</span></button>
-              <button type="button" class="screen-btn" data-screen="2"><strong>2</strong><span>จอ</span></button>
-              <button type="button" class="screen-btn" data-screen="3"><strong>3</strong><span>จอ</span></button>
-              <button type="button" class="screen-btn" data-screen="4"><strong>4</strong><span>จอ</span></button>
-              <button type="button" class="screen-btn" data-screen="5"><strong>5</strong><span>จอ</span></button>
-              <button type="button" class="screen-btn" data-screen="6"><strong>6</strong><span>จอ</span></button>
-            </div>
-
-            <div class="screen-note" id="screenSelectedNote">กรุณาเลือกหมายเลขจอให้ตรงกับรายการของลูกค้า</div>
-          </div>
-
-          <div class="step-actions">
-            <button class="btn-secondary" type="button" onclick="goToStep(1)">ย้อนกลับ</button>
-            <button class="btn-primary" type="button" onclick="goNextFromStep2()">
-              <span>ถัดไป</span>
-            </button>
+          <div class="screen-note" id="screenSelectedNote">
+            กรุณาเลือกหมายเลขจอให้ตรงกับรายการของลูกค้า
           </div>
         </div>
 
-        <!-- STEP 3 -->
-        <div class="step-panel" data-step="3">
-          <div class="field">
-            <div class="label">
-              <span class="label-main"><span class="label-dot"></span>หมายเหตุร้านค้า</span>
-              <span class="optional">ไม่บังคับ</span>
+        <div class="field pin-field" id="pinField">
+          <div class="label">
+            <span class="label-main"><span class="label-dot"></span>PIN สำหรับเข้าใช้งาน</span>
+            <span class="required">ส่วนตัว</span>
+          </div>
+
+          <input
+            id="pin"
+            type="password"
+            placeholder="กรอก PIN หากระบบกำหนดไว้"
+            autocomplete="off"
+            maxlength="80"
+          >
+        </div>
+
+        <div class="actions">
+          <button class="btn-primary" id="checkBtn" onclick="checkOtp()" disabled>
+            <span class="spinner"></span>
+            <span id="btnText">รับรหัส OTP</span>
+          </button>
+        </div>
+
+        <div class="status" id="status">
+          <div class="save-ok" id="saveOk">บันทึกข้อมูลเรียบร้อย</div>
+
+          <div class="otp-box" id="otpBox">
+            <div class="status-title">รหัสยืนยันล่าสุด</div>
+            <div class="otp-code" id="otpCode"></div>
+
+            <div class="otp-note" id="otpNote"></div>
+
+            <div class="copy-area">
+              <button class="btn-copy" id="copyBtn" onclick="copyOtp()" type="button">
+                <span id="copyBtnText">คัดลอกรหัส OTP</span>
+              </button>
             </div>
 
-            <textarea id="customerNote" placeholder="เช่น ลูกค้าขอรอบที่ 2 / ใช้งานผ่าน TV / เปลี่ยนอุปกรณ์ / แจ้งปัญหาเข้าไม่ได้" maxlength="700"></textarea>
-            <div class="note-count" id="noteCount">0/700</div>
-
-            <div class="quick-note-wrap">
-              <div class="quick-note-title">Quick Note</div>
-              <div class="quick-note-grid">
-                <button type="button" class="quick-note-btn" data-note="ขอรอบที่ 2">ขอรอบที่ 2</button>
-                <button type="button" class="quick-note-btn" data-note="เข้า TV">เข้า TV</button>
-                <button type="button" class="quick-note-btn" data-note="เปลี่ยนอุปกรณ์">เปลี่ยนอุปกรณ์</button>
-                <button type="button" class="quick-note-btn" data-note="ลูกค้ารออยู่">ลูกค้ารออยู่</button>
-                <button type="button" class="quick-note-btn" data-note="เช็กด่วน">เช็กด่วน</button>
-              </div>
+            <div class="mini-info">
+              <span>รหัสมีอายุ 15 นาที</span>
+              <span>ใช้สำหรับการยืนยันครั้งนี้เท่านั้น</span>
             </div>
           </div>
 
-          <div class="summary-box">
-            <p class="summary-title">ตรวจสอบข้อมูลก่อนส่งคำขอ</p>
-
-            <div class="summary-row">
-              <div class="summary-key">ชื่อ LINE</div>
-              <div class="summary-value" id="sumCustomerName">-</div>
-            </div>
-
-            <div class="summary-row">
-              <div class="summary-key">อีเมล</div>
-              <div class="summary-value" id="sumEmail">-</div>
-            </div>
-
-            <div class="summary-row">
-              <div class="summary-key">อุปกรณ์</div>
-              <div class="summary-value" id="sumDevice">-</div>
-            </div>
-
-            <div class="summary-row">
-              <div class="summary-key">จอ</div>
-              <div class="summary-value" id="sumScreen">-</div>
-            </div>
-
-            <div class="summary-row">
-              <div class="summary-key">หมายเหตุ</div>
-              <div class="summary-value" id="sumNote">-</div>
-            </div>
-          </div>
-
-          <div class="step-actions">
-            <button class="btn-secondary" type="button" onclick="goToStep(2)">ย้อนกลับ</button>
-            <button class="btn-primary" id="submitBtn" onclick="submitRequest()" type="button">
-              <span id="btnText">ส่งคำขอตรวจสอบ</span>
-            </button>
+          <div class="not-found" id="notFound">
+            <strong>ไม่พบรหัส OTP ล่าสุด</strong><br>
+            กรุณาตรวจสอบอีเมล หรือรอสักครู่แล้วลองใหม่อีกครั้ง
           </div>
         </div>
 
-        <!-- STEP 4 -->
-        <div class="step-panel" data-step="4">
-          <div class="status" id="status">
-            <div class="result-box" id="successBox">
-              <div class="result-icon">✓</div>
-              <h3 class="result-title">ส่งคำขอเรียบร้อยแล้ว</h3>
-              <div class="result-message" id="successMessage">
-                ร้านได้รับข้อมูลแล้ว กรุณาแจ้งรหัส OTP ให้ลูกค้าตามช่องทางที่กำหนด
-              </div>
+        <div class="guide">
+          <p class="guide-title">ขั้นตอนการใช้งานสำหรับร้าน</p>
 
-              <div class="request-id" id="requestIdBox">เลขคำขอ: -</div>
-
-              <div class="otp-box" id="otpBox" style="display:none;">
-                <div class="otp-label">รหัส OTP สำหรับแจ้งลูกค้า</div>
-                <div class="otp-code" id="otpCodeText">-</div>
-                <div class="otp-hint">แจ้งรหัสนี้ให้ลูกค้าใช้งานภายในเวลาที่กำหนด</div>
-              </div>
-
-              <div class="copy-area">
-                <button class="btn-copy" id="copyOtpBtn" onclick="copyOtpMessage()" type="button" style="display:none;">คัดลอกข้อความแจ้งลูกค้า</button>
-                <button class="btn-copy" id="copyIdBtn" onclick="copyRequestId()" type="button">คัดลอกเลขคำขอ</button>
-                <button class="btn-retry" id="retryBtn" onclick="retryRequest()" type="button">ส่งคำขออีกครั้ง</button>
-                <button class="btn-reset" id="resetBtn" onclick="startNewRequest()" type="button">เริ่มรายการใหม่</button>
-              </div>
-
-              <div class="mini-info">
-                <span>แสดงเฉพาะ OTP ที่ระบบร้านออกให้</span>
-                <span>บันทึกรายการเพื่อใช้ตรวจสอบย้อนหลัง</span>
-              </div>
-            </div>
-
-            <div class="error-box" id="errorBox">
-              <strong>ยังส่งคำขอไม่สำเร็จ</strong><br>
-              กรุณาตรวจสอบอินเทอร์เน็ต หรือรอสักครู่แล้วลองใหม่อีกครั้ง
-
-              <div class="copy-area">
-                <button class="btn-retry" id="errorRetryBtn" onclick="retryRequest()" type="button">ลองส่งอีกครั้ง</button>
-                <button class="btn-reset" id="errorResetBtn" onclick="startNewRequest()" type="button">เริ่มรายการใหม่</button>
-              </div>
-            </div>
-          </div>
+          <ol class="guide-list">
+            <li>กรอกชื่อ LINE หรือชื่อลูกค้า เพื่อช่วยจำรายการ</li>
+            <li>กรอกอีเมลที่ลูกค้าใช้รับรหัส OTP</li>
+            <li>ระบุอุปกรณ์และเลือกหมายเลขจอให้ตรงกับรายการ</li>
+            <li>กด “รับรหัส OTP” แล้วคัดลอกรหัสไปส่งให้ลูกค้า</li>
+          </ol>
         </div>
 
         <div class="privacy">
-          ระบบจะบันทึกข้อมูลการส่งคำขอ เพื่อใช้ตรวจสอบย้อนหลังและช่วยให้ร้านทำงานเป็นระเบียบมากขึ้น
+          ระบบจะบันทึกข้อมูลการขอ OTP เพื่อใช้ตรวจสอบย้อนหลังและเพิ่มความเป็นระเบียบให้ร้าน
         </div>
       </div>
     </section>
   </main>
 
-  <div class="loading-overlay" id="loadingOverlay">
-    <div class="loading-card">
-      <div class="loader-heart">♡</div>
-      <div class="loading-title">กำลังส่งคำขอ</div>
-      <div class="loading-message" id="loadingMessage">กำลังตรวจสอบข้อมูล...</div>
-    </div>
-  </div>
-
-  <div class="confetti-layer" id="confettiLayer"></div>
   <div class="toast" id="toast">เรียบร้อย</div>
 
   <script>
     /************************************************************
      * CONFIG
      ************************************************************/
+
     const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwe24EQaOFwra5jexOMg7VY5yskHBlbnqEW2E2VP35IMVfJERqY3tge-YHJt-iKvpF8kA/exec';
 
-    const SHOP_LINE_NAME = 'LINE Verify Request';
-    const SHOP_SUBTITLE = 'ระบบส่งคำขอตรวจสอบสำหรับลูกค้า';
+    /*
+     * ชื่อร้าน / ชื่อ LINE ของร้าน
+     * แก้ตรงนี้ได้ เช่น '@myshop' หรือ 'LINE @myshop'
+     */
+    const SHOP_LINE_NAME = 'LINE OTP Verify';
+    const SHOP_SUBTITLE = 'ระบบรับรหัส OTP สำหรับลูกค้า';
+
+    /*
+     * ถ้าหลังบ้านเปิด WEB_PIN ให้เปลี่ยนเป็น true
+     */
+    const SHOW_PIN_FIELD = false;
+
+    /*
+     * ใส่ลิงก์รูปหน้าร้าน หรือรูปประกอบ
+     * ถ้าไม่ใช้รูป ให้ปล่อยเป็น ''
+     */
+    const HERO_IMAGE_URL = '';
+
     const REQUEST_TIMEOUT_MS = 18000;
 
     /************************************************************
      * STATE
      ************************************************************/
-    let currentStep = 1;
+
+    let latestOtp = '';
     let selectedScreen = '';
-    let selectedDeviceQuick = '';
     let jsonpCounter = 0;
+    let copyResetTimer = null;
     let toastTimer = null;
-    let loadingTextTimer = null;
-    let loadingTextIndex = 0;
-    let lastRequestId = '';
-    let lastOtpCode = '';
-    let tipTimer = null;
-    let tipIndex = 0;
-
-    const loadingMessages = [
-      'กำลังตรวจสอบข้อมูล...',
-      'กำลังจัดรูปแบบคำขอ...',
-      'กำลังส่งข้อมูลให้ระบบ...',
-      'ใกล้เสร็จแล้ว...'
-    ];
-
-    const useTips = [
-      'เคล็ดลับ: ใส่หมายเหตุสั้น ๆ จะช่วยให้ร้านค้นรายการย้อนหลังง่ายขึ้น',
-      'แนะนำ: ตรวจสอบอีเมลให้ถูกต้องก่อนกดส่งคำขอ',
-      'ปลอดภัย: แจ้งเฉพาะ OTP ที่ระบบร้านออกให้ลูกค้าเท่านั้น',
-      'Tip: หากลูกค้าใช้ TV ให้เลือกอุปกรณ์ TV และระบุจอให้ตรงรายการ'
-    ];
 
     /************************************************************
      * ELEMENTS
      ************************************************************/
-    const app = document.getElementById('app');
 
+    const app = document.getElementById('app');
     const customerNameInput = document.getElementById('customerName');
     const emailInput = document.getElementById('email');
     const deviceInput = document.getElementById('device');
-    const customerNoteInput = document.getElementById('customerNote');
-
-    const submitBtn = document.getElementById('submitBtn');
+    const pinInput = document.getElementById('pin');
+    const pinField = document.getElementById('pinField');
+    const checkBtn = document.getElementById('checkBtn');
     const btnText = document.getElementById('btnText');
 
     const statusBox = document.getElementById('status');
-    const successBox = document.getElementById('successBox');
-    const errorBox = document.getElementById('errorBox');
-    const successMessage = document.getElementById('successMessage');
-    const requestIdBox = document.getElementById('requestIdBox');
-
+    const saveOk = document.getElementById('saveOk');
     const otpBox = document.getElementById('otpBox');
-    const otpCodeText = document.getElementById('otpCodeText');
-    const copyOtpBtn = document.getElementById('copyOtpBtn');
+    const otpCode = document.getElementById('otpCode');
+    const otpNote = document.getElementById('otpNote');
+    const notFound = document.getElementById('notFound');
 
+    const copyBtn = document.getElementById('copyBtn');
+    const copyBtnText = document.getElementById('copyBtnText');
     const toast = document.getElementById('toast');
-    const loadingOverlay = document.getElementById('loadingOverlay');
-    const loadingMessage = document.getElementById('loadingMessage');
-    const confettiLayer = document.getElementById('confettiLayer');
 
     const screenButtons = document.querySelectorAll('.screen-btn');
-    const quickDeviceButtons = document.querySelectorAll('.quick-device-btn');
-    const quickNoteButtons = document.querySelectorAll('.quick-note-btn');
     const screenSelectedNote = document.getElementById('screenSelectedNote');
+
+    const heroImg = document.getElementById('heroImg');
+    const heroPlaceholder = document.getElementById('heroPlaceholder');
 
     const brandTitle = document.getElementById('brandTitle');
     const brandSub = document.getElementById('brandSub');
 
-    const formTitle = document.getElementById('formTitle');
-    const formSubtitle = document.getElementById('formSubtitle');
-
-    const sumCustomerName = document.getElementById('sumCustomerName');
-    const sumEmail = document.getElementById('sumEmail');
-    const sumDevice = document.getElementById('sumDevice');
-    const sumScreen = document.getElementById('sumScreen');
-    const sumNote = document.getElementById('sumNote');
-    const noteCount = document.getElementById('noteCount');
-
-    const latestCard = document.getElementById('latestCard');
-    const latestText = document.getElementById('latestText');
-
-    const progressBar = document.getElementById('progressBar');
-    const useTip = document.getElementById('useTip');
-
     /************************************************************
      * INIT
      ************************************************************/
-    brandTitle.textContent = SHOP_LINE_NAME || 'LINE Verify Request';
-    brandSub.textContent = SHOP_SUBTITLE || 'ระบบส่งคำขอตรวจสอบสำหรับลูกค้า';
 
-    loadLatestHistory();
-    updateNoteCount();
-    goToStep(1);
-    startTipRotator();
+    brandTitle.textContent = SHOP_LINE_NAME || 'LINE OTP Verify';
+    brandSub.textContent = SHOP_SUBTITLE || 'ระบบรับรหัส OTP สำหรับลูกค้า';
 
-    /************************************************************
-     * STEP CONTROL
-     ************************************************************/
-    function goToStep(step) {
-      currentStep = Number(step || 1);
-
-      const panels = document.querySelectorAll('.step-panel');
-      const indicators = document.querySelectorAll('.step-item');
-
-      panels.forEach(function(panel) {
-        const panelStep = Number(panel.getAttribute('data-step') || 0);
-        panel.classList.toggle('active', panelStep === currentStep);
-      });
-
-      indicators.forEach(function(item) {
-        const itemStep = Number(item.getAttribute('data-step-indicator') || 0);
-        item.classList.remove('active', 'done');
-
-        if (itemStep === currentStep) item.classList.add('active');
-        if (itemStep < currentStep) item.classList.add('done');
-      });
-
-      updateFormHeader();
-      updateProgress();
-
-      if (currentStep === 3) {
-        updateSummary();
-      }
-
-      if (currentStep === 4) {
-        statusBox.style.display = 'block';
-      }
-
-      scrollFormIntoView();
-      focusStepInput();
+    if (SHOW_PIN_FIELD) {
+      pinField.style.display = 'block';
     }
 
-    function updateProgress() {
-      const percentMap = {
-        1: 8,
-        2: 38,
-        3: 72,
-        4: 100
+    if (HERO_IMAGE_URL && HERO_IMAGE_URL.trim()) {
+      heroImg.src = HERO_IMAGE_URL.trim();
+
+      heroImg.onload = function() {
+        heroImg.style.display = 'block';
+        heroPlaceholder.style.display = 'none';
       };
 
-      if (progressBar) {
-        progressBar.style.width = (percentMap[currentStep] || 0) + '%';
-      }
+      heroImg.onerror = function() {
+        heroImg.style.display = 'none';
+        heroPlaceholder.style.display = 'grid';
+      };
     }
 
-    function updateFormHeader() {
-      if (currentStep === 1) {
-        formTitle.textContent = 'วิธีใช้และข้อมูลลูกค้า';
-        formSubtitle.textContent = 'อ่านวิธีใช้สั้น ๆ แล้วกรอกอีเมลสำหรับส่งคำขอตรวจสอบ';
-        return;
-      }
+    updateCheckButtonState();
 
-      if (currentStep === 2) {
-        formTitle.textContent = 'อุปกรณ์และหมายเลขจอ';
-        formSubtitle.textContent = 'เลือกอุปกรณ์และจอที่ลูกค้าใช้งาน';
-        return;
-      }
+    /************************************************************
+     * UI STATE
+     ************************************************************/
 
-      if (currentStep === 3) {
-        formTitle.textContent = 'ตรวจสอบข้อมูล';
-        formSubtitle.textContent = 'ตรวจสอบข้อมูลก่อนส่งคำขอ';
-        return;
-      }
-
-      formTitle.textContent = 'สถานะคำขอ';
-      formSubtitle.textContent = 'ดูรหัส OTP หรือเริ่มรายการใหม่ได้จากหน้านี้';
-    }
-
-    function scrollFormIntoView() {
-      setTimeout(function() {
-        try {
-          app.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        } catch (err) {}
-      }, 60);
-    }
-
-    function focusStepInput() {
-      if (window.innerWidth <= 430) return;
-
-      setTimeout(function() {
-        try {
-          if (currentStep === 1) {
-            if (!customerNameInput.value.trim()) {
-              customerNameInput.focus();
-            } else {
-              emailInput.focus();
-            }
-          }
-
-          if (currentStep === 2 && !deviceInput.value.trim()) {
-            deviceInput.focus();
-          }
-
-          if (currentStep === 3) {
-            customerNoteInput.focus();
-          }
-        } catch (err) {}
-      }, 320);
-    }
-
-    function goNextFromStep1() {
+    function updateCheckButtonState() {
       const email = emailInput.value.trim();
-
-      if (!email || !isEmail(email)) {
-        showToast('กรุณากรอกอีเมลให้ถูกต้อง');
-        emailInput.focus();
-        return;
-      }
-
-      goToStep(2);
-    }
-
-    function goNextFromStep2() {
       const device = deviceInput.value.trim();
+      const pin = pinInput.value.trim();
 
-      if (!device) {
-        showToast('กรุณาระบุอุปกรณ์ที่ใช้งาน');
-        deviceInput.focus();
+      if (!email || !isEmail(email) || !device || !selectedScreen) {
+        checkBtn.disabled = true;
         return;
       }
 
-      if (!selectedScreen) {
-        showToast('กรุณาเลือกหมายเลขจอ');
+      if (SHOW_PIN_FIELD && !pin) {
+        checkBtn.disabled = true;
         return;
       }
 
-      goToStep(3);
-    }
-
-    /************************************************************
-     * TIPS
-     ************************************************************/
-    function startTipRotator() {
-      if (!useTip) return;
-
-      useTip.textContent = useTips[0];
-
-      if (tipTimer) clearInterval(tipTimer);
-
-      tipTimer = setInterval(function() {
-        tipIndex = (tipIndex + 1) % useTips.length;
-        useTip.textContent = useTips[tipIndex];
-      }, 3600);
-    }
-
-    /************************************************************
-     * SMALL FEATURES
-     ************************************************************/
-    function updateNoteCount() {
-      const len = customerNoteInput.value.length;
-      noteCount.textContent = len + '/700';
-    }
-
-    function addQuickNote(note) {
-      const current = customerNoteInput.value.trim();
-      const next = current ? current + ' / ' + note : note;
-
-      customerNoteInput.value = next.substring(0, 700);
-
-      updateNoteCount();
-      updateSummary();
-      showToast('เพิ่มหมายเหตุ: ' + note);
-    }
-
-    function saveLatestHistory() {
-      const customerName = customerNameInput.value.trim() || '-';
-      const device = deviceInput.value.trim() || '-';
-      const screen = selectedScreen ? 'จอ ' + selectedScreen : '-';
-      const time = new Date().toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit' });
-
-      const text = customerName + ' / ' + device + ' / ' + screen + ' / ' + time;
-
-      try {
-        localStorage.setItem('lineVerifyLatestHistory', text);
-      } catch (err) {}
-
-      latestText.textContent = text;
-      latestCard.style.display = 'block';
-    }
-
-    function loadLatestHistory() {
-      try {
-        const text = localStorage.getItem('lineVerifyLatestHistory');
-
-        if (text) {
-          latestText.textContent = text;
-          latestCard.style.display = 'block';
-        }
-      } catch (err) {}
-    }
-
-    function vibrateSuccess() {
-      try {
-        if (navigator.vibrate) navigator.vibrate(80);
-      } catch (err) {}
-    }
-
-    function launchConfetti() {
-      confettiLayer.innerHTML = '';
-
-      const pieces = ['♡', '✦', '✧', '•', '★'];
-      const count = 28;
-
-      for (let i = 0; i < count; i++) {
-        const el = document.createElement('div');
-
-        el.className = 'confetti-piece';
-        el.textContent = pieces[Math.floor(Math.random() * pieces.length)];
-        el.style.left = (18 + Math.random() * 64) + '%';
-        el.style.color = ['#FFD7EA', '#DDFBFF', '#FFF2BF', '#A4FFD4'][Math.floor(Math.random() * 4)];
-        el.style.setProperty('--x', ((Math.random() * 220) - 110) + 'px');
-        el.style.animationDelay = (Math.random() * .18) + 's';
-
-        confettiLayer.appendChild(el);
-      }
-
-      setTimeout(function() {
-        confettiLayer.innerHTML = '';
-      }, 1500);
-    }
-
-    function detectDeviceName() {
-      const ua = navigator.userAgent || '';
-
-      if (/iPad/i.test(ua)) return 'iPad';
-      if (/iPhone/i.test(ua)) return 'iPhone';
-      if (/Android/i.test(ua)) return 'Android';
-      if (/Chrome/i.test(ua)) return 'Chrome';
-      if (/Macintosh/i.test(ua)) return 'Mac / Safari';
-      if (/Windows/i.test(ua)) return 'Windows / Browser';
-
-      return 'Other';
-    }
-
-    /************************************************************
-     * LOADING
-     ************************************************************/
-    function showLoadingOverlay() {
-      loadingTextIndex = 0;
-      loadingMessage.textContent = loadingMessages[0];
-      loadingOverlay.classList.add('show');
-
-      if (loadingTextTimer) {
-        clearInterval(loadingTextTimer);
-      }
-
-      loadingTextTimer = setInterval(function() {
-        loadingTextIndex = (loadingTextIndex + 1) % loadingMessages.length;
-        loadingMessage.textContent = loadingMessages[loadingTextIndex];
-      }, 1200);
-    }
-
-    function hideLoadingOverlay() {
-      loadingOverlay.classList.remove('show');
-
-      if (loadingTextTimer) {
-        clearInterval(loadingTextTimer);
-        loadingTextTimer = null;
-      }
+      checkBtn.disabled = false;
     }
 
     function setLoading(isLoading) {
       if (isLoading) {
         app.classList.add('loading');
-        btnText.textContent = 'กำลังส่งคำขอ...';
-        submitBtn.disabled = true;
-        showLoadingOverlay();
+        btnText.textContent = 'กำลังค้นหารหัส...';
+        checkBtn.disabled = true;
         return;
       }
 
       app.classList.remove('loading');
-      btnText.textContent = 'ส่งคำขอตรวจสอบ';
-      submitBtn.disabled = false;
-      hideLoadingOverlay();
+      btnText.textContent = 'รับรหัส OTP';
+      updateCheckButtonState();
     }
 
-    /************************************************************
-     * RESULT UI
-     ************************************************************/
     function resetResult() {
+      latestOtp = '';
+
       statusBox.style.display = 'none';
-      successBox.style.display = 'none';
-      errorBox.style.display = 'none';
-      requestIdBox.textContent = 'เลขคำขอ: -';
+      saveOk.style.display = 'none';
+      otpBox.style.display = 'none';
+      notFound.style.display = 'none';
 
-      if (otpBox && otpCodeText && copyOtpBtn) {
-        otpCodeText.textContent = '-';
-        otpBox.style.display = 'none';
-        copyOtpBtn.style.display = 'none';
-      }
+      otpCode.textContent = '';
+      otpNote.textContent = '';
+
+      copyBtn.style.display = 'none';
+      resetCopyButton();
     }
 
-    function showSuccess(message, requestId, otpCode) {
-      saveLatestHistory();
-      vibrateSuccess();
-      launchConfetti();
-
-      const finalRequestId = requestId || createLocalRequestId();
-      lastRequestId = finalRequestId;
-      lastOtpCode = String(otpCode || '').trim();
-
-      goToStep(4);
-
+    function showSaved(message) {
       statusBox.style.display = 'block';
-      successBox.style.display = 'block';
-      errorBox.style.display = 'none';
-
-      successMessage.textContent =
-        message ||
-        'ร้านได้รับข้อมูลแล้ว กรุณาแจ้งรหัส OTP ให้ลูกค้าตามช่องทางที่กำหนด';
-
-      requestIdBox.textContent = 'เลขคำขอ: ' + finalRequestId;
-
-      if (otpBox && otpCodeText && copyOtpBtn) {
-        if (lastOtpCode) {
-          otpCodeText.textContent = lastOtpCode;
-          otpBox.style.display = 'block';
-          copyOtpBtn.style.display = 'flex';
-        } else {
-          otpCodeText.textContent = '-';
-          otpBox.style.display = 'none';
-          copyOtpBtn.style.display = 'none';
-        }
-      }
-
-      showToast('ส่งคำขอเรียบร้อยแล้ว');
+      saveOk.style.display = 'block';
+      saveOk.textContent = message || 'บันทึกข้อมูลเรียบร้อย';
     }
 
-    function showError(message) {
-      goToStep(4);
+    function showOtp(otp, expireMinutes, savedMessage) {
+      latestOtp = String(otp || '').trim();
 
       statusBox.style.display = 'block';
-      successBox.style.display = 'none';
-      errorBox.style.display = 'block';
 
-      if (message) {
-        showToast(message);
+      saveOk.style.display = 'block';
+      saveOk.textContent = savedMessage || 'บันทึกข้อมูลเรียบร้อย';
+
+      otpBox.style.display = 'block';
+      notFound.style.display = 'none';
+
+      otpCode.textContent = latestOtp;
+      otpNote.textContent =
+        'รหัสนี้มีอายุการใช้งาน ' + (expireMinutes || 15) + ' นาที\n' +
+        'ระบบได้บันทึกข้อมูลการขอรหัสเรียบร้อยแล้ว';
+
+      copyBtn.style.display = 'flex';
+      resetCopyButton();
+    }
+
+    function showNotFound(savedMessage) {
+      latestOtp = '';
+
+      statusBox.style.display = 'block';
+
+      if (savedMessage) {
+        saveOk.style.display = 'block';
+        saveOk.textContent = savedMessage;
       } else {
-        showToast('ยังส่งคำขอไม่สำเร็จ');
+        saveOk.style.display = 'none';
       }
+
+      otpBox.style.display = 'none';
+      notFound.style.display = 'block';
+
+      copyBtn.style.display = 'none';
+      resetCopyButton();
     }
 
-    function updateSummary() {
-      const customerName = customerNameInput.value.trim();
-      const email = emailInput.value.trim();
-      const device = deviceInput.value.trim();
-      const customerNote = customerNoteInput.value.trim();
+    function resetCopyButton() {
+      if (copyResetTimer) {
+        clearTimeout(copyResetTimer);
+        copyResetTimer = null;
+      }
 
-      sumCustomerName.textContent = customerName || '-';
-      sumEmail.textContent = email || '-';
-      sumDevice.textContent = device || '-';
-      sumScreen.textContent = selectedScreen ? 'จอ ' + selectedScreen : '-';
-      sumNote.textContent = customerNote || '-';
+      copyBtn.classList.remove('copied');
+      copyBtnText.textContent = 'คัดลอกรหัส OTP';
+    }
+
+    function setCopyButtonCopied() {
+      copyBtn.classList.add('copied');
+      copyBtnText.textContent = 'คัดลอกแล้ว';
+
+      if (copyResetTimer) {
+        clearTimeout(copyResetTimer);
+      }
+
+      copyResetTimer = setTimeout(function() {
+        resetCopyButton();
+      }, 2200);
     }
 
     /************************************************************
-     * SUBMIT ACTION
+     * MAIN OTP ACTION
      ************************************************************/
-    function submitRequest() {
+
+    function checkOtp() {
       const customerName = customerNameInput.value.trim();
       const email = emailInput.value.trim();
       const device = deviceInput.value.trim();
-      const customerNote = customerNoteInput.value.trim();
+      const pin = pinInput.value.trim();
 
-      lastOtpCode = '';
       resetResult();
 
       if (!WEB_APP_URL || WEB_APP_URL.indexOf('ใส่_GOOGLE_APPS_SCRIPT') !== -1) {
-        showError('กรุณาตั้งค่า WEB_APP_URL ก่อนใช้งาน');
+        showNotFound('');
+        showToast('กรุณาตั้งค่า WEB_APP_URL ก่อนใช้งาน');
         return;
       }
 
       if (!email || !isEmail(email)) {
+        showNotFound('');
         showToast('กรุณากรอกอีเมลให้ถูกต้อง');
-        goToStep(1);
-        emailInput.focus();
+        updateCheckButtonState();
         return;
       }
 
       if (!device) {
+        showNotFound('');
         showToast('กรุณาระบุอุปกรณ์ที่ใช้งาน');
-        goToStep(2);
-        deviceInput.focus();
+        updateCheckButtonState();
         return;
       }
 
       if (!selectedScreen) {
+        showNotFound('');
         showToast('กรุณาเลือกหมายเลขจอ');
-        goToStep(2);
+        updateCheckButtonState();
+        return;
+      }
+
+      if (SHOW_PIN_FIELD && !pin) {
+        showNotFound('');
+        showToast('กรุณากรอก PIN');
+        updateCheckButtonState();
         return;
       }
 
       setLoading(true);
 
       jsonpRequest({
-        action: 'verification_request',
+        action: 'otp',
         customerName: customerName,
         email: email,
         device: device,
         screen: selectedScreen,
-        customerNote: customerNote,
         userAgent: navigator.userAgent || '',
         pageUrl: window.location.href || '',
         referrer: document.referrer || '',
-        submittedAt: new Date().toISOString()
+        pin: pin
       }, function(res) {
         setLoading(false);
 
-        if (!res) {
-          showError('ระบบไม่ตอบกลับ กรุณาลองใหม่อีกครั้ง');
+        if (res && res.saved) {
+          showSaved(res.savedMessage || 'บันทึกข้อมูลเรียบร้อย');
+        }
+
+        if (!res || !res.ok || !res.otp) {
+          showNotFound(res && res.savedMessage ? res.savedMessage : 'บันทึกข้อมูลเรียบร้อย');
+
+          if (res && res.message) {
+            showToast(res.message);
+          } else {
+            showToast('ไม่พบรหัส OTP ล่าสุด');
+          }
+
           return;
         }
 
-        if (res.ok || res.saved) {
-          showSuccess(
-            res.message || res.savedMessage || 'บันทึกคำขอเรียบร้อยแล้ว กรุณาแจ้งรหัส OTP ให้ลูกค้า',
-            res.requestId || res.id || '',
-            res.otp || res.otpCode || res.code || ''
-          );
-          return;
-        }
-
-        showError(res.message || 'ยังส่งคำขอไม่สำเร็จ กรุณาลองใหม่อีกครั้ง');
+        showOtp(res.otp, res.expireMinutes || 15, res.savedMessage || 'บันทึกข้อมูลเรียบร้อย');
+        showToast('พบรหัส OTP แล้ว');
       }, function() {
         setLoading(false);
-        showError('ไม่สามารถเชื่อมต่อระบบได้ กรุณาลองใหม่อีกครั้ง');
+        showNotFound('');
+        showToast('ไม่สามารถเชื่อมต่อระบบได้ กรุณาลองใหม่อีกครั้ง');
       });
-    }
-
-    function retryRequest() {
-      resetResult();
-      goToStep(3);
-
-      setTimeout(function() {
-        submitRequest();
-      }, 150);
-    }
-
-    function startNewRequest() {
-      selectedScreen = '';
-      selectedDeviceQuick = '';
-      lastRequestId = '';
-      lastOtpCode = '';
-
-      customerNameInput.value = '';
-      emailInput.value = '';
-      deviceInput.value = '';
-      customerNoteInput.value = '';
-
-      screenButtons.forEach(function(btn) {
-        btn.classList.remove('selected');
-      });
-
-      quickDeviceButtons.forEach(function(btn) {
-        btn.classList.remove('selected');
-      });
-
-      if (screenSelectedNote) {
-        screenSelectedNote.textContent = 'กรุณาเลือกหมายเลขจอให้ตรงกับรายการของลูกค้า';
-        screenSelectedNote.classList.remove('active');
-      }
-
-      if (otpBox && otpCodeText && copyOtpBtn) {
-        otpCodeText.textContent = '-';
-        otpBox.style.display = 'none';
-        copyOtpBtn.style.display = 'none';
-      }
-
-      updateNoteCount();
-      resetResult();
-      goToStep(1);
-
-      showToast('เริ่มรายการใหม่แล้ว');
-    }
-
-    function copyRequestId() {
-      const text = lastRequestId || requestIdBox.textContent.replace('เลขคำขอ:', '').trim();
-
-      if (!text || text === '-') {
-        showToast('ยังไม่มีเลขคำขอ');
-        return;
-      }
-
-      copyText(text, 'คัดลอกเลขคำขอแล้ว');
-    }
-
-    function copyOtpMessage() {
-      if (!lastOtpCode) {
-        showToast('ยังไม่มีรหัส OTP');
-        return;
-      }
-
-      const customerName = customerNameInput.value.trim();
-      const nameText = customerName ? customerName + ' ' : '';
-
-      const text =
-        nameText +
-        'รหัส OTP ของคุณคือ: ' + lastOtpCode +
-        '\nกรุณาใช้รหัสนี้ภายในเวลาที่กำหนด';
-
-      copyText(text, 'คัดลอกข้อความแจ้งลูกค้าแล้ว');
-    }
-
-    function copyText(text, successMessageText) {
-      try {
-        navigator.clipboard.writeText(text).then(function() {
-          showToast(successMessageText || 'คัดลอกแล้ว');
-        }).catch(function() {
-          fallbackCopyText(text, successMessageText);
-        });
-      } catch (err) {
-        fallbackCopyText(text, successMessageText);
-      }
-    }
-
-    function fallbackCopyText(text, successMessageText) {
-      const input = document.createElement('textarea');
-      input.value = text;
-      input.style.position = 'fixed';
-      input.style.left = '-9999px';
-      input.style.top = '0';
-      document.body.appendChild(input);
-      input.focus();
-      input.select();
-
-      try {
-        document.execCommand('copy');
-        showToast(successMessageText || 'คัดลอกแล้ว');
-      } catch (err) {
-        showToast('คัดลอกไม่สำเร็จ');
-      }
-
-      document.body.removeChild(input);
     }
 
     /************************************************************
      * JSONP
      ************************************************************/
+
     function jsonpRequest(params, onSuccess, onError) {
-      const callbackName = '__verifyCallback_' + Date.now() + '_' + (++jsonpCounter);
+      const callbackName = '__otpCallback_' + Date.now() + '_' + (++jsonpCounter);
       const script = document.createElement('script');
 
       params.callback = callbackName;
@@ -2819,8 +1798,56 @@
     }
 
     /************************************************************
+     * COPY OTP
+     ************************************************************/
+
+    function copyOtp() {
+      if (!latestOtp) return;
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(latestOtp)
+          .then(function() {
+            setCopyButtonCopied();
+            showToast('คัดลอกรหัส OTP แล้ว');
+          })
+          .catch(function() {
+            fallbackCopy(latestOtp);
+          });
+
+        return;
+      }
+
+      fallbackCopy(latestOtp);
+    }
+
+    function fallbackCopy(text) {
+      const area = document.createElement('textarea');
+
+      area.value = text;
+      area.setAttribute('readonly', '');
+      area.style.position = 'fixed';
+      area.style.left = '-9999px';
+      area.style.top = '-9999px';
+
+      document.body.appendChild(area);
+      area.focus();
+      area.select();
+
+      try {
+        document.execCommand('copy');
+        setCopyButtonCopied();
+        showToast('คัดลอกรหัส OTP แล้ว');
+      } catch (e) {
+        showToast('ไม่สามารถคัดลอกรหัสได้');
+      }
+
+      document.body.removeChild(area);
+    }
+
+    /************************************************************
      * UTIL
      ************************************************************/
+
     function showToast(message) {
       toast.textContent = message || 'เรียบร้อย';
       toast.classList.add('show');
@@ -2838,44 +1865,10 @@
       return /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(String(value || '').trim());
     }
 
-    function setQuickDeviceSelected(deviceName) {
-      selectedDeviceQuick = deviceName || '';
-
-      quickDeviceButtons.forEach(function(btn) {
-        const itemDevice = btn.getAttribute('data-device') || '';
-        btn.classList.toggle('selected', itemDevice === selectedDeviceQuick);
-      });
-    }
-
-    function clearQuickDeviceSelectedIfManualChange() {
-      const current = deviceInput.value.trim();
-
-      if (!selectedDeviceQuick || current === selectedDeviceQuick) {
-        return;
-      }
-
-      selectedDeviceQuick = '';
-
-      quickDeviceButtons.forEach(function(btn) {
-        btn.classList.remove('selected');
-      });
-    }
-
-    function createLocalRequestId() {
-      const d = new Date();
-      const y = String(d.getFullYear()).slice(-2);
-      const m = String(d.getMonth() + 1).padStart(2, '0');
-      const day = String(d.getDate()).padStart(2, '0');
-      const h = String(d.getHours()).padStart(2, '0');
-      const min = String(d.getMinutes()).padStart(2, '0');
-      const rand = Math.floor(Math.random() * 900 + 100);
-
-      return 'REQ-' + y + m + day + '-' + h + min + '-' + rand;
-    }
-
     /************************************************************
      * EVENTS
      ************************************************************/
+
     screenButtons.forEach(function(btn) {
       btn.addEventListener('click', function() {
         selectedScreen = btn.getAttribute('data-screen') || '';
@@ -2891,63 +1884,20 @@
           screenSelectedNote.classList.add('active');
         }
 
-        updateSummary();
+        resetResult();
+        updateCheckButtonState();
       });
     });
 
-    quickDeviceButtons.forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        const deviceName = btn.getAttribute('data-device') || '';
-
-        if (deviceName === 'AUTO') {
-          const autoName = detectDeviceName();
-          deviceInput.value = autoName;
-          setQuickDeviceSelected(deviceName);
-          showToast('เลือกอุปกรณ์: ' + autoName);
-        } else if (deviceName === 'Other') {
-          deviceInput.value = '';
-          deviceInput.focus();
-          setQuickDeviceSelected(deviceName);
-          showToast('กรุณาพิมพ์ชื่ออุปกรณ์');
-        } else {
-          deviceInput.value = deviceName;
-          setQuickDeviceSelected(deviceName);
-          showToast('เลือกอุปกรณ์: ' + deviceName);
-        }
-
-        updateSummary();
-      });
-    });
-
-    quickNoteButtons.forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        const note = btn.getAttribute('data-note') || '';
-        addQuickNote(note);
-      });
-    });
-
-    [customerNameInput, emailInput, deviceInput, customerNoteInput].forEach(function(input) {
+    [customerNameInput, emailInput, deviceInput, pinInput].forEach(function(input) {
       input.addEventListener('input', function() {
-        if (input === deviceInput) {
-          clearQuickDeviceSelectedIfManualChange();
-        }
-
-        if (input === customerNoteInput) {
-          updateNoteCount();
-        }
-
-        updateSummary();
+        resetResult();
+        updateCheckButtonState();
       });
 
       input.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' && input !== customerNoteInput) {
-          if (currentStep === 1) {
-            goNextFromStep1();
-          } else if (currentStep === 2) {
-            goNextFromStep2();
-          } else if (currentStep === 3) {
-            submitRequest();
-          }
+        if (e.key === 'Enter') {
+          checkOtp();
         }
       });
     });
