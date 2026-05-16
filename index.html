@@ -328,33 +328,6 @@
       max-width: 590px;
     }
 
-    .howto-card {
-      margin-bottom: 14px;
-      padding: 14px;
-      border-radius: 24px;
-      background:
-        linear-gradient(135deg, rgba(223,255,234,0.12), rgba(255,231,163,0.10)),
-        rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.13);
-      box-shadow: 0 14px 30px rgba(0,0,0,0.12);
-    }
-
-    .howto-title {
-      color: #FFFFFF;
-      font-size: 14px;
-      font-weight: 1000;
-      margin-bottom: 8px;
-    }
-
-    .howto-list {
-      display: grid;
-      gap: 6px;
-      color: rgba(255,255,255,0.72);
-      font-size: 12px;
-      line-height: 1.55;
-      font-weight: 650;
-    }
-
     .eyebrow {
       width: fit-content;
       display: inline-flex;
@@ -433,6 +406,33 @@
       font-size: 12px;
       line-height: 1.5;
       font-weight: 700;
+    }
+
+    .bottom-guide {
+      margin-top: 18px;
+      padding: 16px;
+      border-radius: 26px;
+      background:
+        linear-gradient(135deg, rgba(223,255,234,0.11), rgba(255,231,163,0.09)),
+        rgba(255,255,255,0.055);
+      border: 1px solid rgba(255,255,255,0.13);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.12);
+    }
+
+    .bottom-guide-title {
+      color: #FFFFFF;
+      font-size: 14px;
+      font-weight: 1000;
+      margin-bottom: 10px;
+    }
+
+    .bottom-guide-list {
+      display: grid;
+      gap: 7px;
+      color: rgba(255,255,255,0.72);
+      font-size: 12px;
+      line-height: 1.55;
+      font-weight: 650;
     }
 
     .form-card {
@@ -1525,7 +1525,6 @@
         margin: 0 auto;
       }
 
-      .howto-card,
       .eyebrow {
         margin-left: auto;
         margin-right: auto;
@@ -1541,6 +1540,10 @@
         font-size: clamp(36px, 10.5vw, 58px);
         line-height: 1.15;
         letter-spacing: -1.8px;
+      }
+
+      .bottom-guide {
+        max-width: 540px;
       }
     }
 
@@ -1589,18 +1592,18 @@
         line-height: 1.55;
       }
 
-      .howto-card {
-        margin-bottom: 10px;
+      .bottom-guide {
+        margin-top: 12px;
         padding: 11px;
         border-radius: 20px;
       }
 
-      .howto-title {
+      .bottom-guide-title {
         font-size: 13px;
         margin-bottom: 6px;
       }
 
-      .howto-list {
+      .bottom-guide-list {
         gap: 4px;
         font-size: 11px;
         line-height: 1.45;
@@ -1819,15 +1822,6 @@
         </div>
 
         <div class="hero-main">
-          <div class="howto-card">
-            <div class="howto-title">วิธีใช้งาน</div>
-            <div class="howto-list">
-              <span>1. กรอกชื่อ LINE และอีเมลที่ลูกค้าใช้รับรหัส</span>
-              <span>2. เลือกอุปกรณ์และหมายเลขจอ</span>
-              <span>3. กดรับรหัส OTP แล้วคัดลอกส่งให้ลูกค้า</span>
-            </div>
-          </div>
-
           <div class="eyebrow">LINE Customer Verification</div>
 
           <h1>
@@ -1836,7 +1830,7 @@
           </h1>
 
           <p class="lead">
-            กรอกข้อมูลทีละขั้นตอน ระบบจะค้นหารหัส OTP ล่าสุดจากอีเมล พร้อมบันทึกข้อมูลลูกค้า อุปกรณ์ และหมายเลขจอให้ตรวจสอบย้อนหลังได้อย่างเป็นระเบียบ
+            กรอกข้อมูลลูกค้า เลือกอุปกรณ์และหมายเลขจอ ระบบจะค้นหารหัสล่าสุดจากอีเมล พร้อมบันทึกรายการไว้ตรวจสอบย้อนหลังอย่างเป็นระเบียบ
           </p>
         </div>
 
@@ -1845,6 +1839,15 @@
           <span id="latestText">-</span>
           <div class="latest-mini-list" id="latestMiniList"></div>
         </div>
+
+        <div class="bottom-guide">
+          <div class="bottom-guide-title">วิธีใช้งาน</div>
+          <div class="bottom-guide-list">
+            <span>1. ใส่ชื่อ LINE หรือชื่อลูกค้า และกรอกอีเมลที่ใช้รับรหัส</span>
+            <span>2. ระบุอุปกรณ์ เลือกหมายเลขจอ แล้วตรวจสอบข้อมูลก่อนส่ง</span>
+            <span>3. กดรับรหัส OTP จากนั้นคัดลอกเพื่อนำไปแจ้งลูกค้า</span>
+          </div>
+        </div>
       </div>
 
       <div class="form-card" id="app">
@@ -1852,7 +1855,7 @@
 
         <div class="mascot" aria-hidden="true">
           <div class="mascot-face">♡</div>
-          <span>พร้อมค้นหารหัส OTP ให้ค่ะ</span>
+          <span>พร้อมค้นหารหัสให้ค่ะ</span>
         </div>
 
         <div class="form-head">
@@ -1874,7 +1877,7 @@
         </div>
 
         <div class="timeline" id="miniTimeline">
-          <p class="timeline-title">Mini Timeline</p>
+          <p class="timeline-title">ลำดับการทำงาน</p>
           <div class="timeline-list">
             <div class="timeline-item active" data-time-step="1">
               <span class="timeline-dot"></span>
@@ -1886,11 +1889,11 @@
             </div>
             <div class="timeline-item" data-time-step="3">
               <span class="timeline-dot"></span>
-              <span>ตรวจสอบและรับรหัส</span>
+              <span>ยืนยันรายละเอียด</span>
             </div>
             <div class="timeline-item" data-time-step="4">
               <span class="timeline-dot"></span>
-              <span>ดูสถานะ / คัดลอก OTP</span>
+              <span>คัดลอกรหัส OTP</span>
             </div>
           </div>
         </div>
@@ -1933,7 +1936,7 @@
               <span class="optional">แนะนำ</span>
             </div>
             <input id="customerName" type="text" placeholder="เช่น @lineuser หรือ คุณสมชาย" autocomplete="name" maxlength="120">
-            <div class="hint">ใส่ชื่อ LINE หรือชื่อลูกค้า เพื่อช่วยให้ร้านค้นรายการย้อนหลังได้ง่าย</div>
+            <div class="hint">ใช้ช่วยค้นประวัติในภายหลัง</div>
           </div>
 
           <div class="field">
@@ -1942,7 +1945,7 @@
               <span class="required">จำเป็น</span>
             </div>
             <input id="email" type="email" placeholder="example@email.com" autocomplete="email" inputmode="email" maxlength="160">
-            <div class="validation-msg" id="emailValidation">กรอกอีเมลสำหรับค้นหารหัส OTP ล่าสุด</div>
+            <div class="validation-msg" id="emailValidation">กรอกอีเมลให้ถูกต้อง</div>
           </div>
 
           <div class="field pin-field" id="pinField">
@@ -1972,7 +1975,7 @@
             </div>
 
             <input id="device" type="text" placeholder="เช่น iPhone / Android / iPad / TV / Chrome" autocomplete="off" inputmode="text" maxlength="80">
-            <div class="validation-msg" id="deviceValidation">กรุณาระบุอุปกรณ์ที่ใช้งาน</div>
+            <div class="validation-msg" id="deviceValidation">ระบุอุปกรณ์ของลูกค้า</div>
 
             <div class="quick-device-wrap">
               <div class="quick-device-title">เลือกอุปกรณ์เร็ว</div>
@@ -2002,8 +2005,8 @@
               <button type="button" class="screen-btn" data-screen="6"><strong>6</strong><span>จอ</span></button>
             </div>
 
-            <div class="screen-note" id="screenSelectedNote">กรุณาเลือกหมายเลขจอให้ตรงกับรายการของลูกค้า</div>
-            <div class="empty-state" id="screenEmptyState">ยังไม่ได้เลือกหมายเลขจอ กดเลือกจอ 1–6 เพื่อไปต่อได้เลย ♡</div>
+            <div class="screen-note" id="screenSelectedNote">เลือกหมายเลขจอให้ตรงกับรายการของลูกค้า</div>
+            <div class="empty-state" id="screenEmptyState">ยังไม่ได้เลือกหมายเลขจอ</div>
           </div>
 
           <div class="step-actions">
@@ -2019,7 +2022,7 @@
               <span class="optional">ไม่บังคับ</span>
             </div>
 
-            <textarea id="customerNote" placeholder="เช่น ลูกค้าขอรอบที่ 2 / ใช้งานผ่าน TV / เปลี่ยนอุปกรณ์ / แจ้งปัญหาเข้าไม่ได้" maxlength="700"></textarea>
+            <textarea id="customerNote" placeholder="เช่น ขอรอบที่ 2 / ใช้งานผ่าน TV / เปลี่ยนอุปกรณ์ / แจ้งปัญหาเข้าไม่ได้" maxlength="700"></textarea>
             <div class="note-count" id="noteCount">0/700</div>
 
             <div class="quick-note-wrap">
@@ -2075,7 +2078,7 @@
           <div class="status" id="status">
             <div class="result-box" id="successBox">
               <div class="result-icon">✓</div>
-              <h3 class="result-title">สถานะการรับรหัส OTP</h3>
+              <h3 class="result-title">สถานะการค้นหารหัส</h3>
               <div class="result-message" id="successMessage">
                 ระบบบันทึกข้อมูลและตรวจสอบรหัส OTP แล้ว
               </div>
@@ -2083,7 +2086,7 @@
 
               <div class="success-ticket" id="successTicket">
                 <div class="ticket-row">
-                  <div class="ticket-key">สถานะ</div>
+                  <div class="ticket-key">ผลลัพธ์</div>
                   <div class="ticket-value" id="ticketStatus">กำลังตรวจสอบ</div>
                 </div>
                 <div class="ticket-row">
@@ -2091,13 +2094,13 @@
                   <div class="ticket-value" id="ticketRequestId">-</div>
                 </div>
                 <div class="ticket-row">
-                  <div class="ticket-key">OTP</div>
+                  <div class="ticket-key">รหัส</div>
                   <div class="ticket-value" id="ticketOtpStatus">รอผลการค้นหา</div>
                 </div>
               </div>
 
               <div class="otp-safe" id="otpSafeBox">
-                ยังไม่พบรหัส OTP ล่าสุด กรุณาตรวจสอบอีเมล หรือรอสักครู่แล้วลองใหม่อีกครั้ง
+                ยังไม่พบรหัสล่าสุด กรุณาตรวจสอบอีเมล หรือรอสักครู่แล้วลองใหม่
               </div>
 
               <div class="otp-box" id="otpBox">
@@ -2112,32 +2115,32 @@
               </div>
 
               <div class="copy-area">
-                <button class="btn-copy" onclick="copySummary()" type="button">คัดลอกสรุปคำขอ</button>
+                <button class="btn-copy" onclick="copySummary()" type="button">คัดลอกสรุป</button>
                 <button class="btn-copy" onclick="copyRequestId()" type="button">คัดลอกเลขคำขอ</button>
-                <button class="btn-retry" onclick="retryRequest()" type="button">ลองรับรหัสอีกครั้ง</button>
-                <button class="btn-reset" onclick="startNewRequest()" type="button">เริ่มรายการใหม่</button>
+                <button class="btn-retry" onclick="retryRequest()" type="button">ลองอีกครั้ง</button>
+                <button class="btn-reset" onclick="startNewRequest()" type="button">เริ่มใหม่</button>
               </div>
 
               <div class="mini-info">
-                <span>บันทึกข้อมูลการขอ OTP แล้ว</span>
-                <span>คัดลอกรหัสเพื่อส่งให้ลูกค้า</span>
+                <span>บันทึกประวัติแล้ว</span>
+                <span>ใช้รหัสกับรายการนี้เท่านั้น</span>
               </div>
             </div>
 
             <div class="error-box" id="errorBox">
               <strong>ยังรับรหัสไม่สำเร็จ</strong><br>
-              กรุณาตรวจสอบอินเทอร์เน็ต หรือรอสักครู่แล้วลองใหม่อีกครั้ง
+              ตรวจสอบอินเทอร์เน็ต แล้วลองใหม่อีกครั้ง
 
               <div class="copy-area">
-                <button class="btn-retry" onclick="retryRequest()" type="button">ลองรับรหัสอีกครั้ง</button>
-                <button class="btn-reset" onclick="startNewRequest()" type="button">เริ่มรายการใหม่</button>
+                <button class="btn-retry" onclick="retryRequest()" type="button">ลองอีกครั้ง</button>
+                <button class="btn-reset" onclick="startNewRequest()" type="button">เริ่มใหม่</button>
               </div>
             </div>
           </div>
         </div>
 
         <div class="privacy" id="autosaveText">
-          ระบบจะบันทึกข้อมูลการขอ OTP เพื่อใช้ตรวจสอบย้อนหลังและช่วยให้ร้านทำงานเป็นระเบียบมากขึ้น
+          ระบบบันทึกข้อมูลการขอ OTP เพื่อใช้ตรวจสอบย้อนหลัง
         </div>
       </div>
     </section>
@@ -2165,11 +2168,11 @@
 
     const SHOW_PIN_FIELD = false;
     const REQUEST_TIMEOUT_MS = 18000;
-    const DRAFT_KEY = 'lineOtpVerifyDraftV4LinePremium';
-    const HISTORY_KEY = 'lineOtpVerifyLatestHistoryV4';
-    const HISTORY_LIST_KEY = 'lineOtpVerifyLatestHistoryListV4';
-    const THEME_KEY = 'lineOtpVerifyThemeV4';
-    const SOUND_KEY = 'lineOtpVerifySoundV4';
+    const DRAFT_KEY = 'lineOtpVerifyDraftV5LinePremium';
+    const HISTORY_KEY = 'lineOtpVerifyLatestHistoryV5';
+    const HISTORY_LIST_KEY = 'lineOtpVerifyLatestHistoryListV5';
+    const THEME_KEY = 'lineOtpVerifyThemeV5';
+    const SOUND_KEY = 'lineOtpVerifySoundV5';
 
     let currentStep = 1;
     let selectedScreen = '';
@@ -2188,7 +2191,7 @@
 
     const loadingMessages = [
       'กำลังตรวจสอบข้อมูล...',
-      'กำลังค้นหาอีเมล OTP ล่าสุด...',
+      'กำลังค้นหาอีเมลล่าสุด...',
       'กำลังดึงรหัสยืนยัน...',
       'ใกล้เสร็จแล้ว...'
     ];
@@ -2321,24 +2324,24 @@
     function updateFormHeader() {
       if (currentStep === 1) {
         formTitle.textContent = 'ข้อมูลลูกค้า';
-        formSubtitle.textContent = 'กรอกชื่อ LINE และอีเมลสำหรับค้นหารหัส OTP';
+        formSubtitle.textContent = 'กรอกชื่อ LINE และอีเมลสำหรับค้นหา OTP';
         return;
       }
 
       if (currentStep === 2) {
         formTitle.textContent = 'อุปกรณ์และหมายเลขจอ';
-        formSubtitle.textContent = 'เลือกอุปกรณ์และจอที่ลูกค้าใช้งาน';
+        formSubtitle.textContent = 'เลือกข้อมูลที่ตรงกับรายการ';
         return;
       }
 
       if (currentStep === 3) {
-        formTitle.textContent = 'ตรวจสอบข้อมูล';
-        formSubtitle.textContent = 'ตรวจสอบข้อมูลก่อนรับรหัส OTP';
+        formTitle.textContent = 'ตรวจสอบก่อนส่ง';
+        formSubtitle.textContent = 'ยืนยันรายละเอียดให้ถูกต้อง';
         return;
       }
 
-      formTitle.textContent = 'สถานะ OTP';
-      formSubtitle.textContent = 'ดูรหัส OTP หรือเริ่มรายการใหม่ได้จากหน้านี้';
+      formTitle.textContent = 'ผลการค้นหารหัส';
+      formSubtitle.textContent = 'ดูผลลัพธ์หรือเริ่มรายการใหม่';
     }
 
     function scrollFormIntoView() {
@@ -2388,7 +2391,7 @@
       const device = deviceInput.value.trim();
 
       if (!device) {
-        showToast('กรุณาระบุอุปกรณ์ที่ใช้งาน');
+        showToast('กรุณาระบุอุปกรณ์');
         deviceInput.focus();
         validateRealtime();
         return;
@@ -2442,7 +2445,7 @@
       updateNoteCount();
       updateSummary();
       saveDraftSoon();
-      showToast('เพิ่มหมายเหตุ: ' + note);
+      showToast('เพิ่มหมายเหตุแล้ว');
     }
 
     function saveLatestHistory(requestId, otpStatusText) {
@@ -2545,7 +2548,7 @@
         localStorage.setItem(DRAFT_KEY, JSON.stringify(data));
         autosaveText.textContent = 'บันทึกแบบร่างอัตโนมัติแล้ว';
       } catch (err) {
-        autosaveText.textContent = 'ระบบจะบันทึกข้อมูลการขอ OTP เพื่อใช้ตรวจสอบย้อนหลัง';
+        autosaveText.textContent = 'ระบบบันทึกข้อมูลการขอ OTP เพื่อใช้ตรวจสอบย้อนหลัง';
       }
     }
 
@@ -2603,7 +2606,7 @@
       });
 
       if (screenSelectedNote) {
-        screenSelectedNote.textContent = 'กรุณาเลือกหมายเลขจอให้ตรงกับรายการของลูกค้า';
+        screenSelectedNote.textContent = 'เลือกหมายเลขจอให้ตรงกับรายการของลูกค้า';
         screenSelectedNote.classList.remove('active');
       }
 
@@ -2756,8 +2759,8 @@
       successMessage.textContent =
         message ||
         (hasOtp
-          ? 'พบรหัส OTP ล่าสุดแล้ว สามารถคัดลอกไปส่งให้ลูกค้าได้เลย'
-          : 'บันทึกข้อมูลเรียบร้อย แต่ยังไม่พบรหัส OTP ล่าสุด กรุณาตรวจสอบอีเมลหรือรอสักครู่แล้วลองใหม่');
+          ? 'พบรหัสล่าสุดแล้ว สามารถคัดลอกไปแจ้งลูกค้าได้'
+          : 'บันทึกข้อมูลเรียบร้อย แต่ยังไม่พบรหัสล่าสุด');
 
       requestIdBox.textContent = 'เลขคำขอ: ' + finalRequestId;
 
@@ -2773,11 +2776,11 @@
 
         if (otpExpireNote) {
           otpExpireNote.textContent =
-            'รหัสนี้มีอายุการใช้งาน ' + latestExpireMinutes + ' นาที ใช้สำหรับการยืนยันครั้งนี้เท่านั้น';
+            'รหัสนี้มีอายุการใช้งาน ' + latestExpireMinutes + ' นาที ใช้สำหรับรายการนี้เท่านั้น';
         }
 
         if (ticketOtpStatus) {
-          ticketOtpStatus.textContent = 'แสดงรหัส OTP บนหน้าเว็บแล้ว';
+          ticketOtpStatus.textContent = 'พร้อมคัดลอก';
         }
       } else {
         latestOtp = '';
@@ -2787,11 +2790,11 @@
         otpSafeBox.style.display = 'block';
 
         if (ticketOtpStatus) {
-          ticketOtpStatus.textContent = 'ยังไม่มี OTP จากระบบ';
+          ticketOtpStatus.textContent = 'ยังไม่มีรหัสจากระบบ';
         }
       }
 
-      showToast(hasOtp ? 'พบรหัส OTP แล้ว' : 'บันทึกข้อมูลแล้ว แต่ยังไม่พบ OTP');
+      showToast(hasOtp ? 'พบรหัสแล้ว' : 'บันทึกข้อมูลแล้ว');
     }
 
     function showError(message) {
@@ -2841,7 +2844,7 @@
       }
 
       if (!device) {
-        showToast('กรุณาระบุอุปกรณ์ที่ใช้งาน');
+        showToast('กรุณาระบุอุปกรณ์');
         goToStep(2);
         deviceInput.focus();
         validateRealtime();
@@ -2883,13 +2886,13 @@
         setLoading(false);
 
         if (!res) {
-          showError('ระบบไม่ตอบกลับ กรุณาลองใหม่อีกครั้ง');
+          showError('ระบบไม่ตอบกลับ กรุณาลองใหม่');
           return;
         }
 
         if (!res.ok || !res.otp) {
           showSuccess(
-            res.message || res.savedMessage || 'บันทึกข้อมูลเรียบร้อย แต่ยังไม่พบรหัส OTP ล่าสุด',
+            res.message || res.savedMessage || 'บันทึกข้อมูลแล้ว แต่ยังไม่พบรหัสล่าสุด',
             res.requestId || res.id || '',
             {
               otpFound: false,
@@ -2900,12 +2903,12 @@
             }
           );
 
-          showToast(res.message || 'ไม่พบรหัส OTP ล่าสุด');
+          showToast(res.message || 'ไม่พบรหัสล่าสุด');
           return;
         }
 
         showSuccess(
-          'พบรหัส OTP ล่าสุดแล้ว สามารถคัดลอกไปส่งให้ลูกค้าได้เลย',
+          'พบรหัสล่าสุดแล้ว สามารถคัดลอกไปแจ้งลูกค้าได้',
           res.requestId || res.id || '',
           {
             otpFound: true,
@@ -2916,10 +2919,10 @@
           }
         );
 
-        showToast('พบรหัส OTP แล้ว');
+        showToast('พบรหัสแล้ว');
       }, function() {
         setLoading(false);
-        showError('ไม่สามารถเชื่อมต่อระบบได้ กรุณาลองใหม่อีกครั้ง');
+        showError('ไม่สามารถเชื่อมต่อระบบได้');
       });
     }
 
@@ -2959,7 +2962,7 @@
       });
 
       if (screenSelectedNote) {
-        screenSelectedNote.textContent = 'กรุณาเลือกหมายเลขจอให้ตรงกับรายการของลูกค้า';
+        screenSelectedNote.textContent = 'เลือกหมายเลขจอให้ตรงกับรายการของลูกค้า';
         screenSelectedNote.classList.remove('active');
       }
 
@@ -3102,7 +3105,7 @@
 
     function copyOtp() {
       if (!latestOtp) {
-        showToast('ไม่มี OTP ให้คัดลอก');
+        showToast('ไม่มีรหัสให้คัดลอก');
         return;
       }
 
@@ -3179,14 +3182,14 @@
         emailInput,
         emailValidation,
         !email ? null : isEmail(email),
-        !email ? 'กรอกอีเมลสำหรับค้นหารหัส OTP ล่าสุด' : isEmail(email) ? 'อีเมลถูกต้อง' : 'รูปแบบอีเมลยังไม่ถูกต้อง'
+        !email ? 'กรอกอีเมลให้ถูกต้อง' : isEmail(email) ? 'อีเมลถูกต้อง' : 'รูปแบบอีเมลยังไม่ถูกต้อง'
       );
 
       setValidationState(
         deviceInput,
         deviceValidation,
         !device ? null : device.length >= 2,
-        !device ? 'กรุณาระบุอุปกรณ์ที่ใช้งาน' : device.length >= 2 ? 'ระบุอุปกรณ์แล้ว' : 'ชื่ออุปกรณ์สั้นเกินไป'
+        !device ? 'ระบุอุปกรณ์ของลูกค้า' : device.length >= 2 ? 'ระบุอุปกรณ์แล้ว' : 'ชื่ออุปกรณ์สั้นเกินไป'
       );
 
       if (screenEmptyState) {
@@ -3498,7 +3501,7 @@
         } else {
           deviceInput.value = deviceName;
           setQuickDeviceSelected(deviceName);
-          showToast('เลือกอุปกรณ์: ' + deviceName);
+          showToast('เลือกอุปกรณ์แล้ว');
         }
 
         updateSummary();
