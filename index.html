@@ -4,9 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#07162F">
-  <meta name="description" content="LINE OTP Verify - ระบบรับรหัส OTP สำหรับลูกค้า">
-
-  <title>LINE OTP Verify</title>
+  <meta name="description" content="LINE Verify Request - ระบบส่งคำขอตรวจสอบสำหรับลูกค้า">
+  <title>LINE Verify Request</title>
 
   <style>
     :root {
@@ -40,6 +39,8 @@
       color: var(--text);
       background: var(--bg);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Prompt", "Noto Sans Thai", sans-serif;
+      text-rendering: geometricPrecision;
+      -webkit-font-smoothing: antialiased;
     }
 
     body {
@@ -56,10 +57,11 @@
     .page {
       position: relative;
       min-height: 100dvh;
-      padding: max(18px, env(safe-area-inset-top)) 14px max(24px, env(safe-area-inset-bottom));
+      padding: max(20px, env(safe-area-inset-top)) 14px max(24px, env(safe-area-inset-bottom));
       display: flex;
       justify-content: center;
-      overflow: hidden;
+      overflow-x: hidden;
+      overflow-y: visible;
       background:
         radial-gradient(circle at 50% -8%, rgba(183,242,255,0.34), transparent 34%),
         radial-gradient(circle at 7% 14%, rgba(94,162,255,0.24), transparent 34%),
@@ -133,6 +135,7 @@
       font-weight: 1000;
       text-shadow: 0 0 22px rgba(183,242,255,0.50);
       animation: cuteFloat 4.8s ease-in-out infinite;
+      line-height: 1.4;
     }
 
     .cute.c1 { left: 8%; top: 16%; font-size: 16px; }
@@ -199,6 +202,7 @@
       font-size: 12px;
       font-weight: 1000;
       color: var(--dark);
+      line-height: 1;
     }
 
     .logo:after {
@@ -223,7 +227,9 @@
       font-size: 16px;
       font-weight: 1000;
       color: #FFFFFF;
-      white-space: nowrap;
+      line-height: 1.35;
+      overflow: visible;
+      white-space: normal;
     }
 
     .brand-sub {
@@ -231,7 +237,9 @@
       color: var(--sub);
       font-size: 12px;
       font-weight: 650;
-      white-space: nowrap;
+      line-height: 1.45;
+      overflow: visible;
+      white-space: normal;
     }
 
     .online {
@@ -250,6 +258,7 @@
       font-size: 12px;
       font-weight: 950;
       white-space: nowrap;
+      line-height: 1.35;
     }
 
     .online:before {
@@ -263,6 +272,7 @@
 
     .hero-main {
       max-width: 590px;
+      overflow: visible;
     }
 
     .eyebrow {
@@ -271,7 +281,7 @@
       align-items: center;
       gap: 8px;
       margin-bottom: 18px;
-      padding: 8px 13px;
+      padding: 9px 13px;
       border-radius: 999px;
       color: var(--cyan-soft);
       background: rgba(221,251,255,0.08);
@@ -279,29 +289,39 @@
       box-shadow: 0 12px 26px rgba(0,0,0,0.10);
       font-size: 12px;
       font-weight: 900;
+      line-height: 1.45;
       backdrop-filter: blur(14px);
+      white-space: normal;
     }
 
     .eyebrow:before {
       content: "♡";
       color: var(--pink);
+      line-height: 1;
     }
 
     h1 {
       margin: 0;
+      padding-top: 4px;
+      padding-bottom: 4px;
       color: #FFFFFF;
-      font-size: clamp(40px, 7vw, 74px);
-      line-height: 1;
-      letter-spacing: -2.5px;
+      font-size: clamp(38px, 6.8vw, 72px);
+      line-height: 1.12;
+      letter-spacing: -2.2px;
       font-weight: 1000;
+      overflow: visible;
+      text-wrap: balance;
     }
 
     .gradient-text {
       display: block;
+      padding-bottom: 3px;
       background: linear-gradient(135deg, #FFFFFF 8%, #DDFBFF 44%, #FFD7EA 78%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
+      line-height: 1.14;
+      overflow: visible;
     }
 
     .lead {
@@ -309,47 +329,9 @@
       max-width: 540px;
       color: var(--sub);
       font-size: 16px;
-      line-height: 1.86;
+      line-height: 1.9;
       font-weight: 540;
-    }
-
-    .hero-panel {
-      margin-top: 28px;
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
-      max-width: 560px;
-    }
-
-    .metric {
-      min-height: 96px;
-      padding: 15px;
-      border-radius: 24px;
-      background:
-        radial-gradient(circle at 18% 0%, rgba(221,251,255,0.14), transparent 34%),
-        radial-gradient(circle at 100% 28%, rgba(255,215,234,0.12), transparent 34%),
-        linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.045)),
-        rgba(255,255,255,0.045);
-      border: 1px solid rgba(255,255,255,0.12);
-      backdrop-filter: blur(18px);
-      box-shadow: 0 16px 34px rgba(0,0,0,0.16);
-    }
-
-    .metric strong {
-      display: block;
-      color: #FFFFFF;
-      font-size: 20px;
-      font-weight: 1000;
-      line-height: 1.15;
-    }
-
-    .metric span {
-      display: block;
-      margin-top: 7px;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.48;
-      font-weight: 650;
+      overflow: visible;
     }
 
     .latest-card {
@@ -363,8 +345,9 @@
       border: 1px solid rgba(164,255,212,0.18);
       color: rgba(255,255,255,0.82);
       font-size: 13px;
-      line-height: 1.55;
+      line-height: 1.65;
       box-shadow: 0 16px 34px rgba(0,0,0,0.12);
+      overflow-wrap: anywhere;
     }
 
     .latest-card strong {
@@ -375,7 +358,7 @@
       position: relative;
       border-radius: 34px;
       padding: 20px;
-      overflow: hidden;
+      overflow: visible;
       border: 1px solid rgba(255,215,234,0.18);
       background:
         radial-gradient(circle at 20% 0%, rgba(221,251,255,0.13), transparent 30%),
@@ -409,27 +392,30 @@
         radial-gradient(circle at 15% 0%, rgba(221,251,255,0.16), transparent 34%),
         linear-gradient(135deg, rgba(221,251,255,0.08), rgba(255,215,234,0.08)),
         rgba(255,255,255,0.05);
+      overflow: visible;
     }
 
     .form-head h2 {
       margin: 0;
       color: #FFFFFF;
       font-size: 18px;
-      line-height: 1.35;
+      line-height: 1.45;
       font-weight: 1000;
+      overflow: visible;
     }
 
     .form-head p {
       margin: 5px 0 0;
       color: var(--muted);
       font-size: 12px;
-      line-height: 1.62;
+      line-height: 1.7;
       font-weight: 540;
+      overflow: visible;
     }
 
     .secure-pill {
       flex: 0 0 auto;
-      padding: 7px 10px;
+      padding: 8px 10px;
       border-radius: 999px;
       color: var(--dark);
       background:
@@ -437,7 +423,9 @@
         linear-gradient(135deg, #DDFBFF, #FFFFFF 52%, #FFD7EA);
       font-size: 11px;
       font-weight: 950;
+      line-height: 1.25;
       box-shadow: 0 14px 26px rgba(255,215,234,0.16);
+      white-space: nowrap;
     }
 
     .stepper {
@@ -451,6 +439,7 @@
         linear-gradient(135deg, rgba(221,251,255,0.055), rgba(255,215,234,0.055)),
         rgba(255,255,255,0.045);
       border: 1px solid rgba(255,255,255,0.10);
+      overflow: visible;
     }
 
     .step-item {
@@ -461,12 +450,13 @@
       border: 1px solid transparent;
       transition: .18s ease;
       min-width: 0;
+      overflow: visible;
     }
 
     .step-number {
       width: 24px;
       height: 24px;
-      margin: 0 auto 5px;
+      margin: 0 auto 6px;
       border-radius: 999px;
       display: grid;
       place-items: center;
@@ -475,15 +465,17 @@
       color: rgba(255,255,255,0.72);
       background: rgba(255,255,255,0.085);
       border: 1px solid rgba(255,255,255,0.10);
+      line-height: 1;
     }
 
     .step-label {
       display: block;
       font-size: 10px;
       font-weight: 850;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      line-height: 1.35;
+      white-space: normal;
+      overflow: visible;
+      text-overflow: clip;
     }
 
     .step-item.active {
@@ -515,6 +507,7 @@
     .step-panel {
       display: none;
       animation: stepIn .24s ease both;
+      overflow: visible;
     }
 
     .step-panel.active {
@@ -528,6 +521,7 @@
 
     .field {
       margin-bottom: 14px;
+      overflow: visible;
     }
 
     .label {
@@ -539,6 +533,8 @@
       color: rgba(255,255,255,0.88);
       font-size: 13px;
       font-weight: 850;
+      line-height: 1.5;
+      overflow: visible;
     }
 
     .label-main {
@@ -546,6 +542,8 @@
       align-items: center;
       gap: 8px;
       min-width: 0;
+      line-height: 1.45;
+      overflow: visible;
     }
 
     .label-dot {
@@ -561,9 +559,10 @@
     .required {
       font-size: 11px;
       font-weight: 850;
-      padding: 4px 8px;
+      padding: 5px 8px;
       border-radius: 999px;
       white-space: nowrap;
+      line-height: 1.25;
     }
 
     .required {
@@ -593,18 +592,19 @@
       transition: .18s ease;
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
       backdrop-filter: blur(12px);
+      line-height: 1.55;
     }
 
     input {
-      height: 58px;
-      padding: 0 15px;
+      min-height: 58px;
+      padding: 13px 15px;
     }
 
     textarea {
-      min-height: 96px;
+      min-height: 104px;
       resize: vertical;
       padding: 14px 15px;
-      line-height: 1.55;
+      line-height: 1.65;
     }
 
     input::placeholder,
@@ -630,18 +630,11 @@
       margin: 8px 5px 0;
       color: var(--muted);
       font-size: 12px;
-      line-height: 1.55;
+      line-height: 1.65;
       font-weight: 520;
+      overflow: visible;
     }
 
-    .mini-tools {
-      margin-top: 10px;
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .mini-tool-btn,
     .quick-device-btn,
     .quick-note-btn {
       min-height: 38px;
@@ -660,11 +653,12 @@
       align-items: center;
       justify-content: center;
       gap: 6px;
-      padding: 0 12px;
+      padding: 8px 12px;
       width: auto;
+      line-height: 1.35;
+      overflow: visible;
     }
 
-    .mini-tool-btn:hover,
     .quick-device-btn:hover,
     .quick-note-btn:hover {
       transform: translateY(-2px);
@@ -685,6 +679,7 @@
       color: rgba(255,255,255,0.60);
       font-size: 12px;
       font-weight: 760;
+      line-height: 1.5;
     }
 
     .quick-device-grid,
@@ -692,6 +687,7 @@
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
+      overflow: visible;
     }
 
     .quick-device-btn.selected {
@@ -708,12 +704,14 @@
       color: rgba(255,255,255,0.46);
       font-size: 11px;
       font-weight: 760;
+      line-height: 1.4;
     }
 
     .screen-grid {
       display: grid;
       grid-template-columns: repeat(6, minmax(0, 1fr));
       gap: 8px;
+      overflow: visible;
     }
 
     button {
@@ -721,6 +719,7 @@
       border: none;
       cursor: pointer;
       transition: transform .15s ease, box-shadow .15s ease, background .15s ease, border-color .15s ease, opacity .15s ease;
+      line-height: 1.35;
     }
 
     button:active {
@@ -737,7 +736,6 @@
       position: relative;
       min-height: 60px;
       border-radius: 19px;
-      overflow: hidden;
       color: rgba(255,255,255,0.90);
       background:
         radial-gradient(circle at 50% 0%, rgba(255,255,255,0.13), transparent 48%),
@@ -749,8 +747,9 @@
       display: grid;
       place-items: center;
       gap: 2px;
-      padding: 7px 4px;
+      padding: 8px 4px;
       width: 100%;
+      overflow: visible;
     }
 
     .screen-btn:before {
@@ -761,11 +760,12 @@
       color: rgba(255,215,234,0.58);
       font-size: 10px;
       opacity: .8;
+      line-height: 1;
     }
 
     .screen-btn strong {
       font-size: 20px;
-      line-height: 1;
+      line-height: 1.15;
       font-weight: 1000;
     }
 
@@ -773,6 +773,7 @@
       color: rgba(255,255,255,0.48);
       font-size: 10px;
       font-weight: 850;
+      line-height: 1.2;
     }
 
     .screen-btn:hover {
@@ -806,9 +807,10 @@
       min-height: 22px;
       color: var(--muted);
       font-size: 12px;
-      line-height: 1.55;
+      line-height: 1.65;
       font-weight: 560;
       text-align: center;
+      overflow: visible;
     }
 
     .screen-note.active {
@@ -817,15 +819,11 @@
       width: fit-content;
       margin-left: auto;
       margin-right: auto;
-      padding: 7px 12px;
+      padding: 8px 12px;
       border-radius: 999px;
       background:
         linear-gradient(135deg, rgba(164,255,212,0.10), rgba(221,251,255,0.08));
       border: 1px solid rgba(164,255,212,0.22);
-    }
-
-    .pin-field {
-      display: none;
     }
 
     .summary-box {
@@ -837,6 +835,7 @@
         rgba(255,255,255,0.052);
       border: 1px solid rgba(255,255,255,0.12);
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+      overflow: visible;
     }
 
     .summary-title {
@@ -844,6 +843,7 @@
       color: #FFFFFF;
       font-size: 15px;
       font-weight: 950;
+      line-height: 1.5;
     }
 
     .summary-row {
@@ -853,7 +853,8 @@
       padding: 9px 0;
       border-bottom: 1px solid rgba(255,255,255,0.08);
       font-size: 13px;
-      line-height: 1.45;
+      line-height: 1.6;
+      overflow: visible;
     }
 
     .summary-row:last-child {
@@ -863,24 +864,27 @@
     .summary-key {
       color: rgba(255,255,255,0.50);
       font-weight: 760;
+      line-height: 1.6;
     }
 
     .summary-value {
       color: rgba(255,255,255,0.88);
       font-weight: 720;
       overflow-wrap: anywhere;
+      line-height: 1.6;
     }
 
     .step-actions {
       margin-top: 16px;
       display: flex;
       gap: 10px;
+      overflow: visible;
     }
 
     .btn-primary,
     .btn-secondary {
       position: relative;
-      overflow: hidden;
+      overflow: visible;
       min-height: 58px;
       border-radius: 22px;
       display: flex;
@@ -890,6 +894,9 @@
       font-size: 15px;
       font-weight: 950;
       width: 100%;
+      padding: 12px 14px;
+      line-height: 1.45;
+      text-align: center;
     }
 
     .btn-primary {
@@ -910,9 +917,11 @@
       content: "";
       position: absolute;
       inset: 0;
+      border-radius: inherit;
       transform: translateX(-120%);
       background: linear-gradient(90deg, transparent, rgba(221,251,255,0.20), transparent);
       transition: transform .55s ease;
+      pointer-events: none;
     }
 
     .btn-primary:not(:disabled):hover:before {
@@ -931,25 +940,16 @@
 
     .status {
       display: none;
-      margin-top: 18px;
-      padding-top: 16px;
-      border-top: 1px solid rgba(255,255,255,0.12);
+      margin-top: 4px;
+      padding-top: 6px;
+      overflow: visible;
     }
 
-    .save-ok {
-      display: none;
-      margin-bottom: 12px;
-      text-align: center;
-      color: rgba(217,255,233,0.96);
-      font-size: 13px;
-      font-weight: 850;
-      line-height: 1.5;
-    }
-
-    .otp-box {
+    .result-box {
       display: none;
       text-align: center;
       animation: resultIn .28s ease both;
+      overflow: visible;
     }
 
     @keyframes resultIn {
@@ -957,79 +957,87 @@
       to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
-    .status-title {
-      margin-bottom: 10px;
-      color: rgba(255,255,255,0.66);
-      font-size: 14px;
-      font-weight: 800;
+    .result-icon {
+      width: 68px;
+      height: 68px;
+      margin: 4px auto 14px;
+      border-radius: 25px;
+      display: grid;
+      place-items: center;
+      color: #06351F;
+      background:
+        radial-gradient(circle at 30% 20%, rgba(255,255,255,0.95), transparent 24%),
+        linear-gradient(135deg, #DDFBFF, #FFFFFF 52%, #A4FFD4);
+      font-size: 30px;
+      font-weight: 1000;
+      box-shadow:
+        0 18px 40px rgba(164,255,212,0.18),
+        0 0 0 8px rgba(164,255,212,0.06),
+        inset 0 1px 0 rgba(255,255,255,0.55);
+      line-height: 1;
     }
 
-    .otp-code {
+    .result-title {
+      margin: 0;
+      color: #FFFFFF;
+      font-size: 22px;
+      font-weight: 1000;
+      line-height: 1.45;
+      overflow: visible;
+    }
+
+    .result-message {
+      margin: 10px auto 0;
+      max-width: 360px;
+      color: rgba(255,255,255,0.74);
+      font-size: 14px;
+      line-height: 1.8;
+      font-weight: 560;
+      white-space: pre-line;
+      overflow: visible;
+    }
+
+    .request-id {
+      margin: 14px auto 0;
       width: fit-content;
       max-width: 100%;
-      margin: 6px auto 12px;
-      padding: 16px 20px 15px;
-      border-radius: 24px;
-      color: #FFFFFF;
-      font-size: clamp(40px, 11vw, 58px);
-      line-height: 1;
-      font-weight: 1000;
-      letter-spacing: 8px;
-      border: 1px solid rgba(255,215,234,0.35);
+      padding: 10px 13px;
+      border-radius: 999px;
+      color: rgba(255,255,255,0.88);
       background:
-        radial-gradient(circle at 20% 0%, rgba(221,251,255,0.13), transparent 30%),
-        linear-gradient(180deg, rgba(255,255,255,0.14), rgba(255,255,255,0.075)),
-        rgba(255,255,255,0.08);
-      box-shadow:
-        0 20px 44px rgba(0,0,0,0.20),
-        0 0 46px rgba(255,215,234,0.18),
-        inset 0 1px 0 rgba(255,255,255,0.17);
-      user-select: all;
+        linear-gradient(135deg, rgba(221,251,255,0.08), rgba(255,215,234,0.08)),
+        rgba(255,255,255,0.06);
+      border: 1px solid rgba(221,251,255,0.15);
+      font-size: 12px;
+      font-weight: 850;
+      line-height: 1.45;
       overflow-wrap: anywhere;
     }
 
-    .otp-note {
-      color: rgba(255,255,255,0.76);
-      font-size: 14px;
-      line-height: 1.65;
-      white-space: pre-line;
-      font-weight: 540;
-    }
-
     .copy-area {
-      margin-top: 16px;
+      margin-top: 18px;
       display: flex;
       justify-content: center;
       gap: 10px;
       flex-wrap: wrap;
+      overflow: visible;
     }
 
-    .btn-copy,
     .btn-reset,
     .btn-retry {
-      display: none;
+      display: flex;
       width: auto;
       min-width: 190px;
       min-height: 54px;
-      padding: 0 18px;
+      padding: 12px 18px;
       border-radius: 999px;
       font-size: 15px;
       font-weight: 950;
       align-items: center;
       justify-content: center;
       gap: 8px;
-    }
-
-    .btn-copy {
-      color: var(--dark);
-      background:
-        radial-gradient(circle at 20% 0%, rgba(255,255,255,0.95), transparent 24%),
-        linear-gradient(135deg, #DDFBFF, #FFFFFF 48%, #FFD7EA);
-      border: 1px solid rgba(255,215,234,0.34);
-      box-shadow:
-        0 18px 38px rgba(255,215,234,0.18),
-        0 0 0 6px rgba(221,251,255,0.06),
-        inset 0 1px 0 rgba(255,255,255,0.48);
+      line-height: 1.45;
+      text-align: center;
     }
 
     .btn-reset,
@@ -1041,12 +1049,6 @@
       border: 1px solid rgba(255,255,255,0.12);
     }
 
-    .btn-copy.copied {
-      color: #06351F;
-      background: var(--green);
-      border-color: var(--green);
-    }
-
     .mini-info {
       margin-top: 15px;
       display: flex;
@@ -1055,27 +1057,31 @@
       flex-wrap: wrap;
       color: rgba(255,255,255,0.58);
       font-size: 12px;
+      line-height: 1.45;
+      overflow: visible;
     }
 
     .mini-info span {
-      padding: 6px 10px;
+      padding: 7px 10px;
       border-radius: 999px;
       background: rgba(255,255,255,0.055);
       border: 1px solid rgba(255,215,234,0.13);
       font-weight: 680;
+      line-height: 1.45;
     }
 
-    .not-found {
+    .error-box {
       display: none;
       text-align: center;
       color: rgba(255,255,255,0.88);
       font-size: 15px;
       font-weight: 650;
       padding: 8px 4px;
-      line-height: 1.65;
+      line-height: 1.8;
+      overflow: visible;
     }
 
-    .not-found strong {
+    .error-box strong {
       color: var(--danger);
     }
 
@@ -1083,8 +1089,9 @@
       margin-top: 14px;
       color: rgba(255,255,255,0.48);
       font-size: 12px;
-      line-height: 1.65;
+      line-height: 1.75;
       text-align: center;
+      overflow: visible;
     }
 
     .toast {
@@ -1094,19 +1101,20 @@
       transform: translateX(-50%) translateY(20px);
       z-index: 80;
       max-width: calc(100vw - 28px);
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      overflow: visible;
+      white-space: normal;
       background: rgba(255,255,255,0.96);
       color: var(--dark);
       border-radius: 999px;
       padding: 12px 16px;
       font-size: 14px;
       font-weight: 850;
+      line-height: 1.45;
       box-shadow: 0 18px 42px rgba(0,0,0,0.24);
       opacity: 0;
       pointer-events: none;
       transition: .22s ease;
+      text-align: center;
     }
 
     .toast.show {
@@ -1140,6 +1148,7 @@
         radial-gradient(circle at 100% 24%, rgba(255,215,234,0.13), transparent 32%),
         rgba(8,20,43,0.88);
       box-shadow: 0 30px 90px rgba(0,0,0,0.40);
+      overflow: visible;
     }
 
     .loader-heart {
@@ -1156,6 +1165,7 @@
       font-size: 22px;
       font-weight: 1000;
       animation: loaderPulse 1.3s ease-in-out infinite;
+      line-height: 1;
     }
 
     @keyframes loaderPulse {
@@ -1168,12 +1178,13 @@
       font-size: 17px;
       font-weight: 950;
       margin-bottom: 7px;
+      line-height: 1.45;
     }
 
     .loading-message {
       color: var(--sub);
       font-size: 13px;
-      line-height: 1.65;
+      line-height: 1.75;
       font-weight: 560;
     }
 
@@ -1190,6 +1201,7 @@
       bottom: 20%;
       font-size: 17px;
       animation: confettiUp 1.15s ease-out forwards;
+      line-height: 1;
     }
 
     @keyframes confettiUp {
@@ -1229,13 +1241,10 @@
         font-size: 14px;
       }
 
-      .hero-panel {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        margin: 20px auto 0;
-      }
-
       h1 {
-        font-size: clamp(38px, 11vw, 58px);
+        font-size: clamp(36px, 10.5vw, 58px);
+        line-height: 1.15;
+        letter-spacing: -1.8px;
       }
     }
 
@@ -1245,26 +1254,80 @@
         padding-right: 12px;
       }
 
-      .brand-title { font-size: 14px; }
-      .brand-sub { font-size: 11px; }
+      .topbar {
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .brand {
+        align-items: center;
+        min-width: 0;
+      }
+
+      .brand-title { font-size: 14px; line-height: 1.45; }
+      .brand-sub { font-size: 11px; line-height: 1.55; }
       .online { padding: 8px 10px; font-size: 11px; }
       .logo { width: 46px; height: 46px; border-radius: 17px; }
-      .hero-panel { grid-template-columns: 1fr; }
-      .metric { min-height: auto; padding: 13px 14px; }
-      .form-card { padding: 16px; border-radius: 30px; }
-      .form-head { padding: 14px; border-radius: 22px; }
-      .secure-pill { display: none; }
-      .stepper { gap: 5px; padding: 6px; }
-      .step-item { padding: 8px 3px; border-radius: 15px; }
-      .step-label { font-size: 9px; }
-      .screen-grid { gap: 6px; }
-      .screen-btn { min-height: 56px; border-radius: 17px; }
-      .screen-btn strong { font-size: 18px; }
-      .summary-row { grid-template-columns: 94px minmax(0, 1fr); }
-      .step-actions { flex-direction: column; }
-      .btn-secondary { flex: 1; }
-      .otp-code { letter-spacing: 6px; padding-left: 16px; padding-right: 16px; }
-      .btn-copy, .btn-reset, .btn-retry { width: 100%; min-width: 0; }
+
+      .form-card {
+        padding: 16px;
+        border-radius: 30px;
+      }
+
+      .form-head {
+        padding: 14px;
+        border-radius: 22px;
+      }
+
+      .secure-pill {
+        display: none;
+      }
+
+      .stepper {
+        gap: 5px;
+        padding: 6px;
+      }
+
+      .step-item {
+        padding: 8px 3px;
+        border-radius: 15px;
+      }
+
+      .step-label {
+        font-size: 9px;
+        line-height: 1.35;
+      }
+
+      .screen-grid {
+        gap: 6px;
+      }
+
+      .screen-btn {
+        min-height: 56px;
+        border-radius: 17px;
+      }
+
+      .screen-btn strong {
+        font-size: 18px;
+      }
+
+      .summary-row {
+        grid-template-columns: 94px minmax(0, 1fr);
+      }
+
+      .step-actions {
+        flex-direction: column;
+      }
+
+      .btn-secondary {
+        flex: 1;
+      }
+
+      .btn-reset,
+      .btn-retry {
+        width: 100%;
+        min-width: 0;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1296,8 +1359,8 @@
           <div class="brand">
             <div class="logo" aria-hidden="true"></div>
             <div>
-              <div class="brand-title" id="brandTitle">LINE OTP Verify</div>
-              <div class="brand-sub" id="brandSub">ระบบรับรหัส OTP สำหรับลูกค้า</div>
+              <div class="brand-title" id="brandTitle">LINE Verify Request</div>
+              <div class="brand-sub" id="brandSub">ระบบส่งคำขอตรวจสอบสำหรับลูกค้า</div>
             </div>
           </div>
 
@@ -1308,30 +1371,13 @@
           <div class="eyebrow">LINE Customer Verification</div>
 
           <h1>
-            ระบบรับรหัส OTP
+            ระบบส่งคำขอ
             <span class="gradient-text">สำหรับร้านค้า</span>
           </h1>
 
           <p class="lead">
-            กรอกข้อมูลทีละขั้นตอน ระบบจะช่วยตรวจสอบข้อมูลก่อนขอรหัส OTP พร้อมบันทึกประวัติให้ร้านตรวจสอบย้อนหลังได้ง่าย
+            กรอกข้อมูลทีละขั้นตอน ระบบจะช่วยจัดระเบียบคำขอตรวจสอบของลูกค้าให้ร้านใช้งานง่าย ดูเป็นมืออาชีพ และบันทึกรายการล่าสุดไว้ให้ตรวจสอบย้อนหลัง
           </p>
-
-          <div class="hero-panel">
-            <div class="metric">
-              <strong>STEP</strong>
-              <span>กรอกทีละขั้น ไม่รก ใช้งานง่าย</span>
-            </div>
-
-            <div class="metric">
-              <strong>OTP</strong>
-              <span>ดึงรหัสล่าสุดจากอีเมลที่ลูกค้าแจ้ง</span>
-            </div>
-
-            <div class="metric">
-              <strong>LOG</strong>
-              <span>บันทึกข้อมูลลูกค้าและอุปกรณ์ครบถ้วน</span>
-            </div>
-          </div>
         </div>
 
         <div class="latest-card" id="latestCard">
@@ -1344,9 +1390,8 @@
         <div class="form-head">
           <div>
             <h2 id="formTitle">ข้อมูลลูกค้า</h2>
-            <p id="formSubtitle">กรอกชื่อ LINE และอีเมลสำหรับรับรหัส OTP</p>
+            <p id="formSubtitle">กรอกชื่อ LINE และอีเมลสำหรับส่งคำขอตรวจสอบ</p>
           </div>
-
           <div class="secure-pill">Verified</div>
         </div>
 
@@ -1365,34 +1410,27 @@
           </div>
           <div class="step-item" data-step-indicator="4">
             <div class="step-number">4</div>
-            <span class="step-label">OTP</span>
+            <span class="step-label">สถานะ</span>
           </div>
         </div>
 
+        <!-- STEP 1 -->
         <div class="step-panel active" data-step="1">
           <div class="field">
             <div class="label">
               <span class="label-main"><span class="label-dot"></span>ชื่อ LINE / ชื่อลูกค้า</span>
               <span class="optional">แนะนำ</span>
             </div>
-
             <input id="customerName" type="text" placeholder="เช่น @lineuser หรือ คุณสมชาย" autocomplete="name" maxlength="120">
-
             <div class="hint">ใส่ชื่อ LINE หรือชื่อลูกค้า เพื่อช่วยให้ร้านค้นรายการย้อนหลังได้ง่าย</div>
           </div>
 
           <div class="field">
             <div class="label">
-              <span class="label-main"><span class="label-dot"></span>อีเมลสำหรับรับรหัส</span>
+              <span class="label-main"><span class="label-dot"></span>อีเมลลูกค้า</span>
               <span class="required">จำเป็น</span>
             </div>
-
             <input id="email" type="email" placeholder="example@email.com" autocomplete="email" inputmode="email" maxlength="160">
-          </div>
-
-          <div class="mini-tools">
-            <button class="mini-tool-btn" type="button" onclick="fillDemoData()">กรอกตัวอย่างเร็ว</button>
-            <button class="mini-tool-btn" type="button" onclick="clearStep1()">ล้างขั้นนี้</button>
           </div>
 
           <div class="step-actions">
@@ -1402,6 +1440,7 @@
           </div>
         </div>
 
+        <!-- STEP 2 -->
         <div class="step-panel" data-step="2">
           <div class="field">
             <div class="label">
@@ -1442,10 +1481,6 @@
             <div class="screen-note" id="screenSelectedNote">กรุณาเลือกหมายเลขจอให้ตรงกับรายการของลูกค้า</div>
           </div>
 
-          <div class="mini-tools">
-            <button class="mini-tool-btn" type="button" onclick="clearStep2()">ล้างอุปกรณ์/จอ</button>
-          </div>
-
           <div class="step-actions">
             <button class="btn-secondary" type="button" onclick="goToStep(1)">ย้อนกลับ</button>
             <button class="btn-primary" type="button" onclick="goNextFromStep2()">
@@ -1454,6 +1489,7 @@
           </div>
         </div>
 
+        <!-- STEP 3 -->
         <div class="step-panel" data-step="3">
           <div class="field">
             <div class="label">
@@ -1462,7 +1498,6 @@
             </div>
 
             <textarea id="customerNote" placeholder="เช่น ลูกค้าขอรอบที่ 2 / ใช้งานผ่าน TV / เปลี่ยนอุปกรณ์ / แจ้งปัญหาเข้าไม่ได้" maxlength="700"></textarea>
-
             <div class="note-count" id="noteCount">0/700</div>
 
             <div class="quick-note-wrap">
@@ -1477,17 +1512,8 @@
             </div>
           </div>
 
-          <div class="field pin-field" id="pinField">
-            <div class="label">
-              <span class="label-main"><span class="label-dot"></span>PIN สำหรับเข้าใช้งาน</span>
-              <span class="required">ส่วนตัว</span>
-            </div>
-
-            <input id="pin" type="password" placeholder="กรอก PIN หากระบบกำหนดไว้" autocomplete="off" maxlength="80">
-          </div>
-
           <div class="summary-box">
-            <p class="summary-title">ตรวจสอบข้อมูลก่อนขอ OTP</p>
+            <p class="summary-title">ตรวจสอบข้อมูลก่อนส่งคำขอ</p>
 
             <div class="summary-row">
               <div class="summary-key">ชื่อ LINE</div>
@@ -1517,49 +1543,48 @@
 
           <div class="step-actions">
             <button class="btn-secondary" type="button" onclick="goToStep(2)">ย้อนกลับ</button>
-            <button class="btn-primary" id="checkBtn" onclick="checkOtp()" type="button">
-              <span id="btnText">รับรหัส OTP</span>
+            <button class="btn-primary" id="submitBtn" onclick="submitRequest()" type="button">
+              <span id="btnText">ส่งคำขอตรวจสอบ</span>
             </button>
           </div>
         </div>
 
+        <!-- STEP 4 -->
         <div class="step-panel" data-step="4">
           <div class="status" id="status">
-            <div class="save-ok" id="saveOk">บันทึกข้อมูลเรียบร้อย</div>
-
-            <div class="otp-box" id="otpBox">
-              <div class="status-title">รหัสยืนยันล่าสุด</div>
-              <div class="otp-code" id="otpCode"></div>
-              <div class="otp-note" id="otpNote"></div>
+            <div class="result-box" id="successBox">
+              <div class="result-icon">✓</div>
+              <h3 class="result-title">ส่งคำขอเรียบร้อยแล้ว</h3>
+              <div class="result-message" id="successMessage">
+                ร้านได้รับข้อมูลแล้ว กรุณาดำเนินการยืนยันผ่านช่องทางที่ถูกต้องและปลอดภัย
+              </div>
+              <div class="request-id" id="requestIdBox">เลขคำขอ: -</div>
 
               <div class="copy-area">
-                <button class="btn-copy" id="copyBtn" onclick="copyOtp()" type="button">
-                  <span id="copyBtnText">คัดลอกรหัส OTP</span>
-                </button>
-                <button class="btn-retry" id="retryBtn" onclick="retryOtp()" type="button">ขอรหัสอีกครั้ง</button>
+                <button class="btn-retry" id="retryBtn" onclick="retryRequest()" type="button">ส่งคำขออีกครั้ง</button>
                 <button class="btn-reset" id="resetBtn" onclick="startNewRequest()" type="button">เริ่มรายการใหม่</button>
               </div>
 
               <div class="mini-info">
-                <span>รหัสมีอายุ 15 นาที</span>
-                <span>ใช้สำหรับการยืนยันครั้งนี้เท่านั้น</span>
+                <span>ไม่แสดงรหัสลับบนหน้าเว็บ</span>
+                <span>บันทึกรายการเพื่อใช้ตรวจสอบย้อนหลัง</span>
               </div>
             </div>
 
-            <div class="not-found" id="notFound">
-              <strong>ไม่พบรหัส OTP ล่าสุด</strong><br>
-              กรุณาตรวจสอบอีเมล หรือรอสักครู่แล้วลองใหม่อีกครั้ง
+            <div class="error-box" id="errorBox">
+              <strong>ยังส่งคำขอไม่สำเร็จ</strong><br>
+              กรุณาตรวจสอบอินเทอร์เน็ต หรือรอสักครู่แล้วลองใหม่อีกครั้ง
 
               <div class="copy-area">
-                <button class="btn-retry" id="notFoundRetryBtn" onclick="retryOtp()" type="button">ลองค้นหาอีกครั้ง</button>
-                <button class="btn-reset" id="notFoundResetBtn" onclick="startNewRequest()" type="button">เริ่มรายการใหม่</button>
+                <button class="btn-retry" id="errorRetryBtn" onclick="retryRequest()" type="button">ลองส่งอีกครั้ง</button>
+                <button class="btn-reset" id="errorResetBtn" onclick="startNewRequest()" type="button">เริ่มรายการใหม่</button>
               </div>
             </div>
           </div>
         </div>
 
         <div class="privacy">
-          ระบบจะบันทึกข้อมูลการขอ OTP เพื่อใช้ตรวจสอบย้อนหลังและเพิ่มความเป็นระเบียบให้ร้าน
+          ระบบจะบันทึกข้อมูลการส่งคำขอ เพื่อใช้ตรวจสอบย้อนหลังและช่วยให้ร้านทำงานเป็นระเบียบมากขึ้น
         </div>
       </div>
     </section>
@@ -1568,8 +1593,8 @@
   <div class="loading-overlay" id="loadingOverlay">
     <div class="loading-card">
       <div class="loader-heart">♡</div>
-      <div class="loading-title">กำลังค้นหา OTP</div>
-      <div class="loading-message" id="loadingMessage">กำลังตรวจสอบอีเมล...</div>
+      <div class="loading-title">กำลังส่งคำขอ</div>
+      <div class="loading-message" id="loadingMessage">กำลังตรวจสอบข้อมูล...</div>
     </div>
   </div>
 
@@ -1580,64 +1605,48 @@
     /************************************************************
      * CONFIG
      ************************************************************/
-
     const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwe24EQaOFwra5jexOMg7VY5yskHBlbnqEW2E2VP35IMVfJERqY3tge-YHJt-iKvpF8kA/exec';
 
-    const SHOP_LINE_NAME = 'LINE OTP Verify';
-    const SHOP_SUBTITLE = 'ระบบรับรหัส OTP สำหรับลูกค้า';
-
-    const SHOW_PIN_FIELD = false;
+    const SHOP_LINE_NAME = 'LINE Verify Request';
+    const SHOP_SUBTITLE = 'ระบบส่งคำขอตรวจสอบสำหรับลูกค้า';
     const REQUEST_TIMEOUT_MS = 18000;
 
     /************************************************************
      * STATE
      ************************************************************/
-
     let currentStep = 1;
-    let latestOtp = '';
     let selectedScreen = '';
     let selectedDeviceQuick = '';
     let jsonpCounter = 0;
-    let copyResetTimer = null;
     let toastTimer = null;
     let loadingTextTimer = null;
     let loadingTextIndex = 0;
 
     const loadingMessages = [
-      'กำลังตรวจสอบอีเมล...',
-      'กำลังค้นหารหัสล่าสุด...',
-      'กำลังคัดเฉพาะเมล OTP...',
+      'กำลังตรวจสอบข้อมูล...',
+      'กำลังจัดรูปแบบคำขอ...',
+      'กำลังส่งข้อมูลให้ระบบ...',
       'ใกล้เสร็จแล้ว...'
     ];
 
     /************************************************************
      * ELEMENTS
      ************************************************************/
-
     const app = document.getElementById('app');
+
     const customerNameInput = document.getElementById('customerName');
     const emailInput = document.getElementById('email');
     const deviceInput = document.getElementById('device');
     const customerNoteInput = document.getElementById('customerNote');
-    const pinInput = document.getElementById('pin');
-    const pinField = document.getElementById('pinField');
 
-    const checkBtn = document.getElementById('checkBtn');
+    const submitBtn = document.getElementById('submitBtn');
     const btnText = document.getElementById('btnText');
 
     const statusBox = document.getElementById('status');
-    const saveOk = document.getElementById('saveOk');
-    const otpBox = document.getElementById('otpBox');
-    const otpCode = document.getElementById('otpCode');
-    const otpNote = document.getElementById('otpNote');
-    const notFound = document.getElementById('notFound');
-
-    const copyBtn = document.getElementById('copyBtn');
-    const copyBtnText = document.getElementById('copyBtnText');
-    const retryBtn = document.getElementById('retryBtn');
-    const resetBtn = document.getElementById('resetBtn');
-    const notFoundRetryBtn = document.getElementById('notFoundRetryBtn');
-    const notFoundResetBtn = document.getElementById('notFoundResetBtn');
+    const successBox = document.getElementById('successBox');
+    const errorBox = document.getElementById('errorBox');
+    const successMessage = document.getElementById('successMessage');
+    const requestIdBox = document.getElementById('requestIdBox');
 
     const toast = document.getElementById('toast');
     const loadingOverlay = document.getElementById('loadingOverlay');
@@ -1651,6 +1660,7 @@
 
     const brandTitle = document.getElementById('brandTitle');
     const brandSub = document.getElementById('brandSub');
+
     const formTitle = document.getElementById('formTitle');
     const formSubtitle = document.getElementById('formSubtitle');
 
@@ -1667,13 +1677,8 @@
     /************************************************************
      * INIT
      ************************************************************/
-
-    brandTitle.textContent = SHOP_LINE_NAME || 'LINE OTP Verify';
-    brandSub.textContent = SHOP_SUBTITLE || 'ระบบรับรหัส OTP สำหรับลูกค้า';
-
-    if (SHOW_PIN_FIELD) {
-      pinField.style.display = 'block';
-    }
+    brandTitle.textContent = SHOP_LINE_NAME || 'LINE Verify Request';
+    brandSub.textContent = SHOP_SUBTITLE || 'ระบบส่งคำขอตรวจสอบสำหรับลูกค้า';
 
     loadLatestHistory();
     updateNoteCount();
@@ -1682,7 +1687,6 @@
     /************************************************************
      * STEP CONTROL
      ************************************************************/
-
     function goToStep(step) {
       currentStep = Number(step || 1);
 
@@ -1719,7 +1723,7 @@
     function updateFormHeader() {
       if (currentStep === 1) {
         formTitle.textContent = 'ข้อมูลลูกค้า';
-        formSubtitle.textContent = 'กรอกชื่อ LINE และอีเมลสำหรับรับรหัส OTP';
+        formSubtitle.textContent = 'กรอกชื่อ LINE และอีเมลสำหรับส่งคำขอตรวจสอบ';
         return;
       }
 
@@ -1731,12 +1735,12 @@
 
       if (currentStep === 3) {
         formTitle.textContent = 'ตรวจสอบข้อมูล';
-        formSubtitle.textContent = 'ตรวจสอบข้อมูลก่อนกดรับรหัส OTP';
+        formSubtitle.textContent = 'ตรวจสอบข้อมูลก่อนส่งคำขอ';
         return;
       }
 
-      formTitle.textContent = 'ผลลัพธ์ OTP';
-      formSubtitle.textContent = 'คัดลอกรหัสหรือเริ่มรายการใหม่ได้จากหน้านี้';
+      formTitle.textContent = 'สถานะคำขอ';
+      formSubtitle.textContent = 'ดูสถานะหรือเริ่มรายการใหม่ได้จากหน้านี้';
     }
 
     function scrollFormIntoView() {
@@ -1801,43 +1805,6 @@
     /************************************************************
      * SMALL FEATURES
      ************************************************************/
-
-    function fillDemoData() {
-      if (!customerNameInput.value.trim()) customerNameInput.value = '@lineuser';
-      if (!emailInput.value.trim()) emailInput.value = 'example@email.com';
-      showToast('กรอกตัวอย่างแล้ว');
-      updateSummary();
-    }
-
-    function clearStep1() {
-      customerNameInput.value = '';
-      emailInput.value = '';
-      updateSummary();
-      showToast('ล้างข้อมูลลูกค้าแล้ว');
-      customerNameInput.focus();
-    }
-
-    function clearStep2() {
-      deviceInput.value = '';
-      selectedScreen = '';
-      selectedDeviceQuick = '';
-
-      screenButtons.forEach(function(btn) {
-        btn.classList.remove('selected');
-      });
-
-      quickDeviceButtons.forEach(function(btn) {
-        btn.classList.remove('selected');
-      });
-
-      screenSelectedNote.textContent = 'กรุณาเลือกหมายเลขจอให้ตรงกับรายการของลูกค้า';
-      screenSelectedNote.classList.remove('active');
-
-      updateSummary();
-      showToast('ล้างอุปกรณ์และจอแล้ว');
-      deviceInput.focus();
-    }
-
     function updateNoteCount() {
       const len = customerNoteInput.value.length;
       noteCount.textContent = len + '/700';
@@ -1863,7 +1830,7 @@
       const text = customerName + ' / ' + device + ' / ' + screen + ' / ' + time;
 
       try {
-        localStorage.setItem('lineOtpLatestHistory', text);
+        localStorage.setItem('lineVerifyLatestHistory', text);
       } catch (err) {}
 
       latestText.textContent = text;
@@ -1872,7 +1839,8 @@
 
     function loadLatestHistory() {
       try {
-        const text = localStorage.getItem('lineOtpLatestHistory');
+        const text = localStorage.getItem('lineVerifyLatestHistory');
+
         if (text) {
           latestText.textContent = text;
           latestCard.style.display = 'block';
@@ -1894,6 +1862,7 @@
 
       for (let i = 0; i < count; i++) {
         const el = document.createElement('div');
+
         el.className = 'confetti-piece';
         el.textContent = pieces[Math.floor(Math.random() * pieces.length)];
         el.style.left = (18 + Math.random() * 64) + '%';
@@ -1912,7 +1881,6 @@
     /************************************************************
      * LOADING
      ************************************************************/
-
     function showLoadingOverlay() {
       loadingTextIndex = 0;
       loadingMessage.textContent = loadingMessages[0];
@@ -1940,49 +1908,29 @@
     function setLoading(isLoading) {
       if (isLoading) {
         app.classList.add('loading');
-        btnText.textContent = 'กำลังค้นหารหัส...';
-        checkBtn.disabled = true;
+        btnText.textContent = 'กำลังส่งคำขอ...';
+        submitBtn.disabled = true;
         showLoadingOverlay();
         return;
       }
 
       app.classList.remove('loading');
-      btnText.textContent = 'รับรหัส OTP';
-      checkBtn.disabled = false;
+      btnText.textContent = 'ส่งคำขอตรวจสอบ';
+      submitBtn.disabled = false;
       hideLoadingOverlay();
     }
 
     /************************************************************
      * RESULT UI
      ************************************************************/
-
     function resetResult() {
-      latestOtp = '';
       statusBox.style.display = 'none';
-      saveOk.style.display = 'none';
-      otpBox.style.display = 'none';
-      notFound.style.display = 'none';
-
-      otpCode.textContent = '';
-      otpNote.textContent = '';
-
-      copyBtn.style.display = 'none';
-      retryBtn.style.display = 'none';
-      resetBtn.style.display = 'none';
-      notFoundRetryBtn.style.display = 'none';
-      notFoundResetBtn.style.display = 'none';
-
-      resetCopyButton();
+      successBox.style.display = 'none';
+      errorBox.style.display = 'none';
+      requestIdBox.textContent = 'เลขคำขอ: -';
     }
 
-    function showSaved(message) {
-      statusBox.style.display = 'block';
-      saveOk.style.display = 'block';
-      saveOk.textContent = message || 'บันทึกข้อมูลเรียบร้อย';
-    }
-
-    function showOtp(otp, expireMinutes, savedMessage) {
-      latestOtp = String(otp || '').trim();
+    function showSuccess(message, requestId) {
       saveLatestHistory();
       vibrateSuccess();
       launchConfetti();
@@ -1990,75 +1938,30 @@
       goToStep(4);
 
       statusBox.style.display = 'block';
-      saveOk.style.display = 'block';
-      saveOk.textContent = savedMessage || 'บันทึกข้อมูลเรียบร้อย';
+      successBox.style.display = 'block';
+      errorBox.style.display = 'none';
 
-      otpBox.style.display = 'block';
-      notFound.style.display = 'none';
+      successMessage.textContent =
+        message ||
+        'ร้านได้รับข้อมูลแล้ว กรุณาดำเนินการยืนยันผ่านช่องทางที่ถูกต้องและปลอดภัย';
 
-      otpCode.textContent = latestOtp;
-      otpNote.textContent =
-        'รหัสนี้มีอายุการใช้งาน ' + (expireMinutes || 15) + ' นาที\n' +
-        'ระบบได้บันทึกข้อมูลการขอรหัสเรียบร้อยแล้ว';
+      requestIdBox.textContent = 'เลขคำขอ: ' + (requestId || createLocalRequestId());
 
-      copyBtn.style.display = 'flex';
-      retryBtn.style.display = 'flex';
-      resetBtn.style.display = 'flex';
-
-      notFoundRetryBtn.style.display = 'none';
-      notFoundResetBtn.style.display = 'none';
-
-      resetCopyButton();
+      showToast('ส่งคำขอเรียบร้อยแล้ว');
     }
 
-    function showNotFound(savedMessage) {
-      latestOtp = '';
-
+    function showError(message) {
       goToStep(4);
 
       statusBox.style.display = 'block';
+      successBox.style.display = 'none';
+      errorBox.style.display = 'block';
 
-      if (savedMessage) {
-        saveOk.style.display = 'block';
-        saveOk.textContent = savedMessage;
+      if (message) {
+        showToast(message);
       } else {
-        saveOk.style.display = 'none';
+        showToast('ยังส่งคำขอไม่สำเร็จ');
       }
-
-      otpBox.style.display = 'none';
-      notFound.style.display = 'block';
-
-      copyBtn.style.display = 'none';
-      retryBtn.style.display = 'none';
-      resetBtn.style.display = 'none';
-
-      notFoundRetryBtn.style.display = 'flex';
-      notFoundResetBtn.style.display = 'flex';
-
-      resetCopyButton();
-    }
-
-    function resetCopyButton() {
-      if (copyResetTimer) {
-        clearTimeout(copyResetTimer);
-        copyResetTimer = null;
-      }
-
-      copyBtn.classList.remove('copied');
-      copyBtnText.textContent = 'คัดลอกรหัส OTP';
-    }
-
-    function setCopyButtonCopied() {
-      copyBtn.classList.add('copied');
-      copyBtnText.textContent = 'คัดลอกแล้ว';
-
-      if (copyResetTimer) {
-        clearTimeout(copyResetTimer);
-      }
-
-      copyResetTimer = setTimeout(function() {
-        resetCopyButton();
-      }, 2200);
     }
 
     function updateSummary() {
@@ -2075,21 +1978,18 @@
     }
 
     /************************************************************
-     * OTP ACTION
+     * SUBMIT ACTION
      ************************************************************/
-
-    function checkOtp() {
+    function submitRequest() {
       const customerName = customerNameInput.value.trim();
       const email = emailInput.value.trim();
       const device = deviceInput.value.trim();
       const customerNote = customerNoteInput.value.trim();
-      const pin = pinInput.value.trim();
 
       resetResult();
 
       if (!WEB_APP_URL || WEB_APP_URL.indexOf('ใส่_GOOGLE_APPS_SCRIPT') !== -1) {
-        showNotFound('');
-        showToast('กรุณาตั้งค่า WEB_APP_URL ก่อนใช้งาน');
+        showError('กรุณาตั้งค่า WEB_APP_URL ก่อนใช้งาน');
         return;
       }
 
@@ -2113,17 +2013,10 @@
         return;
       }
 
-      if (SHOW_PIN_FIELD && !pin) {
-        showToast('กรุณากรอก PIN');
-        goToStep(3);
-        pinInput.focus();
-        return;
-      }
-
       setLoading(true);
 
       jsonpRequest({
-        action: 'otp',
+        action: 'verification_request',
         customerName: customerName,
         email: email,
         device: device,
@@ -2132,46 +2025,40 @@
         userAgent: navigator.userAgent || '',
         pageUrl: window.location.href || '',
         referrer: document.referrer || '',
-        pin: pin
+        submittedAt: new Date().toISOString()
       }, function(res) {
         setLoading(false);
 
-        if (res && res.saved) {
-          showSaved(res.savedMessage || 'บันทึกข้อมูลเรียบร้อย');
-        }
-
-        if (!res || !res.ok || !res.otp) {
-          showNotFound(res && res.savedMessage ? res.savedMessage : 'บันทึกข้อมูลเรียบร้อย');
-
-          if (res && res.message) {
-            showToast(res.message);
-          } else {
-            showToast('ไม่พบรหัส OTP ล่าสุด');
-          }
-
+        if (!res) {
+          showError('ระบบไม่ตอบกลับ กรุณาลองใหม่อีกครั้ง');
           return;
         }
 
-        showOtp(res.otp, res.expireMinutes || 15, res.savedMessage || 'บันทึกข้อมูลเรียบร้อย');
-        showToast('พบรหัส OTP แล้ว');
+        if (res.ok || res.saved) {
+          showSuccess(
+            res.message || res.savedMessage || 'บันทึกคำขอเรียบร้อยแล้ว ร้านสามารถตรวจสอบรายการนี้ต่อได้',
+            res.requestId || res.id || ''
+          );
+          return;
+        }
+
+        showError(res.message || 'ยังส่งคำขอไม่สำเร็จ กรุณาลองใหม่อีกครั้ง');
       }, function() {
         setLoading(false);
-        showNotFound('');
-        showToast('ไม่สามารถเชื่อมต่อระบบได้ กรุณาลองใหม่อีกครั้ง');
+        showError('ไม่สามารถเชื่อมต่อระบบได้ กรุณาลองใหม่อีกครั้ง');
       });
     }
 
-    function retryOtp() {
+    function retryRequest() {
       resetResult();
       goToStep(3);
 
       setTimeout(function() {
-        checkOtp();
-      }, 120);
+        submitRequest();
+      }, 150);
     }
 
     function startNewRequest() {
-      latestOtp = '';
       selectedScreen = '';
       selectedDeviceQuick = '';
 
@@ -2179,7 +2066,6 @@
       emailInput.value = '';
       deviceInput.value = '';
       customerNoteInput.value = '';
-      pinInput.value = '';
 
       screenButtons.forEach(function(btn) {
         btn.classList.remove('selected');
@@ -2197,15 +2083,15 @@
       updateNoteCount();
       resetResult();
       goToStep(1);
+
       showToast('เริ่มรายการใหม่แล้ว');
     }
 
     /************************************************************
      * JSONP
      ************************************************************/
-
     function jsonpRequest(params, onSuccess, onError) {
-      const callbackName = '__otpCallback_' + Date.now() + '_' + (++jsonpCounter);
+      const callbackName = '__verifyCallback_' + Date.now() + '_' + (++jsonpCounter);
       const script = document.createElement('script');
 
       params.callback = callbackName;
@@ -2273,56 +2159,8 @@
     }
 
     /************************************************************
-     * COPY OTP
-     ************************************************************/
-
-    function copyOtp() {
-      if (!latestOtp) return;
-
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(latestOtp)
-          .then(function() {
-            setCopyButtonCopied();
-            showToast('คัดลอกรหัส OTP แล้ว');
-          })
-          .catch(function() {
-            fallbackCopy(latestOtp);
-          });
-
-        return;
-      }
-
-      fallbackCopy(latestOtp);
-    }
-
-    function fallbackCopy(text) {
-      const area = document.createElement('textarea');
-
-      area.value = text;
-      area.setAttribute('readonly', '');
-      area.style.position = 'fixed';
-      area.style.left = '-9999px';
-      area.style.top = '-9999px';
-
-      document.body.appendChild(area);
-      area.focus();
-      area.select();
-
-      try {
-        document.execCommand('copy');
-        setCopyButtonCopied();
-        showToast('คัดลอกรหัส OTP แล้ว');
-      } catch (e) {
-        showToast('ไม่สามารถคัดลอกรหัสได้');
-      }
-
-      document.body.removeChild(area);
-    }
-
-    /************************************************************
      * UTIL
      ************************************************************/
-
     function showToast(message) {
       toast.textContent = message || 'เรียบร้อย';
       toast.classList.add('show');
@@ -2363,10 +2201,21 @@
       });
     }
 
+    function createLocalRequestId() {
+      const d = new Date();
+      const y = String(d.getFullYear()).slice(-2);
+      const m = String(d.getMonth() + 1).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      const h = String(d.getHours()).padStart(2, '0');
+      const min = String(d.getMinutes()).padStart(2, '0');
+      const rand = Math.floor(Math.random() * 900 + 100);
+
+      return 'REQ-' + y + m + day + '-' + h + min + '-' + rand;
+    }
+
     /************************************************************
      * EVENTS
      ************************************************************/
-
     screenButtons.forEach(function(btn) {
       btn.addEventListener('click', function() {
         selectedScreen = btn.getAttribute('data-screen') || '';
@@ -2412,7 +2261,7 @@
       });
     });
 
-    [customerNameInput, emailInput, deviceInput, customerNoteInput, pinInput].forEach(function(input) {
+    [customerNameInput, emailInput, deviceInput, customerNoteInput].forEach(function(input) {
       input.addEventListener('input', function() {
         if (input === deviceInput) {
           clearQuickDeviceSelectedIfManualChange();
@@ -2432,7 +2281,7 @@
           } else if (currentStep === 2) {
             goNextFromStep2();
           } else if (currentStep === 3) {
-            checkOtp();
+            submitRequest();
           }
         }
       });
