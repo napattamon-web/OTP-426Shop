@@ -329,14 +329,15 @@
     h1 {
       margin: 0;
       color: #FFFFFF;
-      font-size: clamp(40px, 6.4vw, 72px);
+      font-size: clamp(34px, 5.4vw, 62px);
       line-height: 1.08;
       letter-spacing: -2px;
       font-weight: 1000;
+      white-space: nowrap;
     }
 
     .gradient-text {
-      display: block;
+      display: inline;
       background: linear-gradient(135deg, #FFFFFF 8%, var(--cyan2) 42%, var(--pink) 76%, var(--purple) 100%);
       -webkit-background-clip: text;
       background-clip: text;
@@ -1282,7 +1283,8 @@
       }
 
       h1 {
-        font-size: clamp(34px, 10vw, 58px);
+        font-size: clamp(30px, 8.5vw, 52px);
+        letter-spacing: -1.4px;
       }
 
       .hero-playground {
@@ -1342,9 +1344,10 @@
       }
 
       h1 {
-        font-size: 28px;
+        font-size: clamp(25px, 7.2vw, 31px);
         line-height: 1.15;
         letter-spacing: -1px;
+        white-space: nowrap;
       }
 
       .lead {
@@ -1495,6 +1498,13 @@
       }
     }
 
+    @media (max-width: 360px) {
+      h1 {
+        font-size: 23px;
+        letter-spacing: -.8px;
+      }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       *,
       *:before,
@@ -1532,8 +1542,7 @@
         <div class="hero-main">
           <div class="badge">รับรหัส</div>
           <h1>
-            รับรหัส
-            <span class="gradient-text">ดิสนีย์</span>
+            รับรหัส<span class="gradient-text">ดิสนีย์</span>
           </h1>
           <p class="lead">
             กรอกข้อมูลให้ตรงรายการ แล้วรับรหัส OTP ได้ทันที
@@ -1609,26 +1618,26 @@
 
           <div class="guide-panel">
             <div class="guide-title">
-              ขั้นตอนสั้น ๆ
-              <span>กรอกให้ตรงรายการ</span>
+              วิธีใช้
+              <span>หน้าหลัก</span>
             </div>
 
             <div class="hero-mini">
               <div class="hero-chip">
                 <div class="hero-chip-icon">1</div>
-                <strong>ชื่อ LINE</strong>
+                <strong>กรอกชื่อ LINE</strong>
                 <span>ต้องตรงรายการ</span>
               </div>
 
               <div class="hero-chip">
                 <div class="hero-chip-icon">2</div>
-                <strong>อีเมล</strong>
+                <strong>กรอกอีเมล</strong>
                 <span>ใช้รับรหัส</span>
               </div>
 
               <div class="hero-chip">
                 <div class="hero-chip-icon">3</div>
-                <strong>OTP</strong>
+                <strong>กดรับ OTP</strong>
                 <span>คัดลอกได้เลย</span>
               </div>
             </div>
