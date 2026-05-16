@@ -4,33 +4,37 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#040714">
-  <meta name="description" content="ศูนย์ตรวจสอบและรับรหัส OTP สำหรับลูกค้าของร้าน">
-  <title>OTP Verification Center</title>
+  <meta name="description" content="ศูนย์รับรหัส OTP สำหรับลูกค้าของร้าน">
+  <title>Disney+ OTP Center</title>
+
   <style>
     :root {
       --bg: #040714;
-      --bg2: #07122F;
-      --card: rgba(255,255,255,0.082);
-      --card2: rgba(255,255,255,0.055);
-      --line: rgba(255,255,255,0.13);
-      --blue: #0063E5;
-      --blue2: #0483EE;
-      --blue3: #00A7E1;
-      --ice: #D8F3FF;
-      --text: #F9FAFF;
-      --sub: rgba(249,250,255,0.72);
-      --muted: rgba(249,250,255,0.50);
-      --ok: #7CFFB2;
+      --bg2: #061029;
+      --card: rgba(255,255,255,0.105);
+      --card2: rgba(255,255,255,0.065);
+      --blue: #113CCF;
+      --blue2: #0063E5;
+      --cyan: #02D6E8;
+      --cyan2: #79F3FF;
+      --white: #F9FBFF;
+      --text: #F9FBFF;
+      --sub: rgba(249,251,255,0.74);
+      --muted: rgba(249,251,255,0.52);
       --danger: #FFB4B4;
-      --warning: #FFE7A3;
+      --ok: #A4FFD4;
+      --gold: #FFE08A;
       --dark: #040714;
-      --shadow: 0 30px 90px rgba(0,0,0,0.48);
-      --nav-h: 78px;
+      --border: rgba(121,243,255,0.18);
+      --shadow: 0 28px 88px rgba(0,0,0,0.48);
+      --bottom-h: 82px;
     }
+
     * {
       box-sizing: border-box;
       -webkit-tap-highlight-color: transparent;
     }
+
     html,
     body {
       margin: 0;
@@ -41,201 +45,169 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Prompt", "Noto Sans Thai", sans-serif;
       -webkit-font-smoothing: antialiased;
     }
+
     body {
       min-height: 100dvh;
       overflow-x: hidden;
     }
+
     button,
     input,
     textarea {
       font-family: inherit;
     }
+
     button {
       appearance: none;
-      border: none;
       cursor: pointer;
-      transition: .16s ease;
+      transition: transform .15s ease, box-shadow .15s ease, background .15s ease, border-color .15s ease, opacity .15s ease;
     }
+
     button:active {
       transform: scale(.985);
     }
+
     button:disabled {
-      opacity: .45;
+      opacity: .44;
       cursor: not-allowed;
     }
-    .app-shell {
+
+    .page {
       position: relative;
       min-height: 100dvh;
-      padding: max(18px, env(safe-area-inset-top)) 14px calc(var(--nav-h) + 18px + env(safe-area-inset-bottom));
+      padding: max(18px, env(safe-area-inset-top)) 14px calc(var(--bottom-h) + 18px + env(safe-area-inset-bottom));
+      display: flex;
+      justify-content: center;
+      align-items: center;
       overflow: hidden;
       background:
-        radial-gradient(circle at 50% -8%, rgba(0,99,229,0.48), transparent 36%),
-        radial-gradient(circle at 8% 18%, rgba(4,131,238,0.26), transparent 34%),
-        radial-gradient(circle at 95% 20%, rgba(0,167,225,0.24), transparent 32%),
-        radial-gradient(circle at 50% 105%, rgba(216,243,255,0.16), transparent 42%),
-        linear-gradient(180deg, #071A4A 0%, #061335 42%, #040714 100%);
+        radial-gradient(circle at 50% -12%, rgba(0,99,229,0.54), transparent 35%),
+        radial-gradient(circle at 5% 14%, rgba(2,214,232,0.20), transparent 34%),
+        radial-gradient(circle at 96% 16%, rgba(17,60,207,0.34), transparent 36%),
+        radial-gradient(circle at 50% 100%, rgba(121,243,255,0.16), transparent 42%),
+        linear-gradient(180deg, #061B49 0%, #07142E 46%, #040714 100%);
     }
-    .app-shell:before {
+
+    .page:before {
       content: "";
-      position: fixed;
+      position: absolute;
       inset: 0;
       pointer-events: none;
-      opacity: .58;
+      opacity: .42;
       background-image:
-        radial-gradient(circle, rgba(255,255,255,0.20) 0 1px, transparent 1.7px),
-        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-      background-size: 62px 62px, 44px 44px, 44px 44px;
-      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.75), transparent 80%);
+        radial-gradient(circle, rgba(255,255,255,0.20) 0 1px, transparent 1.6px),
+        linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px);
+      background-size: 64px 64px, 44px 44px, 44px 44px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.72), transparent 78%);
     }
+
     .orb {
-      position: fixed;
+      position: absolute;
       border-radius: 999px;
-      filter: blur(42px);
       pointer-events: none;
-      opacity: .72;
-      animation: orbFloat 10s ease-in-out infinite;
+      filter: blur(38px);
+      opacity: .76;
+      animation: orbFloat 9s ease-in-out infinite;
     }
+
     .orb.one {
-      width: 270px;
-      height: 270px;
-      left: -130px;
-      top: 80px;
+      width: 300px;
+      height: 300px;
+      left: -140px;
+      top: 88px;
       background: rgba(0,99,229,0.42);
     }
+
     .orb.two {
-      width: 250px;
-      height: 250px;
-      right: -130px;
-      top: 110px;
-      background: rgba(0,167,225,0.28);
-      animation-delay: 1.3s;
+      width: 280px;
+      height: 280px;
+      right: -140px;
+      top: 70px;
+      background: rgba(2,214,232,0.24);
+      animation-delay: 1.2s;
     }
+
     .orb.three {
-      width: 340px;
-      height: 340px;
-      left: 40%;
-      bottom: -220px;
-      background: rgba(216,243,255,0.16);
-      animation-delay: 2.2s;
+      width: 360px;
+      height: 360px;
+      left: 46%;
+      bottom: -230px;
+      background: rgba(17,60,207,0.32);
+      animation-delay: 2.4s;
     }
+
     @keyframes orbFloat {
       0%, 100% { transform: translate3d(0,0,0) scale(1); }
       50% { transform: translate3d(18px,-16px,0) scale(1.06); }
     }
-    .container {
+
+    .wrap {
       position: relative;
       z-index: 2;
       width: 100%;
-      max-width: 1080px;
-      margin: 0 auto;
-    }
-    .topbar {
-      display: flex;
+      max-width: 1060px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(360px, 480px);
+      gap: 22px;
       align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      margin-bottom: 18px;
     }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      min-height: 660px;
+      justify-content: space-between;
+    }
+
     .brand {
       display: flex;
       align-items: center;
       gap: 12px;
-      min-width: 0;
     }
+
     .logo {
-      width: 52px;
-      height: 52px;
-      border-radius: 18px;
+      width: 56px;
+      height: 56px;
+      border-radius: 21px;
       display: grid;
       place-items: center;
       background:
-        radial-gradient(circle at 30% 18%, rgba(255,255,255,0.52), transparent 28%),
-        linear-gradient(135deg, var(--blue), var(--blue2) 52%, var(--ice));
-      box-shadow: 0 18px 44px rgba(0,99,229,0.34), inset 0 1px 0 rgba(255,255,255,0.55);
+        radial-gradient(circle at 30% 18%, rgba(255,255,255,0.45), transparent 28%),
+        linear-gradient(135deg, var(--cyan), #FFFFFF 46%, var(--blue2));
+      box-shadow: 0 18px 42px rgba(2,214,232,0.22), inset 0 1px 0 rgba(255,255,255,0.55);
       flex: 0 0 auto;
     }
+
     .logo:before {
-      content: "OTP";
-      color: #FFFFFF;
-      font-size: 13px;
-      font-weight: 1000;
-      letter-spacing: .3px;
-    }
-    .brand-title {
-      color: #FFFFFF;
+      content: "D+";
       font-size: 17px;
-      line-height: 1.35;
       font-weight: 1000;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      color: var(--dark);
+      letter-spacing: -1px;
     }
+
+    .brand-title {
+      font-size: 17px;
+      font-weight: 1000;
+      color: #FFFFFF;
+      line-height: 1.35;
+    }
+
     .brand-sub {
       margin-top: 2px;
       color: var(--sub);
       font-size: 12px;
-      line-height: 1.45;
       font-weight: 650;
+      line-height: 1.45;
     }
-    .status-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      flex: 0 0 auto;
-      padding: 9px 12px;
-      border-radius: 999px;
-      color: #FFFFFF;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.14);
-      font-size: 12px;
-      font-weight: 900;
+
+    .hero-main {
+      max-width: 600px;
     }
-    .status-chip:before {
-      content: "";
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: var(--ok);
-      box-shadow: 0 0 14px rgba(124,255,178,0.72);
-    }
-    .page {
-      display: none;
-      animation: pageIn .24s ease both;
-    }
-    .page.active {
-      display: block;
-    }
-    @keyframes pageIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .dashboard-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(360px, 460px);
-      gap: 22px;
-      align-items: start;
-    }
-    .hero-card,
-    .panel-card {
-      border-radius: 34px;
-      border: 1px solid var(--line);
-      background:
-        radial-gradient(circle at 20% 0%, rgba(216,243,255,0.12), transparent 30%),
-        radial-gradient(circle at 100% 20%, rgba(0,99,229,0.18), transparent 34%),
-        linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.055));
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(24px);
-    }
-    .hero-card {
-      min-height: 610px;
-      padding: 28px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      overflow: hidden;
-    }
-    .eyebrow {
+
+    .badge {
       width: fit-content;
       display: inline-flex;
       align-items: center;
@@ -243,85 +215,95 @@
       margin-bottom: 18px;
       padding: 9px 13px;
       border-radius: 999px;
-      color: var(--ice);
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(216,243,255,0.18);
+      color: var(--cyan2);
+      background: rgba(121,243,255,0.08);
+      border: 1px solid var(--border);
       font-size: 12px;
       font-weight: 900;
     }
-    .eyebrow:before {
-      content: "SECURE";
+
+    .badge:before {
+      content: "OTP";
       color: #FFFFFF;
       font-weight: 1000;
     }
+
     h1 {
       margin: 0;
       color: #FFFFFF;
-      font-size: clamp(40px, 6vw, 68px);
-      line-height: 1.1;
+      font-size: clamp(38px, 6.4vw, 70px);
+      line-height: 1.12;
       letter-spacing: -2px;
       font-weight: 1000;
     }
+
     .gradient-text {
       display: block;
-      background: linear-gradient(135deg, #FFFFFF 12%, var(--ice) 48%, var(--blue2) 84%);
+      background: linear-gradient(135deg, #FFFFFF 8%, var(--cyan2) 48%, #7DA7FF 82%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
     }
+
     .lead {
       margin: 20px 0 0;
-      max-width: 560px;
+      max-width: 550px;
       color: var(--sub);
       font-size: 16px;
       line-height: 1.9;
       font-weight: 540;
     }
-    .hero-stats {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
-      margin-top: 28px;
-    }
-    .hero-stat {
-      padding: 14px;
-      border-radius: 22px;
-      background: rgba(255,255,255,0.064);
-      border: 1px solid rgba(255,255,255,0.12);
-    }
-    .hero-stat strong {
-      display: block;
-      color: #FFFFFF;
-      font-size: 18px;
-      font-weight: 1000;
-    }
-    .hero-stat span {
-      display: block;
-      margin-top: 5px;
-      color: var(--muted);
-      font-size: 11px;
-      line-height: 1.45;
-      font-weight: 760;
-    }
+
     .latest-card {
       display: none;
-      margin-top: 22px;
+      max-width: 560px;
       padding: 14px;
       border-radius: 24px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(216,243,255,0.14);
+      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(121,243,255,0.18);
       color: rgba(255,255,255,0.82);
       font-size: 13px;
       line-height: 1.65;
       overflow-wrap: anywhere;
     }
+
     .latest-card strong {
-      color: var(--ice);
+      color: var(--cyan2);
     }
-    .panel-card {
+
+    .latest-mini-list {
+      margin-top: 8px;
+      display: grid;
+      gap: 6px;
+    }
+
+    .latest-mini-item {
+      padding: 8px 10px;
+      border-radius: 15px;
+      background: rgba(255,255,255,0.045);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.72);
+      font-size: 12px;
+      line-height: 1.5;
+      font-weight: 700;
+    }
+
+    .app-card {
+      position: relative;
+      border-radius: 34px;
       padding: 20px;
+      border: 1px solid var(--border);
+      background:
+        radial-gradient(circle at 18% 0%, rgba(121,243,255,0.14), transparent 30%),
+        radial-gradient(circle at 100% 20%, rgba(0,99,229,0.22), transparent 34%),
+        linear-gradient(180deg, rgba(255,255,255,0.14), rgba(255,255,255,0.06)),
+        rgba(4,7,20,0.86);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(24px);
+      overflow: hidden;
     }
-    .panel-head {
+
+    .app-top {
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
@@ -329,59 +311,138 @@
       margin-bottom: 14px;
       padding: 15px;
       border-radius: 24px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(121,243,255,0.16);
+      background: rgba(255,255,255,0.05);
     }
-    .panel-head h2 {
+
+    .app-top h2 {
       margin: 0;
       color: #FFFFFF;
       font-size: 19px;
       line-height: 1.42;
       font-weight: 1000;
     }
-    .panel-head p {
+
+    .app-top p {
       margin: 5px 0 0;
       color: var(--muted);
       font-size: 12px;
       line-height: 1.65;
     }
-    .verified-pill {
+
+    .status-pill {
       flex: 0 0 auto;
       padding: 8px 10px;
       border-radius: 999px;
-      color: #FFFFFF;
-      background: linear-gradient(135deg, var(--blue), var(--blue2));
+      color: var(--dark);
+      background: linear-gradient(135deg, var(--cyan2), #FFFFFF 52%, #8DAEFF);
       font-size: 11px;
       font-weight: 950;
       white-space: nowrap;
-      box-shadow: 0 12px 30px rgba(0,99,229,0.24);
     }
+
+    .mini-tabs {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .mini-tab {
+      min-height: 48px;
+      border-radius: 18px;
+      color: rgba(255,255,255,0.70);
+      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(255,255,255,0.10);
+      font-size: 12px;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+    }
+
+    .mini-tab.active {
+      color: #040714;
+      background: linear-gradient(135deg, var(--cyan2), #FFFFFF 52%, #8DAEFF);
+      border-color: rgba(121,243,255,0.42);
+    }
+
+    .view {
+      display: none;
+      animation: viewIn .22s ease both;
+    }
+
+    .view.active {
+      display: block;
+    }
+
+    @keyframes viewIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .quick-line {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .quick-stat {
+      padding: 11px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(255,255,255,0.10);
+      text-align: center;
+    }
+
+    .quick-stat strong {
+      display: block;
+      color: #FFFFFF;
+      font-size: 15px;
+      font-weight: 1000;
+      line-height: 1.25;
+    }
+
+    .quick-stat span {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 780;
+    }
+
     .field {
       margin-bottom: 13px;
     }
+
     .label {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 10px;
       margin: 0 4px 8px;
-      color: rgba(255,255,255,0.90);
+      color: rgba(255,255,255,0.88);
       font-size: 13px;
       font-weight: 850;
     }
+
     .label-main {
       display: flex;
       align-items: center;
       gap: 8px;
     }
+
     .label-dot {
       width: 7px;
       height: 7px;
       border-radius: 999px;
-      background: var(--blue2);
-      box-shadow: 0 0 13px rgba(4,131,238,0.72);
+      background: var(--cyan);
+      box-shadow: 0 0 13px rgba(2,214,232,0.72);
       flex: 0 0 auto;
     }
+
     .required,
     .optional {
       font-size: 11px;
@@ -390,60 +451,70 @@
       border-radius: 999px;
       white-space: nowrap;
     }
+
     .required {
-      color: var(--ice);
-      background: rgba(216,243,255,0.08);
-      border: 1px solid rgba(216,243,255,0.18);
+      color: var(--cyan2);
+      background: rgba(121,243,255,0.075);
+      border: 1px solid rgba(121,243,255,0.20);
     }
+
     .optional {
       color: rgba(255,255,255,0.58);
       background: rgba(255,255,255,0.055);
       border: 1px solid rgba(255,255,255,0.10);
     }
+
     input,
     textarea {
       width: 100%;
       border: 1px solid rgba(255,255,255,0.15);
       outline: none;
       border-radius: 19px;
-      background: rgba(255,255,255,0.085);
+      background: rgba(255,255,255,0.09);
       color: #FFFFFF;
       font-size: 16px;
       font-weight: 650;
       transition: .18s ease;
       line-height: 1.55;
     }
+
     input {
       min-height: 56px;
       padding: 13px 15px;
     }
+
     textarea {
-      min-height: 88px;
+      min-height: 112px;
       resize: vertical;
       padding: 13px 15px;
       line-height: 1.65;
     }
+
     input::placeholder,
     textarea::placeholder {
-      color: rgba(255,255,255,0.36);
+      color: rgba(255,255,255,0.38);
       font-weight: 520;
     }
+
     input:focus,
     textarea:focus {
-      border-color: rgba(4,131,238,0.80);
-      box-shadow: 0 0 0 4px rgba(0,99,229,0.18);
+      border-color: rgba(121,243,255,0.58);
+      box-shadow: 0 0 0 4px rgba(121,243,255,0.10);
       transform: translateY(-1px);
     }
+
     input.valid,
     textarea.valid {
-      border-color: rgba(124,255,178,0.50);
-      box-shadow: 0 0 0 4px rgba(124,255,178,0.08);
+      border-color: rgba(164,255,212,0.50);
+      box-shadow: 0 0 0 4px rgba(164,255,212,0.08);
     }
+
     input.invalid,
     textarea.invalid {
       border-color: rgba(255,180,180,0.58);
       box-shadow: 0 0 0 4px rgba(255,180,180,0.08);
     }
+
     .validation-msg {
       margin: 7px 5px 0;
       font-size: 11px;
@@ -451,26 +522,29 @@
       font-weight: 800;
       color: rgba(255,255,255,0.50);
     }
+
     .validation-msg.ok {
       color: var(--ok);
     }
+
     .validation-msg.bad {
       color: var(--danger);
     }
+
     .row-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
     }
-    .quick-device-grid,
-    .quick-note-grid {
+
+    .quick-device-grid {
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
       margin-top: 9px;
     }
-    .quick-device-btn,
-    .quick-note-btn {
+
+    .quick-device-btn {
       min-height: 38px;
       border-radius: 15px;
       color: rgba(255,255,255,0.88);
@@ -481,20 +555,24 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      gap: 6px;
       padding: 8px 12px;
       width: auto;
     }
+
     .quick-device-btn.selected {
-      color: #FFFFFF;
-      background: linear-gradient(135deg, var(--blue), var(--blue2));
-      border-color: rgba(216,243,255,0.32);
+      color: var(--dark);
+      background: linear-gradient(135deg, var(--cyan2), #FFFFFF 52%, #8DAEFF);
     }
+
     .screen-grid {
       display: grid;
       grid-template-columns: repeat(6, minmax(0, 1fr));
       gap: 8px;
     }
+
     .screen-btn {
+      position: relative;
       min-height: 60px;
       border-radius: 19px;
       color: rgba(255,255,255,0.90);
@@ -506,25 +584,30 @@
       padding: 8px 4px;
       width: 100%;
     }
+
     .screen-btn strong {
       font-size: 20px;
       line-height: 1.15;
       font-weight: 1000;
     }
+
     .screen-btn span {
       color: rgba(255,255,255,0.48);
       font-size: 10px;
       font-weight: 850;
     }
+
     .screen-btn.selected {
-      color: #FFFFFF;
-      border-color: rgba(216,243,255,0.34);
-      background: linear-gradient(135deg, var(--blue), var(--blue2));
+      color: var(--dark);
+      border-color: rgba(121,243,255,0.70);
+      background: linear-gradient(135deg, var(--cyan2), #FFFFFF 52%, #8DAEFF);
       transform: translateY(-3px);
     }
+
     .screen-btn.selected span {
-      color: rgba(255,255,255,0.72);
+      color: rgba(4,7,20,0.64);
     }
+
     .note-count {
       margin-top: 7px;
       text-align: right;
@@ -532,23 +615,22 @@
       font-size: 11px;
       font-weight: 760;
     }
+
     .summary-box {
-      display: none;
       margin: 14px 0 0;
       border-radius: 24px;
       padding: 14px;
       background: rgba(255,255,255,0.052);
       border: 1px solid rgba(255,255,255,0.12);
     }
-    .summary-box.show {
-      display: block;
-    }
+
     .summary-title {
       margin: 0 0 12px;
       color: #FFFFFF;
       font-size: 15px;
       font-weight: 950;
     }
+
     .summary-row {
       display: grid;
       grid-template-columns: 104px minmax(0, 1fr);
@@ -558,24 +640,29 @@
       font-size: 13px;
       line-height: 1.55;
     }
+
     .summary-row:last-child {
       border-bottom: none;
     }
+
     .summary-key {
       color: rgba(255,255,255,0.50);
       font-weight: 760;
     }
+
     .summary-value {
       color: rgba(255,255,255,0.88);
       font-weight: 720;
       overflow-wrap: anywhere;
     }
+
     .main-actions {
       display: grid;
       grid-template-columns: 1fr auto;
       gap: 10px;
       margin-top: 14px;
     }
+
     .btn-primary,
     .btn-secondary,
     .btn-copy {
@@ -592,121 +679,133 @@
       text-align: center;
       overflow: hidden;
     }
+
     .btn-primary {
       color: #FFFFFF;
       background:
-        radial-gradient(circle at 15% 0%, rgba(255,255,255,0.24), transparent 30%),
-        linear-gradient(135deg, var(--blue), var(--blue2));
-      border: 1px solid rgba(216,243,255,0.32);
-      box-shadow: 0 18px 42px rgba(0,99,229,0.30);
+        radial-gradient(circle at 15% 0%, rgba(255,255,255,0.26), transparent 30%),
+        linear-gradient(135deg, rgba(0,99,229,0.95), rgba(17,60,207,0.92), rgba(2,214,232,0.50));
+      border: 1px solid rgba(121,243,255,0.32);
+      box-shadow: 0 16px 34px rgba(0,99,229,0.24);
     }
+
     .btn-secondary,
     .btn-copy {
       color: rgba(255,255,255,0.84);
-      background: rgba(255,255,255,0.065);
+      background: rgba(255,255,255,0.06);
       border: 1px solid rgba(255,255,255,0.12);
     }
+
     .btn-secondary {
       min-width: 112px;
     }
+
     .btn-copy.copied {
-      color: #FFFFFF;
-      background: linear-gradient(135deg, var(--blue), var(--blue2));
-      border-color: rgba(216,243,255,0.35);
+      color: var(--dark);
+      background: linear-gradient(135deg, var(--cyan2), #FFFFFF 52%, var(--ok));
+      border-color: rgba(164,255,212,0.35);
     }
-    .result-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
-      gap: 22px;
-      align-items: start;
-    }
-    .result-card {
-      border-radius: 34px;
-      padding: 24px;
-      border: 1px solid var(--line);
+
+    .result-box {
+      margin-top: 14px;
+      border-radius: 28px;
+      padding: 18px;
       background:
-        radial-gradient(circle at 22% 0%, rgba(216,243,255,0.12), transparent 30%),
-        linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.055));
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(24px);
+        linear-gradient(135deg, rgba(0,99,229,0.18), rgba(2,214,232,0.10)),
+        rgba(255,255,255,0.06);
+      border: 1px solid rgba(121,243,255,0.18);
       text-align: center;
+      animation: resultIn .28s ease both;
     }
+
+    @keyframes resultIn {
+      from { opacity: 0; transform: translateY(10px) scale(.985); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
     .result-icon {
-      width: 76px;
-      height: 76px;
-      margin: 4px auto 16px;
-      border-radius: 26px;
+      width: 62px;
+      height: 62px;
+      margin: 0 auto 12px;
+      border-radius: 22px;
       display: grid;
       place-items: center;
-      color: #FFFFFF;
-      background: linear-gradient(135deg, var(--blue), var(--blue2));
-      font-size: 34px;
+      color: #040714;
+      background: linear-gradient(135deg, var(--cyan2), #FFFFFF 52%, #8DAEFF);
+      font-size: 28px;
       font-weight: 1000;
-      box-shadow: 0 18px 44px rgba(0,99,229,0.28);
     }
+
     .result-title {
       margin: 0;
       color: #FFFFFF;
-      font-size: 24px;
+      font-size: 21px;
       font-weight: 1000;
     }
+
     .result-message {
-      margin: 10px auto 0;
-      max-width: 430px;
+      margin: 9px auto 0;
+      max-width: 360px;
       color: rgba(255,255,255,0.74);
       font-size: 14px;
-      line-height: 1.8;
+      line-height: 1.75;
       white-space: pre-line;
     }
+
     .request-id {
-      margin: 14px auto 0;
+      margin: 13px auto 0;
       width: fit-content;
       max-width: 100%;
       padding: 10px 13px;
       border-radius: 999px;
       color: rgba(255,255,255,0.88);
       background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(216,243,255,0.15);
+      border: 1px solid rgba(121,243,255,0.15);
       font-size: 12px;
       font-weight: 850;
       overflow-wrap: anywhere;
     }
+
     .otp-safe {
-      margin: 16px auto 0;
-      max-width: 420px;
-      padding: 13px 15px;
+      margin: 13px auto 0;
+      max-width: 380px;
+      padding: 12px 14px;
       border-radius: 22px;
-      color: rgba(216,243,255,0.96);
-      background: rgba(0,99,229,0.12);
-      border: 1px solid rgba(216,243,255,0.22);
+      color: rgba(217,250,255,0.96);
+      background: rgba(2,214,232,0.10);
+      border: 1px solid rgba(121,243,255,0.24);
       font-size: 13px;
       line-height: 1.65;
       font-weight: 850;
       display: none;
     }
+
     .otp-box {
       display: none;
-      margin: 16px auto 0;
-      max-width: 390px;
-      padding: 16px;
-      border-radius: 26px;
-      background: rgba(255,255,255,0.075);
-      border: 1px solid rgba(216,243,255,0.22);
+      margin: 13px auto 0;
+      max-width: 360px;
+      padding: 14px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(121,243,255,0.26);
     }
+
     .otp-label {
       color: rgba(255,255,255,0.62);
       font-size: 12px;
       font-weight: 850;
     }
+
     .otp-code {
-      margin-top: 9px;
+      margin-top: 8px;
       color: #FFFFFF;
-      font-size: 38px;
-      letter-spacing: 7px;
+      font-size: 34px;
+      letter-spacing: 6px;
       font-weight: 1000;
       user-select: all;
       overflow-wrap: anywhere;
     }
+
     .otp-note {
       margin-top: 9px;
       color: rgba(255,255,255,0.62);
@@ -714,80 +813,34 @@
       line-height: 1.55;
       font-weight: 700;
     }
-    .result-actions {
-      margin-top: 16px;
+
+    .copy-area {
+      margin-top: 14px;
       display: flex;
       justify-content: center;
-    }
-    .result-actions .btn-copy {
-      width: min(260px, 100%);
-      border-radius: 999px;
-    }
-    .info-card {
-      border-radius: 34px;
-      padding: 20px;
-      border: 1px solid var(--line);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.05));
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(24px);
-    }
-    .info-title {
-      margin: 0 0 12px;
-      color: #FFFFFF;
-      font-size: 17px;
-      font-weight: 1000;
-    }
-    .info-list {
-      display: grid;
       gap: 10px;
+      flex-wrap: wrap;
     }
-    .info-item {
-      padding: 12px;
-      border-radius: 18px;
-      color: rgba(255,255,255,0.78);
-      background: rgba(255,255,255,0.055);
+
+    .copy-area .btn-copy {
+      width: auto;
+      min-width: 170px;
+      border-radius: 999px;
+      min-height: 50px;
+    }
+
+    .empty-result {
+      padding: 26px 14px;
+      border-radius: 26px;
+      background: rgba(255,255,255,0.052);
       border: 1px solid rgba(255,255,255,0.10);
-      font-size: 12px;
-      line-height: 1.6;
+      text-align: center;
+      color: rgba(255,255,255,0.70);
+      font-size: 14px;
+      line-height: 1.75;
       font-weight: 720;
     }
-    .history-list {
-      display: grid;
-      gap: 10px;
-    }
-    .history-empty {
-      padding: 22px;
-      text-align: center;
-      border-radius: 24px;
-      color: var(--muted);
-      background: rgba(255,255,255,0.055);
-      border: 1px dashed rgba(255,255,255,0.16);
-      font-size: 13px;
-      line-height: 1.7;
-      font-weight: 760;
-    }
-    .history-item {
-      padding: 14px;
-      border-radius: 22px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.11);
-    }
-    .history-item strong {
-      display: block;
-      color: #FFFFFF;
-      font-size: 14px;
-      line-height: 1.45;
-      font-weight: 1000;
-    }
-    .history-item span {
-      display: block;
-      margin-top: 5px;
-      color: rgba(255,255,255,0.62);
-      font-size: 12px;
-      line-height: 1.55;
-      font-weight: 700;
-    }
+
     .privacy {
       margin-top: 13px;
       color: rgba(255,255,255,0.48);
@@ -795,54 +848,100 @@
       line-height: 1.75;
       text-align: center;
     }
+
+    .usage-bottom {
+      grid-column: 1 / -1;
+      width: 100%;
+      margin: 0;
+      padding: 16px;
+      border-radius: 28px;
+      background:
+        linear-gradient(135deg, rgba(121,243,255,0.12), rgba(0,99,229,0.12)),
+        rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.13);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.12);
+      order: 99;
+    }
+
+    .usage-title {
+      color: #FFFFFF;
+      font-size: 15px;
+      font-weight: 1000;
+      margin-bottom: 10px;
+    }
+
+    .usage-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .usage-item {
+      padding: 12px;
+      border-radius: 20px;
+      color: rgba(255,255,255,0.76);
+      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(255,255,255,0.10);
+      font-size: 12px;
+      line-height: 1.65;
+      font-weight: 700;
+    }
+
+    .usage-item strong {
+      display: block;
+      margin-bottom: 5px;
+      color: #FFFFFF;
+      font-size: 13px;
+      font-weight: 1000;
+    }
+
     .bottom-nav {
       position: fixed;
       left: 50%;
-      bottom: calc(10px + env(safe-area-inset-bottom));
+      bottom: calc(12px + env(safe-area-inset-bottom));
       transform: translateX(-50%);
       z-index: 60;
       width: min(520px, calc(100vw - 24px));
-      height: var(--nav-h);
+      min-height: 66px;
       padding: 8px;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      border-radius: 28px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 7px;
+      border-radius: 26px;
       background: rgba(4,7,20,0.82);
-      border: 1px solid rgba(255,255,255,0.14);
-      box-shadow: 0 22px 70px rgba(0,0,0,0.48);
-      backdrop-filter: blur(24px);
+      border: 1px solid rgba(121,243,255,0.18);
+      box-shadow: 0 18px 54px rgba(0,0,0,0.34);
+      backdrop-filter: blur(22px);
     }
+
     .nav-btn {
-      border-radius: 22px;
-      color: rgba(255,255,255,0.58);
+      border: 0;
+      min-height: 50px;
+      border-radius: 20px;
+      color: rgba(255,255,255,0.62);
       background: transparent;
       display: grid;
       place-items: center;
-      gap: 3px;
-      padding: 8px 4px;
+      gap: 2px;
       font-size: 11px;
-      font-weight: 900;
+      font-weight: 850;
     }
+
     .nav-icon {
-      width: 25px;
-      height: 25px;
-      border-radius: 12px;
-      display: grid;
-      place-items: center;
-      color: inherit;
-      font-size: 14px;
+      font-size: 18px;
+      line-height: 1;
       font-weight: 1000;
     }
+
     .nav-btn.active {
-      color: #FFFFFF;
-      background: linear-gradient(135deg, rgba(0,99,229,0.88), rgba(4,131,238,0.78));
-      box-shadow: 0 10px 30px rgba(0,99,229,0.25);
+      color: #040714;
+      background: linear-gradient(135deg, var(--cyan2), #FFFFFF 52%, #8DAEFF);
     }
+
     .toast {
       position: fixed;
       left: 50%;
-      bottom: calc(var(--nav-h) + 22px + env(safe-area-inset-bottom));
+      bottom: calc(var(--bottom-h) + 18px + env(safe-area-inset-bottom));
       transform: translateX(-50%) translateY(20px);
       z-index: 80;
       max-width: calc(100vw - 28px);
@@ -858,10 +957,12 @@
       transition: .22s ease;
       text-align: center;
     }
+
     .toast.show {
       opacity: 1;
       transform: translateX(-50%) translateY(0);
     }
+
     .loading-overlay {
       position: fixed;
       inset: 0;
@@ -869,21 +970,24 @@
       display: none;
       place-items: center;
       padding: 20px;
-      background: rgba(4,7,20,0.64);
-      backdrop-filter: blur(16px);
+      background: rgba(4,7,20,0.62);
+      backdrop-filter: blur(14px);
     }
+
     .loading-overlay.show {
       display: grid;
     }
+
     .loading-card {
       width: min(360px, 100%);
       border-radius: 30px;
       padding: 22px;
       text-align: center;
-      border: 1px solid rgba(216,243,255,0.22);
-      background: rgba(7,18,47,0.90);
+      border: 1px solid rgba(121,243,255,0.22);
+      background: rgba(4,7,20,0.90);
       box-shadow: 0 30px 90px rgba(0,0,0,0.40);
     }
+
     .loader {
       width: 54px;
       height: 54px;
@@ -891,27 +995,31 @@
       border-radius: 20px;
       display: grid;
       place-items: center;
-      color: #FFFFFF;
-      background: linear-gradient(135deg, var(--blue), var(--blue2));
+      color: var(--dark);
+      background: linear-gradient(135deg, var(--cyan2), #FFFFFF 52%, #8DAEFF);
       font-size: 22px;
       font-weight: 1000;
       animation: loaderPulse 1.3s ease-in-out infinite;
     }
+
     @keyframes loaderPulse {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.08) rotate(3deg); }
     }
+
     .loading-title {
       color: #FFFFFF;
       font-size: 17px;
       font-weight: 950;
       margin-bottom: 7px;
     }
+
     .loading-message {
       color: var(--sub);
       font-size: 13px;
       line-height: 1.75;
     }
+
     .confetti-layer {
       position: fixed;
       inset: 0;
@@ -919,168 +1027,275 @@
       pointer-events: none;
       overflow: hidden;
     }
+
     .confetti-piece {
       position: absolute;
       bottom: 20%;
       font-size: 17px;
       animation: confettiUp 1.15s ease-out forwards;
     }
+
     @keyframes confettiUp {
       0% { transform: translate3d(0,0,0) scale(.8) rotate(0deg); opacity: 0; }
       12% { opacity: 1; }
       100% { transform: translate3d(var(--x), -240px, 0) scale(1.25) rotate(180deg); opacity: 0; }
     }
+
     @media (max-width: 920px) {
-      .dashboard-grid,
-      .result-layout {
+      .page {
+        align-items: flex-start;
+      }
+
+      .wrap {
+        max-width: 560px;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+      }
+
+      .hero {
+        min-height: auto;
+        gap: 16px;
+      }
+
+      .hero-main {
+        text-align: center;
+        margin: 0 auto;
+      }
+
+      .badge {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .lead {
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 14px;
+      }
+
+      h1 {
+        font-size: clamp(34px, 10vw, 58px);
+      }
+
+      .usage-list {
         grid-template-columns: 1fr;
       }
-      .hero-card {
-        min-height: auto;
-      }
     }
-    @media (max-width: 520px) {
-      .app-shell {
-        padding: 10px 12px calc(var(--nav-h) + 14px + env(safe-area-inset-bottom));
+
+    @media (max-width: 430px) {
+      :root {
+        --bottom-h: 78px;
       }
-      .topbar {
-        margin-bottom: 10px;
+
+      .page {
+        min-height: 100svh;
+        padding: 10px 12px calc(var(--bottom-h) + 10px + env(safe-area-inset-bottom));
       }
+
+      .wrap {
+        gap: 10px;
+      }
+
+      .brand-title {
+        font-size: 14px;
+      }
+
+      .brand-sub {
+        font-size: 11px;
+      }
+
       .logo {
         width: 46px;
         height: 46px;
         border-radius: 17px;
       }
-      .brand-title {
+
+      .logo:before {
         font-size: 14px;
       }
-      .brand-sub {
-        font-size: 11px;
-      }
-      .status-chip {
+
+      .badge {
         display: none;
       }
-      .hero-card,
-      .panel-card,
-      .result-card,
-      .info-card {
-        border-radius: 24px;
-        padding: 14px;
-      }
-      .eyebrow {
-        display: none;
-      }
+
       h1 {
-        font-size: 30px;
+        font-size: 28px;
         line-height: 1.15;
         letter-spacing: -1px;
       }
+
       .lead {
-        margin-top: 10px;
+        margin-top: 8px;
         font-size: 12px;
-        line-height: 1.6;
+        line-height: 1.55;
       }
-      .hero-stats {
-        margin-top: 16px;
-        gap: 7px;
+
+      .app-card {
+        padding: 12px;
+        border-radius: 24px;
       }
-      .hero-stat {
-        padding: 10px 7px;
-        border-radius: 17px;
-      }
-      .hero-stat strong {
-        font-size: 14px;
-      }
-      .hero-stat span {
-        font-size: 9.5px;
-      }
-      .panel-head {
+
+      .app-top {
         padding: 11px;
         border-radius: 20px;
       }
-      .panel-head h2 {
+
+      .app-top h2 {
         font-size: 16px;
       }
-      .panel-head p {
+
+      .app-top p {
         font-size: 11px;
-        line-height: 1.5;
+        line-height: 1.45;
       }
-      .verified-pill {
+
+      .status-pill {
         display: none;
       }
+
+      .mini-tabs {
+        gap: 6px;
+      }
+
+      .mini-tab {
+        min-height: 42px;
+        border-radius: 15px;
+        font-size: 11px;
+      }
+
+      .quick-line {
+        gap: 6px;
+      }
+
+      .quick-stat {
+        padding: 9px 6px;
+        border-radius: 16px;
+      }
+
+      .quick-stat strong {
+        font-size: 13px;
+      }
+
+      .quick-stat span {
+        font-size: 9px;
+      }
+
       .row-2 {
         grid-template-columns: 1fr;
         gap: 0;
       }
+
       .field {
         margin-bottom: 10px;
       }
+
       .label {
         font-size: 12px;
         margin-bottom: 6px;
       }
+
       input {
         min-height: 49px;
         font-size: 15px;
         border-radius: 16px;
         padding: 10px 12px;
       }
+
       textarea {
-        min-height: 76px;
+        min-height: 92px;
         font-size: 14px;
         border-radius: 16px;
         padding: 10px 12px;
       }
-      .quick-device-btn,
-      .quick-note-btn {
+
+      .quick-device-btn {
         min-height: 34px;
         padding: 7px 10px;
         font-size: 11px;
         border-radius: 13px;
       }
+
       .screen-grid {
         gap: 6px;
       }
+
       .screen-btn {
         min-height: 50px;
         border-radius: 15px;
       }
+
       .screen-btn strong {
         font-size: 17px;
       }
+
       .main-actions {
         grid-template-columns: 1fr;
         gap: 8px;
       }
+
       .btn-primary,
-      .btn-secondary,
-      .btn-copy {
+      .btn-secondary {
         min-height: 50px;
         border-radius: 18px;
         font-size: 14px;
       }
+
       .summary-box {
         padding: 11px;
         border-radius: 20px;
       }
+
       .summary-row {
-        grid-template-columns: 88px minmax(0, 1fr);
+        grid-template-columns: 82px minmax(0, 1fr);
         gap: 8px;
         padding: 7px 0;
         font-size: 12px;
       }
-      .result-title {
-        font-size: 20px;
+
+      .copy-area .btn-copy {
+        width: 100%;
+        min-width: 0;
+        min-height: 48px;
+        font-size: 14px;
       }
-      .otp-code {
-        font-size: 32px;
-        letter-spacing: 5px;
+
+      .privacy {
+        font-size: 10.5px;
+        line-height: 1.55;
       }
+
+      .usage-bottom {
+        padding: 12px;
+        border-radius: 22px;
+      }
+
+      .usage-title {
+        font-size: 13px;
+      }
+
+      .usage-item {
+        padding: 10px;
+        border-radius: 17px;
+        font-size: 11px;
+        line-height: 1.55;
+      }
+
       .bottom-nav {
-        width: calc(100vw - 20px);
+        bottom: calc(8px + env(safe-area-inset-bottom));
+        width: calc(100vw - 18px);
+        min-height: 62px;
         border-radius: 24px;
       }
+
+      .nav-btn {
+        min-height: 46px;
+        border-radius: 18px;
+        font-size: 10px;
+      }
     }
+
     @media (prefers-reduced-motion: reduce) {
       *,
       *:before,
@@ -1092,223 +1307,240 @@
     }
   </style>
 </head>
+
 <body>
-  <main class="app-shell">
+  <main class="page">
     <div class="orb one"></div>
     <div class="orb two"></div>
     <div class="orb three"></div>
-    <div class="container">
-      <header class="topbar">
+
+    <section class="wrap">
+      <div class="hero">
         <div class="brand">
           <div class="logo" aria-hidden="true"></div>
           <div>
-            <div class="brand-title" id="brandTitle">OTP Verification Center</div>
-            <div class="brand-sub" id="brandSub">ระบบตรวจสอบรหัสยืนยันสำหรับลูกค้า</div>
+            <div class="brand-title" id="brandTitle">Disney+ OTP Center</div>
+            <div class="brand-sub" id="brandSub">ระบบรับรหัสยืนยันสำหรับลูกค้า</div>
           </div>
         </div>
-        <div class="status-chip">พร้อมให้บริการ</div>
-      </header>
-      <section class="page active" id="pageRequest">
-        <div class="dashboard-grid">
-          <div class="hero-card">
-            <div>
-              <div class="eyebrow">Customer Verification</div>
-              <h1>
-                รับรหัส OTP
-                <span class="gradient-text">อย่างเป็นระบบ</span>
-              </h1>
-              <p class="lead">
-                ศูนย์ตรวจสอบรหัสยืนยันสำหรับเจ้าหน้าที่ร้าน ออกแบบให้ใช้งานแบบแอป กรอกข้อมูล ตรวจสอบอุปกรณ์ และรับรหัส OTP ได้อย่างรวดเร็ว
-              </p>
-              <div class="hero-stats">
-                <div class="hero-stat">
-                  <strong>01</strong>
-                  <span>ระบุข้อมูลลูกค้า</span>
-                </div>
-                <div class="hero-stat">
-                  <strong>02</strong>
-                  <span>ตรวจสอบอุปกรณ์</span>
-                </div>
-                <div class="hero-stat">
-                  <strong>03</strong>
-                  <span>รับรหัสยืนยัน</span>
-                </div>
-              </div>
+
+        <div class="hero-main">
+          <div class="badge">ศูนย์รับรหัสยืนยัน</div>
+          <h1>
+            รับรหัส OTP
+            <span class="gradient-text">สำหรับยืนยันรายการ</span>
+          </h1>
+          <p class="lead">
+            กรอกข้อมูลลูกค้า เลือกอุปกรณ์และหมายเลขจอ จากนั้นตรวจสอบรหัส OTP ล่าสุดได้ทันที
+          </p>
+        </div>
+
+        <div class="latest-card" id="latestCard">
+          <strong>รายการล่าสุด:</strong>
+          <span id="latestText">-</span>
+          <div class="latest-mini-list" id="latestMiniList"></div>
+        </div>
+      </div>
+
+      <div class="app-card" id="app">
+        <div class="app-top">
+          <div>
+            <h2 id="pageTitle">ข้อมูลลูกค้า</h2>
+            <p id="pageSub">ระบุข้อมูลสำหรับค้นหารหัส OTP ให้ตรงกับรายการของลูกค้า</p>
+          </div>
+          <div class="status-pill">D+</div>
+        </div>
+
+        <div class="mini-tabs">
+          <button type="button" class="mini-tab active" data-view="info" onclick="goView('info')">ข้อมูล</button>
+          <button type="button" class="mini-tab" data-view="check" onclick="goView('check')">ตรวจสอบ</button>
+          <button type="button" class="mini-tab" data-view="result" onclick="goView('result')">ผลลัพธ์</button>
+        </div>
+
+        <section class="view active" id="viewInfo">
+          <div class="quick-line">
+            <div class="quick-stat">
+              <strong>1</strong>
+              <span>ข้อมูลลูกค้า</span>
             </div>
-            <div class="latest-card" id="latestCard">
-              <strong>รายการล่าสุด:</strong>
-              <span id="latestText">-</span>
+            <div class="quick-stat">
+              <strong>2</strong>
+              <span>อุปกรณ์และจอ</span>
+            </div>
+            <div class="quick-stat">
+              <strong>3</strong>
+              <span>รับรหัส OTP</span>
             </div>
           </div>
-          <div class="panel-card">
-            <div class="panel-head">
-              <div>
-                <h2>สร้างรายการตรวจสอบ</h2>
-                <p>กรอกข้อมูลให้ครบถ้วน จากนั้นกดรับรหัส OTP ล่าสุด</p>
-              </div>
-              <div class="verified-pill">Verified</div>
+
+          <div class="field">
+            <div class="label">
+              <span class="label-main"><span class="label-dot"></span>ชื่อลูกค้าหรือ LINE ID</span>
+              <span class="optional">แนะนำ</span>
             </div>
+            <input id="customerName" type="text" placeholder="เช่น LINE ID หรือลูกค้าตามรายการสั่งซื้อ" autocomplete="name" maxlength="120">
+          </div>
+
+          <div class="field">
+            <div class="label">
+              <span class="label-main"><span class="label-dot"></span>อีเมลที่ใช้รับรหัสยืนยัน</span>
+              <span class="required">จำเป็น</span>
+            </div>
+            <input id="email" type="email" placeholder="customer@email.com" autocomplete="email" inputmode="email" maxlength="160">
+            <div class="validation-msg" id="emailValidation">กรุณาระบุอีเมลที่ใช้รับรหัส OTP</div>
+          </div>
+
+          <div class="main-actions">
+            <button class="btn-primary" onclick="goView('check')" type="button">ถัดไป</button>
+            <button class="btn-secondary" onclick="clearDraft()" type="button">ล้างข้อมูล</button>
+          </div>
+        </section>
+
+        <section class="view" id="viewCheck">
+          <div class="row-2">
             <div class="field">
               <div class="label">
-                <span class="label-main"><span class="label-dot"></span>ชื่อลูกค้าหรือ LINE ID</span>
-                <span class="optional">แนะนำ</span>
-              </div>
-              <input id="customerName" type="text" placeholder="เช่น LINE ID หรือลูกค้าตามรายการสั่งซื้อ" autocomplete="name" maxlength="120">
-            </div>
-            <div class="field">
-              <div class="label">
-                <span class="label-main"><span class="label-dot"></span>อีเมลที่ใช้รับรหัสยืนยัน</span>
+                <span class="label-main"><span class="label-dot"></span>อุปกรณ์ที่ลูกค้าใช้งาน</span>
                 <span class="required">จำเป็น</span>
               </div>
-              <input id="email" type="email" placeholder="customer@email.com" autocomplete="email" inputmode="email" maxlength="160">
-              <div class="validation-msg" id="emailValidation">กรุณาระบุอีเมลที่ใช้รับรหัส OTP</div>
-            </div>
-            <div class="row-2">
-              <div class="field">
-                <div class="label">
-                  <span class="label-main"><span class="label-dot"></span>อุปกรณ์ที่ลูกค้าใช้งาน</span>
-                  <span class="required">จำเป็น</span>
-                </div>
-                <input id="device" type="text" placeholder="เช่น iPhone, Android, iPad, TV หรือ Browser" autocomplete="off" maxlength="80">
-                <div class="validation-msg" id="deviceValidation">กรุณาระบุอุปกรณ์สำหรับใช้ตรวจสอบรายการ</div>
-                <div class="quick-device-grid" id="quickDeviceGrid">
-                  <button type="button" class="quick-device-btn" data-device="iPhone">iPhone</button>
-                  <button type="button" class="quick-device-btn" data-device="Android">Android</button>
-                  <button type="button" class="quick-device-btn" data-device="iPad">iPad</button>
-                  <button type="button" class="quick-device-btn" data-device="TV">TV</button>
-                  <button type="button" class="quick-device-btn" data-device="Chrome">Chrome</button>
-                </div>
-              </div>
-              <div class="field">
-                <div class="label">
-                  <span class="label-main"><span class="label-dot"></span>หมายเลขจอ / โปรไฟล์</span>
-                  <span class="required">1–6</span>
-                </div>
-                <div class="screen-grid" id="screenGrid">
-                  <button type="button" class="screen-btn" data-screen="1"><strong>1</strong><span>จอ</span></button>
-                  <button type="button" class="screen-btn" data-screen="2"><strong>2</strong><span>จอ</span></button>
-                  <button type="button" class="screen-btn" data-screen="3"><strong>3</strong><span>จอ</span></button>
-                  <button type="button" class="screen-btn" data-screen="4"><strong>4</strong><span>จอ</span></button>
-                  <button type="button" class="screen-btn" data-screen="5"><strong>5</strong><span>จอ</span></button>
-                  <button type="button" class="screen-btn" data-screen="6"><strong>6</strong><span>จอ</span></button>
-                </div>
-                <div class="validation-msg" id="screenValidation">เลือกหมายเลขจอให้ตรงกับรายการของลูกค้า</div>
+              <input id="device" type="text" placeholder="เช่น iPhone, Android, iPad, TV หรือ Browser" autocomplete="off" maxlength="80">
+              <div class="validation-msg" id="deviceValidation">กรุณาระบุอุปกรณ์สำหรับใช้ตรวจสอบรายการ</div>
+
+              <div class="quick-device-grid" id="quickDeviceGrid">
+                <button type="button" class="quick-device-btn" data-device="iPhone">iPhone</button>
+                <button type="button" class="quick-device-btn" data-device="Android">Android</button>
+                <button type="button" class="quick-device-btn" data-device="iPad">iPad</button>
+                <button type="button" class="quick-device-btn" data-device="TV">TV</button>
+                <button type="button" class="quick-device-btn" data-device="Chrome">Chrome</button>
               </div>
             </div>
+
             <div class="field">
               <div class="label">
-                <span class="label-main"><span class="label-dot"></span>หมายเหตุสำหรับเจ้าหน้าที่</span>
-                <span class="optional">ไม่บังคับ</span>
+                <span class="label-main"><span class="label-dot"></span>หมายเลขจอ / โปรไฟล์</span>
+                <span class="required">1–6</span>
               </div>
-              <textarea id="customerNote" placeholder="เช่น ขอรหัสรอบที่ 2 / เปลี่ยนอุปกรณ์ / ลูกค้ารอการยืนยัน / ต้องการตรวจสอบเร่งด่วน" maxlength="700"></textarea>
-              <div class="note-count" id="noteCount">0/700</div>
-              <div class="quick-note-grid">
-                <button type="button" class="quick-note-btn" data-note="ขอรหัสรอบที่ 2">ขอรหัสรอบที่ 2</button>
-                <button type="button" class="quick-note-btn" data-note="ใช้งานผ่าน TV">ใช้งานผ่าน TV</button>
-                <button type="button" class="quick-note-btn" data-note="เปลี่ยนอุปกรณ์">เปลี่ยนอุปกรณ์</button>
-                <button type="button" class="quick-note-btn" data-note="ลูกค้ารอการยืนยัน">ลูกค้ารอการยืนยัน</button>
+
+              <div class="screen-grid" id="screenGrid">
+                <button type="button" class="screen-btn" data-screen="1"><strong>1</strong><span>จอ</span></button>
+                <button type="button" class="screen-btn" data-screen="2"><strong>2</strong><span>จอ</span></button>
+                <button type="button" class="screen-btn" data-screen="3"><strong>3</strong><span>จอ</span></button>
+                <button type="button" class="screen-btn" data-screen="4"><strong>4</strong><span>จอ</span></button>
+                <button type="button" class="screen-btn" data-screen="5"><strong>5</strong><span>จอ</span></button>
+                <button type="button" class="screen-btn" data-screen="6"><strong>6</strong><span>จอ</span></button>
               </div>
-            </div>
-            <div class="summary-box" id="summaryBox">
-              <p class="summary-title">สรุปรายการตรวจสอบ</p>
-              <div class="summary-row">
-                <div class="summary-key">ลูกค้า</div>
-                <div class="summary-value" id="sumCustomerName">-</div>
-              </div>
-              <div class="summary-row">
-                <div class="summary-key">อีเมล</div>
-                <div class="summary-value" id="sumEmail">-</div>
-              </div>
-              <div class="summary-row">
-                <div class="summary-key">อุปกรณ์</div>
-                <div class="summary-value" id="sumDevice">-</div>
-              </div>
-              <div class="summary-row">
-                <div class="summary-key">จอ/โปรไฟล์</div>
-                <div class="summary-value" id="sumScreen">-</div>
-              </div>
-              <div class="summary-row">
-                <div class="summary-key">หมายเหตุ</div>
-                <div class="summary-value" id="sumNote">-</div>
-              </div>
-            </div>
-            <div class="main-actions">
-              <button class="btn-primary" id="submitBtn" onclick="submitRequest()" type="button">
-                <span id="btnText">ตรวจสอบและรับ OTP</span>
-              </button>
-              <button class="btn-secondary" onclick="clearDraft()" type="button">ล้างข้อมูล</button>
-            </div>
-            <div class="privacy" id="autosaveText">
-              ระบบบันทึกข้อมูลรายการเพื่อใช้ตรวจสอบย้อนหลัง และช่วยให้การดูแลลูกค้าเป็นไปอย่างเป็นระบบ
+              <div class="validation-msg" id="screenValidation">เลือกหมายเลขจอให้ตรงกับรายการของลูกค้า</div>
             </div>
           </div>
-        </div>
-      </section>
-      <section class="page" id="pageResult">
-        <div class="result-layout">
-          <div class="result-card">
-            <div class="result-icon" id="resultIcon">OTP</div>
-            <h2 class="result-title" id="resultTitle">ยังไม่มีผลการตรวจสอบ</h2>
-            <div class="result-message" id="resultMessage">
-              เมื่อเจ้าหน้าที่กดตรวจสอบ OTP ผลลัพธ์จะแสดงในหน้านี้
+
+          <div class="field">
+            <div class="label">
+              <span class="label-main"><span class="label-dot"></span>หมายเหตุสำหรับเจ้าหน้าที่</span>
+              <span class="optional">ไม่บังคับ</span>
             </div>
+            <textarea id="customerNote" placeholder="ลูกค้าสามารถพิมพ์รายละเอียดเพิ่มเติมได้ที่นี่" maxlength="700"></textarea>
+            <div class="note-count" id="noteCount">0/700</div>
+          </div>
+
+          <div class="summary-box" id="summaryBox">
+            <p class="summary-title">สรุปรายการตรวจสอบ</p>
+            <div class="summary-row">
+              <div class="summary-key">ลูกค้า</div>
+              <div class="summary-value" id="sumCustomerName">-</div>
+            </div>
+            <div class="summary-row">
+              <div class="summary-key">อีเมล</div>
+              <div class="summary-value" id="sumEmail">-</div>
+            </div>
+            <div class="summary-row">
+              <div class="summary-key">อุปกรณ์</div>
+              <div class="summary-value" id="sumDevice">-</div>
+            </div>
+            <div class="summary-row">
+              <div class="summary-key">จอ/โปรไฟล์</div>
+              <div class="summary-value" id="sumScreen">-</div>
+            </div>
+            <div class="summary-row">
+              <div class="summary-key">หมายเหตุ</div>
+              <div class="summary-value" id="sumNote">-</div>
+            </div>
+          </div>
+
+          <div class="main-actions">
+            <button class="btn-primary" id="submitBtn" onclick="submitRequest()" type="button">
+              <span id="btnText">ตรวจสอบและรับ OTP</span>
+            </button>
+            <button class="btn-secondary" onclick="goView('info')" type="button">ย้อนกลับ</button>
+          </div>
+
+          <div class="privacy" id="autosaveText">
+            ระบบบันทึกแบบร่างอัตโนมัติบนอุปกรณ์นี้ เพื่อช่วยให้กลับมาทำรายการต่อได้
+          </div>
+        </section>
+
+        <section class="view" id="viewResult">
+          <div class="empty-result" id="emptyResult">
+            ยังไม่มีผลการตรวจสอบ<br>
+            กรุณากรอกข้อมูลและกด “ตรวจสอบและรับ OTP”
+          </div>
+
+          <div class="result-box" id="resultBox" style="display:none;">
+            <div class="result-icon" id="resultIcon">✓</div>
+            <h3 class="result-title" id="resultTitle">ผลการตรวจสอบ OTP</h3>
+            <div class="result-message" id="resultMessage">ระบบดำเนินการตรวจสอบรายการเรียบร้อยแล้ว</div>
             <div class="request-id" id="requestIdBox">เลขอ้างอิง: -</div>
+
             <div class="otp-safe" id="otpSafeBox">
-              ยังไม่พบรหัส OTP ล่าสุดในขณะนี้ กรุณาตรวจสอบอีเมลอีกครั้ง หรือรอสักครู่แล้วส่งคำขอตรวจสอบใหม่
+              ยังไม่พบรหัส OTP ล่าสุดในขณะนี้ กรุณาตรวจสอบอีเมลอีกครั้ง หรือรอสักครู่แล้วทำรายการใหม่
             </div>
+
             <div class="otp-box" id="otpBox">
               <div class="otp-label">รหัส OTP สำหรับยืนยันรายการ</div>
               <div class="otp-code" id="otpCode">------</div>
               <div class="otp-note" id="otpExpireNote">กรุณาใช้รหัสนี้ภายใน 15 นาที และใช้สำหรับรายการนี้เท่านั้น</div>
-              <div class="result-actions">
+              <div class="copy-area">
                 <button class="btn-copy" id="copyOtpBtn" onclick="copyOtp()" type="button">คัดลอกรหัส OTP</button>
               </div>
             </div>
           </div>
-          <div class="info-card">
-            <p class="info-title">สถานะการทำงาน</p>
-            <div class="info-list">
-              <div class="info-item">ระบบจะแสดงเฉพาะปุ่มที่จำเป็น เพื่อให้เจ้าหน้าที่ดำเนินการได้รวดเร็วและลดความสับสน</div>
-              <div class="info-item">หากยังไม่พบ OTP ให้กลับไปหน้ารับรหัส แล้วกดตรวจสอบอีกครั้งจากปุ่มหลัก</div>
-              <div class="info-item">รายการล่าสุดจะถูกบันทึกไว้ในหน้าประวัติ เพื่อช่วยตรวจสอบย้อนหลัง</div>
-            </div>
+        </section>
+      </div>
+
+      <div class="usage-bottom" id="usageBottom">
+        <div class="usage-title">วิธีใช้งานระบบ</div>
+        <div class="usage-list">
+          <div class="usage-item">
+            <strong>1. กรอกข้อมูลลูกค้า</strong>
+            ระบุอีเมลที่ใช้รับ OTP พร้อมชื่อลูกค้าหรือ LINE ID เพื่อช่วยให้ค้นหารายการได้ถูกต้อง
+          </div>
+          <div class="usage-item">
+            <strong>2. เลือกอุปกรณ์และจอ</strong>
+            ระบุอุปกรณ์ที่ลูกค้าใช้งาน และเลือกหมายเลขจอหรือโปรไฟล์ให้ตรงกับรายการ
+          </div>
+          <div class="usage-item">
+            <strong>3. รับรหัส OTP</strong>
+            เมื่อพบรหัส ระบบจะแสดง OTP พร้อมปุ่มคัดลอกเพื่อใช้งานต่อได้ทันที
           </div>
         </div>
-      </section>
-      <section class="page" id="pageHistory">
-        <div class="result-layout">
-          <div class="info-card">
-            <p class="info-title">ประวัติรายการล่าสุด</p>
-            <div class="history-list" id="historyList">
-              <div class="history-empty">ยังไม่มีประวัติการตรวจสอบ OTP</div>
-            </div>
-          </div>
-          <div class="info-card">
-            <p class="info-title">วิธีใช้งานระบบ</p>
-            <div class="info-list">
-              <div class="info-item"><strong>1. ระบุข้อมูลลูกค้า</strong><br>กรอกอีเมลที่ใช้รับ OTP พร้อมชื่อลูกค้าหรือ LINE ID</div>
-              <div class="info-item"><strong>2. ตรวจสอบอุปกรณ์และจอ</strong><br>เลือกอุปกรณ์และหมายเลขจอให้ตรงกับรายการของลูกค้า</div>
-              <div class="info-item"><strong>3. รับรหัสและส่งต่อ</strong><br>เมื่อพบ OTP ให้กดคัดลอกรหัส แล้วส่งให้ลูกค้าได้ทันที</div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
+      </div>
+    </section>
   </main>
+
   <nav class="bottom-nav" aria-label="เมนูหลัก">
-    <button class="nav-btn active" type="button" data-nav="request" onclick="showPage('request')">
-      <span class="nav-icon">＋</span>
-      <span>รับ OTP</span>
+    <button type="button" class="nav-btn active" data-view="info" onclick="goView('info')">
+      <span class="nav-icon">⌂</span>
+      <span>ข้อมูล</span>
     </button>
-    <button class="nav-btn" type="button" data-nav="result" onclick="showPage('result')">
+    <button type="button" class="nav-btn" data-view="check" onclick="goView('check')">
+      <span class="nav-icon">◎</span>
+      <span>ตรวจสอบ</span>
+    </button>
+    <button type="button" class="nav-btn" data-view="result" onclick="goView('result')">
       <span class="nav-icon">✓</span>
       <span>ผลลัพธ์</span>
     </button>
-    <button class="nav-btn" type="button" data-nav="history" onclick="showPage('history')">
-      <span class="nav-icon">≡</span>
-      <span>ประวัติ</span>
-    </button>
   </nav>
+
   <div class="loading-overlay" id="loadingOverlay">
     <div class="loading-card">
       <div class="loader">OTP</div>
@@ -1316,16 +1548,19 @@
       <div class="loading-message" id="loadingMessage">กำลังตรวจสอบข้อมูลรายการ...</div>
     </div>
   </div>
+
   <div class="confetti-layer" id="confettiLayer"></div>
   <div class="toast" id="toast">ดำเนินการเรียบร้อย</div>
+
   <script>
     const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwe24EQaOFwra5jexOMg7VY5yskHBlbnqEW2E2VP35IMVfJERqY3tge-YHJt-iKvpF8kA/exec';
-    const SHOP_LINE_NAME = 'OTP Verification Center';
-    const SHOP_SUBTITLE = 'ระบบตรวจสอบรหัสยืนยันสำหรับลูกค้า';
+    const SHOP_LINE_NAME = 'Disney+ OTP Center';
+    const SHOP_SUBTITLE = 'ระบบรับรหัสยืนยันสำหรับลูกค้า';
     const REQUEST_TIMEOUT_MS = 18000;
-    const DRAFT_KEY = 'otpDisneyAppDraftV1';
-    const HISTORY_KEY = 'otpDisneyAppLatestV1';
-    const HISTORY_LIST_KEY = 'otpDisneyAppHistoryV1';
+    const DRAFT_KEY = 'disneyOtpCenterDraftV2';
+    const HISTORY_KEY = 'disneyOtpCenterLatestV2';
+    const HISTORY_LIST_KEY = 'disneyOtpCenterListV2';
+
     let selectedScreen = '';
     let selectedDeviceQuick = '';
     let jsonpCounter = 0;
@@ -1333,23 +1568,47 @@
     let loadingTextTimer = null;
     let loadingTextIndex = 0;
     let autosaveTimer = null;
+    let lastSummaryText = '';
     let latestRequestId = '';
     let latestOtp = '';
     let latestExpireMinutes = 15;
+    let currentView = 'info';
+
     const loadingMessages = [
       'กำลังตรวจสอบข้อมูลรายการ...',
       'กำลังค้นหาอีเมลยืนยันล่าสุด...',
       'กำลังประมวลผลรหัส OTP...',
       'กำลังจัดเตรียมผลการตรวจสอบ...'
     ];
+
+    const pageCopy = {
+      info: {
+        title: 'ข้อมูลลูกค้า',
+        sub: 'ระบุข้อมูลสำหรับค้นหารหัส OTP ให้ตรงกับรายการของลูกค้า'
+      },
+      check: {
+        title: 'ตรวจสอบรายการ',
+        sub: 'เลือกอุปกรณ์ หมายเลขจอ และตรวจสอบรหัส OTP ล่าสุด'
+      },
+      result: {
+        title: 'ผลลัพธ์',
+        sub: 'ดูผลการตรวจสอบและคัดลอกรหัส OTP เมื่อระบบพบรหัสล่าสุด'
+      }
+    };
+
+    const app = document.getElementById('app');
     const brandTitle = document.getElementById('brandTitle');
     const brandSub = document.getElementById('brandSub');
+    const pageTitle = document.getElementById('pageTitle');
+    const pageSub = document.getElementById('pageSub');
     const customerNameInput = document.getElementById('customerName');
     const emailInput = document.getElementById('email');
     const deviceInput = document.getElementById('device');
     const customerNoteInput = document.getElementById('customerNote');
     const submitBtn = document.getElementById('submitBtn');
     const btnText = document.getElementById('btnText');
+    const resultBox = document.getElementById('resultBox');
+    const emptyResult = document.getElementById('emptyResult');
     const resultIcon = document.getElementById('resultIcon');
     const resultTitle = document.getElementById('resultTitle');
     const resultMessage = document.getElementById('resultMessage');
@@ -1365,7 +1624,6 @@
     const confettiLayer = document.getElementById('confettiLayer');
     const screenButtons = document.querySelectorAll('.screen-btn');
     const quickDeviceButtons = document.querySelectorAll('.quick-device-btn');
-    const quickNoteButtons = document.querySelectorAll('.quick-note-btn');
     const emailValidation = document.getElementById('emailValidation');
     const deviceValidation = document.getElementById('deviceValidation');
     const screenValidation = document.getElementById('screenValidation');
@@ -1378,17 +1636,20 @@
     const sumNote = document.getElementById('sumNote');
     const latestCard = document.getElementById('latestCard');
     const latestText = document.getElementById('latestText');
-    const historyList = document.getElementById('historyList');
+    const latestMiniList = document.getElementById('latestMiniList');
     const autosaveText = document.getElementById('autosaveText');
-    brandTitle.textContent = SHOP_LINE_NAME || 'OTP Verification Center';
-    brandSub.textContent = SHOP_SUBTITLE || 'ระบบตรวจสอบรหัสยืนยันสำหรับลูกค้า';
+
+    brandTitle.textContent = SHOP_LINE_NAME || 'Disney+ OTP Center';
+    brandSub.textContent = SHOP_SUBTITLE || 'ระบบรับรหัสยืนยันสำหรับลูกค้า';
+
     restoreDraft();
     loadLatestHistory();
-    renderHistoryList();
     updateNoteCount();
     updateSummary();
     validateRealtime();
     bindEvents();
+    goView('info', true);
+
     function bindEvents() {
       [customerNameInput, emailInput, deviceInput, customerNoteInput].forEach(function(input) {
         input.addEventListener('input', function() {
@@ -1398,19 +1659,28 @@
           validateRealtime();
           saveDraftSoon();
         });
+
         input.addEventListener('keydown', function(e) {
           if (e.key === 'Enter' && input !== customerNoteInput) {
-            submitRequest();
+            if (currentView === 'info') {
+              goView('check');
+            } else {
+              submitRequest();
+            }
           }
         });
+
         input.addEventListener('blur', validateRealtime);
       });
+
       screenButtons.forEach(function(btn) {
         btn.addEventListener('click', function() {
           selectedScreen = btn.getAttribute('data-screen') || '';
+
           screenButtons.forEach(function(item) {
             item.classList.remove('selected');
           });
+
           btn.classList.add('selected');
           updateSummary();
           validateRealtime();
@@ -1418,6 +1688,7 @@
           showToast('เลือกหมายเลขจอ ' + selectedScreen + ' แล้ว');
         });
       });
+
       quickDeviceButtons.forEach(function(btn) {
         btn.addEventListener('click', function() {
           const deviceName = btn.getAttribute('data-device') || '';
@@ -1429,56 +1700,77 @@
           showToast('เลือกอุปกรณ์ ' + deviceName + ' แล้ว');
         });
       });
-      quickNoteButtons.forEach(function(btn) {
-        btn.addEventListener('click', function() {
-          addQuickNote(btn.getAttribute('data-note') || '');
-        });
-      });
     }
-    function showPage(name) {
-      const pages = {
-        request: document.getElementById('pageRequest'),
-        result: document.getElementById('pageResult'),
-        history: document.getElementById('pageHistory')
-      };
-      Object.keys(pages).forEach(function(key) {
-        pages[key].classList.toggle('active', key === name);
+
+    function goView(viewName, silent) {
+      currentView = viewName || 'info';
+
+      document.querySelectorAll('.view').forEach(function(view) {
+        view.classList.remove('active');
       });
-      document.querySelectorAll('.nav-btn').forEach(function(btn) {
-        btn.classList.toggle('active', btn.getAttribute('data-nav') === name);
+
+      document.querySelectorAll('.mini-tab, .nav-btn').forEach(function(btn) {
+        btn.classList.toggle('active', btn.getAttribute('data-view') === currentView);
       });
-      if (name === 'history') renderHistoryList();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      const target = document.getElementById('view' + capitalize(currentView));
+      if (target) target.classList.add('active');
+
+      pageTitle.textContent = pageCopy[currentView].title;
+      pageSub.textContent = pageCopy[currentView].sub;
+
+      if (!silent) {
+        setTimeout(function() {
+          try {
+            app.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          } catch (err) {}
+        }, 50);
+      }
     }
+
     function submitRequest() {
       const customerName = customerNameInput.value.trim();
       const email = emailInput.value.trim();
       const device = deviceInput.value.trim();
       const customerNote = customerNoteInput.value.trim();
+
+      resetResult(false);
+
       if (!WEB_APP_URL || WEB_APP_URL.indexOf('ใส่_GOOGLE_APPS_SCRIPT') !== -1) {
         showError('กรุณาตั้งค่า WEB_APP_URL ก่อนใช้งาน');
-        showPage('result');
         return;
       }
+
       if (!email || !isEmail(email)) {
         showToast('กรุณาระบุอีเมลให้ถูกต้อง');
-        emailInput.focus();
+        goView('info');
+        setTimeout(function() {
+          try { emailInput.focus(); } catch (err) {}
+        }, 120);
         validateRealtime();
         return;
       }
+
       if (!device) {
         showToast('กรุณาระบุอุปกรณ์ที่ลูกค้าใช้งาน');
-        deviceInput.focus();
+        goView('check');
+        setTimeout(function() {
+          try { deviceInput.focus(); } catch (err) {}
+        }, 120);
         validateRealtime();
         return;
       }
+
       if (!selectedScreen) {
         showToast('กรุณาเลือกหมายเลขจอ 1–6');
+        goView('check');
         validateRealtime();
         return;
       }
+
       updateSummary();
       setLoading(true);
+
       jsonpRequest({
         action: 'otp',
         customerName: customerName,
@@ -1494,11 +1786,12 @@
         submittedAt: new Date().toISOString()
       }, function(res) {
         setLoading(false);
+
         if (!res) {
           showError('ระบบไม่ตอบกลับ กรุณาลองใหม่อีกครั้ง');
-          showPage('result');
           return;
         }
+
         if (!res.ok || !res.otp) {
           showSuccess(
             res.message || res.savedMessage || 'ระบบบันทึกรายการเรียบร้อยแล้ว แต่ยังไม่พบรหัส OTP ล่าสุด',
@@ -1512,8 +1805,9 @@
           );
           return;
         }
+
         showSuccess(
-          'พบรหัส OTP ล่าสุดแล้ว สามารถคัดลอกเพื่อดำเนินการยืนยันให้ลูกค้าได้ทันที',
+          'พบรหัส OTP ล่าสุดแล้ว สามารถคัดลอกเพื่อดำเนินการต่อได้ทันที',
           res.requestId || res.id || '',
           {
             otpFound: true,
@@ -1525,53 +1819,65 @@
       }, function() {
         setLoading(false);
         showError('ไม่สามารถเชื่อมต่อระบบตรวจสอบได้ กรุณาตรวจสอบอินเทอร์เน็ตหรือระบบปลายทาง แล้วลองใหม่อีกครั้ง');
-        showPage('result');
       });
     }
+
     function jsonpRequest(params, onSuccess, onError) {
       const callbackName = '__otpCallback_' + Date.now() + '_' + (++jsonpCounter);
       const script = document.createElement('script');
+
       params.callback = callbackName;
+
       const query = Object.keys(params)
         .map(function(key) {
           return encodeURIComponent(key) + '=' + encodeURIComponent(params[key] == null ? '' : params[key]);
         })
         .join('&');
+
       const sep = WEB_APP_URL.indexOf('?') === -1 ? '?' : '&';
       const url = WEB_APP_URL + sep + query;
+
       let done = false;
+
       window[callbackName] = function(data) {
         if (done) return;
         done = true;
         cleanup();
         if (typeof onSuccess === 'function') onSuccess(data);
       };
+
       script.onerror = function() {
         if (done) return;
         done = true;
         cleanup();
         if (typeof onError === 'function') onError();
       };
+
       const timer = setTimeout(function() {
         if (done) return;
         done = true;
         cleanup();
         if (typeof onError === 'function') onError();
       }, REQUEST_TIMEOUT_MS);
+
       function cleanup() {
         clearTimeout(timer);
+
         try {
           delete window[callbackName];
         } catch (e) {
           window[callbackName] = undefined;
         }
+
         if (script && script.parentNode) {
           script.parentNode.removeChild(script);
         }
       }
+
       script.src = url;
       document.body.appendChild(script);
     }
+
     function showSuccess(message, requestId, otpData) {
       const finalRequestId = requestId || createLocalRequestId();
       const hasOtp =
@@ -1579,18 +1885,26 @@
         otpData.otpFound === true &&
         otpData.otpDisplayAllowed === true &&
         otpData.otp;
+
       latestRequestId = finalRequestId;
       latestOtp = hasOtp ? String(otpData.otp || '').trim() : '';
       latestExpireMinutes = otpData && otpData.expireMinutes ? otpData.expireMinutes : 15;
+      lastSummaryText = buildSummaryText(finalRequestId);
+
       saveLatestHistory(finalRequestId, hasOtp ? 'พบรหัส OTP แล้ว' : 'ยังไม่พบรหัส OTP ล่าสุด');
+
+      if (emptyResult) emptyResult.style.display = 'none';
+      resultBox.style.display = 'block';
       resultIcon.textContent = hasOtp ? '✓' : '!';
       resultTitle.textContent = hasOtp ? 'พบรหัส OTP แล้ว' : 'บันทึกรายการเรียบร้อย';
       resultMessage.textContent =
         message ||
         (hasOtp
-          ? 'พบรหัส OTP ล่าสุดแล้ว สามารถคัดลอกเพื่อดำเนินการยืนยันให้ลูกค้าได้ทันที'
+          ? 'พบรหัส OTP ล่าสุดแล้ว สามารถคัดลอกเพื่อดำเนินการต่อได้ทันที'
           : 'ระบบบันทึกรายการเรียบร้อยแล้ว แต่ยังไม่พบรหัส OTP ล่าสุด');
+
       requestIdBox.textContent = 'เลขอ้างอิง: ' + finalRequestId;
+
       if (hasOtp) {
         otpCode.textContent = latestOtp;
         otpBox.style.display = 'block';
@@ -1605,13 +1919,17 @@
         otpSafeBox.style.display = 'block';
         showToast('บันทึกรายการแล้ว แต่ยังไม่พบรหัส OTP');
       }
+
       try {
         localStorage.removeItem(DRAFT_KEY);
       } catch (err) {}
-      renderHistoryList();
-      showPage('result');
+
+      goView('result');
     }
+
     function showError(message) {
+      if (emptyResult) emptyResult.style.display = 'none';
+      resultBox.style.display = 'block';
       resultIcon.textContent = '!';
       resultTitle.textContent = 'ไม่สามารถรับ OTP ได้';
       resultMessage.textContent = message || 'ไม่สามารถเชื่อมต่อระบบตรวจสอบได้ กรุณาตรวจสอบอินเทอร์เน็ตหรือระบบปลายทาง แล้วลองใหม่อีกครั้ง';
@@ -1619,7 +1937,26 @@
       otpBox.style.display = 'none';
       otpSafeBox.style.display = 'none';
       showToast(message || 'ไม่สามารถรับ OTP ได้');
+      goView('result');
     }
+
+    function resetResult(clearAll) {
+      if (clearAll) {
+        if (emptyResult) emptyResult.style.display = 'block';
+        resultBox.style.display = 'none';
+      }
+
+      requestIdBox.textContent = 'เลขอ้างอิง: -';
+      otpBox.style.display = 'none';
+      otpSafeBox.style.display = 'none';
+      otpCode.textContent = '------';
+
+      if (copyOtpBtn) {
+        copyOtpBtn.classList.remove('copied');
+        copyOtpBtn.textContent = 'คัดลอกรหัส OTP';
+      }
+    }
+
     function setLoading(isLoading) {
       if (isLoading) {
         btnText.textContent = 'กำลังตรวจสอบ...';
@@ -1627,119 +1964,147 @@
         showLoadingOverlay();
         return;
       }
+
       btnText.textContent = 'ตรวจสอบและรับ OTP';
       submitBtn.disabled = false;
       hideLoadingOverlay();
     }
+
     function showLoadingOverlay() {
       loadingTextIndex = 0;
       loadingMessage.textContent = loadingMessages[0];
       loadingOverlay.classList.add('show');
+
       if (loadingTextTimer) clearInterval(loadingTextTimer);
+
       loadingTextTimer = setInterval(function() {
         loadingTextIndex = (loadingTextIndex + 1) % loadingMessages.length;
         loadingMessage.textContent = loadingMessages[loadingTextIndex];
       }, 1200);
     }
+
     function hideLoadingOverlay() {
       loadingOverlay.classList.remove('show');
+
       if (loadingTextTimer) {
         clearInterval(loadingTextTimer);
         loadingTextTimer = null;
       }
     }
+
     function updateSummary() {
       const customerName = customerNameInput.value.trim();
       const email = emailInput.value.trim();
       const device = deviceInput.value.trim();
       const customerNote = customerNoteInput.value.trim();
+
       sumCustomerName.textContent = customerName || '-';
       sumEmail.textContent = email || '-';
       sumDevice.textContent = device || '-';
       sumScreen.textContent = selectedScreen ? 'จอ ' + selectedScreen : '-';
       sumNote.textContent = customerNote || '-';
-      const hasAny = customerName || email || device || selectedScreen || customerNote;
-      summaryBox.classList.toggle('show', !!hasAny);
     }
+
     function validateRealtime() {
       const email = emailInput.value.trim();
       const device = deviceInput.value.trim();
+
       setValidationState(
         emailInput,
         emailValidation,
         !email ? null : isEmail(email),
         !email ? 'กรุณาระบุอีเมลที่ใช้รับรหัส OTP' : isEmail(email) ? 'อีเมลพร้อมสำหรับการตรวจสอบ' : 'รูปแบบอีเมลไม่ถูกต้อง'
       );
+
       setValidationState(
         deviceInput,
         deviceValidation,
         !device ? null : device.length >= 2,
         !device ? 'กรุณาระบุอุปกรณ์สำหรับใช้ตรวจสอบรายการ' : device.length >= 2 ? 'บันทึกข้อมูลอุปกรณ์แล้ว' : 'ชื่ออุปกรณ์สั้นเกินไป'
       );
+
       if (screenValidation) {
         screenValidation.textContent = selectedScreen ? 'เลือกหมายเลขจอ ' + selectedScreen + ' แล้ว' : 'เลือกหมายเลขจอให้ตรงกับรายการของลูกค้า';
         screenValidation.classList.toggle('ok', !!selectedScreen);
         screenValidation.classList.toggle('bad', false);
       }
     }
+
     function setValidationState(input, label, state, text) {
       if (!input || !label) return;
+
       input.classList.remove('valid', 'invalid');
       label.classList.remove('ok', 'bad');
       label.textContent = text || '';
+
       if (state === true) {
         input.classList.add('valid');
         label.classList.add('ok');
       }
+
       if (state === false) {
         input.classList.add('invalid');
         label.classList.add('bad');
       }
     }
+
     function updateNoteCount() {
       const len = customerNoteInput.value.length;
       noteCount.textContent = len + '/700';
     }
-    function addQuickNote(note) {
-      if (!note) return;
-      const current = customerNoteInput.value.trim();
-      const next = current ? current + ' / ' + note : note;
-      customerNoteInput.value = next.substring(0, 700);
-      updateNoteCount();
-      updateSummary();
-      saveDraftSoon();
-      showToast('เพิ่มหมายเหตุในรายการแล้ว');
-    }
+
     function setQuickDeviceSelected(deviceName) {
       selectedDeviceQuick = deviceName || '';
+
       quickDeviceButtons.forEach(function(btn) {
         const itemDevice = btn.getAttribute('data-device') || '';
         btn.classList.toggle('selected', itemDevice === selectedDeviceQuick);
       });
     }
+
     function clearQuickDeviceSelectedIfManualChange() {
       const current = deviceInput.value.trim();
+
       if (!selectedDeviceQuick || current === selectedDeviceQuick) return;
+
       selectedDeviceQuick = '';
+
       quickDeviceButtons.forEach(function(btn) {
         btn.classList.remove('selected');
       });
     }
+
+    function buildSummaryText(requestId) {
+      return [
+        'ข้อมูลรายการรับ OTP',
+        'เลขอ้างอิง: ' + (requestId || '-'),
+        'ลูกค้า: ' + (customerNameInput.value.trim() || '-'),
+        'อีเมล: ' + (emailInput.value.trim() || '-'),
+        'อุปกรณ์: ' + (deviceInput.value.trim() || '-'),
+        'จอ/โปรไฟล์: ' + (selectedScreen ? 'จอ ' + selectedScreen : '-'),
+        'หมายเหตุ: ' + (customerNoteInput.value.trim() || '-')
+      ].join('\n');
+    }
+
     function copyOtp() {
       if (!latestOtp) {
         showToast('ยังไม่มีรหัส OTP สำหรับคัดลอก');
         return;
       }
+
       copyText(latestOtp, 'คัดลอกรหัส OTP แล้ว');
+
       if (copyOtpBtn) {
         copyOtpBtn.classList.add('copied');
         copyOtpBtn.textContent = 'คัดลอกแล้ว';
+
         setTimeout(function() {
           copyOtpBtn.classList.remove('copied');
           copyOtpBtn.textContent = 'คัดลอกรหัส OTP';
         }, 2200);
       }
     }
+
     function copyText(text, successText) {
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(text).then(function() {
@@ -1751,52 +2116,72 @@
         fallbackCopyWithMessage(text, successText);
       }
     }
+
     function fallbackCopyWithMessage(text, successText) {
       const area = document.createElement('textarea');
+
       area.value = text;
       area.setAttribute('readonly', 'readonly');
       area.style.position = 'fixed';
       area.style.left = '-9999px';
       area.style.top = '-9999px';
+
       document.body.appendChild(area);
       area.focus();
       area.select();
+
       try {
         document.execCommand('copy');
         showToast(successText || 'คัดลอกเรียบร้อยแล้ว');
       } catch (err) {
         showToast('ไม่สามารถคัดลอกข้อมูลได้');
       }
+
       document.body.removeChild(area);
     }
+
     function clearDraft() {
       try {
         localStorage.removeItem(DRAFT_KEY);
       } catch (err) {}
+
       customerNameInput.value = '';
       emailInput.value = '';
       deviceInput.value = '';
       customerNoteInput.value = '';
       selectedScreen = '';
       selectedDeviceQuick = '';
+      lastSummaryText = '';
+      latestRequestId = '';
+      latestOtp = '';
+      latestExpireMinutes = 15;
+
       screenButtons.forEach(function(btn) {
         btn.classList.remove('selected');
       });
+
       quickDeviceButtons.forEach(function(btn) {
         btn.classList.remove('selected');
       });
+
       updateNoteCount();
       updateSummary();
       validateRealtime();
+      resetResult(true);
       showToast('ล้างข้อมูลเรียบร้อยแล้ว');
+      goView('info');
     }
+
     function saveDraftSoon() {
       if (autosaveTimer) clearTimeout(autosaveTimer);
-      autosaveText.textContent = 'กำลังบันทึกแบบร่างรายการ...';
+
+      if (autosaveText) autosaveText.textContent = 'กำลังบันทึกแบบร่างรายการ...';
+
       autosaveTimer = setTimeout(function() {
         saveDraft();
       }, 350);
     }
+
     function saveDraft() {
       try {
         const data = {
@@ -1808,50 +2193,53 @@
           selectedDeviceQuick: selectedDeviceQuick || '',
           savedAt: new Date().toISOString()
         };
+
         localStorage.setItem(DRAFT_KEY, JSON.stringify(data));
-        autosaveText.textContent = 'บันทึกแบบร่างรายการอัตโนมัติแล้ว';
+        if (autosaveText) autosaveText.textContent = 'บันทึกแบบร่างอัตโนมัติแล้ว';
       } catch (err) {
-        autosaveText.textContent = 'ระบบบันทึกข้อมูลรายการเพื่อใช้ตรวจสอบย้อนหลัง และช่วยให้การดูแลลูกค้าเป็นไปอย่างเป็นระบบ';
+        if (autosaveText) autosaveText.textContent = 'ระบบบันทึกแบบร่างอัตโนมัติบนอุปกรณ์นี้ เพื่อช่วยให้กลับมาทำรายการต่อได้';
       }
     }
+
     function restoreDraft() {
       try {
         const raw = localStorage.getItem(DRAFT_KEY);
         if (!raw) return;
+
         const data = JSON.parse(raw);
+
         customerNameInput.value = data.customerName || '';
         emailInput.value = data.email || '';
         deviceInput.value = data.device || '';
         customerNoteInput.value = data.note || '';
         selectedScreen = data.screen || '';
         selectedDeviceQuick = data.selectedDeviceQuick || '';
+
         if (selectedScreen) {
           screenButtons.forEach(function(btn) {
             btn.classList.toggle('selected', btn.getAttribute('data-screen') === selectedScreen);
           });
         }
+
         if (selectedDeviceQuick) setQuickDeviceSelected(selectedDeviceQuick);
       } catch (err) {}
     }
+
     function saveLatestHistory(requestId, otpStatusText) {
       const customerName = customerNameInput.value.trim() || '-';
-      const email = emailInput.value.trim() || '-';
       const device = deviceInput.value.trim() || '-';
       const screen = selectedScreen ? 'จอ ' + selectedScreen : '-';
-      const time = new Date().toLocaleString('th-TH', {
-        day: '2-digit',
-        month: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit'
-      });
+      const time = new Date().toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit' });
       const text = customerName + ' / ' + device + ' / ' + screen + ' / ' + time;
+
       try {
         localStorage.setItem(HISTORY_KEY, text);
+
         const raw = localStorage.getItem(HISTORY_LIST_KEY);
         const list = raw ? JSON.parse(raw) : [];
+
         list.unshift({
           customerName: customerName,
-          email: email,
           device: device,
           screen: screen,
           time: time,
@@ -1859,62 +2247,80 @@
           otpStatus: otpStatusText || '-',
           savedAt: new Date().toISOString()
         });
-        localStorage.setItem(HISTORY_LIST_KEY, JSON.stringify(list.slice(0, 8)));
+
+        localStorage.setItem(HISTORY_LIST_KEY, JSON.stringify(list.slice(0, 5)));
       } catch (err) {}
+
       latestText.textContent = text;
       latestCard.style.display = 'block';
+      renderLatestMiniList();
     }
+
     function loadLatestHistory() {
       try {
         const text = localStorage.getItem(HISTORY_KEY);
+
         if (text) {
           latestText.textContent = text;
           latestCard.style.display = 'block';
         }
+
+        renderLatestMiniList();
       } catch (err) {}
     }
-    function renderHistoryList() {
-      if (!historyList) return;
-      historyList.innerHTML = '';
+
+    function renderLatestMiniList() {
+      if (!latestMiniList) return;
+
+      latestMiniList.innerHTML = '';
+
       try {
         const raw = localStorage.getItem(HISTORY_LIST_KEY);
         const list = raw ? JSON.parse(raw) : [];
-        if (!list.length) {
-          historyList.innerHTML = '<div class="history-empty">ยังไม่มีประวัติการตรวจสอบ OTP</div>';
-          return;
-        }
-        list.forEach(function(item) {
+
+        list.slice(0, 3).forEach(function(item) {
           const el = document.createElement('div');
-          el.className = 'history-item';
-          el.innerHTML =
-            '<strong>' + escapeHtml(item.customerName || '-') + ' • ' + escapeHtml(item.otpStatus || '-') + '</strong>' +
-            '<span>' + escapeHtml(item.email || '-') + '</span>' +
-            '<span>' + escapeHtml(item.device || '-') + ' • ' + escapeHtml(item.screen || '-') + ' • ' + escapeHtml(item.time || '-') + '</span>' +
-            '<span>เลขอ้างอิง: ' + escapeHtml(item.requestId || '-') + '</span>';
-          historyList.appendChild(el);
+          el.className = 'latest-mini-item';
+          el.textContent =
+            (item.requestId || '-') +
+            ' • ' +
+            (item.customerName || '-') +
+            ' • ' +
+            (item.device || '-') +
+            ' • ' +
+            (item.screen || '-') +
+            ' • ' +
+            (item.otpStatus || '-');
+
+          latestMiniList.appendChild(el);
         });
-      } catch (err) {
-        historyList.innerHTML = '<div class="history-empty">ไม่สามารถโหลดประวัติได้</div>';
-      }
+      } catch (err) {}
     }
+
     function launchConfetti() {
       confettiLayer.innerHTML = '';
+
       const pieces = ['✓', 'OTP', '★', '•', '✦'];
       const count = 26;
+
       for (let i = 0; i < count; i++) {
         const el = document.createElement('div');
+
         el.className = 'confetti-piece';
         el.textContent = pieces[Math.floor(Math.random() * pieces.length)];
         el.style.left = (18 + Math.random() * 64) + '%';
-        el.style.color = ['#D8F3FF', '#0063E5', '#0483EE', '#FFFFFF'][Math.floor(Math.random() * 4)];
+        el.style.color = ['#79F3FF', '#02D6E8', '#FFFFFF', '#8DAEFF'][Math.floor(Math.random() * 4)];
         el.style.setProperty('--x', ((Math.random() * 220) - 110) + 'px');
         el.style.animationDelay = (Math.random() * .18) + 's';
+
         confettiLayer.appendChild(el);
       }
+
       setTimeout(function() {
         confettiLayer.innerHTML = '';
       }, 1500);
     }
+
     function createLocalRequestId() {
       const d = new Date();
       const y = String(d.getFullYear()).slice(-2);
@@ -1923,26 +2329,28 @@
       const h = String(d.getHours()).padStart(2, '0');
       const min = String(d.getMinutes()).padStart(2, '0');
       const rand = Math.floor(Math.random() * 900 + 100);
+
       return 'OTP-' + y + m + day + '-' + h + min + '-' + rand;
     }
+
     function showToast(message) {
       toast.textContent = message || 'ดำเนินการเรียบร้อย';
       toast.classList.add('show');
+
       if (toastTimer) clearTimeout(toastTimer);
+
       toastTimer = setTimeout(function() {
         toast.classList.remove('show');
       }, 1900);
     }
+
     function isEmail(value) {
       return /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(String(value || '').trim());
     }
-    function escapeHtml(value) {
-      return String(value == null ? '' : value)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#039;');
+
+    function capitalize(value) {
+      value = String(value || '');
+      return value.charAt(0).toUpperCase() + value.slice(1);
     }
   </script>
 </body>
