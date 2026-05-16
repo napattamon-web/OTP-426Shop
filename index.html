@@ -4,68 +4,26 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#06C755">
-  <meta name="description" content="LINE OTP Verify - ระบบรับรหัส OTP สำหรับลูกค้า">
-  <title>LINE OTP Verify</title>
+  <meta name="description" content="ศูนย์ตรวจสอบและรับรหัส OTP สำหรับลูกค้าของร้าน">
+  <title>LINE OTP Verification Center</title>
 
   <style>
     :root {
-      --bg: #030712;
+      --bg: #02130A;
+      --card: rgba(255,255,255,0.105);
+      --card2: rgba(255,255,255,0.065);
+      --line: #06C755;
+      --line2: #04A846;
+      --mint: #DFFFEA;
+      --gold: #FFE7A3;
       --text: #F8FBFF;
       --sub: rgba(248,251,255,0.74);
-      --muted: rgba(248,251,255,0.54);
-      --cyan-soft: #DDFBFF;
-      --pink: #FFD7EA;
-      --pink-strong: #FF9FC8;
-      --yellow: #FFF2BF;
-      --green: #A4FFD4;
+      --muted: rgba(248,251,255,0.52);
       --danger: #FFB4B4;
-      --dark: #05112A;
-      --shadow: 0 30px 90px rgba(0,0,0,0.48);
-
-      --line-green: #06C755;
-      --line-green-dark: #04A846;
-      --line-mint: #DFFFEA;
-      --premium-gold: #FFE7A3;
-    }
-
-    body.theme-line {
-      --bg: #02130A;
-      --cyan-soft: #E8FFF1;
-      --pink: #DFFFEA;
-      --pink-strong: #06C755;
-      --green: #7CFFB2;
-      --danger: #FFB4B4;
+      --ok: #A4FFD4;
       --dark: #062515;
-    }
-
-    body.theme-pink {
-      --bg: #030712;
-      --cyan-soft: #F8FBFF;
-      --pink: #FFD7EA;
-      --pink-strong: #FF8FC0;
-      --green: #A4FFD4;
-      --danger: #FFB4B4;
-      --dark: #05112A;
-    }
-
-    body.theme-sky {
-      --bg: #03111E;
-      --cyan-soft: #EAF8FF;
-      --pink: #DDFBFF;
-      --pink-strong: #62C7FF;
-      --green: #B2F7FF;
-      --danger: #FFB4B4;
-      --dark: #041928;
-    }
-
-    body.theme-gold {
-      --bg: #161006;
-      --cyan-soft: #FFF8DF;
-      --pink: #FFE7A3;
-      --pink-strong: #FFD166;
-      --green: #D9FFB3;
-      --danger: #FFB4B4;
-      --dark: #271A04;
+      --border: rgba(223,255,234,0.18);
+      --shadow: 0 28px 88px rgba(0,0,0,0.46);
     }
 
     * {
@@ -98,45 +56,17 @@
     .page {
       position: relative;
       min-height: 100dvh;
-      padding: max(20px, env(safe-area-inset-top)) 14px max(24px, env(safe-area-inset-bottom));
+      padding: max(18px, env(safe-area-inset-top)) 14px max(18px, env(safe-area-inset-bottom));
       display: flex;
       justify-content: center;
       align-items: center;
-      overflow-x: hidden;
+      overflow: hidden;
       background:
-        radial-gradient(circle at 50% -8%, rgba(6,199,85,0.30), transparent 34%),
-        radial-gradient(circle at 7% 14%, rgba(111,255,170,0.20), transparent 34%),
-        radial-gradient(circle at 95% 24%, rgba(255,231,163,0.16), transparent 30%),
-        radial-gradient(circle at 90% 84%, rgba(223,255,234,0.22), transparent 38%),
-        linear-gradient(180deg, #063E22 0%, #052C1A 46%, #02130A 100%);
-      transition: background .25s ease;
-    }
-
-    body.theme-pink .page {
-      background:
-        radial-gradient(circle at 50% -8%, rgba(183,242,255,0.34), transparent 34%),
-        radial-gradient(circle at 7% 14%, rgba(94,162,255,0.24), transparent 34%),
-        radial-gradient(circle at 95% 24%, rgba(255,159,200,0.20), transparent 30%),
-        radial-gradient(circle at 90% 84%, rgba(255,215,234,0.28), transparent 38%),
-        linear-gradient(180deg, #071A3D 0%, #07152F 46%, #030712 100%);
-    }
-
-    body.theme-sky .page {
-      background:
-        radial-gradient(circle at 50% -8%, rgba(98,199,255,0.32), transparent 34%),
-        radial-gradient(circle at 7% 14%, rgba(221,251,255,0.22), transparent 34%),
-        radial-gradient(circle at 95% 24%, rgba(178,247,255,0.18), transparent 30%),
-        radial-gradient(circle at 90% 84%, rgba(234,248,255,0.18), transparent 38%),
-        linear-gradient(180deg, #073653 0%, #06263D 46%, #03111E 100%);
-    }
-
-    body.theme-gold .page {
-      background:
-        radial-gradient(circle at 50% -8%, rgba(255,209,102,0.30), transparent 34%),
-        radial-gradient(circle at 7% 14%, rgba(255,231,163,0.20), transparent 34%),
-        radial-gradient(circle at 95% 24%, rgba(217,255,179,0.15), transparent 30%),
-        radial-gradient(circle at 90% 84%, rgba(255,248,223,0.18), transparent 38%),
-        linear-gradient(180deg, #3B2A08 0%, #251904 46%, #161006 100%);
+        radial-gradient(circle at 50% -10%, rgba(6,199,85,0.35), transparent 34%),
+        radial-gradient(circle at 6% 18%, rgba(164,255,212,0.18), transparent 34%),
+        radial-gradient(circle at 94% 15%, rgba(255,231,163,0.18), transparent 34%),
+        radial-gradient(circle at 80% 95%, rgba(223,255,234,0.22), transparent 40%),
+        linear-gradient(180deg, #063E22 0%, #052B19 48%, #02130A 100%);
     }
 
     .page:before {
@@ -144,13 +74,12 @@
       position: absolute;
       inset: 0;
       pointer-events: none;
+      opacity: .56;
       background-image:
-        radial-gradient(circle, rgba(255,255,255,0.34) 0 1px, transparent 1.6px),
-        radial-gradient(circle, rgba(223,255,234,0.24) 0 1px, transparent 1.7px),
-        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-      background-size: 54px 54px, 86px 86px, 44px 44px, 44px 44px;
-      opacity: .72;
+        radial-gradient(circle, rgba(255,255,255,0.26) 0 1px, transparent 1.6px),
+        linear-gradient(rgba(255,255,255,0.026) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.026) 1px, transparent 1px);
+      background-size: 56px 56px, 44px 44px, 44px 44px;
       mask-image: linear-gradient(to bottom, rgba(0,0,0,0.72), transparent 78%);
     }
 
@@ -158,36 +87,35 @@
       position: absolute;
       border-radius: 999px;
       pointer-events: none;
-      filter: blur(34px);
+      filter: blur(36px);
       opacity: .72;
-      animation: orbFloat 10s ease-in-out infinite;
+      animation: orbFloat 9s ease-in-out infinite;
     }
 
     .orb.one {
-      width: 260px;
-      height: 260px;
+      width: 280px;
+      height: 280px;
       left: -130px;
-      top: 110px;
-      background: rgba(6,199,85,0.34);
+      top: 90px;
+      background: rgba(6,199,85,0.35);
     }
 
     .orb.two {
-      width: 240px;
-      height: 240px;
-      right: -120px;
-      top: 64px;
-      background: rgba(223,255,234,0.32);
-      animation-delay: 1.4s;
+      width: 260px;
+      height: 260px;
+      right: -130px;
+      top: 80px;
+      background: rgba(223,255,234,0.28);
+      animation-delay: 1.2s;
     }
 
     .orb.three {
-      width: 330px;
-      height: 330px;
-      left: 50%;
-      bottom: -205px;
-      transform: translateX(-50%);
-      background: rgba(255,231,163,0.20);
-      animation-delay: 2.3s;
+      width: 340px;
+      height: 340px;
+      left: 48%;
+      bottom: -220px;
+      background: rgba(255,231,163,0.18);
+      animation-delay: 2.4s;
     }
 
     @keyframes orbFloat {
@@ -195,70 +123,42 @@
       50% { transform: translate3d(18px,-16px,0) scale(1.06); }
     }
 
-    .cute {
-      position: absolute;
-      pointer-events: none;
-      color: rgba(255,255,255,0.70);
-      font-weight: 1000;
-      text-shadow: 0 0 22px rgba(223,255,234,0.50);
-      animation: cuteFloat 4.8s ease-in-out infinite;
-    }
-
-    .cute.c1 { left: 8%; top: 16%; font-size: 16px; }
-    .cute.c2 { right: 9%; top: 30%; font-size: 18px; color: rgba(223,255,234,0.82); animation-delay: .9s; }
-    .cute.c3 { left: 12%; bottom: 18%; font-size: 14px; color: rgba(255,242,191,0.76); animation-delay: 1.6s; }
-    .cute.c4 { right: 16%; bottom: 12%; font-size: 13px; color: rgba(221,251,255,0.84); animation-delay: 2.4s; }
-
-    @keyframes cuteFloat {
-      0%, 100% { transform: translateY(0) rotate(-5deg); opacity: .48; }
-      50% { transform: translateY(-12px) rotate(6deg); opacity: 1; }
-    }
-
     .wrap {
       position: relative;
       z-index: 2;
       width: 100%;
-      max-width: 1080px;
-      min-height: calc(100dvh - 48px);
+      max-width: 1040px;
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(390px, 470px);
+      grid-template-columns: minmax(0, 1fr) minmax(360px, 470px);
       gap: 22px;
       align-items: center;
     }
 
     .hero {
-      min-height: 680px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
       gap: 22px;
-      padding: 8px 0;
+      min-height: 660px;
+      justify-content: space-between;
     }
 
-    .topbar,
     .brand {
       display: flex;
       align-items: center;
       gap: 12px;
     }
 
-    .topbar {
-      justify-content: space-between;
-    }
-
     .logo {
-      width: 52px;
-      height: 52px;
+      width: 54px;
+      height: 54px;
       border-radius: 20px;
       display: grid;
       place-items: center;
       background:
-        radial-gradient(circle at 28% 18%, rgba(255,255,255,0.42), transparent 26%),
-        linear-gradient(135deg, #06C755, #DFFFEA 52%, #FFE7A3);
-      box-shadow: 0 18px 42px rgba(6,199,85,0.24), inset 0 1px 0 rgba(255,255,255,0.55);
-      position: relative;
+        radial-gradient(circle at 30% 18%, rgba(255,255,255,0.45), transparent 28%),
+        linear-gradient(135deg, var(--line), var(--mint) 56%, var(--gold));
+      box-shadow: 0 18px 42px rgba(6,199,85,0.26), inset 0 1px 0 rgba(255,255,255,0.55);
       flex: 0 0 auto;
-      animation: logoFloat 4.8s ease-in-out infinite;
     }
 
     .logo:before {
@@ -268,26 +168,8 @@
       color: var(--dark);
     }
 
-    .logo:after {
-      content: "";
-      position: absolute;
-      right: -3px;
-      top: -3px;
-      width: 14px;
-      height: 14px;
-      border-radius: 999px;
-      background: var(--pink-strong);
-      box-shadow: 0 0 18px rgba(6,199,85,0.85);
-      border: 2px solid rgba(255,255,255,0.82);
-    }
-
-    @keyframes logoFloat {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-3px); }
-    }
-
     .brand-title {
-      font-size: 16px;
+      font-size: 17px;
       font-weight: 1000;
       color: #FFFFFF;
       line-height: 1.35;
@@ -301,34 +183,11 @@
       line-height: 1.45;
     }
 
-    .online {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 9px 12px;
-      border-radius: 999px;
-      color: #FFFFFF;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(223,255,234,0.24);
-      font-size: 12px;
-      font-weight: 950;
-      white-space: nowrap;
-    }
-
-    .online:before {
-      content: "";
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: var(--green);
-      box-shadow: 0 0 14px rgba(164,255,212,0.8);
-    }
-
     .hero-main {
       max-width: 590px;
     }
 
-    .eyebrow {
+    .badge {
       width: fit-content;
       display: inline-flex;
       align-items: center;
@@ -336,30 +195,31 @@
       margin-bottom: 18px;
       padding: 9px 13px;
       border-radius: 999px;
-      color: var(--cyan-soft);
+      color: var(--mint);
       background: rgba(223,255,234,0.08);
-      border: 1px solid rgba(223,255,234,0.18);
+      border: 1px solid var(--border);
       font-size: 12px;
       font-weight: 900;
     }
 
-    .eyebrow:before {
-      content: "♡";
-      color: var(--pink);
+    .badge:before {
+      content: "SECURE";
+      color: var(--gold);
+      font-weight: 1000;
     }
 
     h1 {
       margin: 0;
       color: #FFFFFF;
-      font-size: clamp(38px, 6.8vw, 72px);
+      font-size: clamp(38px, 6.4vw, 70px);
       line-height: 1.12;
-      letter-spacing: -2.2px;
+      letter-spacing: -2px;
       font-weight: 1000;
     }
 
     .gradient-text {
       display: block;
-      background: linear-gradient(135deg, #FFFFFF 8%, #DFFFEA 44%, #FFE7A3 78%);
+      background: linear-gradient(135deg, #FFFFFF 8%, var(--mint) 48%, var(--gold) 82%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
@@ -388,7 +248,7 @@
     }
 
     .latest-card strong {
-      color: var(--green);
+      color: var(--ok);
     }
 
     .latest-mini-list {
@@ -408,40 +268,13 @@
       font-weight: 700;
     }
 
-    .bottom-guide {
-      margin-top: 18px;
-      padding: 16px;
-      border-radius: 26px;
-      background:
-        linear-gradient(135deg, rgba(223,255,234,0.11), rgba(255,231,163,0.09)),
-        rgba(255,255,255,0.055);
-      border: 1px solid rgba(255,255,255,0.13);
-      box-shadow: 0 14px 30px rgba(0,0,0,0.12);
-    }
-
-    .bottom-guide-title {
-      color: #FFFFFF;
-      font-size: 14px;
-      font-weight: 1000;
-      margin-bottom: 10px;
-    }
-
-    .bottom-guide-list {
-      display: grid;
-      gap: 7px;
-      color: rgba(255,255,255,0.72);
-      font-size: 12px;
-      line-height: 1.55;
-      font-weight: 650;
-    }
-
-    .form-card {
+    .app-card {
       position: relative;
       border-radius: 34px;
       padding: 20px;
-      border: 1px solid rgba(223,255,234,0.18);
+      border: 1px solid var(--border);
       background:
-        radial-gradient(circle at 20% 0%, rgba(223,255,234,0.13), transparent 30%),
+        radial-gradient(circle at 18% 0%, rgba(223,255,234,0.14), transparent 30%),
         radial-gradient(circle at 100% 20%, rgba(255,231,163,0.12), transparent 34%),
         linear-gradient(180deg, rgba(255,255,255,0.14), rgba(255,255,255,0.06)),
         rgba(8,20,43,0.84);
@@ -449,357 +282,77 @@
       backdrop-filter: blur(24px);
     }
 
-    .form-card.tilt-ready {
-      transform-style: preserve-3d;
-      transition: transform .16s ease, box-shadow .16s ease;
-    }
-
-    .admin-badge {
-      position: absolute;
-      left: 18px;
-      top: -18px;
-      z-index: 5;
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 8px 11px;
-      border-radius: 999px;
-      color: #062515;
-      background: linear-gradient(135deg, #FFE7A3, #FFFFFF);
-      font-size: 11px;
-      font-weight: 1000;
-      box-shadow: 0 14px 34px rgba(255,231,163,0.22);
-    }
-
-    .admin-badge:before {
-      content: "OTP";
-    }
-
-    .mascot {
-      position: absolute;
-      right: 16px;
-      top: -42px;
-      z-index: 4;
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      padding: 10px 12px;
-      border-radius: 999px;
-      color: #062515;
-      background: linear-gradient(135deg, #DFFFEA, #FFFFFF 55%, #FFE7A3);
-      box-shadow: 0 18px 44px rgba(6,199,85,0.22);
-      font-size: 12px;
-      font-weight: 950;
-      animation: mascotFloat 3.6s ease-in-out infinite;
-    }
-
-    .mascot-face {
-      width: 32px;
-      height: 32px;
-      border-radius: 14px;
-      display: grid;
-      place-items: center;
-      background: #06C755;
-      color: #FFFFFF;
-      font-size: 18px;
-    }
-
-    @keyframes mascotFloat {
-      0%, 100% { transform: translateY(0) rotate(-1deg); }
-      50% { transform: translateY(-6px) rotate(2deg); }
-    }
-
-    .form-head {
+    .app-top {
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
       gap: 12px;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
       padding: 15px;
       border-radius: 24px;
       border: 1px solid rgba(223,255,234,0.16);
       background: rgba(255,255,255,0.05);
     }
 
-    .form-head h2 {
+    .app-top h2 {
       margin: 0;
       color: #FFFFFF;
-      font-size: 18px;
-      line-height: 1.45;
+      font-size: 19px;
+      line-height: 1.42;
       font-weight: 1000;
     }
 
-    .form-head p {
+    .app-top p {
       margin: 5px 0 0;
       color: var(--muted);
       font-size: 12px;
-      line-height: 1.7;
+      line-height: 1.65;
     }
 
-    .secure-pill {
+    .status-pill {
       flex: 0 0 auto;
       padding: 8px 10px;
       border-radius: 999px;
       color: var(--dark);
-      background: linear-gradient(135deg, #DFFFEA, #FFFFFF 52%, #FFE7A3);
+      background: linear-gradient(135deg, var(--mint), #FFFFFF 52%, var(--gold));
       font-size: 11px;
       font-weight: 950;
       white-space: nowrap;
     }
 
-    .progress-wrap {
-      margin: 0 0 12px;
-      padding: 10px;
-      border-radius: 20px;
-      background: rgba(255,255,255,0.045);
-      border: 1px solid rgba(255,255,255,0.10);
+    .quick-line {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 14px;
     }
 
-    .progress-meta {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 8px;
-      color: rgba(255,255,255,0.70);
-      font-size: 11px;
-      font-weight: 850;
-    }
-
-    .progress-bar {
-      height: 8px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.10);
-      overflow: hidden;
-    }
-
-    .progress-fill {
-      width: 25%;
-      height: 100%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, #06C755, #DFFFEA, #FFE7A3);
-      transition: width .22s ease;
-      box-shadow:
-        0 0 18px rgba(223,255,234,0.45),
-        0 0 34px rgba(6,199,85,0.28);
-      animation: progressGlow 2.4s ease-in-out infinite;
-    }
-
-    @keyframes progressGlow {
-      0%, 100% { filter: brightness(1); }
-      50% { filter: brightness(1.22); }
-    }
-
-    .timeline {
-      margin: 12px 0 14px;
+    .quick-stat {
       padding: 11px;
-      border-radius: 22px;
-      background: rgba(255,255,255,0.045);
-      border: 1px solid rgba(255,255,255,0.10);
-    }
-
-    .timeline-title {
-      margin: 0 0 9px;
-      color: #FFFFFF;
-      font-size: 12px;
-      font-weight: 1000;
-    }
-
-    .timeline-list {
-      display: grid;
-      gap: 8px;
-    }
-
-    .timeline-item {
-      display: grid;
-      grid-template-columns: 18px 1fr;
-      gap: 8px;
-      color: rgba(255,255,255,0.66);
-      font-size: 11px;
-      line-height: 1.45;
-      font-weight: 760;
-    }
-
-    .timeline-dot {
-      width: 10px;
-      height: 10px;
-      margin-top: 3px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.18);
-    }
-
-    .timeline-item.done .timeline-dot,
-    .timeline-item.active .timeline-dot {
-      background: var(--green);
-      box-shadow: 0 0 12px rgba(164,255,212,0.72);
-    }
-
-    .timeline-item.active {
-      color: #FFFFFF;
-    }
-
-    .theme-switcher {
-      display: flex;
-      gap: 7px;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin: 12px 0 0;
-    }
-
-    .theme-dot {
-      width: 31px;
-      height: 31px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.25);
-      background: rgba(255,255,255,0.08);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.30);
-    }
-
-    .theme-dot[data-theme="line"] {
-      background: linear-gradient(135deg, #06C755, #DFFFEA);
-    }
-
-    .theme-dot[data-theme="pink"] {
-      background: linear-gradient(135deg, #FF8FC0, #FFD7EA);
-    }
-
-    .theme-dot[data-theme="sky"] {
-      background: linear-gradient(135deg, #62C7FF, #DDFBFF);
-    }
-
-    .theme-dot[data-theme="gold"] {
-      background: linear-gradient(135deg, #FFD166, #FFF4C7);
-    }
-
-    .theme-dot.active {
-      outline: 3px solid rgba(255,255,255,0.32);
-      transform: translateY(-2px);
-    }
-
-    .top-actions {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 10px;
-    }
-
-    .sound-toggle,
-    .install-btn {
-      width: auto;
-      min-height: 38px;
-      border-radius: 999px;
-      padding: 8px 12px;
-      color: rgba(255,255,255,0.88);
-      background: rgba(255,255,255,0.065);
-      border: 1px solid rgba(255,255,255,0.12);
-      font-size: 12px;
-      font-weight: 900;
-    }
-
-    .saving-dot {
-      display: inline-flex;
-      align-items: center;
-      gap: 3px;
-    }
-
-    .saving-dot i {
-      width: 4px;
-      height: 4px;
-      border-radius: 999px;
-      background: var(--pink);
-      animation: dotBlink 1s ease-in-out infinite;
-    }
-
-    .saving-dot i:nth-child(2) { animation-delay: .15s; }
-    .saving-dot i:nth-child(3) { animation-delay: .3s; }
-
-    @keyframes dotBlink {
-      0%, 100% { opacity: .25; transform: translateY(0); }
-      50% { opacity: 1; transform: translateY(-2px); }
-    }
-
-    .stepper {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 8px;
-      margin: 0 0 18px;
-      padding: 8px;
-      border-radius: 24px;
-      background: rgba(255,255,255,0.045);
-      border: 1px solid rgba(255,255,255,0.10);
-    }
-
-    .step-item {
-      padding: 9px 6px;
       border-radius: 18px;
+      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(255,255,255,0.10);
       text-align: center;
-      color: rgba(255,255,255,0.48);
-      border: 1px solid transparent;
-      transition: .18s ease;
     }
 
-    .step-number {
-      width: 24px;
-      height: 24px;
-      margin: 0 auto 6px;
-      border-radius: 999px;
-      display: grid;
-      place-items: center;
-      font-size: 12px;
-      font-weight: 1000;
-      background: rgba(255,255,255,0.085);
-    }
-
-    .step-label {
+    .quick-stat strong {
       display: block;
-      font-size: 10px;
-      font-weight: 850;
-      line-height: 1.35;
-    }
-
-    .step-item.active {
       color: #FFFFFF;
-      background: rgba(255,255,255,0.08);
-      border-color: rgba(223,255,234,0.18);
+      font-size: 15px;
+      font-weight: 1000;
+      line-height: 1.25;
     }
 
-    .step-item.active .step-number {
-      color: var(--dark);
-      background: linear-gradient(135deg, #DFFFEA, #FFFFFF 52%, #FFE7A3);
-    }
-
-    .step-item.done {
-      color: rgba(217,255,233,0.86);
-    }
-
-    .step-item.done .step-number {
-      color: #06351F;
-      background: var(--green);
-    }
-
-    .step-panel {
-      display: none;
-      transform: translateX(12px);
-    }
-
-    .step-panel.active {
+    .quick-stat span {
       display: block;
-      animation: slideStepIn .28s ease both;
-    }
-
-    @keyframes slideStepIn {
-      from {
-        opacity: 0;
-        transform: translateX(18px) scale(.99);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0) scale(1);
-      }
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 780;
     }
 
     .field {
-      margin-bottom: 14px;
+      margin-bottom: 13px;
     }
 
     .label {
@@ -823,13 +376,13 @@
       width: 7px;
       height: 7px;
       border-radius: 999px;
-      background: var(--pink-strong);
+      background: var(--line);
       box-shadow: 0 0 13px rgba(6,199,85,0.72);
       flex: 0 0 auto;
     }
 
-    .optional,
-    .required {
+    .required,
+    .optional {
       font-size: 11px;
       font-weight: 850;
       padding: 5px 8px;
@@ -838,7 +391,7 @@
     }
 
     .required {
-      color: var(--cyan-soft);
+      color: var(--mint);
       background: rgba(223,255,234,0.075);
       border: 1px solid rgba(223,255,234,0.20);
     }
@@ -864,14 +417,14 @@
     }
 
     input {
-      min-height: 58px;
+      min-height: 56px;
       padding: 13px 15px;
     }
 
     textarea {
-      min-height: 104px;
+      min-height: 86px;
       resize: vertical;
-      padding: 14px 15px;
+      padding: 13px 15px;
       line-height: 1.65;
     }
 
@@ -900,10 +453,6 @@
       box-shadow: 0 0 0 4px rgba(255,180,180,0.08);
     }
 
-    .pin-field {
-      display: none;
-    }
-
     .validation-msg {
       margin: 7px 5px 0;
       font-size: 11px;
@@ -913,39 +462,30 @@
     }
 
     .validation-msg.ok {
-      color: var(--green);
+      color: var(--ok);
     }
 
     .validation-msg.bad {
       color: var(--danger);
     }
 
-    .hint {
-      margin: 8px 5px 0;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.65;
+    .row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
     }
 
-    button {
-      appearance: none;
-      border: none;
-      cursor: pointer;
-      transition: transform .15s ease, box-shadow .15s ease, background .15s ease, border-color .15s ease, opacity .15s ease;
-    }
-
-    button:active {
-      transform: scale(.985);
-    }
-
-    button:disabled {
-      opacity: .42;
-      cursor: not-allowed;
+    .quick-device-grid,
+    .quick-note-grid {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 9px;
     }
 
     .quick-device-btn,
     .quick-note-btn,
-    .sample-btn {
+    .small-btn {
       min-height: 38px;
       border-radius: 15px;
       color: rgba(255,255,255,0.88);
@@ -961,37 +501,9 @@
       width: auto;
     }
 
-    .quick-device-wrap,
-    .quick-note-wrap {
-      margin-top: 10px;
-    }
-
-    .quick-device-title,
-    .quick-note-title {
-      margin: 0 5px 8px;
-      color: rgba(255,255,255,0.60);
-      font-size: 12px;
-      font-weight: 760;
-    }
-
-    .quick-device-grid,
-    .quick-note-grid {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
     .quick-device-btn.selected {
       color: var(--dark);
-      background: linear-gradient(135deg, #DFFFEA, #FFFFFF 52%, #FFE7A3);
-    }
-
-    .note-count {
-      margin-top: 7px;
-      text-align: right;
-      color: rgba(255,255,255,0.46);
-      font-size: 11px;
-      font-weight: 760;
+      background: linear-gradient(135deg, var(--mint), #FFFFFF 52%, var(--gold));
     }
 
     .screen-grid {
@@ -1014,15 +526,6 @@
       width: 100%;
     }
 
-    .screen-btn:before {
-      content: "♡";
-      position: absolute;
-      right: 7px;
-      top: 6px;
-      color: rgba(223,255,234,0.58);
-      font-size: 10px;
-    }
-
     .screen-btn strong {
       font-size: 20px;
       line-height: 1.15;
@@ -1038,7 +541,7 @@
     .screen-btn.selected {
       color: var(--dark);
       border-color: rgba(223,255,234,0.70);
-      background: linear-gradient(135deg, #DFFFEA, #FFFFFF 52%, #FFE7A3);
+      background: linear-gradient(135deg, var(--mint), #FFFFFF 52%, var(--gold));
       transform: translateY(-3px);
     }
 
@@ -1046,46 +549,25 @@
       color: rgba(5,17,42,0.64);
     }
 
-    .screen-note {
-      margin: 10px 5px 0;
-      min-height: 22px;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.65;
-      text-align: center;
-    }
-
-    .screen-note.active {
-      color: rgba(217,255,233,0.96);
-      font-weight: 850;
-      width: fit-content;
-      margin-left: auto;
-      margin-right: auto;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: rgba(164,255,212,0.10);
-      border: 1px solid rgba(164,255,212,0.22);
-    }
-
-    .empty-state {
-      display: none;
-      margin-top: 10px;
-      padding: 13px;
-      border-radius: 22px;
-      text-align: center;
-      color: rgba(255,255,255,0.68);
-      background: rgba(255,255,255,0.045);
-      border: 1px dashed rgba(255,255,255,0.16);
-      font-size: 12px;
-      line-height: 1.6;
-      font-weight: 750;
+    .note-count {
+      margin-top: 7px;
+      text-align: right;
+      color: rgba(255,255,255,0.46);
+      font-size: 11px;
+      font-weight: 760;
     }
 
     .summary-box {
+      display: none;
+      margin: 14px 0 0;
       border-radius: 24px;
       padding: 14px;
       background: rgba(255,255,255,0.052);
       border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .summary-box.show {
+      display: block;
     }
 
     .summary-title {
@@ -1097,12 +579,12 @@
 
     .summary-row {
       display: grid;
-      grid-template-columns: 118px minmax(0, 1fr);
+      grid-template-columns: 104px minmax(0, 1fr);
       gap: 10px;
-      padding: 9px 0;
+      padding: 8px 0;
       border-bottom: 1px solid rgba(255,255,255,0.08);
       font-size: 13px;
-      line-height: 1.6;
+      line-height: 1.55;
     }
 
     .summary-row:last-child {
@@ -1120,25 +602,27 @@
       overflow-wrap: anywhere;
     }
 
-    .step-actions {
-      margin-top: 16px;
-      display: flex;
+    .main-actions {
+      display: grid;
+      grid-template-columns: 1fr auto;
       gap: 10px;
+      margin-top: 14px;
     }
 
     .btn-primary,
-    .btn-secondary {
+    .btn-secondary,
+    .btn-copy,
+    .btn-reset {
       position: relative;
-      min-height: 58px;
-      border-radius: 22px;
+      min-height: 56px;
+      border-radius: 21px;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 9px;
       font-size: 15px;
       font-weight: 950;
-      width: 100%;
-      padding: 12px 14px;
+      padding: 12px 16px;
       text-align: center;
       overflow: hidden;
     }
@@ -1147,43 +631,59 @@
       color: #FFFFFF;
       background:
         radial-gradient(circle at 15% 0%, rgba(255,255,255,0.26), transparent 30%),
-        linear-gradient(135deg, rgba(6,199,85,0.72), rgba(223,255,234,0.24), rgba(255,231,163,0.25));
+        linear-gradient(135deg, rgba(6,199,85,0.86), rgba(4,168,70,0.82), rgba(255,231,163,0.30));
       border: 1px solid rgba(223,255,234,0.32);
-      flex: 1;
+      box-shadow: 0 16px 34px rgba(6,199,85,0.20);
     }
 
-    .btn-primary:before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      transform: translateX(-120%);
-      background: linear-gradient(90deg, transparent, rgba(223,255,234,0.20), transparent);
-      transition: transform .55s ease;
-      pointer-events: none;
-    }
-
-    .btn-primary:not(:disabled):hover:before {
-      transform: translateX(120%);
-    }
-
-    .btn-secondary {
-      flex: 0 0 128px;
+    .btn-secondary,
+    .btn-copy,
+    .btn-reset {
       color: rgba(255,255,255,0.84);
       background: rgba(255,255,255,0.06);
       border: 1px solid rgba(255,255,255,0.12);
     }
 
-    .status {
-      display: none;
-      margin-top: 4px;
-      padding-top: 6px;
+    .btn-secondary {
+      min-width: 112px;
+    }
+
+    .btn-copy.copied {
+      color: var(--dark);
+      background: linear-gradient(135deg, var(--mint), #FFFFFF 52%, var(--ok));
+      border-color: rgba(164,255,212,0.35);
+    }
+
+    button {
+      appearance: none;
+      cursor: pointer;
+      transition: transform .15s ease, box-shadow .15s ease, background .15s ease, border-color .15s ease, opacity .15s ease;
+    }
+
+    button:active {
+      transform: scale(.985);
+    }
+
+    button:disabled {
+      opacity: .42;
+      cursor: not-allowed;
     }
 
     .result-box {
       display: none;
+      margin-top: 14px;
+      border-radius: 28px;
+      padding: 16px;
+      background:
+        linear-gradient(135deg, rgba(6,199,85,0.14), rgba(255,231,163,0.10)),
+        rgba(255,255,255,0.06);
+      border: 1px solid rgba(164,255,212,0.18);
       text-align: center;
       animation: resultIn .28s ease both;
+    }
+
+    .result-box.show {
+      display: block;
     }
 
     @keyframes resultIn {
@@ -1192,36 +692,36 @@
     }
 
     .result-icon {
-      width: 68px;
-      height: 68px;
-      margin: 4px auto 14px;
-      border-radius: 25px;
+      width: 62px;
+      height: 62px;
+      margin: 0 auto 12px;
+      border-radius: 22px;
       display: grid;
       place-items: center;
       color: #06351F;
-      background: linear-gradient(135deg, #DFFFEA, #FFFFFF 52%, #A4FFD4);
-      font-size: 30px;
+      background: linear-gradient(135deg, var(--mint), #FFFFFF 52%, var(--ok));
+      font-size: 28px;
       font-weight: 1000;
     }
 
     .result-title {
       margin: 0;
       color: #FFFFFF;
-      font-size: 22px;
+      font-size: 21px;
       font-weight: 1000;
     }
 
     .result-message {
-      margin: 10px auto 0;
+      margin: 9px auto 0;
       max-width: 360px;
       color: rgba(255,255,255,0.74);
       font-size: 14px;
-      line-height: 1.8;
+      line-height: 1.75;
       white-space: pre-line;
     }
 
     .request-id {
-      margin: 14px auto 0;
+      margin: 13px auto 0;
       width: fit-content;
       max-width: 100%;
       padding: 10px 13px;
@@ -1234,45 +734,8 @@
       overflow-wrap: anywhere;
     }
 
-    .success-ticket {
-      margin: 14px auto 0;
-      max-width: 380px;
-      padding: 14px;
-      border-radius: 24px;
-      background:
-        radial-gradient(circle at left center, transparent 0 10px, rgba(255,255,255,0.07) 11px),
-        linear-gradient(135deg, rgba(6,199,85,0.18), rgba(255,231,163,0.12));
-      border: 1px solid rgba(164,255,212,0.22);
-      text-align: left;
-    }
-
-    .ticket-row {
-      display: grid;
-      grid-template-columns: 100px 1fr;
-      gap: 8px;
-      padding: 7px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      color: rgba(255,255,255,0.80);
-      font-size: 12px;
-      line-height: 1.5;
-    }
-
-    .ticket-row:last-child {
-      border-bottom: none;
-    }
-
-    .ticket-key {
-      color: rgba(255,255,255,0.52);
-      font-weight: 800;
-    }
-
-    .ticket-value {
-      font-weight: 900;
-      overflow-wrap: anywhere;
-    }
-
     .otp-safe {
-      margin: 14px auto 0;
+      margin: 13px auto 0;
       max-width: 380px;
       padding: 12px 14px;
       border-radius: 22px;
@@ -1287,7 +750,7 @@
 
     .otp-box {
       display: none;
-      margin: 14px auto 0;
+      margin: 13px auto 0;
       max-width: 360px;
       padding: 14px;
       border-radius: 24px;
@@ -1295,85 +758,98 @@
       border: 1px solid rgba(255,231,163,0.26);
     }
 
+    .otp-label {
+      color: rgba(255,255,255,0.62);
+      font-size: 12px;
+      font-weight: 850;
+    }
+
     .otp-code {
       margin-top: 8px;
       color: #FFFFFF;
-      font-size: 32px;
+      font-size: 34px;
       letter-spacing: 6px;
       font-weight: 1000;
       user-select: all;
       overflow-wrap: anywhere;
     }
 
-    .copy-area {
-      margin-top: 18px;
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .btn-reset,
-    .btn-retry,
-    .btn-copy {
-      display: flex;
-      width: auto;
-      min-width: 180px;
-      min-height: 54px;
-      padding: 12px 18px;
-      border-radius: 999px;
-      font-size: 15px;
-      font-weight: 950;
-      align-items: center;
-      justify-content: center;
-      color: rgba(255,255,255,0.84);
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.12);
-    }
-
-    .btn-copy.copied {
-      color: #06351F;
-      background: linear-gradient(135deg, #DFFFEA, #FFFFFF 52%, #A4FFD4);
-      border-color: rgba(164,255,212,0.35);
-    }
-
-    .mini-info {
-      margin-top: 15px;
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      color: rgba(255,255,255,0.58);
+    .otp-note {
+      margin-top: 9px;
+      color: rgba(255,255,255,0.62);
       font-size: 12px;
+      line-height: 1.55;
+      font-weight: 700;
     }
 
-    .mini-info span {
-      padding: 7px 10px;
+    .copy-area {
+      margin-top: 14px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .copy-area .btn-copy,
+    .copy-area .btn-reset {
+      width: auto;
+      min-width: 150px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.055);
-      border: 1px solid rgba(223,255,234,0.13);
-    }
-
-    .error-box {
-      display: none;
-      text-align: center;
-      color: rgba(255,255,255,0.88);
-      font-size: 15px;
-      font-weight: 650;
-      padding: 8px 4px;
-      line-height: 1.8;
-    }
-
-    .error-box strong {
-      color: var(--danger);
+      min-height: 50px;
     }
 
     .privacy {
-      margin-top: 14px;
+      margin-top: 13px;
       color: rgba(255,255,255,0.48);
       font-size: 12px;
       line-height: 1.75;
       text-align: center;
+    }
+
+    .usage-bottom {
+      grid-column: 1 / -1;
+      width: 100%;
+      margin: 0;
+      padding: 16px;
+      border-radius: 28px;
+      background:
+        linear-gradient(135deg, rgba(223,255,234,0.12), rgba(255,231,163,0.10)),
+        rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.13);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.12);
+      order: 99;
+    }
+
+    .usage-title {
+      color: #FFFFFF;
+      font-size: 15px;
+      font-weight: 1000;
+      margin-bottom: 10px;
+    }
+
+    .usage-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .usage-item {
+      padding: 12px;
+      border-radius: 20px;
+      color: rgba(255,255,255,0.76);
+      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(255,255,255,0.10);
+      font-size: 12px;
+      line-height: 1.65;
+      font-weight: 700;
+    }
+
+    .usage-item strong {
+      display: block;
+      margin-bottom: 5px;
+      color: #FFFFFF;
+      font-size: 13px;
+      font-weight: 1000;
     }
 
     .toast {
@@ -1426,7 +902,7 @@
       box-shadow: 0 30px 90px rgba(0,0,0,0.40);
     }
 
-    .loader-heart {
+    .loader {
       width: 54px;
       height: 54px;
       margin: 0 auto 14px;
@@ -1434,7 +910,7 @@
       display: grid;
       place-items: center;
       color: var(--dark);
-      background: linear-gradient(135deg, #DFFFEA, #FFFFFF 52%, #FFE7A3);
+      background: linear-gradient(135deg, var(--mint), #FFFFFF 52%, var(--gold));
       font-size: 22px;
       font-weight: 1000;
       animation: loaderPulse 1.3s ease-in-out infinite;
@@ -1479,45 +955,22 @@
       100% { transform: translate3d(var(--x), -240px, 0) scale(1.25) rotate(180deg); opacity: 0; }
     }
 
-    .tap-heart {
-      position: fixed;
-      z-index: 999;
-      pointer-events: none;
-      color: var(--pink);
-      font-size: 18px;
-      font-weight: 1000;
-      animation: tapHeartUp .72s ease-out forwards;
-    }
-
-    @keyframes tapHeartUp {
-      from {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(.65);
-      }
-      15% {
-        opacity: 1;
-      }
-      to {
-        opacity: 0;
-        transform: translate(-50%, -86px) scale(1.25) rotate(18deg);
-      }
-    }
-
     @media (max-width: 920px) {
+      .page {
+        align-items: flex-start;
+      }
+
       .wrap {
-        max-width: 540px;
-        min-height: auto;
+        max-width: 560px;
         display: flex;
         flex-direction: column;
         align-items: stretch;
-        justify-content: center;
-        gap: 18px;
+        gap: 16px;
       }
 
       .hero {
         min-height: auto;
-        gap: 18px;
-        padding: 0;
+        gap: 16px;
       }
 
       .hero-main {
@@ -1525,7 +978,7 @@
         margin: 0 auto;
       }
 
-      .eyebrow {
+      .badge {
         margin-left: auto;
         margin-right: auto;
       }
@@ -1537,13 +990,11 @@
       }
 
       h1 {
-        font-size: clamp(36px, 10.5vw, 58px);
-        line-height: 1.15;
-        letter-spacing: -1.8px;
+        font-size: clamp(34px, 10vw, 58px);
       }
 
-      .bottom-guide {
-        max-width: 540px;
+      .usage-list {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -1551,32 +1002,27 @@
       .page {
         min-height: 100svh;
         padding: 10px 12px 12px;
-        align-items: flex-start;
       }
 
       .wrap {
         gap: 10px;
       }
 
-      .hero {
-        gap: 10px;
+      .brand-title {
+        font-size: 14px;
       }
 
-      .topbar {
-        align-items: flex-start;
-        gap: 10px;
+      .brand-sub {
+        font-size: 11px;
       }
 
-      .brand {
-        min-width: 0;
+      .logo {
+        width: 46px;
+        height: 46px;
+        border-radius: 17px;
       }
 
-      .brand-title { font-size: 14px; line-height: 1.45; }
-      .brand-sub { font-size: 11px; line-height: 1.55; }
-      .online { padding: 8px 10px; font-size: 11px; }
-      .logo { width: 46px; height: 46px; border-radius: 17px; }
-
-      .eyebrow {
+      .badge {
         display: none;
       }
 
@@ -1592,92 +1038,49 @@
         line-height: 1.55;
       }
 
-      .bottom-guide {
-        margin-top: 12px;
-        padding: 11px;
-        border-radius: 20px;
-      }
-
-      .bottom-guide-title {
-        font-size: 13px;
-        margin-bottom: 6px;
-      }
-
-      .bottom-guide-list {
-        gap: 4px;
-        font-size: 11px;
-        line-height: 1.45;
-      }
-
-      .form-card {
+      .app-card {
         padding: 12px;
         border-radius: 24px;
       }
 
-      .admin-badge {
-        position: relative;
-        left: auto;
-        top: auto;
-        width: fit-content;
-        margin: 0 auto 8px;
-      }
-
-      .mascot {
-        position: relative;
-        top: auto;
-        right: auto;
-        width: fit-content;
-        margin: -4px auto 8px;
-      }
-
-      .form-head {
-        margin-bottom: 10px;
+      .app-top {
         padding: 11px;
         border-radius: 20px;
       }
 
-      .form-head h2 {
-        font-size: 15px;
+      .app-top h2 {
+        font-size: 16px;
       }
 
-      .form-head p {
+      .app-top p {
         font-size: 11px;
         line-height: 1.45;
       }
 
-      .secure-pill {
+      .status-pill {
         display: none;
       }
 
-      .progress-wrap {
-        padding: 8px;
-        margin-bottom: 9px;
+      .quick-line {
+        gap: 6px;
       }
 
-      .theme-switcher {
-        margin-top: 8px;
+      .quick-stat {
+        padding: 9px 6px;
+        border-radius: 16px;
       }
 
-      .stepper {
-        gap: 5px;
-        padding: 6px;
-        margin-bottom: 10px;
+      .quick-stat strong {
+        font-size: 13px;
       }
 
-      .step-item {
-        padding: 7px 3px;
-        border-radius: 15px;
-      }
-
-      .step-number {
-        width: 21px;
-        height: 21px;
-        margin-bottom: 4px;
-        font-size: 11px;
-      }
-
-      .step-label {
+      .quick-stat span {
         font-size: 9px;
+      }
+
+      .row-2 {
+        grid-template-columns: 1fr;
+        gap: 0;
       }
 
       .field {
@@ -1689,20 +1092,15 @@
         margin-bottom: 6px;
       }
 
-      .hint {
-        font-size: 10.5px;
-        line-height: 1.45;
-      }
-
       input {
-        min-height: 48px;
+        min-height: 49px;
         font-size: 15px;
         border-radius: 16px;
         padding: 10px 12px;
       }
 
       textarea {
-        min-height: 78px;
+        min-height: 74px;
         font-size: 14px;
         border-radius: 16px;
         padding: 10px 12px;
@@ -1710,7 +1108,7 @@
 
       .quick-device-btn,
       .quick-note-btn,
-      .sample-btn {
+      .small-btn {
         min-height: 34px;
         padding: 7px 10px;
         font-size: 11px;
@@ -1730,6 +1128,18 @@
         font-size: 17px;
       }
 
+      .main-actions {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .btn-primary,
+      .btn-secondary {
+        min-height: 50px;
+        border-radius: 18px;
+        font-size: 14px;
+      }
+
       .summary-box {
         padding: 11px;
         border-radius: 20px;
@@ -1742,29 +1152,8 @@
         font-size: 12px;
       }
 
-      .ticket-row {
-        grid-template-columns: 82px 1fr;
-      }
-
-      .step-actions {
-        flex-direction: column;
-        margin-top: 10px;
-      }
-
-      .btn-primary,
-      .btn-secondary {
-        min-height: 48px;
-        border-radius: 18px;
-        font-size: 14px;
-      }
-
-      .btn-secondary {
-        flex: 1;
-      }
-
-      .btn-reset,
-      .btn-retry,
-      .btn-copy {
+      .copy-area .btn-copy,
+      .copy-area .btn-reset {
         width: 100%;
         min-width: 0;
         min-height: 48px;
@@ -1772,15 +1161,24 @@
       }
 
       .privacy {
-        margin-top: 9px;
         font-size: 10.5px;
         line-height: 1.55;
       }
 
-      .latest-card {
+      .usage-bottom {
+        padding: 12px;
+        border-radius: 22px;
+      }
+
+      .usage-title {
+        font-size: 13px;
+      }
+
+      .usage-item {
         padding: 10px;
+        border-radius: 17px;
         font-size: 11px;
-        border-radius: 18px;
+        line-height: 1.55;
       }
     }
 
@@ -1796,204 +1194,103 @@
   </style>
 </head>
 
-<body class="theme-line">
+<body>
   <main class="page">
     <div class="orb one"></div>
     <div class="orb two"></div>
     <div class="orb three"></div>
 
-    <div class="cute c1">♡</div>
-    <div class="cute c2">✦</div>
-    <div class="cute c3">♡</div>
-    <div class="cute c4">✧</div>
-
     <section class="wrap">
       <div class="hero">
-        <div class="topbar">
-          <div class="brand">
-            <div class="logo" aria-hidden="true"></div>
-            <div>
-              <div class="brand-title" id="brandTitle">LINE OTP Verify</div>
-              <div class="brand-sub" id="brandSub">ระบบรับรหัส OTP สำหรับลูกค้า</div>
-            </div>
+        <div class="brand">
+          <div class="logo" aria-hidden="true"></div>
+          <div>
+            <div class="brand-title" id="brandTitle">LINE OTP Verification Center</div>
+            <div class="brand-sub" id="brandSub">ระบบตรวจสอบรหัสยืนยันสำหรับลูกค้า</div>
           </div>
-
-          <div class="online">พร้อมใช้งาน</div>
         </div>
 
         <div class="hero-main">
-          <div class="eyebrow">LINE Customer Verification</div>
-
+          <div class="badge">ระบบยืนยันตัวตนลูกค้า</div>
           <h1>
-            ระบบรับรหัส OTP
-            <span class="gradient-text">สำหรับร้านค้า</span>
+            รับรหัส OTP
+            <span class="gradient-text">อย่างรวดเร็วและปลอดภัย</span>
           </h1>
-
           <p class="lead">
-            กรอกข้อมูลลูกค้า เลือกอุปกรณ์และหมายเลขจอ ระบบจะค้นหารหัสล่าสุดจากอีเมล พร้อมบันทึกรายการไว้ตรวจสอบย้อนหลังอย่างเป็นระเบียบ
+            ศูนย์รับรหัสยืนยันสำหรับลูกค้าของร้าน ตรวจสอบข้อมูล อุปกรณ์ และหมายเลขจอในหน้าเดียว พร้อมบันทึกรายการเพื่อการติดตามย้อนหลังอย่างเป็นระบบ
           </p>
         </div>
 
         <div class="latest-card" id="latestCard">
-          <strong>รายการล่าสุด:</strong>
+          <strong>รายการใช้งานล่าสุด:</strong>
           <span id="latestText">-</span>
           <div class="latest-mini-list" id="latestMiniList"></div>
         </div>
-
-        <div class="bottom-guide">
-          <div class="bottom-guide-title">วิธีใช้งาน</div>
-          <div class="bottom-guide-list">
-            <span>1. ใส่ชื่อ LINE หรือชื่อลูกค้า และกรอกอีเมลที่ใช้รับรหัส</span>
-            <span>2. ระบุอุปกรณ์ เลือกหมายเลขจอ แล้วตรวจสอบข้อมูลก่อนส่ง</span>
-            <span>3. กดรับรหัส OTP จากนั้นคัดลอกเพื่อนำไปแจ้งลูกค้า</span>
-          </div>
-        </div>
       </div>
 
-      <div class="form-card" id="app">
-        <div class="admin-badge" id="adminModeBadge">OTP Mode</div>
-
-        <div class="mascot" aria-hidden="true">
-          <div class="mascot-face">♡</div>
-          <span>พร้อมค้นหารหัสให้ค่ะ</span>
-        </div>
-
-        <div class="form-head">
+      <div class="app-card" id="app">
+        <div class="app-top">
           <div>
-            <h2 id="formTitle">ข้อมูลลูกค้า</h2>
-            <p id="formSubtitle">กรอกชื่อ LINE และอีเมลสำหรับค้นหารหัส OTP</p>
+            <h2>ตรวจสอบข้อมูลเพื่อรับ OTP</h2>
+            <p>กรอกข้อมูลลูกค้าให้ครบถ้วน จากนั้นกดรับรหัสยืนยันล่าสุดได้ทันที</p>
           </div>
-          <div class="secure-pill">Verified</div>
+          <div class="status-pill">Verified</div>
         </div>
 
-        <div class="progress-wrap">
-          <div class="progress-meta">
-            <span id="progressLabel">ขั้นตอนที่ 1 จาก 4</span>
-            <span id="progressPercent">25%</span>
+        <div class="quick-line">
+          <div class="quick-stat">
+            <strong>1</strong>
+            <span>ระบุข้อมูลลูกค้า</span>
           </div>
-          <div class="progress-bar">
-            <div class="progress-fill" id="progressFill"></div>
+          <div class="quick-stat">
+            <strong>2</strong>
+            <span>ตรวจสอบอุปกรณ์</span>
           </div>
-        </div>
-
-        <div class="timeline" id="miniTimeline">
-          <p class="timeline-title">ลำดับการทำงาน</p>
-          <div class="timeline-list">
-            <div class="timeline-item active" data-time-step="1">
-              <span class="timeline-dot"></span>
-              <span>กรอกข้อมูลลูกค้า</span>
-            </div>
-            <div class="timeline-item" data-time-step="2">
-              <span class="timeline-dot"></span>
-              <span>เลือกอุปกรณ์และจอ</span>
-            </div>
-            <div class="timeline-item" data-time-step="3">
-              <span class="timeline-dot"></span>
-              <span>ยืนยันรายละเอียด</span>
-            </div>
-            <div class="timeline-item" data-time-step="4">
-              <span class="timeline-dot"></span>
-              <span>คัดลอกรหัส OTP</span>
-            </div>
+          <div class="quick-stat">
+            <strong>3</strong>
+            <span>รับรหัสยืนยัน</span>
           </div>
         </div>
 
-        <div class="theme-switcher" id="themeSwitcher" aria-label="เลือกธีม">
-          <button type="button" class="theme-dot active" data-theme="line" title="LINE Green"></button>
-          <button type="button" class="theme-dot" data-theme="pink" title="Pink"></button>
-          <button type="button" class="theme-dot" data-theme="sky" title="Sky"></button>
-          <button type="button" class="theme-dot" data-theme="gold" title="Gold"></button>
+        <div class="field">
+          <div class="label">
+            <span class="label-main"><span class="label-dot"></span>ชื่อลูกค้าหรือ LINE ID</span>
+            <span class="optional">แนะนำ</span>
+          </div>
+          <input id="customerName" type="text" placeholder="เช่น LINE ID หรือลูกค้าตามรายการสั่งซื้อ" autocomplete="name" maxlength="120">
         </div>
 
-        <div class="top-actions">
-          <button type="button" class="sound-toggle" id="soundToggle">เสียง: เปิด</button>
-          <button type="button" class="install-btn" id="installBtn" style="display:none;">เพิ่มไปหน้าจอหลัก</button>
+        <div class="field">
+          <div class="label">
+            <span class="label-main"><span class="label-dot"></span>อีเมลที่ใช้รับรหัสยืนยัน</span>
+            <span class="required">จำเป็น</span>
+          </div>
+          <input id="email" type="email" placeholder="customer@email.com" autocomplete="email" inputmode="email" maxlength="160">
+          <div class="validation-msg" id="emailValidation">กรุณาระบุอีเมลที่ใช้รับรหัส OTP</div>
         </div>
 
-        <div class="stepper" id="stepper">
-          <div class="step-item active" data-step-indicator="1">
-            <div class="step-number">1</div>
-            <span class="step-label">ลูกค้า</span>
-          </div>
-          <div class="step-item" data-step-indicator="2">
-            <div class="step-number">2</div>
-            <span class="step-label">อุปกรณ์</span>
-          </div>
-          <div class="step-item" data-step-indicator="3">
-            <div class="step-number">3</div>
-            <span class="step-label">ยืนยัน</span>
-          </div>
-          <div class="step-item" data-step-indicator="4">
-            <div class="step-number">4</div>
-            <span class="step-label">OTP</span>
-          </div>
-        </div>
-
-        <div class="step-panel active" data-step="1">
+        <div class="row-2">
           <div class="field">
             <div class="label">
-              <span class="label-main"><span class="label-dot"></span>ชื่อ LINE / ชื่อลูกค้า</span>
-              <span class="optional">แนะนำ</span>
-            </div>
-            <input id="customerName" type="text" placeholder="เช่น @lineuser หรือ คุณสมชาย" autocomplete="name" maxlength="120">
-            <div class="hint">ใช้ช่วยค้นประวัติในภายหลัง</div>
-          </div>
-
-          <div class="field">
-            <div class="label">
-              <span class="label-main"><span class="label-dot"></span>อีเมลสำหรับรับรหัส</span>
+              <span class="label-main"><span class="label-dot"></span>อุปกรณ์ที่ลูกค้าใช้งาน</span>
               <span class="required">จำเป็น</span>
             </div>
-            <input id="email" type="email" placeholder="example@email.com" autocomplete="email" inputmode="email" maxlength="160">
-            <div class="validation-msg" id="emailValidation">กรอกอีเมลให้ถูกต้อง</div>
-          </div>
+            <input id="device" type="text" placeholder="เช่น iPhone, Android, iPad, TV หรือ Browser" autocomplete="off" maxlength="80">
+            <div class="validation-msg" id="deviceValidation">กรุณาระบุอุปกรณ์สำหรับใช้ตรวจสอบรายการ</div>
 
-          <div class="field pin-field" id="pinField">
-            <div class="label">
-              <span class="label-main"><span class="label-dot"></span>PIN สำหรับเข้าใช้งาน</span>
-              <span class="required">ส่วนตัว</span>
-            </div>
-            <input id="pin" type="password" placeholder="กรอก PIN หากระบบกำหนดไว้" autocomplete="off" maxlength="80">
-          </div>
-
-          <div class="quick-device-grid">
-            <button class="sample-btn" type="button" onclick="clearDraft()">ล้างข้อมูลที่ค้างไว้</button>
-          </div>
-
-          <div class="step-actions">
-            <button class="btn-primary" type="button" onclick="goNextFromStep1()">
-              <span>ถัดไป</span>
-            </button>
-          </div>
-        </div>
-
-        <div class="step-panel" data-step="2">
-          <div class="field">
-            <div class="label">
-              <span class="label-main"><span class="label-dot"></span>อุปกรณ์ที่ใช้งาน</span>
-              <span class="required">จำเป็น</span>
-            </div>
-
-            <input id="device" type="text" placeholder="เช่น iPhone / Android / iPad / TV / Chrome" autocomplete="off" inputmode="text" maxlength="80">
-            <div class="validation-msg" id="deviceValidation">ระบุอุปกรณ์ของลูกค้า</div>
-
-            <div class="quick-device-wrap">
-              <div class="quick-device-title">เลือกอุปกรณ์เร็ว</div>
-              <div class="quick-device-grid" id="quickDeviceGrid">
-                <button type="button" class="quick-device-btn" data-device="iPhone">iPhone</button>
-                <button type="button" class="quick-device-btn" data-device="Android">Android</button>
-                <button type="button" class="quick-device-btn" data-device="iPad">iPad</button>
-                <button type="button" class="quick-device-btn" data-device="TV">TV</button>
-                <button type="button" class="quick-device-btn" data-device="Chrome">Chrome</button>
-                <button type="button" class="quick-device-btn" data-device="Other">Other</button>
-              </div>
+            <div class="quick-device-grid" id="quickDeviceGrid">
+              <button type="button" class="quick-device-btn" data-device="iPhone">iPhone</button>
+              <button type="button" class="quick-device-btn" data-device="Android">Android</button>
+              <button type="button" class="quick-device-btn" data-device="iPad">iPad</button>
+              <button type="button" class="quick-device-btn" data-device="TV">TV</button>
+              <button type="button" class="quick-device-btn" data-device="Chrome">Chrome</button>
             </div>
           </div>
 
           <div class="field">
             <div class="label">
-              <span class="label-main"><span class="label-dot"></span>เลือกหมายเลขจอ</span>
-              <span class="required">จอ 1–6</span>
+              <span class="label-main"><span class="label-dot"></span>หมายเลขจอ / โปรไฟล์</span>
+              <span class="required">1–6</span>
             </div>
 
             <div class="screen-grid" id="screenGrid">
@@ -2004,143 +1301,105 @@
               <button type="button" class="screen-btn" data-screen="5"><strong>5</strong><span>จอ</span></button>
               <button type="button" class="screen-btn" data-screen="6"><strong>6</strong><span>จอ</span></button>
             </div>
-
-            <div class="screen-note" id="screenSelectedNote">เลือกหมายเลขจอให้ตรงกับรายการของลูกค้า</div>
-            <div class="empty-state" id="screenEmptyState">ยังไม่ได้เลือกหมายเลขจอ</div>
-          </div>
-
-          <div class="step-actions">
-            <button class="btn-secondary" type="button" onclick="goToStep(1)">ย้อนกลับ</button>
-            <button class="btn-primary" type="button" onclick="goNextFromStep2()">ถัดไป</button>
+            <div class="validation-msg" id="screenValidation">เลือกหมายเลขจอให้ตรงกับรายการของลูกค้า</div>
           </div>
         </div>
 
-        <div class="step-panel" data-step="3">
-          <div class="field">
-            <div class="label">
-              <span class="label-main"><span class="label-dot"></span>หมายเหตุร้านค้า</span>
-              <span class="optional">ไม่บังคับ</span>
-            </div>
-
-            <textarea id="customerNote" placeholder="เช่น ขอรอบที่ 2 / ใช้งานผ่าน TV / เปลี่ยนอุปกรณ์ / แจ้งปัญหาเข้าไม่ได้" maxlength="700"></textarea>
-            <div class="note-count" id="noteCount">0/700</div>
-
-            <div class="quick-note-wrap">
-              <div class="quick-note-title">Quick Note</div>
-              <div class="quick-note-grid">
-                <button type="button" class="quick-note-btn" data-note="ขอรอบที่ 2">ขอรอบที่ 2</button>
-                <button type="button" class="quick-note-btn" data-note="เข้า TV">เข้า TV</button>
-                <button type="button" class="quick-note-btn" data-note="เปลี่ยนอุปกรณ์">เปลี่ยนอุปกรณ์</button>
-                <button type="button" class="quick-note-btn" data-note="ลูกค้ารออยู่">ลูกค้ารออยู่</button>
-                <button type="button" class="quick-note-btn" data-note="เช็กด่วน">เช็กด่วน</button>
-              </div>
-            </div>
+        <div class="field">
+          <div class="label">
+            <span class="label-main"><span class="label-dot"></span>หมายเหตุสำหรับเจ้าหน้าที่</span>
+            <span class="optional">ไม่บังคับ</span>
           </div>
+          <textarea id="customerNote" placeholder="เช่น ขอรหัสรอบที่ 2 / เปลี่ยนอุปกรณ์ / ลูกค้ารอการยืนยัน / ต้องการตรวจสอบเร่งด่วน" maxlength="700"></textarea>
+          <div class="note-count" id="noteCount">0/700</div>
 
-          <div class="summary-box">
-            <p class="summary-title">ตรวจสอบข้อมูลก่อนรับรหัส OTP</p>
-
-            <div class="summary-row">
-              <div class="summary-key">ชื่อ LINE</div>
-              <div class="summary-value" id="sumCustomerName">-</div>
-            </div>
-
-            <div class="summary-row">
-              <div class="summary-key">อีเมล</div>
-              <div class="summary-value" id="sumEmail">-</div>
-            </div>
-
-            <div class="summary-row">
-              <div class="summary-key">อุปกรณ์</div>
-              <div class="summary-value" id="sumDevice">-</div>
-            </div>
-
-            <div class="summary-row">
-              <div class="summary-key">จอ</div>
-              <div class="summary-value" id="sumScreen">-</div>
-            </div>
-
-            <div class="summary-row">
-              <div class="summary-key">หมายเหตุ</div>
-              <div class="summary-value" id="sumNote">-</div>
-            </div>
-          </div>
-
-          <div class="step-actions">
-            <button class="btn-secondary" type="button" onclick="goToStep(2)">ย้อนกลับ</button>
-            <button class="btn-primary" id="submitBtn" onclick="submitRequest()" type="button">
-              <span id="btnText">รับรหัส OTP</span>
-            </button>
+          <div class="quick-note-grid">
+            <button type="button" class="quick-note-btn" data-note="ขอรหัสรอบที่ 2">ขอรหัสรอบที่ 2</button>
+            <button type="button" class="quick-note-btn" data-note="ใช้งานผ่าน TV">ใช้งานผ่าน TV</button>
+            <button type="button" class="quick-note-btn" data-note="เปลี่ยนอุปกรณ์">เปลี่ยนอุปกรณ์</button>
+            <button type="button" class="quick-note-btn" data-note="ลูกค้ารอการยืนยัน">ลูกค้ารอการยืนยัน</button>
+            <button type="button" class="quick-note-btn" data-note="ตรวจสอบเร่งด่วน">ตรวจสอบเร่งด่วน</button>
           </div>
         </div>
 
-        <div class="step-panel" data-step="4">
-          <div class="status" id="status">
-            <div class="result-box" id="successBox">
-              <div class="result-icon">✓</div>
-              <h3 class="result-title">สถานะการค้นหารหัส</h3>
-              <div class="result-message" id="successMessage">
-                ระบบบันทึกข้อมูลและตรวจสอบรหัส OTP แล้ว
-              </div>
-              <div class="request-id" id="requestIdBox">เลขคำขอ: -</div>
+        <div class="summary-box" id="summaryBox">
+          <p class="summary-title">สรุปรายการตรวจสอบ</p>
+          <div class="summary-row">
+            <div class="summary-key">ลูกค้า</div>
+            <div class="summary-value" id="sumCustomerName">-</div>
+          </div>
+          <div class="summary-row">
+            <div class="summary-key">อีเมล</div>
+            <div class="summary-value" id="sumEmail">-</div>
+          </div>
+          <div class="summary-row">
+            <div class="summary-key">อุปกรณ์</div>
+            <div class="summary-value" id="sumDevice">-</div>
+          </div>
+          <div class="summary-row">
+            <div class="summary-key">จอ/โปรไฟล์</div>
+            <div class="summary-value" id="sumScreen">-</div>
+          </div>
+          <div class="summary-row">
+            <div class="summary-key">หมายเหตุ</div>
+            <div class="summary-value" id="sumNote">-</div>
+          </div>
+        </div>
 
-              <div class="success-ticket" id="successTicket">
-                <div class="ticket-row">
-                  <div class="ticket-key">ผลลัพธ์</div>
-                  <div class="ticket-value" id="ticketStatus">กำลังตรวจสอบ</div>
-                </div>
-                <div class="ticket-row">
-                  <div class="ticket-key">เลขคำขอ</div>
-                  <div class="ticket-value" id="ticketRequestId">-</div>
-                </div>
-                <div class="ticket-row">
-                  <div class="ticket-key">รหัส</div>
-                  <div class="ticket-value" id="ticketOtpStatus">รอผลการค้นหา</div>
-                </div>
-              </div>
+        <div class="main-actions">
+          <button class="btn-primary" id="submitBtn" onclick="submitRequest()" type="button">
+            <span id="btnText">ตรวจสอบและรับ OTP</span>
+          </button>
+          <button class="btn-secondary" onclick="clearDraft()" type="button">ล้างข้อมูล</button>
+        </div>
 
-              <div class="otp-safe" id="otpSafeBox">
-                ยังไม่พบรหัสล่าสุด กรุณาตรวจสอบอีเมล หรือรอสักครู่แล้วลองใหม่
-              </div>
+        <div class="result-box" id="resultBox">
+          <div class="result-icon" id="resultIcon">✓</div>
+          <h3 class="result-title" id="resultTitle">ผลการตรวจสอบ OTP</h3>
+          <div class="result-message" id="resultMessage">ระบบดำเนินการตรวจสอบรายการเรียบร้อยแล้ว</div>
+          <div class="request-id" id="requestIdBox">เลขอ้างอิง: -</div>
 
-              <div class="otp-box" id="otpBox">
-                <div style="color:rgba(255,255,255,0.62);font-size:12px;font-weight:850;">รหัสยืนยันล่าสุด</div>
-                <div class="otp-code" id="otpCode">------</div>
-                <div style="margin-top:9px;color:rgba(255,255,255,0.62);font-size:12px;line-height:1.55;font-weight:700;" id="otpExpireNote">
-                  รหัสมีอายุ 15 นาที ใช้สำหรับการยืนยันครั้งนี้เท่านั้น
-                </div>
-                <div class="copy-area">
-                  <button class="btn-copy" id="copyOtpBtn" onclick="copyOtp()" type="button">คัดลอก OTP</button>
-                </div>
-              </div>
+          <div class="otp-safe" id="otpSafeBox">
+            ยังไม่พบรหัส OTP ล่าสุดในขณะนี้ กรุณาตรวจสอบอีเมลอีกครั้ง หรือรอสักครู่แล้วทำรายการใหม่
+          </div>
 
-              <div class="copy-area">
-                <button class="btn-copy" onclick="copySummary()" type="button">คัดลอกสรุป</button>
-                <button class="btn-copy" onclick="copyRequestId()" type="button">คัดลอกเลขคำขอ</button>
-                <button class="btn-retry" onclick="retryRequest()" type="button">ลองอีกครั้ง</button>
-                <button class="btn-reset" onclick="startNewRequest()" type="button">เริ่มใหม่</button>
-              </div>
-
-              <div class="mini-info">
-                <span>บันทึกประวัติแล้ว</span>
-                <span>ใช้รหัสกับรายการนี้เท่านั้น</span>
-              </div>
+          <div class="otp-box" id="otpBox">
+            <div class="otp-label">รหัส OTP สำหรับยืนยันรายการ</div>
+            <div class="otp-code" id="otpCode">------</div>
+            <div class="otp-note" id="otpExpireNote">กรุณาใช้รหัสนี้ภายใน 15 นาที และใช้สำหรับรายการนี้เท่านั้น</div>
+            <div class="copy-area">
+              <button class="btn-copy" id="copyOtpBtn" onclick="copyOtp()" type="button">คัดลอกรหัส OTP</button>
             </div>
+          </div>
 
-            <div class="error-box" id="errorBox">
-              <strong>ยังรับรหัสไม่สำเร็จ</strong><br>
-              ตรวจสอบอินเทอร์เน็ต แล้วลองใหม่อีกครั้ง
-
-              <div class="copy-area">
-                <button class="btn-retry" onclick="retryRequest()" type="button">ลองอีกครั้ง</button>
-                <button class="btn-reset" onclick="startNewRequest()" type="button">เริ่มใหม่</button>
-              </div>
-            </div>
+          <div class="copy-area">
+            <button class="btn-copy" onclick="copySummary()" type="button">คัดลอกข้อมูลรายการ</button>
+            <button class="btn-copy" onclick="copyRequestId()" type="button">คัดลอกเลขอ้างอิง</button>
+            <button class="btn-copy" onclick="submitRequest()" type="button">ตรวจสอบอีกครั้ง</button>
+            <button class="btn-reset" onclick="startNewRequest()" type="button">สร้างรายการใหม่</button>
           </div>
         </div>
 
         <div class="privacy" id="autosaveText">
-          ระบบบันทึกข้อมูลการขอ OTP เพื่อใช้ตรวจสอบย้อนหลัง
+          ระบบบันทึกข้อมูลรายการเพื่อใช้ตรวจสอบย้อนหลัง และช่วยให้การดูแลลูกค้าเป็นไปอย่างเป็นระบบ
+        </div>
+      </div>
+
+      <div class="usage-bottom" id="usageBottom">
+        <div class="usage-title">วิธีใช้งานระบบ</div>
+        <div class="usage-list">
+          <div class="usage-item">
+            <strong>1. ระบุข้อมูลลูกค้า</strong>
+            กรอกอีเมลที่ใช้รับ OTP พร้อมชื่อลูกค้าหรือ LINE ID เพื่อให้ตรวจสอบรายการได้ถูกต้อง
+          </div>
+          <div class="usage-item">
+            <strong>2. ตรวจสอบอุปกรณ์และจอ</strong>
+            เลือกอุปกรณ์ที่ลูกค้าใช้งาน และระบุหมายเลขจอหรือโปรไฟล์ให้ตรงกับรายการ
+          </div>
+          <div class="usage-item">
+            <strong>3. รับรหัสและดำเนินการต่อ</strong>
+            เมื่อพบ OTP ระบบจะแสดงรหัสพร้อมปุ่มคัดลอก เพื่อให้เจ้าหน้าที่ส่งต่อให้ลูกค้าได้ทันที
+          </div>
         </div>
       </div>
     </section>
@@ -2148,33 +1407,24 @@
 
   <div class="loading-overlay" id="loadingOverlay">
     <div class="loading-card">
-      <div class="loader-heart">♡</div>
-      <div class="loading-title">
-        กำลังค้นหารหัส OTP
-        <span class="saving-dot"><i></i><i></i><i></i></span>
-      </div>
-      <div class="loading-message" id="loadingMessage">กำลังตรวจสอบข้อมูล...</div>
+      <div class="loader">OTP</div>
+      <div class="loading-title">กำลังตรวจสอบรหัส OTP</div>
+      <div class="loading-message" id="loadingMessage">กำลังตรวจสอบข้อมูลรายการ...</div>
     </div>
   </div>
 
   <div class="confetti-layer" id="confettiLayer"></div>
-  <div class="toast" id="toast">เรียบร้อย</div>
+  <div class="toast" id="toast">ดำเนินการเรียบร้อย</div>
 
   <script>
     const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwe24EQaOFwra5jexOMg7VY5yskHBlbnqEW2E2VP35IMVfJERqY3tge-YHJt-iKvpF8kA/exec';
-
-    const SHOP_LINE_NAME = 'LINE OTP Verify';
-    const SHOP_SUBTITLE = 'ระบบรับรหัส OTP สำหรับลูกค้า';
-
-    const SHOW_PIN_FIELD = false;
+    const SHOP_LINE_NAME = 'LINE OTP Verification Center';
+    const SHOP_SUBTITLE = 'ระบบตรวจสอบรหัสยืนยันสำหรับลูกค้า';
     const REQUEST_TIMEOUT_MS = 18000;
-    const DRAFT_KEY = 'lineOtpVerifyDraftV5LinePremium';
-    const HISTORY_KEY = 'lineOtpVerifyLatestHistoryV5';
-    const HISTORY_LIST_KEY = 'lineOtpVerifyLatestHistoryListV5';
-    const THEME_KEY = 'lineOtpVerifyThemeV5';
-    const SOUND_KEY = 'lineOtpVerifySoundV5';
+    const DRAFT_KEY = 'lineOtpVerifyProfessionalDraftV1';
+    const HISTORY_KEY = 'lineOtpVerifyProfessionalLatestV1';
+    const HISTORY_LIST_KEY = 'lineOtpVerifyProfessionalListV1';
 
-    let currentStep = 1;
     let selectedScreen = '';
     let selectedDeviceQuick = '';
     let jsonpCounter = 0;
@@ -2186,249 +1436,426 @@
     let latestRequestId = '';
     let latestOtp = '';
     let latestExpireMinutes = 15;
-    let soundEnabled = true;
-    let deferredInstallPrompt = null;
 
     const loadingMessages = [
-      'กำลังตรวจสอบข้อมูล...',
-      'กำลังค้นหาอีเมลล่าสุด...',
-      'กำลังดึงรหัสยืนยัน...',
-      'ใกล้เสร็จแล้ว...'
+      'กำลังตรวจสอบข้อมูลรายการ...',
+      'กำลังค้นหาอีเมลยืนยันล่าสุด...',
+      'กำลังประมวลผลรหัส OTP...',
+      'กำลังจัดเตรียมผลการตรวจสอบ...'
     ];
 
     const app = document.getElementById('app');
+    const brandTitle = document.getElementById('brandTitle');
+    const brandSub = document.getElementById('brandSub');
     const customerNameInput = document.getElementById('customerName');
     const emailInput = document.getElementById('email');
     const deviceInput = document.getElementById('device');
-    const pinInput = document.getElementById('pin');
-    const pinField = document.getElementById('pinField');
     const customerNoteInput = document.getElementById('customerNote');
-
     const submitBtn = document.getElementById('submitBtn');
     const btnText = document.getElementById('btnText');
-
-    const statusBox = document.getElementById('status');
-    const successBox = document.getElementById('successBox');
-    const errorBox = document.getElementById('errorBox');
-    const successMessage = document.getElementById('successMessage');
+    const resultBox = document.getElementById('resultBox');
+    const resultIcon = document.getElementById('resultIcon');
+    const resultTitle = document.getElementById('resultTitle');
+    const resultMessage = document.getElementById('resultMessage');
     const requestIdBox = document.getElementById('requestIdBox');
-
-    const toast = document.getElementById('toast');
-    const loadingOverlay = document.getElementById('loadingOverlay');
-    const loadingMessage = document.getElementById('loadingMessage');
-    const confettiLayer = document.getElementById('confettiLayer');
-
-    const screenButtons = document.querySelectorAll('.screen-btn');
-    const quickDeviceButtons = document.querySelectorAll('.quick-device-btn');
-    const quickNoteButtons = document.querySelectorAll('.quick-note-btn');
-    const screenSelectedNote = document.getElementById('screenSelectedNote');
-
-    const brandTitle = document.getElementById('brandTitle');
-    const brandSub = document.getElementById('brandSub');
-
-    const formTitle = document.getElementById('formTitle');
-    const formSubtitle = document.getElementById('formSubtitle');
-
-    const sumCustomerName = document.getElementById('sumCustomerName');
-    const sumEmail = document.getElementById('sumEmail');
-    const sumDevice = document.getElementById('sumDevice');
-    const sumScreen = document.getElementById('sumScreen');
-    const sumNote = document.getElementById('sumNote');
-    const noteCount = document.getElementById('noteCount');
-
-    const latestCard = document.getElementById('latestCard');
-    const latestText = document.getElementById('latestText');
-    const latestMiniList = document.getElementById('latestMiniList');
-
-    const progressFill = document.getElementById('progressFill');
-    const progressPercent = document.getElementById('progressPercent');
-    const progressLabel = document.getElementById('progressLabel');
-    const autosaveText = document.getElementById('autosaveText');
-
-    const emailValidation = document.getElementById('emailValidation');
-    const deviceValidation = document.getElementById('deviceValidation');
-    const screenEmptyState = document.getElementById('screenEmptyState');
-    const themeSwitcher = document.getElementById('themeSwitcher');
-    const soundToggle = document.getElementById('soundToggle');
-    const installBtn = document.getElementById('installBtn');
-
-    const ticketStatus = document.getElementById('ticketStatus');
-    const ticketRequestId = document.getElementById('ticketRequestId');
-    const ticketOtpStatus = document.getElementById('ticketOtpStatus');
     const otpSafeBox = document.getElementById('otpSafeBox');
     const otpBox = document.getElementById('otpBox');
     const otpCode = document.getElementById('otpCode');
     const otpExpireNote = document.getElementById('otpExpireNote');
     const copyOtpBtn = document.getElementById('copyOtpBtn');
+    const toast = document.getElementById('toast');
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    const loadingMessage = document.getElementById('loadingMessage');
+    const confettiLayer = document.getElementById('confettiLayer');
+    const screenButtons = document.querySelectorAll('.screen-btn');
+    const quickDeviceButtons = document.querySelectorAll('.quick-device-btn');
+    const quickNoteButtons = document.querySelectorAll('.quick-note-btn');
+    const emailValidation = document.getElementById('emailValidation');
+    const deviceValidation = document.getElementById('deviceValidation');
+    const screenValidation = document.getElementById('screenValidation');
+    const noteCount = document.getElementById('noteCount');
+    const summaryBox = document.getElementById('summaryBox');
+    const sumCustomerName = document.getElementById('sumCustomerName');
+    const sumEmail = document.getElementById('sumEmail');
+    const sumDevice = document.getElementById('sumDevice');
+    const sumScreen = document.getElementById('sumScreen');
+    const sumNote = document.getElementById('sumNote');
+    const latestCard = document.getElementById('latestCard');
+    const latestText = document.getElementById('latestText');
+    const latestMiniList = document.getElementById('latestMiniList');
+    const autosaveText = document.getElementById('autosaveText');
 
-    brandTitle.textContent = SHOP_LINE_NAME || 'LINE OTP Verify';
-    brandSub.textContent = SHOP_SUBTITLE || 'ระบบรับรหัส OTP สำหรับลูกค้า';
-
-    if (SHOW_PIN_FIELD && pinField) {
-      pinField.style.display = 'block';
-    }
+    brandTitle.textContent = SHOP_LINE_NAME || 'LINE OTP Verification Center';
+    brandSub.textContent = SHOP_SUBTITLE || 'ระบบตรวจสอบรหัสยืนยันสำหรับลูกค้า';
 
     restoreDraft();
     loadLatestHistory();
     updateNoteCount();
-    initThemeSwitcher();
-    initTapEffect();
-    initCardTilt();
-    initRealtimeValidation();
-    initSoundToggle();
-    initPwaInstall();
-    goToStep(1);
     updateSummary();
-    updateTimeline();
     validateRealtime();
+    bindEvents();
 
-    function goToStep(step) {
-      currentStep = Number(step || 1);
+    function bindEvents() {
+      [customerNameInput, emailInput, deviceInput, customerNoteInput].forEach(function(input) {
+        input.addEventListener('input', function() {
+          if (input === customerNoteInput) updateNoteCount();
+          if (input === deviceInput) clearQuickDeviceSelectedIfManualChange();
+          updateSummary();
+          validateRealtime();
+          saveDraftSoon();
+        });
 
-      const panels = document.querySelectorAll('.step-panel');
-      const indicators = document.querySelectorAll('.step-item');
-
-      panels.forEach(function(panel) {
-        const panelStep = Number(panel.getAttribute('data-step') || 0);
-        panel.classList.toggle('active', panelStep === currentStep);
-      });
-
-      indicators.forEach(function(item) {
-        const itemStep = Number(item.getAttribute('data-step-indicator') || 0);
-        item.classList.remove('active', 'done');
-
-        if (itemStep === currentStep) item.classList.add('active');
-        if (itemStep < currentStep) item.classList.add('done');
-      });
-
-      updateProgress();
-      updateFormHeader();
-      updateTimeline();
-      validateRealtime();
-
-      if (currentStep === 3) updateSummary();
-      if (currentStep === 4) statusBox.style.display = 'block';
-
-      scrollFormIntoView();
-      focusStepInput();
-      saveDraftSoon();
-    }
-
-    function updateProgress() {
-      const percent = Math.min(100, Math.max(25, currentStep * 25));
-      progressFill.style.width = percent + '%';
-      progressPercent.textContent = percent + '%';
-      progressLabel.textContent = 'ขั้นตอนที่ ' + currentStep + ' จาก 4';
-    }
-
-    function updateFormHeader() {
-      if (currentStep === 1) {
-        formTitle.textContent = 'ข้อมูลลูกค้า';
-        formSubtitle.textContent = 'กรอกชื่อ LINE และอีเมลสำหรับค้นหา OTP';
-        return;
-      }
-
-      if (currentStep === 2) {
-        formTitle.textContent = 'อุปกรณ์และหมายเลขจอ';
-        formSubtitle.textContent = 'เลือกข้อมูลที่ตรงกับรายการ';
-        return;
-      }
-
-      if (currentStep === 3) {
-        formTitle.textContent = 'ตรวจสอบก่อนส่ง';
-        formSubtitle.textContent = 'ยืนยันรายละเอียดให้ถูกต้อง';
-        return;
-      }
-
-      formTitle.textContent = 'ผลการค้นหารหัส';
-      formSubtitle.textContent = 'ดูผลลัพธ์หรือเริ่มรายการใหม่';
-    }
-
-    function scrollFormIntoView() {
-      setTimeout(function() {
-        try {
-          app.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        } catch (err) {}
-      }, 60);
-    }
-
-    function focusStepInput() {
-      setTimeout(function() {
-        try {
-          if (currentStep === 1) {
-            if (!customerNameInput.value.trim()) customerNameInput.focus();
-            else emailInput.focus();
+        input.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' && input !== customerNoteInput) {
+            submitRequest();
           }
+        });
 
-          if (currentStep === 2 && !deviceInput.value.trim()) deviceInput.focus();
-          if (currentStep === 3) customerNoteInput.focus();
-        } catch (err) {}
-      }, 300);
+        input.addEventListener('blur', validateRealtime);
+      });
+
+      screenButtons.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          selectedScreen = btn.getAttribute('data-screen') || '';
+
+          screenButtons.forEach(function(item) {
+            item.classList.remove('selected');
+          });
+
+          btn.classList.add('selected');
+          updateSummary();
+          validateRealtime();
+          saveDraftSoon();
+          showToast('เลือกหมายเลขจอ ' + selectedScreen + ' แล้ว');
+        });
+      });
+
+      quickDeviceButtons.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          const deviceName = btn.getAttribute('data-device') || '';
+          deviceInput.value = deviceName;
+          setQuickDeviceSelected(deviceName);
+          updateSummary();
+          validateRealtime();
+          saveDraftSoon();
+          showToast('เลือกอุปกรณ์ ' + deviceName + ' แล้ว');
+        });
+      });
+
+      quickNoteButtons.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          addQuickNote(btn.getAttribute('data-note') || '');
+        });
+      });
     }
 
-    function goNextFromStep1() {
+    function submitRequest() {
+      const customerName = customerNameInput.value.trim();
       const email = emailInput.value.trim();
-      const pin = pinInput ? pinInput.value.trim() : '';
+      const device = deviceInput.value.trim();
+      const customerNote = customerNoteInput.value.trim();
+
+      resetResult();
+
+      if (!WEB_APP_URL || WEB_APP_URL.indexOf('ใส่_GOOGLE_APPS_SCRIPT') !== -1) {
+        showError('กรุณาตั้งค่า WEB_APP_URL ก่อนใช้งาน');
+        return;
+      }
 
       if (!email || !isEmail(email)) {
-        showToast('กรุณากรอกอีเมลให้ถูกต้อง');
+        showToast('กรุณาระบุอีเมลให้ถูกต้อง');
         emailInput.focus();
         validateRealtime();
         return;
       }
 
-      if (SHOW_PIN_FIELD && !pin) {
-        showToast('กรุณากรอก PIN');
-        if (pinInput) pinInput.focus();
-        validateRealtime();
-        return;
-      }
-
-      goToStep(2);
-    }
-
-    function goNextFromStep2() {
-      const device = deviceInput.value.trim();
-
       if (!device) {
-        showToast('กรุณาระบุอุปกรณ์');
+        showToast('กรุณาระบุอุปกรณ์ที่ลูกค้าใช้งาน');
         deviceInput.focus();
         validateRealtime();
         return;
       }
 
       if (!selectedScreen) {
-        showToast('กรุณาเลือกหมายเลขจอ');
+        showToast('กรุณาเลือกหมายเลขจอ 1–6');
         validateRealtime();
         return;
       }
 
-      goToStep(3);
+      updateSummary();
+      setLoading(true);
+
+      jsonpRequest({
+        action: 'otp',
+        customerName: customerName,
+        name: customerName,
+        email: email,
+        device: device,
+        screen: selectedScreen,
+        customerNote: customerNote,
+        note: customerNote,
+        userAgent: navigator.userAgent || '',
+        pageUrl: window.location.href || '',
+        referrer: document.referrer || '',
+        submittedAt: new Date().toISOString()
+      }, function(res) {
+        setLoading(false);
+
+        if (!res) {
+          showError('ระบบไม่ตอบกลับ กรุณาลองใหม่อีกครั้ง');
+          return;
+        }
+
+        if (!res.ok || !res.otp) {
+          showSuccess(
+            res.message || res.savedMessage || 'ระบบบันทึกรายการเรียบร้อยแล้ว แต่ยังไม่พบรหัส OTP ล่าสุด',
+            res.requestId || res.id || '',
+            {
+              otpFound: false,
+              otpDisplayAllowed: false,
+              otp: '',
+              expireMinutes: res.expireMinutes || 15
+            }
+          );
+          return;
+        }
+
+        showSuccess(
+          'พบรหัส OTP ล่าสุดแล้ว สามารถคัดลอกเพื่อดำเนินการยืนยันให้ลูกค้าได้ทันที',
+          res.requestId || res.id || '',
+          {
+            otpFound: true,
+            otpDisplayAllowed: true,
+            otp: res.otp || '',
+            expireMinutes: res.expireMinutes || 15
+          }
+        );
+      }, function() {
+        setLoading(false);
+        showError('ไม่สามารถเชื่อมต่อระบบตรวจสอบได้ กรุณาตรวจสอบอินเทอร์เน็ตหรือระบบปลายทาง แล้วลองใหม่อีกครั้ง');
+      });
     }
 
-    function fillSample() {
-      customerNameInput.value = '@lineuser-test';
-      emailInput.value = 'customer@example.com';
-      deviceInput.value = 'iPhone';
-      selectedDeviceQuick = 'iPhone';
-      setQuickDeviceSelected('iPhone');
-      selectedScreen = '1';
+    function jsonpRequest(params, onSuccess, onError) {
+      const callbackName = '__otpCallback_' + Date.now() + '_' + (++jsonpCounter);
+      const script = document.createElement('script');
 
-      screenButtons.forEach(function(btn) {
-        btn.classList.toggle('selected', btn.getAttribute('data-screen') === '1');
-      });
+      params.callback = callbackName;
 
-      if (screenSelectedNote) {
-        screenSelectedNote.textContent = 'เลือกจอ 1 เรียบร้อยแล้ว';
-        screenSelectedNote.classList.add('active');
+      const query = Object.keys(params)
+        .map(function(key) {
+          return encodeURIComponent(key) + '=' + encodeURIComponent(params[key] == null ? '' : params[key]);
+        })
+        .join('&');
+
+      const sep = WEB_APP_URL.indexOf('?') === -1 ? '?' : '&';
+      const url = WEB_APP_URL + sep + query;
+
+      let done = false;
+
+      window[callbackName] = function(data) {
+        if (done) return;
+        done = true;
+        cleanup();
+        if (typeof onSuccess === 'function') onSuccess(data);
+      };
+
+      script.onerror = function() {
+        if (done) return;
+        done = true;
+        cleanup();
+        if (typeof onError === 'function') onError();
+      };
+
+      const timer = setTimeout(function() {
+        if (done) return;
+        done = true;
+        cleanup();
+        if (typeof onError === 'function') onError();
+      }, REQUEST_TIMEOUT_MS);
+
+      function cleanup() {
+        clearTimeout(timer);
+
+        try {
+          delete window[callbackName];
+        } catch (e) {
+          window[callbackName] = undefined;
+        }
+
+        if (script && script.parentNode) {
+          script.parentNode.removeChild(script);
+        }
       }
 
-      customerNoteInput.value = 'ทดสอบรับรหัส OTP';
-      updateNoteCount();
-      updateSummary();
-      validateRealtime();
-      saveDraftSoon();
-      showToast('กรอกตัวอย่างเรียบร้อย');
+      script.src = url;
+      document.body.appendChild(script);
+    }
+
+    function showSuccess(message, requestId, otpData) {
+      const finalRequestId = requestId || createLocalRequestId();
+      const hasOtp =
+        otpData &&
+        otpData.otpFound === true &&
+        otpData.otpDisplayAllowed === true &&
+        otpData.otp;
+
+      latestRequestId = finalRequestId;
+      latestOtp = hasOtp ? String(otpData.otp || '').trim() : '';
+      latestExpireMinutes = otpData && otpData.expireMinutes ? otpData.expireMinutes : 15;
+      lastSummaryText = buildSummaryText(finalRequestId);
+
+      saveLatestHistory(finalRequestId, hasOtp ? 'พบรหัส OTP แล้ว' : 'ยังไม่พบรหัส OTP ล่าสุด');
+
+      resultBox.classList.add('show');
+      resultIcon.textContent = hasOtp ? '✓' : '!';
+      resultTitle.textContent = hasOtp ? 'พบรหัส OTP แล้ว' : 'บันทึกรายการเรียบร้อย';
+      resultMessage.textContent =
+        message ||
+        (hasOtp
+          ? 'พบรหัส OTP ล่าสุดแล้ว สามารถคัดลอกเพื่อดำเนินการยืนยันให้ลูกค้าได้ทันที'
+          : 'ระบบบันทึกรายการเรียบร้อยแล้ว แต่ยังไม่พบรหัส OTP ล่าสุด');
+
+      requestIdBox.textContent = 'เลขอ้างอิง: ' + finalRequestId;
+
+      if (hasOtp) {
+        otpCode.textContent = latestOtp;
+        otpBox.style.display = 'block';
+        otpSafeBox.style.display = 'none';
+        otpExpireNote.textContent =
+          'กรุณาใช้รหัสนี้ภายใน ' + latestExpireMinutes + ' นาที และใช้สำหรับรายการนี้เท่านั้น';
+        launchConfetti();
+        showToast('พบรหัส OTP แล้ว');
+      } else {
+        otpCode.textContent = '------';
+        otpBox.style.display = 'none';
+        otpSafeBox.style.display = 'block';
+        showToast('บันทึกรายการแล้ว แต่ยังไม่พบรหัส OTP');
+      }
+
+      try {
+        localStorage.removeItem(DRAFT_KEY);
+      } catch (err) {}
+
+      scrollToResult();
+    }
+
+    function showError(message) {
+      resultBox.classList.add('show');
+      resultIcon.textContent = '!';
+      resultTitle.textContent = 'ไม่สามารถรับ OTP ได้';
+      resultMessage.textContent = message || 'ไม่สามารถเชื่อมต่อระบบตรวจสอบได้ กรุณาตรวจสอบอินเทอร์เน็ตหรือระบบปลายทาง แล้วลองใหม่อีกครั้ง';
+      requestIdBox.textContent = 'เลขอ้างอิง: -';
+      otpBox.style.display = 'none';
+      otpSafeBox.style.display = 'none';
+      showToast(message || 'ไม่สามารถรับ OTP ได้');
+      scrollToResult();
+    }
+
+    function resetResult() {
+      resultBox.classList.remove('show');
+      requestIdBox.textContent = 'เลขอ้างอิง: -';
+      otpBox.style.display = 'none';
+      otpSafeBox.style.display = 'none';
+      otpCode.textContent = '------';
+      if (copyOtpBtn) {
+        copyOtpBtn.classList.remove('copied');
+        copyOtpBtn.textContent = 'คัดลอกรหัส OTP';
+      }
+    }
+
+    function setLoading(isLoading) {
+      if (isLoading) {
+        btnText.textContent = 'กำลังตรวจสอบ...';
+        submitBtn.disabled = true;
+        showLoadingOverlay();
+        return;
+      }
+
+      btnText.textContent = 'ตรวจสอบและรับ OTP';
+      submitBtn.disabled = false;
+      hideLoadingOverlay();
+    }
+
+    function showLoadingOverlay() {
+      loadingTextIndex = 0;
+      loadingMessage.textContent = loadingMessages[0];
+      loadingOverlay.classList.add('show');
+
+      if (loadingTextTimer) clearInterval(loadingTextTimer);
+
+      loadingTextTimer = setInterval(function() {
+        loadingTextIndex = (loadingTextIndex + 1) % loadingMessages.length;
+        loadingMessage.textContent = loadingMessages[loadingTextIndex];
+      }, 1200);
+    }
+
+    function hideLoadingOverlay() {
+      loadingOverlay.classList.remove('show');
+
+      if (loadingTextTimer) {
+        clearInterval(loadingTextTimer);
+        loadingTextTimer = null;
+      }
+    }
+
+    function updateSummary() {
+      const customerName = customerNameInput.value.trim();
+      const email = emailInput.value.trim();
+      const device = deviceInput.value.trim();
+      const customerNote = customerNoteInput.value.trim();
+
+      sumCustomerName.textContent = customerName || '-';
+      sumEmail.textContent = email || '-';
+      sumDevice.textContent = device || '-';
+      sumScreen.textContent = selectedScreen ? 'จอ ' + selectedScreen : '-';
+      sumNote.textContent = customerNote || '-';
+
+      const hasAny = customerName || email || device || selectedScreen || customerNote;
+      summaryBox.classList.toggle('show', !!hasAny);
+    }
+
+    function validateRealtime() {
+      const email = emailInput.value.trim();
+      const device = deviceInput.value.trim();
+
+      setValidationState(
+        emailInput,
+        emailValidation,
+        !email ? null : isEmail(email),
+        !email ? 'กรุณาระบุอีเมลที่ใช้รับรหัส OTP' : isEmail(email) ? 'อีเมลพร้อมสำหรับการตรวจสอบ' : 'รูปแบบอีเมลไม่ถูกต้อง'
+      );
+
+      setValidationState(
+        deviceInput,
+        deviceValidation,
+        !device ? null : device.length >= 2,
+        !device ? 'กรุณาระบุอุปกรณ์สำหรับใช้ตรวจสอบรายการ' : device.length >= 2 ? 'บันทึกข้อมูลอุปกรณ์แล้ว' : 'ชื่ออุปกรณ์สั้นเกินไป'
+      );
+
+      if (screenValidation) {
+        screenValidation.textContent = selectedScreen ? 'เลือกหมายเลขจอ ' + selectedScreen + ' แล้ว' : 'เลือกหมายเลขจอให้ตรงกับรายการของลูกค้า';
+        screenValidation.classList.toggle('ok', !!selectedScreen);
+        screenValidation.classList.toggle('bad', false);
+      }
+    }
+
+    function setValidationState(input, label, state, text) {
+      if (!input || !label) return;
+
+      input.classList.remove('valid', 'invalid');
+      label.classList.remove('ok', 'bad');
+      label.textContent = text || '';
+
+      if (state === true) {
+        input.classList.add('valid');
+        label.classList.add('ok');
+      }
+
+      if (state === false) {
+        input.classList.add('invalid');
+        label.classList.add('bad');
+      }
     }
 
     function updateNoteCount() {
@@ -2437,15 +1864,237 @@
     }
 
     function addQuickNote(note) {
+      if (!note) return;
+
       const current = customerNoteInput.value.trim();
       const next = current ? current + ' / ' + note : note;
 
       customerNoteInput.value = next.substring(0, 700);
-
       updateNoteCount();
       updateSummary();
       saveDraftSoon();
-      showToast('เพิ่มหมายเหตุแล้ว');
+      showToast('เพิ่มหมายเหตุในรายการแล้ว');
+    }
+
+    function setQuickDeviceSelected(deviceName) {
+      selectedDeviceQuick = deviceName || '';
+
+      quickDeviceButtons.forEach(function(btn) {
+        const itemDevice = btn.getAttribute('data-device') || '';
+        btn.classList.toggle('selected', itemDevice === selectedDeviceQuick);
+      });
+    }
+
+    function clearQuickDeviceSelectedIfManualChange() {
+      const current = deviceInput.value.trim();
+
+      if (!selectedDeviceQuick || current === selectedDeviceQuick) return;
+
+      selectedDeviceQuick = '';
+
+      quickDeviceButtons.forEach(function(btn) {
+        btn.classList.remove('selected');
+      });
+    }
+
+    function buildSummaryText(requestId) {
+      return [
+        'ข้อมูลรายการรับ OTP',
+        'เลขอ้างอิง: ' + (requestId || '-'),
+        'ลูกค้า: ' + (customerNameInput.value.trim() || '-'),
+        'อีเมล: ' + (emailInput.value.trim() || '-'),
+        'อุปกรณ์: ' + (deviceInput.value.trim() || '-'),
+        'จอ/โปรไฟล์: ' + (selectedScreen ? 'จอ ' + selectedScreen : '-'),
+        'หมายเหตุ: ' + (customerNoteInput.value.trim() || '-')
+      ].join('\n');
+    }
+
+    function copySummary() {
+      const text = lastSummaryText || buildSummaryText(latestRequestId || '-');
+      copyText(text, 'คัดลอกข้อมูลรายการแล้ว');
+    }
+
+    function copyRequestId() {
+      const text = latestRequestId || requestIdBox.textContent.replace('เลขอ้างอิง:', '').trim();
+
+      if (!text || text === '-') {
+        showToast('ยังไม่มีเลขอ้างอิง');
+        return;
+      }
+
+      copyText(text, 'คัดลอกเลขอ้างอิงแล้ว');
+    }
+
+    function copyOtp() {
+      if (!latestOtp) {
+        showToast('ยังไม่มีรหัส OTP สำหรับคัดลอก');
+        return;
+      }
+
+      copyText(latestOtp, 'คัดลอกรหัส OTP แล้ว');
+
+      if (copyOtpBtn) {
+        copyOtpBtn.classList.add('copied');
+        copyOtpBtn.textContent = 'คัดลอกแล้ว';
+
+        setTimeout(function() {
+          copyOtpBtn.classList.remove('copied');
+          copyOtpBtn.textContent = 'คัดลอกรหัส OTP';
+        }, 2200);
+      }
+    }
+
+    function copyText(text, successText) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function() {
+          showToast(successText || 'คัดลอกเรียบร้อยแล้ว');
+        }).catch(function() {
+          fallbackCopyWithMessage(text, successText);
+        });
+      } else {
+        fallbackCopyWithMessage(text, successText);
+      }
+    }
+
+    function fallbackCopyWithMessage(text, successText) {
+      const area = document.createElement('textarea');
+
+      area.value = text;
+      area.setAttribute('readonly', 'readonly');
+      area.style.position = 'fixed';
+      area.style.left = '-9999px';
+      area.style.top = '-9999px';
+
+      document.body.appendChild(area);
+      area.focus();
+      area.select();
+
+      try {
+        document.execCommand('copy');
+        showToast(successText || 'คัดลอกเรียบร้อยแล้ว');
+      } catch (err) {
+        showToast('ไม่สามารถคัดลอกข้อมูลได้');
+      }
+
+      document.body.removeChild(area);
+    }
+
+    function startNewRequest() {
+      selectedScreen = '';
+      selectedDeviceQuick = '';
+      lastSummaryText = '';
+      latestRequestId = '';
+      latestOtp = '';
+      latestExpireMinutes = 15;
+
+      customerNameInput.value = '';
+      emailInput.value = '';
+      deviceInput.value = '';
+      customerNoteInput.value = '';
+
+      screenButtons.forEach(function(btn) {
+        btn.classList.remove('selected');
+      });
+
+      quickDeviceButtons.forEach(function(btn) {
+        btn.classList.remove('selected');
+      });
+
+      try {
+        localStorage.removeItem(DRAFT_KEY);
+      } catch (err) {}
+
+      updateNoteCount();
+      updateSummary();
+      validateRealtime();
+      resetResult();
+      showToast('สร้างรายการใหม่แล้ว');
+
+      setTimeout(function() {
+        try {
+          emailInput.focus();
+        } catch (err) {}
+      }, 120);
+    }
+
+    function clearDraft() {
+      try {
+        localStorage.removeItem(DRAFT_KEY);
+      } catch (err) {}
+
+      customerNameInput.value = '';
+      emailInput.value = '';
+      deviceInput.value = '';
+      customerNoteInput.value = '';
+      selectedScreen = '';
+      selectedDeviceQuick = '';
+
+      screenButtons.forEach(function(btn) {
+        btn.classList.remove('selected');
+      });
+
+      quickDeviceButtons.forEach(function(btn) {
+        btn.classList.remove('selected');
+      });
+
+      updateNoteCount();
+      updateSummary();
+      validateRealtime();
+      resetResult();
+      showToast('ล้างข้อมูลเรียบร้อยแล้ว');
+    }
+
+    function saveDraftSoon() {
+      if (autosaveTimer) clearTimeout(autosaveTimer);
+
+      autosaveText.textContent = 'กำลังบันทึกแบบร่างรายการ...';
+
+      autosaveTimer = setTimeout(function() {
+        saveDraft();
+      }, 350);
+    }
+
+    function saveDraft() {
+      try {
+        const data = {
+          customerName: customerNameInput.value || '',
+          email: emailInput.value || '',
+          device: deviceInput.value || '',
+          note: customerNoteInput.value || '',
+          screen: selectedScreen || '',
+          selectedDeviceQuick: selectedDeviceQuick || '',
+          savedAt: new Date().toISOString()
+        };
+
+        localStorage.setItem(DRAFT_KEY, JSON.stringify(data));
+        autosaveText.textContent = 'บันทึกแบบร่างรายการอัตโนมัติแล้ว';
+      } catch (err) {
+        autosaveText.textContent = 'ระบบบันทึกข้อมูลรายการเพื่อใช้ตรวจสอบย้อนหลัง และช่วยให้การดูแลลูกค้าเป็นไปอย่างเป็นระบบ';
+      }
+    }
+
+    function restoreDraft() {
+      try {
+        const raw = localStorage.getItem(DRAFT_KEY);
+        if (!raw) return;
+
+        const data = JSON.parse(raw);
+
+        customerNameInput.value = data.customerName || '';
+        emailInput.value = data.email || '';
+        deviceInput.value = data.device || '';
+        customerNoteInput.value = data.note || '';
+        selectedScreen = data.screen || '';
+        selectedDeviceQuick = data.selectedDeviceQuick || '';
+
+        if (selectedScreen) {
+          screenButtons.forEach(function(btn) {
+            btn.classList.toggle('selected', btn.getAttribute('data-screen') === selectedScreen);
+          });
+        }
+
+        if (selectedDeviceQuick) setQuickDeviceSelected(selectedDeviceQuick);
+      } catch (err) {}
     }
 
     function saveLatestHistory(requestId, otpStatusText) {
@@ -2520,117 +2169,11 @@
       } catch (err) {}
     }
 
-    function saveDraftSoon() {
-      if (autosaveTimer) clearTimeout(autosaveTimer);
-
-      autosaveText.innerHTML = 'กำลังบันทึกแบบร่าง <span class="saving-dot"><i></i><i></i><i></i></span>';
-
-      autosaveTimer = setTimeout(function() {
-        saveDraft();
-      }, 350);
-    }
-
-    function saveDraft() {
-      try {
-        const data = {
-          customerName: customerNameInput.value || '',
-          email: emailInput.value || '',
-          device: deviceInput.value || '',
-          pin: SHOW_PIN_FIELD && pinInput ? pinInput.value || '' : '',
-          note: customerNoteInput.value || '',
-          screen: selectedScreen || '',
-          selectedDeviceQuick: selectedDeviceQuick || '',
-          theme: getCurrentTheme(),
-          sound: soundEnabled ? 'on' : 'off',
-          savedAt: new Date().toISOString()
-        };
-
-        localStorage.setItem(DRAFT_KEY, JSON.stringify(data));
-        autosaveText.textContent = 'บันทึกแบบร่างอัตโนมัติแล้ว';
-      } catch (err) {
-        autosaveText.textContent = 'ระบบบันทึกข้อมูลการขอ OTP เพื่อใช้ตรวจสอบย้อนหลัง';
-      }
-    }
-
-    function restoreDraft() {
-      try {
-        const raw = localStorage.getItem(DRAFT_KEY);
-        if (!raw) return;
-
-        const data = JSON.parse(raw);
-        customerNameInput.value = data.customerName || '';
-        emailInput.value = data.email || '';
-        deviceInput.value = data.device || '';
-        if (pinInput && SHOW_PIN_FIELD) pinInput.value = data.pin || '';
-        customerNoteInput.value = data.note || '';
-        selectedScreen = data.screen || '';
-        selectedDeviceQuick = data.selectedDeviceQuick || '';
-
-        if (selectedScreen) {
-          screenButtons.forEach(function(btn) {
-            btn.classList.toggle('selected', btn.getAttribute('data-screen') === selectedScreen);
-          });
-
-          if (screenSelectedNote) {
-            screenSelectedNote.textContent = 'เลือกจอ ' + selectedScreen + ' เรียบร้อยแล้ว';
-            screenSelectedNote.classList.add('active');
-          }
-        }
-
-        if (selectedDeviceQuick) setQuickDeviceSelected(selectedDeviceQuick);
-      } catch (err) {}
-    }
-
-    function clearDraft() {
-      try {
-        localStorage.removeItem(DRAFT_KEY);
-      } catch (err) {}
-
-      customerNameInput.value = '';
-      emailInput.value = '';
-      deviceInput.value = '';
-      if (pinInput) pinInput.value = '';
-      customerNoteInput.value = '';
-      selectedScreen = '';
-      selectedDeviceQuick = '';
-      latestRequestId = '';
-      latestOtp = '';
-      latestExpireMinutes = 15;
-
-      screenButtons.forEach(function(btn) {
-        btn.classList.remove('selected');
-      });
-
-      quickDeviceButtons.forEach(function(btn) {
-        btn.classList.remove('selected');
-      });
-
-      if (screenSelectedNote) {
-        screenSelectedNote.textContent = 'เลือกหมายเลขจอให้ตรงกับรายการของลูกค้า';
-        screenSelectedNote.classList.remove('active');
-      }
-
-      if (otpBox) otpBox.style.display = 'none';
-      if (otpSafeBox) otpSafeBox.style.display = 'none';
-      if (otpCode) otpCode.textContent = '------';
-
-      updateNoteCount();
-      updateSummary();
-      validateRealtime();
-      showToast('ล้างข้อมูลที่ค้างไว้แล้ว');
-    }
-
-    function vibrateSuccess() {
-      try {
-        if (navigator.vibrate) navigator.vibrate(80);
-      } catch (err) {}
-    }
-
     function launchConfetti() {
       confettiLayer.innerHTML = '';
 
-      const pieces = ['♡', '✦', '✧', '•', '★'];
-      const count = 28;
+      const pieces = ['✓', 'OTP', '★', '•', '✦'];
+      const count = 26;
 
       for (let i = 0; i < count; i++) {
         const el = document.createElement('div');
@@ -2650,436 +2193,6 @@
       }, 1500);
     }
 
-    function showLoadingOverlay() {
-      loadingTextIndex = 0;
-      loadingMessage.textContent = loadingMessages[0];
-      loadingOverlay.classList.add('show');
-
-      if (loadingTextTimer) clearInterval(loadingTextTimer);
-
-      loadingTextTimer = setInterval(function() {
-        loadingTextIndex = (loadingTextIndex + 1) % loadingMessages.length;
-        loadingMessage.textContent = loadingMessages[loadingTextIndex];
-      }, 1200);
-    }
-
-    function hideLoadingOverlay() {
-      loadingOverlay.classList.remove('show');
-
-      if (loadingTextTimer) {
-        clearInterval(loadingTextTimer);
-        loadingTextTimer = null;
-      }
-    }
-
-    function setLoading(isLoading) {
-      if (isLoading) {
-        app.classList.add('loading');
-        btnText.textContent = 'กำลังค้นหารหัส...';
-        submitBtn.disabled = true;
-        showLoadingOverlay();
-        return;
-      }
-
-      app.classList.remove('loading');
-      btnText.textContent = 'รับรหัส OTP';
-      submitBtn.disabled = false;
-      hideLoadingOverlay();
-    }
-
-    function resetResult() {
-      statusBox.style.display = 'none';
-      successBox.style.display = 'none';
-      errorBox.style.display = 'none';
-      requestIdBox.textContent = 'เลขคำขอ: -';
-
-      if (otpBox) otpBox.style.display = 'none';
-      if (otpSafeBox) otpSafeBox.style.display = 'none';
-      if (otpCode) otpCode.textContent = '------';
-      if (copyOtpBtn) copyOtpBtn.classList.remove('copied');
-    }
-
-    function buildSummaryText(requestId) {
-      return [
-        'สรุปคำขอ OTP',
-        'เลขคำขอ: ' + (requestId || '-'),
-        'ชื่อ LINE: ' + (customerNameInput.value.trim() || '-'),
-        'อีเมล: ' + (emailInput.value.trim() || '-'),
-        'อุปกรณ์: ' + (deviceInput.value.trim() || '-'),
-        'จอ: ' + (selectedScreen ? 'จอ ' + selectedScreen : '-'),
-        'หมายเหตุ: ' + (customerNoteInput.value.trim() || '-')
-      ].join('\n');
-    }
-
-    function copySummary() {
-      const text = lastSummaryText || buildSummaryText('-');
-      copyText(text, 'คัดลอกสรุปแล้ว');
-    }
-
-    function fallbackCopy(text) {
-      fallbackCopyWithMessage(text, 'คัดลอกสรุปแล้ว');
-    }
-
-    function showSuccess(message, requestId, otpData) {
-      const finalRequestId = requestId || createLocalRequestId();
-
-      latestRequestId = finalRequestId;
-      latestOtp = '';
-
-      const hasOtp =
-        otpData &&
-        otpData.otpFound === true &&
-        otpData.otpDisplayAllowed === true &&
-        otpData.otp;
-
-      latestExpireMinutes = otpData && otpData.expireMinutes ? otpData.expireMinutes : 15;
-
-      const otpStatus = hasOtp ? 'พบ OTP แล้ว' : 'ยังไม่พบ OTP ล่าสุด';
-
-      saveLatestHistory(finalRequestId, otpStatus);
-      vibrateSuccess();
-      playCuteSound(hasOtp ? 'success' : 'tap');
-
-      if (hasOtp) {
-        launchConfetti();
-      }
-
-      lastSummaryText = buildSummaryText(finalRequestId);
-
-      try {
-        localStorage.removeItem(DRAFT_KEY);
-      } catch (err) {}
-
-      goToStep(4);
-
-      statusBox.style.display = 'block';
-      successBox.style.display = 'block';
-      errorBox.style.display = 'none';
-
-      successMessage.textContent =
-        message ||
-        (hasOtp
-          ? 'พบรหัสล่าสุดแล้ว สามารถคัดลอกไปแจ้งลูกค้าได้'
-          : 'บันทึกข้อมูลเรียบร้อย แต่ยังไม่พบรหัสล่าสุด');
-
-      requestIdBox.textContent = 'เลขคำขอ: ' + finalRequestId;
-
-      if (ticketStatus) ticketStatus.textContent = otpStatus;
-      if (ticketRequestId) ticketRequestId.textContent = finalRequestId;
-
-      if (hasOtp) {
-        latestOtp = String(otpData.otp || '').trim();
-
-        otpCode.textContent = latestOtp;
-        otpBox.style.display = 'block';
-        otpSafeBox.style.display = 'none';
-
-        if (otpExpireNote) {
-          otpExpireNote.textContent =
-            'รหัสนี้มีอายุการใช้งาน ' + latestExpireMinutes + ' นาที ใช้สำหรับรายการนี้เท่านั้น';
-        }
-
-        if (ticketOtpStatus) {
-          ticketOtpStatus.textContent = 'พร้อมคัดลอก';
-        }
-      } else {
-        latestOtp = '';
-
-        otpCode.textContent = '------';
-        otpBox.style.display = 'none';
-        otpSafeBox.style.display = 'block';
-
-        if (ticketOtpStatus) {
-          ticketOtpStatus.textContent = 'ยังไม่มีรหัสจากระบบ';
-        }
-      }
-
-      showToast(hasOtp ? 'พบรหัสแล้ว' : 'บันทึกข้อมูลแล้ว');
-    }
-
-    function showError(message) {
-      goToStep(4);
-
-      statusBox.style.display = 'block';
-      successBox.style.display = 'none';
-      errorBox.style.display = 'block';
-
-      playCuteSound('tap');
-      showToast(message || 'ยังรับรหัสไม่สำเร็จ');
-    }
-
-    function updateSummary() {
-      const customerName = customerNameInput.value.trim();
-      const email = emailInput.value.trim();
-      const device = deviceInput.value.trim();
-      const customerNote = customerNoteInput.value.trim();
-
-      sumCustomerName.textContent = customerName || '-';
-      sumEmail.textContent = email || '-';
-      sumDevice.textContent = device || '-';
-      sumScreen.textContent = selectedScreen ? 'จอ ' + selectedScreen : '-';
-      sumNote.textContent = customerNote || '-';
-    }
-
-    function submitRequest() {
-      const customerName = customerNameInput.value.trim();
-      const email = emailInput.value.trim();
-      const device = deviceInput.value.trim();
-      const customerNote = customerNoteInput.value.trim();
-      const pin = pinInput ? pinInput.value.trim() : '';
-
-      resetResult();
-
-      if (!WEB_APP_URL || WEB_APP_URL.indexOf('ใส่_GOOGLE_APPS_SCRIPT') !== -1) {
-        showError('กรุณาตั้งค่า WEB_APP_URL ก่อนใช้งาน');
-        return;
-      }
-
-      if (!email || !isEmail(email)) {
-        showToast('กรุณากรอกอีเมลให้ถูกต้อง');
-        goToStep(1);
-        emailInput.focus();
-        validateRealtime();
-        return;
-      }
-
-      if (!device) {
-        showToast('กรุณาระบุอุปกรณ์');
-        goToStep(2);
-        deviceInput.focus();
-        validateRealtime();
-        return;
-      }
-
-      if (!selectedScreen) {
-        showToast('กรุณาเลือกหมายเลขจอ');
-        goToStep(2);
-        validateRealtime();
-        return;
-      }
-
-      if (SHOW_PIN_FIELD && !pin) {
-        showToast('กรุณากรอก PIN');
-        goToStep(1);
-        if (pinInput) pinInput.focus();
-        validateRealtime();
-        return;
-      }
-
-      setLoading(true);
-
-      jsonpRequest({
-        action: 'otp',
-        customerName: customerName,
-        name: customerName,
-        email: email,
-        device: device,
-        screen: selectedScreen,
-        customerNote: customerNote,
-        note: customerNote,
-        userAgent: navigator.userAgent || '',
-        pageUrl: window.location.href || '',
-        referrer: document.referrer || '',
-        pin: pin,
-        submittedAt: new Date().toISOString()
-      }, function(res) {
-        setLoading(false);
-
-        if (!res) {
-          showError('ระบบไม่ตอบกลับ กรุณาลองใหม่');
-          return;
-        }
-
-        if (!res.ok || !res.otp) {
-          showSuccess(
-            res.message || res.savedMessage || 'บันทึกข้อมูลแล้ว แต่ยังไม่พบรหัสล่าสุด',
-            res.requestId || res.id || '',
-            {
-              otpFound: false,
-              otpDisplayAllowed: false,
-              otp: '',
-              expireMinutes: res.expireMinutes || 15,
-              savedMessage: res.savedMessage || 'บันทึกข้อมูลเรียบร้อย'
-            }
-          );
-
-          showToast(res.message || 'ไม่พบรหัสล่าสุด');
-          return;
-        }
-
-        showSuccess(
-          'พบรหัสล่าสุดแล้ว สามารถคัดลอกไปแจ้งลูกค้าได้',
-          res.requestId || res.id || '',
-          {
-            otpFound: true,
-            otpDisplayAllowed: true,
-            otp: res.otp || '',
-            expireMinutes: res.expireMinutes || 15,
-            savedMessage: res.savedMessage || 'บันทึกข้อมูลเรียบร้อย'
-          }
-        );
-
-        showToast('พบรหัสแล้ว');
-      }, function() {
-        setLoading(false);
-        showError('ไม่สามารถเชื่อมต่อระบบได้');
-      });
-    }
-
-    function retryRequest() {
-      resetResult();
-      goToStep(3);
-
-      setTimeout(function() {
-        submitRequest();
-      }, 150);
-    }
-
-    function startNewRequest() {
-      selectedScreen = '';
-      selectedDeviceQuick = '';
-      lastSummaryText = '';
-      latestRequestId = '';
-      latestOtp = '';
-      latestExpireMinutes = 15;
-
-      customerNameInput.value = '';
-      emailInput.value = '';
-      deviceInput.value = '';
-      if (pinInput) pinInput.value = '';
-      customerNoteInput.value = '';
-
-      try {
-        localStorage.removeItem(DRAFT_KEY);
-      } catch (err) {}
-
-      screenButtons.forEach(function(btn) {
-        btn.classList.remove('selected');
-      });
-
-      quickDeviceButtons.forEach(function(btn) {
-        btn.classList.remove('selected');
-      });
-
-      if (screenSelectedNote) {
-        screenSelectedNote.textContent = 'เลือกหมายเลขจอให้ตรงกับรายการของลูกค้า';
-        screenSelectedNote.classList.remove('active');
-      }
-
-      if (otpBox) otpBox.style.display = 'none';
-      if (otpSafeBox) otpSafeBox.style.display = 'none';
-      if (otpCode) otpCode.textContent = '------';
-      if (ticketRequestId) ticketRequestId.textContent = '-';
-      if (ticketStatus) ticketStatus.textContent = 'กำลังตรวจสอบ';
-      if (ticketOtpStatus) ticketOtpStatus.textContent = 'รอผลการค้นหา';
-
-      updateNoteCount();
-      resetResult();
-      updateSummary();
-      validateRealtime();
-      goToStep(1);
-
-      showToast('เริ่มรายการใหม่แล้ว');
-    }
-
-    function jsonpRequest(params, onSuccess, onError) {
-      const callbackName = '__otpCallback_' + Date.now() + '_' + (++jsonpCounter);
-      const script = document.createElement('script');
-
-      params.callback = callbackName;
-
-      const query = Object.keys(params)
-        .map(function(key) {
-          return encodeURIComponent(key) + '=' + encodeURIComponent(params[key] == null ? '' : params[key]);
-        })
-        .join('&');
-
-      const sep = WEB_APP_URL.indexOf('?') === -1 ? '?' : '&';
-      const url = WEB_APP_URL + sep + query;
-
-      let done = false;
-
-      window[callbackName] = function(data) {
-        if (done) return;
-
-        done = true;
-        cleanup();
-
-        if (typeof onSuccess === 'function') onSuccess(data);
-      };
-
-      script.onerror = function() {
-        if (done) return;
-
-        done = true;
-        cleanup();
-
-        if (typeof onError === 'function') onError();
-      };
-
-      const timer = setTimeout(function() {
-        if (done) return;
-
-        done = true;
-        cleanup();
-
-        if (typeof onError === 'function') onError();
-      }, REQUEST_TIMEOUT_MS);
-
-      function cleanup() {
-        clearTimeout(timer);
-
-        try {
-          delete window[callbackName];
-        } catch (e) {
-          window[callbackName] = undefined;
-        }
-
-        if (script && script.parentNode) {
-          script.parentNode.removeChild(script);
-        }
-      }
-
-      script.src = url;
-      document.body.appendChild(script);
-    }
-
-    function showToast(message) {
-      toast.textContent = message || 'เรียบร้อย';
-      toast.classList.add('show');
-
-      if (toastTimer) clearTimeout(toastTimer);
-
-      toastTimer = setTimeout(function() {
-        toast.classList.remove('show');
-      }, 1900);
-    }
-
-    function isEmail(value) {
-      return /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(String(value || '').trim());
-    }
-
-    function setQuickDeviceSelected(deviceName) {
-      selectedDeviceQuick = deviceName || '';
-
-      quickDeviceButtons.forEach(function(btn) {
-        const itemDevice = btn.getAttribute('data-device') || '';
-        btn.classList.toggle('selected', itemDevice === selectedDeviceQuick);
-      });
-    }
-
-    function clearQuickDeviceSelectedIfManualChange() {
-      const current = deviceInput.value.trim();
-
-      if (!selectedDeviceQuick || current === selectedDeviceQuick) return;
-
-      selectedDeviceQuick = '';
-
-      quickDeviceButtons.forEach(function(btn) {
-        btn.classList.remove('selected');
-      });
-    }
-
     function createLocalRequestId() {
       const d = new Date();
       const y = String(d.getFullYear()).slice(-2);
@@ -3092,451 +2205,28 @@
       return 'OTP-' + y + m + day + '-' + h + min + '-' + rand;
     }
 
-    function copyRequestId() {
-      const text = latestRequestId || requestIdBox.textContent.replace('เลขคำขอ:', '').trim();
+    function showToast(message) {
+      toast.textContent = message || 'ดำเนินการเรียบร้อย';
+      toast.classList.add('show');
 
-      if (!text || text === '-') {
-        showToast('ยังไม่มีเลขคำขอ');
-        return;
-      }
+      if (toastTimer) clearTimeout(toastTimer);
 
-      copyText(text, 'คัดลอกเลขคำขอแล้ว');
+      toastTimer = setTimeout(function() {
+        toast.classList.remove('show');
+      }, 1900);
     }
 
-    function copyOtp() {
-      if (!latestOtp) {
-        showToast('ไม่มีรหัสให้คัดลอก');
-        return;
-      }
-
-      copyText(latestOtp, 'คัดลอก OTP แล้ว');
-
-      if (copyOtpBtn) {
-        copyOtpBtn.classList.add('copied');
-        copyOtpBtn.textContent = 'คัดลอกแล้ว';
-
-        setTimeout(function() {
-          if (copyOtpBtn) {
-            copyOtpBtn.classList.remove('copied');
-            copyOtpBtn.textContent = 'คัดลอก OTP';
-          }
-        }, 2200);
-      }
-    }
-
-    function copyText(text, successText) {
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(function() {
-          playCuteSound('tap');
-          showToast(successText || 'คัดลอกแล้ว');
-        }).catch(function() {
-          fallbackCopyWithMessage(text, successText);
-        });
-      } else {
-        fallbackCopyWithMessage(text, successText);
-      }
-    }
-
-    function fallbackCopyWithMessage(text, successText) {
-      const area = document.createElement('textarea');
-      area.value = text;
-      area.setAttribute('readonly', 'readonly');
-      area.style.position = 'fixed';
-      area.style.left = '-9999px';
-      area.style.top = '-9999px';
-      document.body.appendChild(area);
-      area.focus();
-      area.select();
-
-      try {
-        document.execCommand('copy');
-        showToast(successText || 'คัดลอกแล้ว');
-      } catch (err) {
-        showToast('คัดลอกไม่สำเร็จ');
-      }
-
-      document.body.removeChild(area);
-    }
-
-    function initRealtimeValidation() {
-      [emailInput, deviceInput].forEach(function(input) {
-        input.addEventListener('input', validateRealtime);
-        input.addEventListener('blur', validateRealtime);
-      });
-
-      if (pinInput) {
-        pinInput.addEventListener('input', validateRealtime);
-        pinInput.addEventListener('blur', validateRealtime);
-      }
-
-      screenButtons.forEach(function(btn) {
-        btn.addEventListener('click', validateRealtime);
-      });
-    }
-
-    function validateRealtime() {
-      const email = emailInput.value.trim();
-      const device = deviceInput.value.trim();
-
-      setValidationState(
-        emailInput,
-        emailValidation,
-        !email ? null : isEmail(email),
-        !email ? 'กรอกอีเมลให้ถูกต้อง' : isEmail(email) ? 'อีเมลถูกต้อง' : 'รูปแบบอีเมลยังไม่ถูกต้อง'
-      );
-
-      setValidationState(
-        deviceInput,
-        deviceValidation,
-        !device ? null : device.length >= 2,
-        !device ? 'ระบุอุปกรณ์ของลูกค้า' : device.length >= 2 ? 'ระบุอุปกรณ์แล้ว' : 'ชื่ออุปกรณ์สั้นเกินไป'
-      );
-
-      if (screenEmptyState) {
-        screenEmptyState.style.display = selectedScreen ? 'none' : 'block';
-      }
-    }
-
-    function setValidationState(input, label, state, text) {
-      if (!input || !label) return;
-
-      input.classList.remove('valid', 'invalid');
-      label.classList.remove('ok', 'bad');
-
-      label.textContent = text || '';
-
-      if (state === true) {
-        input.classList.add('valid');
-        label.classList.add('ok');
-      }
-
-      if (state === false) {
-        input.classList.add('invalid');
-        label.classList.add('bad');
-      }
-    }
-
-    function updateTimeline() {
-      const items = document.querySelectorAll('.timeline-item');
-
-      items.forEach(function(item) {
-        const step = Number(item.getAttribute('data-time-step') || 0);
-        item.classList.remove('active', 'done');
-
-        if (step === currentStep) item.classList.add('active');
-        if (step < currentStep) item.classList.add('done');
-      });
-    }
-
-    function initThemeSwitcher() {
-      const savedTheme = safeLocalGet(THEME_KEY) || 'line';
-      applyTheme(savedTheme);
-
-      if (!themeSwitcher) return;
-
-      themeSwitcher.querySelectorAll('.theme-dot').forEach(function(btn) {
-        btn.addEventListener('click', function() {
-          const theme = btn.getAttribute('data-theme') || 'line';
-          applyTheme(theme);
-
-          try {
-            localStorage.setItem(THEME_KEY, theme);
-          } catch (err) {}
-
-          playCuteSound('tap');
-          showToast('เปลี่ยนธีมแล้ว');
-        });
-      });
-    }
-
-    function applyTheme(theme) {
-      document.body.classList.remove('theme-line', 'theme-pink', 'theme-sky', 'theme-gold');
-      document.body.classList.add('theme-' + theme);
-
-      if (!themeSwitcher) return;
-
-      themeSwitcher.querySelectorAll('.theme-dot').forEach(function(btn) {
-        btn.classList.toggle('active', btn.getAttribute('data-theme') === theme);
-      });
-
-      try {
-        const color = theme === 'line' ? '#06C755' :
-          theme === 'pink' ? '#FF8FC0' :
-          theme === 'sky' ? '#62C7FF' :
-          '#FFD166';
-
-        let meta = document.querySelector('meta[name="theme-color"]');
-
-        if (meta) meta.setAttribute('content', color);
-      } catch (err) {}
-    }
-
-    function getCurrentTheme() {
-      if (document.body.classList.contains('theme-pink')) return 'pink';
-      if (document.body.classList.contains('theme-sky')) return 'sky';
-      if (document.body.classList.contains('theme-gold')) return 'gold';
-      return 'line';
-    }
-
-    function initTapEffect() {
-      document.addEventListener('pointerdown', function(e) {
-        const target = e.target;
-        const clickable = target && target.closest && target.closest('button, .screen-btn, input, textarea');
-
-        if (!clickable) return;
-
-        const el = document.createElement('div');
-        el.className = 'tap-heart';
-        el.textContent = Math.random() > 0.5 ? '♡' : '✦';
-        el.style.left = e.clientX + 'px';
-        el.style.top = e.clientY + 'px';
-
-        document.body.appendChild(el);
-        playCuteSound('tap');
-
-        setTimeout(function() {
-          if (el.parentNode) el.parentNode.removeChild(el);
-        }, 760);
-      });
-    }
-
-    function initCardTilt() {
-      if (!app) return;
-
-      app.classList.add('tilt-ready');
-
-      app.addEventListener('pointermove', function(e) {
-        if (window.matchMedia('(max-width: 920px)').matches) return;
-
-        const rect = app.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const rotateY = ((x / rect.width) - 0.5) * 5;
-        const rotateX = ((0.5 - (y / rect.height)) * 5);
-
-        app.style.transform = 'perspective(900px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg)';
-      });
-
-      app.addEventListener('pointerleave', function() {
-        app.style.transform = '';
-      });
-    }
-
-    function initSoundToggle() {
-      const saved = safeLocalGet(SOUND_KEY);
-
-      if (saved === 'off') soundEnabled = false;
-
-      updateSoundButton();
-
-      if (!soundToggle) return;
-
-      soundToggle.addEventListener('click', function() {
-        soundEnabled = !soundEnabled;
-
+    function scrollToResult() {
+      setTimeout(function() {
         try {
-          localStorage.setItem(SOUND_KEY, soundEnabled ? 'on' : 'off');
+          resultBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
         } catch (err) {}
-
-        updateSoundButton();
-        playCuteSound('tap');
-        showToast(soundEnabled ? 'เปิดเสียงแล้ว' : 'ปิดเสียงแล้ว');
-      });
+      }, 80);
     }
 
-    function updateSoundButton() {
-      if (!soundToggle) return;
-      soundToggle.textContent = soundEnabled ? 'เสียง: เปิด' : 'เสียง: ปิด';
+    function isEmail(value) {
+      return /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(String(value || '').trim());
     }
-
-    function playCuteSound(type) {
-      if (!soundEnabled) return;
-
-      try {
-        const AudioContext = window.AudioContext || window.webkitAudioContext;
-        if (!AudioContext) return;
-
-        const ctx = new AudioContext();
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-
-        osc.type = 'sine';
-        osc.frequency.value = type === 'success' ? 880 : 620;
-
-        gain.gain.setValueAtTime(0.0001, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.035, ctx.currentTime + 0.02);
-        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.13);
-
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-
-        osc.start();
-        osc.stop(ctx.currentTime + 0.14);
-      } catch (err) {}
-    }
-
-    function initPwaInstall() {
-      createDynamicManifest();
-
-      window.addEventListener('beforeinstallprompt', function(e) {
-        e.preventDefault();
-        deferredInstallPrompt = e;
-
-        if (installBtn) installBtn.style.display = 'inline-flex';
-      });
-
-      if (installBtn) {
-        installBtn.addEventListener('click', function() {
-          if (!deferredInstallPrompt) {
-            showToast('เปิดเมนู Share แล้วเลือก Add to Home Screen ได้เลย');
-            return;
-          }
-
-          deferredInstallPrompt.prompt();
-
-          deferredInstallPrompt.userChoice.finally(function() {
-            deferredInstallPrompt = null;
-            installBtn.style.display = 'none';
-          });
-        });
-      }
-
-      tryRegisterServiceWorker();
-    }
-
-    function createDynamicManifest() {
-      try {
-        const svgIcon =
-          '<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192">' +
-          '<rect width="192" height="192" rx="44" fill="#06C755"/>' +
-          '<circle cx="148" cy="42" r="15" fill="#FFE7A3"/>' +
-          '<text x="96" y="108" text-anchor="middle" font-size="42" font-family="Arial" font-weight="900" fill="white">LINE</text>' +
-          '<text x="96" y="139" text-anchor="middle" font-size="18" font-family="Arial" font-weight="900" fill="#DFFFEA">OTP</text>' +
-          '</svg>';
-
-        const manifest = {
-          name: SHOP_LINE_NAME || 'LINE OTP Verify',
-          short_name: 'LINE OTP',
-          start_url: window.location.href,
-          display: 'standalone',
-          background_color: '#02130A',
-          theme_color: '#06C755',
-          description: SHOP_SUBTITLE || 'ระบบรับรหัส OTP สำหรับลูกค้า',
-          icons: [
-            {
-              src: 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svgIcon))),
-              sizes: '192x192',
-              type: 'image/svg+xml'
-            }
-          ]
-        };
-
-        const blob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement('link');
-
-        link.rel = 'manifest';
-        link.href = url;
-
-        document.head.appendChild(link);
-      } catch (err) {}
-    }
-
-    function tryRegisterServiceWorker() {
-      try {
-        if (!('serviceWorker' in navigator)) return;
-        if (location.protocol !== 'https:' && location.hostname !== 'localhost') return;
-
-        const swCode = [
-          'self.addEventListener("install",function(e){self.skipWaiting();});',
-          'self.addEventListener("activate",function(e){e.waitUntil(self.clients.claim());});',
-          'self.addEventListener("fetch",function(e){return;});'
-        ].join('');
-
-        const blob = new Blob([swCode], { type: 'text/javascript' });
-        const swUrl = URL.createObjectURL(blob);
-
-        navigator.serviceWorker.register(swUrl).catch(function(){});
-      } catch (err) {}
-    }
-
-    function safeLocalGet(key) {
-      try {
-        return localStorage.getItem(key);
-      } catch (err) {
-        return '';
-      }
-    }
-
-    screenButtons.forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        selectedScreen = btn.getAttribute('data-screen') || '';
-
-        screenButtons.forEach(function(item) {
-          item.classList.remove('selected');
-        });
-
-        btn.classList.add('selected');
-
-        if (screenSelectedNote) {
-          screenSelectedNote.textContent = 'เลือกจอ ' + selectedScreen + ' เรียบร้อยแล้ว';
-          screenSelectedNote.classList.add('active');
-        }
-
-        updateSummary();
-        validateRealtime();
-        saveDraftSoon();
-      });
-    });
-
-    quickDeviceButtons.forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        const deviceName = btn.getAttribute('data-device') || '';
-
-        if (deviceName === 'Other') {
-          deviceInput.value = '';
-          deviceInput.focus();
-          setQuickDeviceSelected(deviceName);
-          showToast('กรุณาพิมพ์ชื่ออุปกรณ์');
-        } else {
-          deviceInput.value = deviceName;
-          setQuickDeviceSelected(deviceName);
-          showToast('เลือกอุปกรณ์แล้ว');
-        }
-
-        updateSummary();
-        validateRealtime();
-        saveDraftSoon();
-      });
-    });
-
-    quickNoteButtons.forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        const note = btn.getAttribute('data-note') || '';
-        addQuickNote(note);
-      });
-    });
-
-    [customerNameInput, emailInput, deviceInput, customerNoteInput, pinInput].forEach(function(input) {
-      if (!input) return;
-
-      input.addEventListener('input', function() {
-        if (input === deviceInput) clearQuickDeviceSelectedIfManualChange();
-        if (input === customerNoteInput) updateNoteCount();
-
-        updateSummary();
-        validateRealtime();
-        saveDraftSoon();
-      });
-
-      input.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' && input !== customerNoteInput) {
-          if (currentStep === 1) goNextFromStep1();
-          else if (currentStep === 2) goNextFromStep2();
-          else if (currentStep === 3) submitRequest();
-        }
-      });
-    });
   </script>
 </body>
 </html>
