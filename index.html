@@ -60,6 +60,7 @@
       padding: max(20px, env(safe-area-inset-top)) 14px max(24px, env(safe-area-inset-bottom));
       display: flex;
       justify-content: center;
+      align-items: center;
       overflow-x: hidden;
       overflow-y: visible;
       background:
@@ -124,8 +125,12 @@
     }
 
     @keyframes orbFloat {
-      0%, 100% { transform: translate3d(0,0,0) scale(1); }
-      50% { transform: translate3d(18px,-16px,0) scale(1.06); }
+      0%, 100% {
+        transform: translate3d(0,0,0) scale(1);
+      }
+      50% {
+        transform: translate3d(18px,-16px,0) scale(1.06);
+      }
     }
 
     .cute {
@@ -138,14 +143,45 @@
       line-height: 1.4;
     }
 
-    .cute.c1 { left: 8%; top: 16%; font-size: 16px; }
-    .cute.c2 { right: 9%; top: 30%; font-size: 18px; color: rgba(255,215,234,0.82); animation-delay: .9s; }
-    .cute.c3 { left: 12%; bottom: 18%; font-size: 14px; color: rgba(255,242,191,0.76); animation-delay: 1.6s; }
-    .cute.c4 { right: 16%; bottom: 12%; font-size: 13px; color: rgba(221,251,255,0.84); animation-delay: 2.4s; }
+    .cute.c1 {
+      left: 8%;
+      top: 16%;
+      font-size: 16px;
+    }
+
+    .cute.c2 {
+      right: 9%;
+      top: 30%;
+      font-size: 18px;
+      color: rgba(255,215,234,0.82);
+      animation-delay: .9s;
+    }
+
+    .cute.c3 {
+      left: 12%;
+      bottom: 18%;
+      font-size: 14px;
+      color: rgba(255,242,191,0.76);
+      animation-delay: 1.6s;
+    }
+
+    .cute.c4 {
+      right: 16%;
+      bottom: 12%;
+      font-size: 13px;
+      color: rgba(221,251,255,0.84);
+      animation-delay: 2.4s;
+    }
 
     @keyframes cuteFloat {
-      0%, 100% { transform: translateY(0) rotate(-5deg); opacity: .48; }
-      50% { transform: translateY(-12px) rotate(6deg); opacity: 1; }
+      0%, 100% {
+        transform: translateY(0) rotate(-5deg);
+        opacity: .48;
+      }
+      50% {
+        transform: translateY(-12px) rotate(6deg);
+        opacity: 1;
+      }
     }
 
     .wrap {
@@ -153,19 +189,23 @@
       z-index: 2;
       width: 100%;
       max-width: 1080px;
+      min-height: calc(100dvh - 48px);
       display: grid;
       grid-template-columns: minmax(0, 1fr) minmax(390px, 470px);
       gap: 22px;
       align-items: center;
+      justify-content: center;
     }
 
     .hero {
-      min-height: 680px;
+      min-height: auto;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: center;
+      align-items: center;
       gap: 22px;
       padding: 8px 0;
+      text-align: center;
     }
 
     .topbar,
@@ -176,7 +216,14 @@
     }
 
     .topbar {
-      justify-content: space-between;
+      width: 100%;
+      justify-content: center;
+      flex-wrap: wrap;
+      text-align: center;
+    }
+
+    .brand {
+      justify-content: center;
     }
 
     .logo {
@@ -219,8 +266,12 @@
     }
 
     @keyframes logoFloat {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-3px); }
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-3px);
+      }
     }
 
     .brand-title {
@@ -272,6 +323,9 @@
 
     .hero-main {
       max-width: 590px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
       overflow: visible;
     }
 
@@ -280,6 +334,8 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      margin-left: auto;
+      margin-right: auto;
       margin-bottom: 18px;
       padding: 9px 13px;
       border-radius: 999px;
@@ -311,6 +367,7 @@
       font-weight: 1000;
       overflow: visible;
       text-wrap: balance;
+      text-align: center;
     }
 
     .gradient-text {
@@ -325,18 +382,21 @@
     }
 
     .lead {
-      margin: 20px 0 0;
+      margin: 20px auto 0;
       max-width: 540px;
       color: var(--sub);
       font-size: 16px;
       line-height: 1.9;
       font-weight: 540;
+      text-align: center;
       overflow: visible;
     }
 
     .latest-card {
       display: none;
       max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
       padding: 14px;
       border-radius: 24px;
       background:
@@ -348,6 +408,7 @@
       line-height: 1.65;
       box-shadow: 0 16px 34px rgba(0,0,0,0.12);
       overflow-wrap: anywhere;
+      text-align: center;
     }
 
     .latest-card strong {
@@ -356,6 +417,9 @@
 
     .form-card {
       position: relative;
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
       border-radius: 34px;
       padding: 20px;
       overflow: visible;
@@ -382,7 +446,7 @@
     .form-head {
       display: flex;
       align-items: flex-start;
-      justify-content: space-between;
+      justify-content: center;
       gap: 12px;
       margin-bottom: 16px;
       padding: 15px;
@@ -393,6 +457,11 @@
         linear-gradient(135deg, rgba(221,251,255,0.08), rgba(255,215,234,0.08)),
         rgba(255,255,255,0.05);
       overflow: visible;
+      text-align: center;
+    }
+
+    .form-head > div:first-child {
+      width: 100%;
     }
 
     .form-head h2 {
@@ -515,8 +584,14 @@
     }
 
     @keyframes stepIn {
-      from { opacity: 0; transform: translateY(8px) scale(.99); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
+      from {
+        opacity: 0;
+        transform: translateY(8px) scale(.99);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
 
     .field {
@@ -535,6 +610,7 @@
       font-weight: 850;
       line-height: 1.5;
       overflow: visible;
+      text-align: left;
     }
 
     .label-main {
@@ -544,6 +620,7 @@
       min-width: 0;
       line-height: 1.45;
       overflow: visible;
+      text-align: left;
     }
 
     .label-dot {
@@ -633,6 +710,7 @@
       line-height: 1.65;
       font-weight: 520;
       overflow: visible;
+      text-align: left;
     }
 
     .quick-device-btn,
@@ -671,6 +749,7 @@
     .quick-device-wrap,
     .quick-note-wrap {
       margin-top: 10px;
+      text-align: left;
     }
 
     .quick-device-title,
@@ -680,6 +759,7 @@
       font-size: 12px;
       font-weight: 760;
       line-height: 1.5;
+      text-align: left;
     }
 
     .quick-device-grid,
@@ -688,6 +768,7 @@
       gap: 8px;
       flex-wrap: wrap;
       overflow: visible;
+      justify-content: flex-start;
     }
 
     .quick-device-btn.selected {
@@ -836,6 +917,7 @@
       border: 1px solid rgba(255,255,255,0.12);
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
       overflow: visible;
+      text-align: left;
     }
 
     .summary-title {
@@ -879,6 +961,7 @@
       display: flex;
       gap: 10px;
       overflow: visible;
+      justify-content: center;
     }
 
     .btn-primary,
@@ -953,8 +1036,14 @@
     }
 
     @keyframes resultIn {
-      from { opacity: 0; transform: translateY(10px) scale(.985); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
+      from {
+        opacity: 0;
+        transform: translateY(10px) scale(.985);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
 
     .result-icon {
@@ -1038,10 +1127,6 @@
       gap: 8px;
       line-height: 1.45;
       text-align: center;
-    }
-
-    .btn-reset,
-    .btn-retry {
       color: rgba(255,255,255,0.84);
       background:
         linear-gradient(135deg, rgba(221,251,255,0.055), rgba(255,215,234,0.055)),
@@ -1169,8 +1254,12 @@
     }
 
     @keyframes loaderPulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.08) rotate(3deg); }
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.08) rotate(3deg);
+      }
     }
 
     .loading-title {
@@ -1205,9 +1294,17 @@
     }
 
     @keyframes confettiUp {
-      0% { transform: translate3d(0,0,0) scale(.8) rotate(0deg); opacity: 0; }
-      12% { opacity: 1; }
-      100% { transform: translate3d(var(--x), -240px, 0) scale(1.25) rotate(180deg); opacity: 0; }
+      0% {
+        transform: translate3d(0,0,0) scale(.8) rotate(0deg);
+        opacity: 0;
+      }
+      12% {
+        opacity: 1;
+      }
+      100% {
+        transform: translate3d(var(--x), -240px, 0) scale(1.25) rotate(180deg);
+        opacity: 0;
+      }
     }
 
     @media (max-width: 920px) {
@@ -1216,6 +1313,7 @@
         display: flex;
         flex-direction: column;
         align-items: stretch;
+        justify-content: center;
         gap: 18px;
       }
 
@@ -1223,6 +1321,7 @@
         min-height: auto;
         gap: 18px;
         padding: 0;
+        text-align: center;
       }
 
       .hero-main {
@@ -1239,6 +1338,7 @@
         margin-left: auto;
         margin-right: auto;
         font-size: 14px;
+        text-align: center;
       }
 
       h1 {
@@ -1255,7 +1355,7 @@
       }
 
       .topbar {
-        align-items: flex-start;
+        align-items: center;
         gap: 10px;
       }
 
@@ -1264,10 +1364,26 @@
         min-width: 0;
       }
 
-      .brand-title { font-size: 14px; line-height: 1.45; }
-      .brand-sub { font-size: 11px; line-height: 1.55; }
-      .online { padding: 8px 10px; font-size: 11px; }
-      .logo { width: 46px; height: 46px; border-radius: 17px; }
+      .brand-title {
+        font-size: 14px;
+        line-height: 1.45;
+      }
+
+      .brand-sub {
+        font-size: 11px;
+        line-height: 1.55;
+      }
+
+      .online {
+        padding: 8px 10px;
+        font-size: 11px;
+      }
+
+      .logo {
+        width: 46px;
+        height: 46px;
+        border-radius: 17px;
+      }
 
       .form-card {
         padding: 16px;
@@ -1414,7 +1530,6 @@
           </div>
         </div>
 
-        <!-- STEP 1 -->
         <div class="step-panel active" data-step="1">
           <div class="field">
             <div class="label">
@@ -1440,7 +1555,6 @@
           </div>
         </div>
 
-        <!-- STEP 2 -->
         <div class="step-panel" data-step="2">
           <div class="field">
             <div class="label">
@@ -1489,7 +1603,6 @@
           </div>
         </div>
 
-        <!-- STEP 3 -->
         <div class="step-panel" data-step="3">
           <div class="field">
             <div class="label">
@@ -1549,7 +1662,6 @@
           </div>
         </div>
 
-        <!-- STEP 4 -->
         <div class="step-panel" data-step="4">
           <div class="status" id="status">
             <div class="result-box" id="successBox">
@@ -1746,7 +1858,7 @@
     function scrollFormIntoView() {
       setTimeout(function() {
         try {
-          app.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          app.scrollIntoView({ behavior: 'smooth', block: 'center' });
         } catch (err) {}
       }, 60);
     }
