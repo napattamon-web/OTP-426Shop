@@ -193,7 +193,7 @@
     .hero {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 14px;
       min-height: 610px;
       justify-content: center;
     }
@@ -264,14 +264,30 @@
       padding: 22px;
       border-radius: 36px;
       background:
-        radial-gradient(circle at 18% 0%, rgba(184,251,255,0.18), transparent 36%),
-        radial-gradient(circle at 100% 30%, rgba(255,214,244,0.17), transparent 38%),
-        rgba(255,255,255,0.048);
-      border: 1px solid rgba(184,251,255,0.17);
+        radial-gradient(circle at 18% 0%, rgba(184,251,255,0.22), transparent 36%),
+        radial-gradient(circle at 100% 30%, rgba(255,214,244,0.20), transparent 38%),
+        linear-gradient(135deg, rgba(255,255,255,0.092), rgba(255,255,255,0.034));
+      border: 1px solid rgba(184,251,255,0.20);
       box-shadow: 0 18px 60px rgba(0,0,0,0.20);
       backdrop-filter: blur(18px);
       position: relative;
       overflow: hidden;
+    }
+
+    .hero-main:before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(110deg, transparent 0 30%, rgba(255,255,255,0.10) 42%, transparent 56% 100%);
+      transform: translateX(-120%);
+      animation: heroShine 5.5s ease-in-out infinite;
+    }
+
+    @keyframes heroShine {
+      0%, 58% { transform: translateX(-120%); }
+      100% { transform: translateX(120%); }
     }
 
     .hero-main:after {
@@ -336,73 +352,144 @@
       font-weight: 540;
     }
 
-    .hero-mini {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
+    .hero-playground {
       max-width: 620px;
+      display: grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap: 10px;
     }
 
-    .hero-chip {
-      min-height: 96px;
-      padding: 13px;
+    .magic-card {
+      min-height: 146px;
+      padding: 16px;
+      border-radius: 30px;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 12% 6%, rgba(255,255,255,0.20), transparent 24%),
+        radial-gradient(circle at 100% 0%, rgba(255,214,244,0.18), transparent 38%),
+        rgba(255,255,255,0.060);
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 14px 44px rgba(0,0,0,0.16);
+    }
+
+    .magic-card:before {
+      content: "✦";
+      position: absolute;
+      right: 18px;
+      top: 14px;
+      color: rgba(255,255,255,0.70);
+      font-size: 20px;
+      animation: twinkle 2.6s ease-in-out infinite;
+    }
+
+    .magic-card strong {
+      display: block;
+      color: #FFFFFF;
+      font-size: 18px;
+      line-height: 1.45;
+      font-weight: 1000;
+      max-width: 230px;
+    }
+
+    .magic-card span {
+      display: block;
+      margin-top: 8px;
+      color: rgba(255,255,255,0.62);
+      font-size: 12px;
+      line-height: 1.6;
+      font-weight: 700;
+      max-width: 270px;
+    }
+
+    .magic-line {
+      position: absolute;
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      overflow: hidden;
+    }
+
+    .magic-line:before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      width: 52%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--cyan2), #FFFFFF, var(--pink));
+      animation: progressGlow 3s ease-in-out infinite;
+    }
+
+    @keyframes progressGlow {
+      0%, 100% { transform: translateX(0); width: 44%; }
+      50% { transform: translateX(72%); width: 30%; }
+    }
+
+    .mini-stack {
+      display: grid;
+      gap: 10px;
+    }
+
+    .mini-bubble {
+      min-height: 68px;
       border-radius: 24px;
+      padding: 12px 13px;
       background:
-        radial-gradient(circle at 30% 0%, rgba(184,251,255,0.13), transparent 42%),
-        rgba(255,255,255,0.056);
-      border: 1px solid rgba(255,255,255,0.10);
-      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+        linear-gradient(135deg, rgba(184,251,255,0.10), rgba(255,214,244,0.08)),
+        rgba(255,255,255,0.055);
+      border: 1px solid rgba(255,255,255,0.11);
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    .hero-chip:hover {
-      transform: translateY(-3px);
-      border-color: rgba(184,251,255,0.30);
-      background:
-        radial-gradient(circle at 30% 0%, rgba(255,214,244,0.16), transparent 42%),
-        rgba(255,255,255,0.07);
-    }
-
-    .hero-chip-icon {
-      width: 38px;
-      height: 38px;
+    .mini-bubble-icon {
+      width: 40px;
+      height: 40px;
       border-radius: 16px;
       display: grid;
       place-items: center;
-      margin-bottom: 9px;
-      color: #040714;
-      background: linear-gradient(135deg, var(--cyan2), #FFFFFF 50%, var(--pink));
+      color: var(--dark);
+      background: linear-gradient(135deg, var(--cyan2), #FFFFFF 52%, var(--pink));
       font-size: 17px;
       font-weight: 1000;
+      flex: 0 0 auto;
     }
 
-    .hero-chip strong {
+    .mini-bubble strong {
       display: block;
       color: #FFFFFF;
       font-size: 13px;
-      line-height: 1.42;
+      line-height: 1.35;
       font-weight: 1000;
     }
 
-    .hero-chip span {
+    .mini-bubble span {
       display: block;
-      margin-top: 4px;
-      color: rgba(255,255,255,0.58);
+      color: rgba(255,255,255,0.56);
       font-size: 11px;
       line-height: 1.45;
-      font-weight: 680;
+      font-weight: 700;
+      margin-top: 3px;
     }
 
     .latest-card {
       display: none;
       max-width: 620px;
-      padding: 12px 14px;
-      border-radius: 24px;
-      background: rgba(255,255,255,0.055);
+      padding: 13px 14px;
+      border-radius: 26px;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(184,251,255,0.12), transparent 34%),
+        rgba(255,255,255,0.055);
       border: 1px solid rgba(184,251,255,0.18);
       color: rgba(255,255,255,0.78);
       font-size: 12px;
       line-height: 1.55;
       overflow-wrap: anywhere;
+      margin-top: auto;
     }
 
     .latest-card strong {
@@ -641,6 +728,89 @@
 
     .validation-msg.bad {
       color: var(--danger);
+    }
+
+    .guide-panel {
+      margin: 14px 0 0;
+      padding: 12px;
+      border-radius: 26px;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(184,251,255,0.12), transparent 36%),
+        radial-gradient(circle at 100% 0%, rgba(255,214,244,0.12), transparent 38%),
+        rgba(255,255,255,0.052);
+      border: 1px solid rgba(255,255,255,0.10);
+    }
+
+    .guide-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 9px;
+      color: #FFFFFF;
+      font-size: 12px;
+      font-weight: 1000;
+    }
+
+    .guide-title span {
+      color: rgba(255,255,255,0.52);
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    .hero-mini {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .hero-chip {
+      min-height: 86px;
+      padding: 11px;
+      border-radius: 21px;
+      background:
+        radial-gradient(circle at 30% 0%, rgba(184,251,255,0.13), transparent 42%),
+        rgba(255,255,255,0.056);
+      border: 1px solid rgba(255,255,255,0.10);
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+
+    .hero-chip:hover {
+      transform: translateY(-3px);
+      border-color: rgba(184,251,255,0.30);
+      background:
+        radial-gradient(circle at 30% 0%, rgba(255,214,244,0.16), transparent 42%),
+        rgba(255,255,255,0.07);
+    }
+
+    .hero-chip-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 15px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 8px;
+      color: #040714;
+      background: linear-gradient(135deg, var(--cyan2), #FFFFFF 50%, var(--pink));
+      font-size: 15px;
+      font-weight: 1000;
+    }
+
+    .hero-chip strong {
+      display: block;
+      color: #FFFFFF;
+      font-size: 12px;
+      line-height: 1.42;
+      font-weight: 1000;
+    }
+
+    .hero-chip span {
+      display: block;
+      margin-top: 4px;
+      color: rgba(255,255,255,0.58);
+      font-size: 10px;
+      line-height: 1.45;
+      font-weight: 680;
     }
 
     .quick-device-grid {
@@ -1092,7 +1262,7 @@
 
       .hero {
         min-height: auto;
-        gap: 16px;
+        gap: 14px;
       }
 
       .hero-main {
@@ -1113,6 +1283,10 @@
 
       h1 {
         font-size: clamp(34px, 10vw, 58px);
+      }
+
+      .hero-playground {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -1177,6 +1351,32 @@
         margin-top: 8px;
         font-size: 12px;
         line-height: 1.55;
+      }
+
+      .magic-card {
+        min-height: 130px;
+        border-radius: 24px;
+        padding: 14px;
+      }
+
+      .magic-card strong {
+        font-size: 15px;
+      }
+
+      .magic-card span {
+        font-size: 11px;
+      }
+
+      .mini-bubble {
+        min-height: 62px;
+        border-radius: 20px;
+      }
+
+      .mini-bubble-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 14px;
+        font-size: 15px;
       }
 
       .hero-chip {
@@ -1336,27 +1536,33 @@
             <span class="gradient-text">ดิสนีย์</span>
           </h1>
           <p class="lead">
-            กรอกชื่อ LINE และอีเมล เลือกอุปกรณ์ เลือกจอ แล้วกดรับรหัส
+            กรอกข้อมูลให้ตรงรายการ แล้วรับรหัส OTP ได้ทันที
           </p>
         </div>
 
-        <div class="hero-mini">
-          <div class="hero-chip">
-            <div class="hero-chip-icon">1</div>
-            <strong>ชื่อ LINE</strong>
-            <span>ต้องตรงรายการ</span>
+        <div class="hero-playground">
+          <div class="magic-card">
+            <strong>พร้อมรับรหัสในไม่กี่ขั้นตอน</strong>
+            <span>กรอกชื่อ LINE อีเมล อุปกรณ์ และจอให้ตรงกับรายการเพื่อให้ตรวจสอบได้รวดเร็ว</span>
+            <div class="magic-line"></div>
           </div>
 
-          <div class="hero-chip">
-            <div class="hero-chip-icon">2</div>
-            <strong>อีเมล</strong>
-            <span>ใช้รับรหัส</span>
-          </div>
+          <div class="mini-stack">
+            <div class="mini-bubble">
+              <div class="mini-bubble-icon">✦</div>
+              <div>
+                <strong>ข้อมูลตรงรายการ</strong>
+                <span>ช่วยให้รับรหัสไวขึ้น</span>
+              </div>
+            </div>
 
-          <div class="hero-chip">
-            <div class="hero-chip-icon">3</div>
-            <strong>OTP</strong>
-            <span>คัดลอกได้เลย</span>
+            <div class="mini-bubble">
+              <div class="mini-bubble-icon">✓</div>
+              <div>
+                <strong>คัดลอก OTP ได้เลย</strong>
+                <span>หลังระบบพบรหัส</span>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -1399,6 +1605,33 @@
             </div>
             <input id="email" type="email" placeholder="customer@email.com" autocomplete="email" inputmode="email" maxlength="160">
             <div class="validation-msg" id="emailValidation">กรอกอีเมลก่อน</div>
+          </div>
+
+          <div class="guide-panel">
+            <div class="guide-title">
+              ขั้นตอนสั้น ๆ
+              <span>กรอกให้ตรงรายการ</span>
+            </div>
+
+            <div class="hero-mini">
+              <div class="hero-chip">
+                <div class="hero-chip-icon">1</div>
+                <strong>ชื่อ LINE</strong>
+                <span>ต้องตรงรายการ</span>
+              </div>
+
+              <div class="hero-chip">
+                <div class="hero-chip-icon">2</div>
+                <strong>อีเมล</strong>
+                <span>ใช้รับรหัส</span>
+              </div>
+
+              <div class="hero-chip">
+                <div class="hero-chip-icon">3</div>
+                <strong>OTP</strong>
+                <span>คัดลอกได้เลย</span>
+              </div>
+            </div>
           </div>
 
           <div class="main-actions">
