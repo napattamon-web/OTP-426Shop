@@ -5,27 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#040714">
   <meta name="description" content="ศูนย์รับรหัส OTP สำหรับลูกค้าของร้าน">
-  <title>Disney+ OTP Center</title>
+  <title>Disney+ OTP Storefront</title>
 
   <style>
     :root {
       --bg: #040714;
-      --bg2: #061029;
-      --card: rgba(255,255,255,0.105);
-      --card2: rgba(255,255,255,0.065);
+      --bg2: #071634;
+      --bg3: #0A1F4D;
+      --card: rgba(255,255,255,0.108);
+      --card2: rgba(255,255,255,0.066);
       --blue: #113CCF;
       --blue2: #0063E5;
+      --blue3: #102B92;
       --cyan: #02D6E8;
-      --cyan2: #79F3FF;
+      --cyan2: #8AF7FF;
+      --cyan3: #D8FDFF;
+      --lavender: #B8C7FF;
+      --pink: #FFD6F3;
+      --cream: #FFF8D7;
       --white: #F9FBFF;
       --text: #F9FBFF;
-      --sub: rgba(249,251,255,0.74);
-      --muted: rgba(249,251,255,0.52);
+      --sub: rgba(249,251,255,0.76);
+      --muted: rgba(249,251,255,0.54);
       --danger: #FFB4B4;
       --ok: #A4FFD4;
       --gold: #FFE08A;
       --dark: #040714;
-      --border: rgba(121,243,255,0.18);
+      --border: rgba(138,247,255,0.20);
       --shadow: 0 28px 88px rgba(0,0,0,0.48);
       --bottom-h: 82px;
     }
@@ -81,11 +87,12 @@
       align-items: center;
       overflow: hidden;
       background:
-        radial-gradient(circle at 50% -12%, rgba(0,99,229,0.54), transparent 35%),
+        radial-gradient(circle at 50% -12%, rgba(0,99,229,0.58), transparent 35%),
         radial-gradient(circle at 5% 14%, rgba(2,214,232,0.20), transparent 34%),
-        radial-gradient(circle at 96% 16%, rgba(17,60,207,0.34), transparent 36%),
-        radial-gradient(circle at 50% 100%, rgba(121,243,255,0.16), transparent 42%),
-        linear-gradient(180deg, #061B49 0%, #07142E 46%, #040714 100%);
+        radial-gradient(circle at 96% 16%, rgba(184,199,255,0.28), transparent 36%),
+        radial-gradient(circle at 18% 88%, rgba(255,214,243,0.12), transparent 34%),
+        radial-gradient(circle at 50% 100%, rgba(138,247,255,0.17), transparent 42%),
+        linear-gradient(180deg, #071D52 0%, #07142E 46%, #040714 100%);
     }
 
     .page:before {
@@ -93,13 +100,65 @@
       position: absolute;
       inset: 0;
       pointer-events: none;
-      opacity: .42;
+      opacity: .46;
       background-image:
-        radial-gradient(circle, rgba(255,255,255,0.20) 0 1px, transparent 1.6px),
-        linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px);
-      background-size: 64px 64px, 44px 44px, 44px 44px;
-      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.72), transparent 78%);
+        radial-gradient(circle, rgba(255,255,255,0.32) 0 1px, transparent 1.7px),
+        radial-gradient(circle, rgba(138,247,255,0.24) 0 1.2px, transparent 1.9px),
+        linear-gradient(rgba(255,255,255,0.020) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.020) 1px, transparent 1px);
+      background-size: 68px 68px, 118px 118px, 44px 44px, 44px 44px;
+      background-position: 0 0, 28px 20px, 0 0, 0 0;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.82), transparent 80%);
+    }
+
+    .page:after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: .36;
+      background:
+        linear-gradient(120deg, transparent 0 22%, rgba(138,247,255,0.10) 22.4%, transparent 24%),
+        linear-gradient(300deg, transparent 0 62%, rgba(0,99,229,0.16) 62.4%, transparent 64%);
+    }
+
+    .magic-arc {
+      position: absolute;
+      width: 680px;
+      height: 240px;
+      left: 50%;
+      top: 7%;
+      transform: translateX(-50%) rotate(-6deg);
+      border-top: 2px solid rgba(216,253,255,0.28);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 1;
+      filter: drop-shadow(0 0 12px rgba(138,247,255,0.22));
+    }
+
+    .magic-arc:before,
+    .magic-arc:after {
+      content: "✦";
+      position: absolute;
+      top: -15px;
+      color: rgba(255,255,255,0.88);
+      text-shadow: 0 0 18px rgba(138,247,255,0.70);
+      font-size: 18px;
+      animation: starTwinkle 2.8s ease-in-out infinite;
+    }
+
+    .magic-arc:before {
+      left: 12%;
+    }
+
+    .magic-arc:after {
+      right: 15%;
+      animation-delay: .9s;
+    }
+
+    @keyframes starTwinkle {
+      0%, 100% { opacity: .55; transform: scale(.88) rotate(0deg); }
+      50% { opacity: 1; transform: scale(1.18) rotate(10deg); }
     }
 
     .orb {
@@ -133,8 +192,17 @@
       height: 360px;
       left: 46%;
       bottom: -230px;
-      background: rgba(17,60,207,0.32);
+      background: rgba(184,199,255,0.25);
       animation-delay: 2.4s;
+    }
+
+    .orb.four {
+      width: 220px;
+      height: 220px;
+      right: 18%;
+      bottom: 18%;
+      background: rgba(255,214,243,0.13);
+      animation-delay: 3.2s;
     }
 
     @keyframes orbFloat {
@@ -146,9 +214,9 @@
       position: relative;
       z-index: 2;
       width: 100%;
-      max-width: 1060px;
+      max-width: 1080px;
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(360px, 480px);
+      grid-template-columns: minmax(0, 1fr) minmax(360px, 486px);
       gap: 22px;
       align-items: center;
     }
@@ -157,8 +225,13 @@
       display: flex;
       flex-direction: column;
       gap: 22px;
-      min-height: 660px;
+      min-height: 680px;
       justify-content: space-between;
+    }
+
+    .storefront-panel {
+      display: grid;
+      gap: 18px;
     }
 
     .brand {
@@ -168,15 +241,15 @@
     }
 
     .logo {
-      width: 56px;
-      height: 56px;
-      border-radius: 21px;
+      width: 58px;
+      height: 58px;
+      border-radius: 22px;
       display: grid;
       place-items: center;
       background:
-        radial-gradient(circle at 30% 18%, rgba(255,255,255,0.45), transparent 28%),
+        radial-gradient(circle at 30% 18%, rgba(255,255,255,0.55), transparent 28%),
         linear-gradient(135deg, var(--cyan), #FFFFFF 46%, var(--blue2));
-      box-shadow: 0 18px 42px rgba(2,214,232,0.22), inset 0 1px 0 rgba(255,255,255,0.55);
+      box-shadow: 0 18px 42px rgba(2,214,232,0.24), inset 0 1px 0 rgba(255,255,255,0.62);
       flex: 0 0 auto;
     }
 
@@ -189,7 +262,7 @@
     }
 
     .brand-title {
-      font-size: 17px;
+      font-size: 18px;
       font-weight: 1000;
       color: #FFFFFF;
       line-height: 1.35;
@@ -204,7 +277,17 @@
     }
 
     .hero-main {
-      max-width: 600px;
+      max-width: 620px;
+      padding: 22px;
+      border-radius: 36px;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(138,247,255,0.18), transparent 34%),
+        radial-gradient(circle at 100% 30%, rgba(0,99,229,0.22), transparent 38%),
+        radial-gradient(circle at 12% 96%, rgba(255,214,243,0.09), transparent 30%),
+        rgba(255,255,255,0.048);
+      border: 1px solid rgba(138,247,255,0.16);
+      box-shadow: 0 18px 60px rgba(0,0,0,0.20);
+      backdrop-filter: blur(18px);
     }
 
     .badge {
@@ -216,14 +299,14 @@
       padding: 9px 13px;
       border-radius: 999px;
       color: var(--cyan2);
-      background: rgba(121,243,255,0.08);
+      background: rgba(138,247,255,0.08);
       border: 1px solid var(--border);
       font-size: 12px;
       font-weight: 900;
     }
 
     .badge:before {
-      content: "OTP";
+      content: "D+";
       color: #FFFFFF;
       font-weight: 1000;
     }
@@ -231,7 +314,7 @@
     h1 {
       margin: 0;
       color: #FFFFFF;
-      font-size: clamp(38px, 6.4vw, 70px);
+      font-size: clamp(38px, 6.2vw, 68px);
       line-height: 1.12;
       letter-spacing: -2px;
       font-weight: 1000;
@@ -239,28 +322,108 @@
 
     .gradient-text {
       display: block;
-      background: linear-gradient(135deg, #FFFFFF 8%, var(--cyan2) 48%, #7DA7FF 82%);
+      background: linear-gradient(135deg, #FFFFFF 8%, var(--cyan2) 42%, var(--lavender) 70%, var(--cream) 92%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
     }
 
     .lead {
-      margin: 20px 0 0;
-      max-width: 550px;
+      margin: 18px 0 0;
+      max-width: 560px;
       color: var(--sub);
       font-size: 16px;
-      line-height: 1.9;
+      line-height: 1.85;
       font-weight: 540;
+    }
+
+    .store-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .store-action-primary,
+    .store-action-secondary {
+      min-height: 48px;
+      border-radius: 999px;
+      padding: 11px 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 950;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .store-action-primary {
+      color: #040714;
+      background: linear-gradient(135deg, var(--cyan2), #FFFFFF 48%, #B8C7FF 76%, #8DAEFF);
+      box-shadow: 0 14px 34px rgba(2,214,232,0.18);
+    }
+
+    .store-action-secondary {
+      color: rgba(255,255,255,0.84);
+      background: rgba(255,255,255,0.07);
+    }
+
+    .store-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .store-card {
+      min-height: 132px;
+      padding: 14px;
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 30% 0%, rgba(138,247,255,0.14), transparent 40%),
+        radial-gradient(circle at 100% 100%, rgba(255,214,243,0.08), transparent 42%),
+        rgba(255,255,255,0.056);
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: 0 12px 34px rgba(0,0,0,0.14);
+    }
+
+    .store-card-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 10px;
+      color: #040714;
+      background: linear-gradient(135deg, var(--cyan2), #FFFFFF 52%, #B8C7FF);
+      font-size: 18px;
+      font-weight: 1000;
+    }
+
+    .store-card strong {
+      display: block;
+      color: #FFFFFF;
+      font-size: 13px;
+      line-height: 1.42;
+      font-weight: 1000;
+    }
+
+    .store-card span {
+      display: block;
+      margin-top: 5px;
+      color: rgba(255,255,255,0.62);
+      font-size: 11px;
+      line-height: 1.55;
+      font-weight: 680;
     }
 
     .latest-card {
       display: none;
-      max-width: 560px;
+      max-width: 620px;
       padding: 14px;
-      border-radius: 24px;
+      border-radius: 26px;
       background: rgba(255,255,255,0.055);
-      border: 1px solid rgba(121,243,255,0.18);
+      border: 1px solid rgba(138,247,255,0.18);
       color: rgba(255,255,255,0.82);
       font-size: 13px;
       line-height: 1.65;
@@ -279,7 +442,7 @@
 
     .latest-mini-item {
       padding: 8px 10px;
-      border-radius: 15px;
+      border-radius: 16px;
       background: rgba(255,255,255,0.045);
       border: 1px solid rgba(255,255,255,0.08);
       color: rgba(255,255,255,0.72);
@@ -290,17 +453,28 @@
 
     .app-card {
       position: relative;
-      border-radius: 34px;
+      border-radius: 36px;
       padding: 20px;
       border: 1px solid var(--border);
       background:
-        radial-gradient(circle at 18% 0%, rgba(121,243,255,0.14), transparent 30%),
+        radial-gradient(circle at 18% 0%, rgba(138,247,255,0.16), transparent 30%),
         radial-gradient(circle at 100% 20%, rgba(0,99,229,0.22), transparent 34%),
+        radial-gradient(circle at 4% 88%, rgba(255,214,243,0.08), transparent 28%),
         linear-gradient(180deg, rgba(255,255,255,0.14), rgba(255,255,255,0.06)),
         rgba(4,7,20,0.86);
       box-shadow: var(--shadow);
       backdrop-filter: blur(24px);
       overflow: hidden;
+    }
+
+    .app-card:before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--blue2), var(--cyan), #FFFFFF, var(--lavender), var(--blue2));
+      opacity: .82;
+      pointer-events: none;
     }
 
     .app-top {
@@ -310,9 +484,11 @@
       gap: 12px;
       margin-bottom: 14px;
       padding: 15px;
-      border-radius: 24px;
-      border: 1px solid rgba(121,243,255,0.16);
-      background: rgba(255,255,255,0.05);
+      border-radius: 26px;
+      border: 1px solid rgba(138,247,255,0.16);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(138,247,255,0.10), transparent 34%),
+        rgba(255,255,255,0.052);
     }
 
     .app-top h2 {
@@ -335,7 +511,7 @@
       padding: 8px 10px;
       border-radius: 999px;
       color: var(--dark);
-      background: linear-gradient(135deg, var(--cyan2), #FFFFFF 52%, #8DAEFF);
+      background: linear-gradient(135deg, var(--cyan2), #FFFFFF 52%, #B8C7FF);
       font-size: 11px;
       font-weight: 950;
       white-space: nowrap;
@@ -350,7 +526,7 @@
 
     .mini-tab {
       min-height: 48px;
-      border-radius: 18px;
+      border-radius: 20px;
       color: rgba(255,255,255,0.70);
       background: rgba(255,255,255,0.055);
       border: 1px solid rgba(255,255,255,0.10);
@@ -364,8 +540,8 @@
 
     .mini-tab.active {
       color: #040714;
-      background: linear-gradient(135deg, var(--cyan2), #FFFFFF 52%, #8DAEFF);
-      border-color: rgba(121,243,255,0.42);
+      background: linear-gradient(135deg, var(--cyan2), #FFFFFF 52%, #B8C7FF);
+      border-color: rgba(138,247,255,0.42);
     }
 
     .view {
@@ -391,8 +567,10 @@
 
     .quick-stat {
       padding: 11px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.055);
+      border-radius: 20px;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(138,247,255,0.08), transparent 42%),
+        rgba(255,255,255,0.055);
       border: 1px solid rgba(255,255,255,0.10);
       text-align: center;
     }
@@ -454,8 +632,8 @@
 
     .required {
       color: var(--cyan2);
-      background: rgba(121,243,255,0.075);
-      border: 1px solid rgba(121,243,255,0.20);
+      background: rgba(138,247,255,0.075);
+      border: 1px solid rgba(138,247,255,0.20);
     }
 
     .optional {
@@ -469,7 +647,7 @@
       width: 100%;
       border: 1px solid rgba(255,255,255,0.15);
       outline: none;
-      border-radius: 19px;
+      border-radius: 21px;
       background: rgba(255,255,255,0.09);
       color: #FFFFFF;
       font-size: 16px;
@@ -498,8 +676,8 @@
 
     input:focus,
     textarea:focus {
-      border-color: rgba(121,243,255,0.58);
-      box-shadow: 0 0 0 4px rgba(121,243,255,0.10);
+      border-color: rgba(138,247,255,0.58);
+      box-shadow: 0 0 0 4px rgba(138,247,255,0.10);
       transform: translateY(-1px);
     }
 
@@ -546,7 +724,7 @@
 
     .quick-device-btn {
       min-height: 38px;
-      border-radius: 15px;
+      border-radius: 16px;
       color: rgba(255,255,255,0.88);
       background: rgba(255,255,255,0.065);
       border: 1px solid rgba(255,255,255,0.12);
@@ -562,7 +740,7 @@
 
     .quick-device-btn.selected {
       color: var(--dark);
-      background: linear-gradient(135deg, var(--cyan2), #FFFFFF 52%, #8DAEFF);
+      background: linear-gradient(135deg, var(--cyan2), #FFFFFF 52%, #B8C7FF);
     }
 
     .screen-grid {
@@ -574,7 +752,7 @@
     .screen-btn {
       position: relative;
       min-height: 60px;
-      border-radius: 19px;
+      border-radius: 21px;
       color: rgba(255,255,255,0.90);
       background: rgba(255,255,255,0.07);
       border: 1px solid rgba(255,255,255,0.13);
@@ -599,8 +777,8 @@
 
     .screen-btn.selected {
       color: var(--dark);
-      border-color: rgba(121,243,255,0.70);
-      background: linear-gradient(135deg, var(--cyan2), #FFFFFF 52%, #8DAEFF);
+      border-color: rgba(138,247,255,0.70);
+      background: linear-gradient(135deg, var(--cyan2), #FFFFFF 52%, #B8C7FF);
       transform: translateY(-3px);
     }
 
@@ -618,9 +796,11 @@
 
     .summary-box {
       margin: 14px 0 0;
-      border-radius: 24px;
+      border-radius: 26px;
       padding: 14px;
-      background: rgba(255,255,255,0.052);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(138,247,255,0.08), transparent 38%),
+        rgba(255,255,255,0.052);
       border: 1px solid rgba(255,255,255,0.12);
     }
 
@@ -668,7 +848,7 @@
     .btn-copy {
       position: relative;
       min-height: 56px;
-      border-radius: 21px;
+      border-radius: 23px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -683,10 +863,10 @@
     .btn-primary {
       color: #FFFFFF;
       background:
-        radial-gradient(circle at 15% 0%, rgba(255,255,255,0.26), transparent 30%),
-        linear-gradient(135deg, rgba(0,99,229,0.95), rgba(17,60,207,0.92), rgba(2,214,232,0.50));
-      border: 1px solid rgba(121,243,255,0.32);
-      box-shadow: 0 16px 34px rgba(0,99,229,0.24);
+        radial-gradient(circle at 15% 0%, rgba(255,255,255,0.30), transparent 30%),
+        linear-gradient(135deg, rgba(0,99,229,0.95), rgba(17,60,207,0.92), rgba(2,214,232,0.52));
+      border: 1px solid rgba(138,247,255,0.34);
+      box-shadow: 0 16px 34px rgba(0,99,229,0.25);
     }
 
     .btn-secondary,
@@ -708,12 +888,12 @@
 
     .result-box {
       margin-top: 14px;
-      border-radius: 28px;
+      border-radius: 30px;
       padding: 18px;
       background:
         linear-gradient(135deg, rgba(0,99,229,0.18), rgba(2,214,232,0.10)),
         rgba(255,255,255,0.06);
-      border: 1px solid rgba(121,243,255,0.18);
+      border: 1px solid rgba(138,247,255,0.18);
       text-align: center;
       animation: resultIn .28s ease both;
     }
@@ -727,11 +907,11 @@
       width: 62px;
       height: 62px;
       margin: 0 auto 12px;
-      border-radius: 22px;
+      border-radius: 24px;
       display: grid;
       place-items: center;
       color: #040714;
-      background: linear-gradient(135deg, var(--cyan2), #FFFFFF 52%, #8DAEFF);
+      background: linear-gradient(135deg, var(--cyan2), #FFFFFF 52%, #B8C7FF);
       font-size: 28px;
       font-weight: 1000;
     }
@@ -760,7 +940,7 @@
       border-radius: 999px;
       color: rgba(255,255,255,0.88);
       background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(121,243,255,0.15);
+      border: 1px solid rgba(138,247,255,0.15);
       font-size: 12px;
       font-weight: 850;
       overflow-wrap: anywhere;
@@ -770,10 +950,10 @@
       margin: 13px auto 0;
       max-width: 380px;
       padding: 12px 14px;
-      border-radius: 22px;
+      border-radius: 24px;
       color: rgba(217,250,255,0.96);
       background: rgba(2,214,232,0.10);
-      border: 1px solid rgba(121,243,255,0.24);
+      border: 1px solid rgba(138,247,255,0.24);
       font-size: 13px;
       line-height: 1.65;
       font-weight: 850;
@@ -785,9 +965,9 @@
       margin: 13px auto 0;
       max-width: 360px;
       padding: 14px;
-      border-radius: 24px;
+      border-radius: 26px;
       background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(121,243,255,0.26);
+      border: 1px solid rgba(138,247,255,0.26);
     }
 
     .otp-label {
@@ -831,8 +1011,10 @@
 
     .empty-result {
       padding: 26px 14px;
-      border-radius: 26px;
-      background: rgba(255,255,255,0.052);
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(138,247,255,0.08), transparent 42%),
+        rgba(255,255,255,0.052);
       border: 1px solid rgba(255,255,255,0.10);
       text-align: center;
       color: rgba(255,255,255,0.70);
@@ -854,9 +1036,9 @@
       width: 100%;
       margin: 0;
       padding: 16px;
-      border-radius: 28px;
+      border-radius: 30px;
       background:
-        linear-gradient(135deg, rgba(121,243,255,0.12), rgba(0,99,229,0.12)),
+        linear-gradient(135deg, rgba(138,247,255,0.12), rgba(0,99,229,0.12)),
         rgba(255,255,255,0.06);
       border: 1px solid rgba(255,255,255,0.13);
       box-shadow: 0 14px 30px rgba(0,0,0,0.12);
@@ -878,7 +1060,7 @@
 
     .usage-item {
       padding: 12px;
-      border-radius: 20px;
+      border-radius: 22px;
       color: rgba(255,255,255,0.76);
       background: rgba(255,255,255,0.055);
       border: 1px solid rgba(255,255,255,0.10);
@@ -907,9 +1089,9 @@
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 7px;
-      border-radius: 26px;
+      border-radius: 28px;
       background: rgba(4,7,20,0.82);
-      border: 1px solid rgba(121,243,255,0.18);
+      border: 1px solid rgba(138,247,255,0.18);
       box-shadow: 0 18px 54px rgba(0,0,0,0.34);
       backdrop-filter: blur(22px);
     }
@@ -917,7 +1099,7 @@
     .nav-btn {
       border: 0;
       min-height: 50px;
-      border-radius: 20px;
+      border-radius: 22px;
       color: rgba(255,255,255,0.62);
       background: transparent;
       display: grid;
@@ -935,7 +1117,7 @@
 
     .nav-btn.active {
       color: #040714;
-      background: linear-gradient(135deg, var(--cyan2), #FFFFFF 52%, #8DAEFF);
+      background: linear-gradient(135deg, var(--cyan2), #FFFFFF 52%, #B8C7FF);
     }
 
     .toast {
@@ -980,10 +1162,10 @@
 
     .loading-card {
       width: min(360px, 100%);
-      border-radius: 30px;
+      border-radius: 32px;
       padding: 22px;
       text-align: center;
-      border: 1px solid rgba(121,243,255,0.22);
+      border: 1px solid rgba(138,247,255,0.22);
       background: rgba(4,7,20,0.90);
       box-shadow: 0 30px 90px rgba(0,0,0,0.40);
     }
@@ -992,11 +1174,11 @@
       width: 54px;
       height: 54px;
       margin: 0 auto 14px;
-      border-radius: 20px;
+      border-radius: 22px;
       display: grid;
       place-items: center;
       color: var(--dark);
-      background: linear-gradient(135deg, var(--cyan2), #FFFFFF 52%, #8DAEFF);
+      background: linear-gradient(135deg, var(--cyan2), #FFFFFF 52%, #B8C7FF);
       font-size: 22px;
       font-weight: 1000;
       animation: loaderPulse 1.3s ease-in-out infinite;
@@ -1047,7 +1229,7 @@
       }
 
       .wrap {
-        max-width: 560px;
+        max-width: 580px;
         display: flex;
         flex-direction: column;
         align-items: stretch;
@@ -1075,12 +1257,31 @@
         font-size: 14px;
       }
 
+      .store-actions {
+        justify-content: center;
+      }
+
       h1 {
         font-size: clamp(34px, 10vw, 58px);
       }
 
       .usage-list {
         grid-template-columns: 1fr;
+      }
+
+      .magic-arc {
+        top: 2%;
+        width: 560px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .store-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .store-card {
+        min-height: auto;
       }
     }
 
@@ -1094,8 +1295,19 @@
         padding: 10px 12px calc(var(--bottom-h) + 10px + env(safe-area-inset-bottom));
       }
 
+      .magic-arc {
+        width: 360px;
+        height: 150px;
+        top: 4%;
+      }
+
       .wrap {
         gap: 10px;
+      }
+
+      .hero-main {
+        padding: 14px;
+        border-radius: 26px;
       }
 
       .brand-title {
@@ -1109,7 +1321,7 @@
       .logo {
         width: 46px;
         height: 46px;
-        border-radius: 17px;
+        border-radius: 18px;
       }
 
       .logo:before {
@@ -1132,14 +1344,37 @@
         line-height: 1.55;
       }
 
+      .store-actions {
+        margin-top: 12px;
+      }
+
+      .store-action-primary,
+      .store-action-secondary {
+        min-height: 42px;
+        width: 100%;
+        font-size: 12px;
+      }
+
+      .store-card {
+        padding: 12px;
+        border-radius: 22px;
+      }
+
+      .store-card-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 15px;
+        font-size: 16px;
+      }
+
       .app-card {
         padding: 12px;
-        border-radius: 24px;
+        border-radius: 26px;
       }
 
       .app-top {
         padding: 11px;
-        border-radius: 20px;
+        border-radius: 22px;
       }
 
       .app-top h2 {
@@ -1161,7 +1396,7 @@
 
       .mini-tab {
         min-height: 42px;
-        border-radius: 15px;
+        border-radius: 16px;
         font-size: 11px;
       }
 
@@ -1171,7 +1406,7 @@
 
       .quick-stat {
         padding: 9px 6px;
-        border-radius: 16px;
+        border-radius: 17px;
       }
 
       .quick-stat strong {
@@ -1199,14 +1434,14 @@
       input {
         min-height: 49px;
         font-size: 15px;
-        border-radius: 16px;
+        border-radius: 17px;
         padding: 10px 12px;
       }
 
       textarea {
         min-height: 92px;
         font-size: 14px;
-        border-radius: 16px;
+        border-radius: 17px;
         padding: 10px 12px;
       }
 
@@ -1214,7 +1449,7 @@
         min-height: 34px;
         padding: 7px 10px;
         font-size: 11px;
-        border-radius: 13px;
+        border-radius: 14px;
       }
 
       .screen-grid {
@@ -1223,7 +1458,7 @@
 
       .screen-btn {
         min-height: 50px;
-        border-radius: 15px;
+        border-radius: 16px;
       }
 
       .screen-btn strong {
@@ -1238,13 +1473,13 @@
       .btn-primary,
       .btn-secondary {
         min-height: 50px;
-        border-radius: 18px;
+        border-radius: 19px;
         font-size: 14px;
       }
 
       .summary-box {
         padding: 11px;
-        border-radius: 20px;
+        border-radius: 22px;
       }
 
       .summary-row {
@@ -1268,7 +1503,7 @@
 
       .usage-bottom {
         padding: 12px;
-        border-radius: 22px;
+        border-radius: 24px;
       }
 
       .usage-title {
@@ -1277,7 +1512,7 @@
 
       .usage-item {
         padding: 10px;
-        border-radius: 17px;
+        border-radius: 18px;
         font-size: 11px;
         line-height: 1.55;
       }
@@ -1286,12 +1521,12 @@
         bottom: calc(8px + env(safe-area-inset-bottom));
         width: calc(100vw - 18px);
         min-height: 62px;
-        border-radius: 24px;
+        border-radius: 25px;
       }
 
       .nav-btn {
         min-height: 46px;
-        border-radius: 18px;
+        border-radius: 19px;
         font-size: 10px;
       }
     }
@@ -1310,29 +1545,58 @@
 
 <body>
   <main class="page">
+    <div class="magic-arc" aria-hidden="true"></div>
     <div class="orb one"></div>
     <div class="orb two"></div>
     <div class="orb three"></div>
+    <div class="orb four"></div>
 
     <section class="wrap">
       <div class="hero">
-        <div class="brand">
-          <div class="logo" aria-hidden="true"></div>
-          <div>
-            <div class="brand-title" id="brandTitle">Disney+ OTP Center</div>
-            <div class="brand-sub" id="brandSub">ระบบรับรหัสยืนยันสำหรับลูกค้า</div>
+        <div class="storefront-panel">
+          <div class="brand">
+            <div class="logo" aria-hidden="true"></div>
+            <div>
+              <div class="brand-title" id="brandTitle">Disney+ OTP Storefront</div>
+              <div class="brand-sub" id="brandSub">ศูนย์รับรหัสยืนยันสำหรับลูกค้า</div>
+            </div>
           </div>
-        </div>
 
-        <div class="hero-main">
-          <div class="badge">ศูนย์รับรหัสยืนยัน</div>
-          <h1>
-            รับรหัส OTP
-            <span class="gradient-text">สำหรับยืนยันรายการ</span>
-          </h1>
-          <p class="lead">
-            กรอกข้อมูลลูกค้า เลือกอุปกรณ์และหมายเลขจอ จากนั้นตรวจสอบรหัส OTP ล่าสุดได้ทันที
-          </p>
+          <div class="hero-main">
+            <div class="badge">หน้าร้านรับรหัส OTP</div>
+            <h1>
+              รับรหัส OTP
+              <span class="gradient-text">ง่าย เร็ว ใช้งานสะดวก</span>
+            </h1>
+            <p class="lead">
+              หน้าร้านสำหรับลูกค้าที่ต้องการรับรหัสยืนยัน กรอกอีเมล เลือกอุปกรณ์และหมายเลขจอ แล้วตรวจสอบรหัสล่าสุดได้ทันที
+            </p>
+
+            <div class="store-actions">
+              <button class="store-action-primary" type="button" onclick="goView('info')">เริ่มรับรหัส OTP</button>
+              <button class="store-action-secondary" type="button" onclick="goView('result')">ดูผลการตรวจสอบ</button>
+            </div>
+          </div>
+
+          <div class="store-grid">
+            <div class="store-card">
+              <div class="store-card-icon">✦</div>
+              <strong>กรอกข้อมูล</strong>
+              <span>ใช้อีเมลที่รับรหัสและข้อมูลรายการของลูกค้า</span>
+            </div>
+
+            <div class="store-card">
+              <div class="store-card-icon">◎</div>
+              <strong>เลือกอุปกรณ์</strong>
+              <span>ระบุอุปกรณ์และหมายเลขจอให้ตรงกับรายการ</span>
+            </div>
+
+            <div class="store-card">
+              <div class="store-card-icon">✓</div>
+              <strong>รับ OTP</strong>
+              <span>เมื่อพบรหัส ระบบจะแสดงพร้อมปุ่มคัดลอกทันที</span>
+            </div>
+          </div>
         </div>
 
         <div class="latest-card" id="latestCard">
@@ -1554,12 +1818,12 @@
 
   <script>
     const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwe24EQaOFwra5jexOMg7VY5yskHBlbnqEW2E2VP35IMVfJERqY3tge-YHJt-iKvpF8kA/exec';
-    const SHOP_LINE_NAME = 'Disney+ OTP Center';
-    const SHOP_SUBTITLE = 'ระบบรับรหัสยืนยันสำหรับลูกค้า';
+    const SHOP_LINE_NAME = 'Disney+ OTP Storefront';
+    const SHOP_SUBTITLE = 'ศูนย์รับรหัสยืนยันสำหรับลูกค้า';
     const REQUEST_TIMEOUT_MS = 18000;
-    const DRAFT_KEY = 'disneyOtpCenterDraftV2';
-    const HISTORY_KEY = 'disneyOtpCenterLatestV2';
-    const HISTORY_LIST_KEY = 'disneyOtpCenterListV2';
+    const DRAFT_KEY = 'disneyOtpStorefrontDraftV4';
+    const HISTORY_KEY = 'disneyOtpStorefrontLatestV4';
+    const HISTORY_LIST_KEY = 'disneyOtpStorefrontListV4';
 
     let selectedScreen = '';
     let selectedDeviceQuick = '';
@@ -1639,8 +1903,8 @@
     const latestMiniList = document.getElementById('latestMiniList');
     const autosaveText = document.getElementById('autosaveText');
 
-    brandTitle.textContent = SHOP_LINE_NAME || 'Disney+ OTP Center';
-    brandSub.textContent = SHOP_SUBTITLE || 'ระบบรับรหัสยืนยันสำหรับลูกค้า';
+    brandTitle.textContent = SHOP_LINE_NAME || 'Disney+ OTP Storefront';
+    brandSub.textContent = SHOP_SUBTITLE || 'ศูนย์รับรหัสยืนยันสำหรับลูกค้า';
 
     restoreDraft();
     loadLatestHistory();
@@ -2301,7 +2565,7 @@
       confettiLayer.innerHTML = '';
 
       const pieces = ['✓', 'OTP', '★', '•', '✦'];
-      const count = 26;
+      const count = 28;
 
       for (let i = 0; i < count; i++) {
         const el = document.createElement('div');
@@ -2309,7 +2573,7 @@
         el.className = 'confetti-piece';
         el.textContent = pieces[Math.floor(Math.random() * pieces.length)];
         el.style.left = (18 + Math.random() * 64) + '%';
-        el.style.color = ['#79F3FF', '#02D6E8', '#FFFFFF', '#8DAEFF'][Math.floor(Math.random() * 4)];
+        el.style.color = ['#8AF7FF', '#02D6E8', '#FFFFFF', '#B8C7FF', '#FFF8D7'][Math.floor(Math.random() * 5)];
         el.style.setProperty('--x', ((Math.random() * 220) - 110) + 'px');
         el.style.animationDelay = (Math.random() * .18) + 's';
 
