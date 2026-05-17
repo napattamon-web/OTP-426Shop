@@ -26,9 +26,52 @@
       --muted: rgba(249,251,255,0.50);
       --ok: #A9FFD8;
       --danger: #FFB4C2;
+      --warn: #FFE6A6;
       --dark: #040714;
       --border: rgba(184,251,255,0.22);
       --shadow: 0 28px 88px rgba(0,0,0,0.48);
+      --page-bg-1: #0A1D51;
+      --page-bg-2: #071634;
+      --page-bg-3: #040714;
+      --theme-accent: #49E8FF;
+      --theme-accent2: #FFD6F4;
+      --theme-soft: rgba(184,251,255,0.12);
+    }
+
+    body.theme-day {
+      --bg: #F7FBFF;
+      --bg2: #DFF4FF;
+      --card: rgba(255,255,255,0.82);
+      --text: #071634;
+      --sub: rgba(7,22,52,0.70);
+      --muted: rgba(7,22,52,0.52);
+      --dark: #071634;
+      --border: rgba(0,99,229,0.18);
+      --shadow: 0 28px 88px rgba(0,99,229,0.16);
+      --page-bg-1: #EAF8FF;
+      --page-bg-2: #DDEEFF;
+      --page-bg-3: #FFF7FE;
+      --theme-accent: #0063E5;
+      --theme-accent2: #FF9FE0;
+      --theme-soft: rgba(0,99,229,0.08);
+    }
+
+    body.theme-night {
+      --bg: #040714;
+      --bg2: #071634;
+      --card: rgba(4,7,20,0.86);
+      --text: #F9FBFF;
+      --sub: rgba(249,251,255,0.72);
+      --muted: rgba(249,251,255,0.50);
+      --dark: #040714;
+      --border: rgba(184,251,255,0.22);
+      --shadow: 0 28px 88px rgba(0,0,0,0.48);
+      --page-bg-1: #0A1D51;
+      --page-bg-2: #071634;
+      --page-bg-3: #040714;
+      --theme-accent: #49E8FF;
+      --theme-accent2: #FFD6F4;
+      --theme-soft: rgba(184,251,255,0.12);
     }
 
     * {
@@ -87,7 +130,16 @@
         radial-gradient(circle at 8% 12%, rgba(73,232,255,0.28), transparent 32%),
         radial-gradient(circle at 94% 15%, rgba(255,159,224,0.21), transparent 34%),
         radial-gradient(circle at 50% 100%, rgba(169,184,255,0.20), transparent 42%),
-        linear-gradient(180deg, #0A1D51 0%, #071634 45%, #040714 100%);
+        linear-gradient(180deg, var(--page-bg-1) 0%, var(--page-bg-2) 45%, var(--page-bg-3) 100%);
+    }
+
+    body.theme-day .page {
+      background:
+        radial-gradient(circle at 50% -12%, rgba(0,99,229,0.24), transparent 34%),
+        radial-gradient(circle at 8% 12%, rgba(73,232,255,0.22), transparent 32%),
+        radial-gradient(circle at 94% 15%, rgba(255,159,224,0.22), transparent 34%),
+        radial-gradient(circle at 50% 100%, rgba(169,184,255,0.18), transparent 42%),
+        linear-gradient(180deg, var(--page-bg-1) 0%, var(--page-bg-2) 45%, var(--page-bg-3) 100%);
     }
 
     .page:before {
@@ -101,6 +153,13 @@
         radial-gradient(circle, rgba(255,214,244,0.16) 0 1.4px, transparent 2px);
       background-size: 56px 56px, 92px 92px;
       mask-image: linear-gradient(to bottom, rgba(0,0,0,0.78), transparent 82%);
+    }
+
+    body.theme-day .page:before {
+      opacity: .42;
+      background-image:
+        radial-gradient(circle, rgba(0,99,229,0.16) 0 1px, transparent 1.7px),
+        radial-gradient(circle, rgba(255,159,224,0.16) 0 1.4px, transparent 2px);
     }
 
     .page:after {
@@ -125,6 +184,11 @@
       font-weight: 1000;
       animation: twinkle 2.8s ease-in-out infinite;
       text-shadow: 0 0 18px rgba(184,251,255,0.58);
+    }
+
+    body.theme-day .sparkle {
+      color: rgba(0,99,229,0.42);
+      text-shadow: 0 0 18px rgba(0,99,229,0.14);
     }
 
     .sparkle.s1 { left: 9%; top: 16%; font-size: 18px; animation-delay: .1s; }
@@ -172,6 +236,18 @@
       bottom: -230px;
       background: rgba(255,159,224,0.19);
       animation-delay: 2.4s;
+    }
+
+    body.theme-day .orb.one {
+      background: rgba(0,99,229,0.18);
+    }
+
+    body.theme-day .orb.two {
+      background: rgba(73,232,255,0.18);
+    }
+
+    body.theme-day .orb.three {
+      background: rgba(255,159,224,0.18);
     }
 
     @keyframes orbFloat {
@@ -223,7 +299,7 @@
       content: "D+";
       font-size: 18px;
       font-weight: 1000;
-      color: var(--dark);
+      color: #040714;
       letter-spacing: -1px;
     }
 
@@ -247,7 +323,7 @@
     .brand-title {
       font-size: 18px;
       font-weight: 1000;
-      color: #FFFFFF;
+      color: var(--text);
       line-height: 1.35;
     }
 
@@ -272,6 +348,15 @@
       backdrop-filter: blur(18px);
       position: relative;
       overflow: hidden;
+    }
+
+    body.theme-day .hero-main {
+      background:
+        radial-gradient(circle at 18% 0%, rgba(0,99,229,0.10), transparent 36%),
+        radial-gradient(circle at 100% 30%, rgba(255,159,224,0.18), transparent 38%),
+        linear-gradient(135deg, rgba(255,255,255,0.72), rgba(255,255,255,0.42));
+      border-color: rgba(0,99,229,0.14);
+      box-shadow: 0 18px 60px rgba(0,99,229,0.10);
     }
 
     .hero-main:before {
@@ -305,15 +390,20 @@
       font-weight: 900;
     }
 
+    body.theme-day .badge {
+      color: var(--blue);
+      background: rgba(0,99,229,0.07);
+    }
+
     .badge:before {
       content: "OTP";
-      color: #FFFFFF;
+      color: var(--text);
       font-weight: 1000;
     }
 
     h1 {
       margin: 0;
-      color: #FFFFFF;
+      color: var(--text);
       font-size: clamp(34px, 5.4vw, 62px);
       line-height: 1.08;
       letter-spacing: -2px;
@@ -329,6 +419,13 @@
       color: transparent;
     }
 
+    body.theme-day .gradient-text {
+      background: linear-gradient(135deg, #071634 8%, #0063E5 42%, #FF6ACB 76%, #6C7DFF 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
     .lead {
       margin: 16px 0 0;
       max-width: 560px;
@@ -336,6 +433,26 @@
       font-size: 16px;
       line-height: 1.7;
       font-weight: 540;
+    }
+
+    .theme-auto-pill {
+      width: fit-content;
+      margin-top: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      color: var(--sub);
+      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(255,255,255,0.10);
+      font-size: 11px;
+      font-weight: 850;
+    }
+
+    body.theme-day .theme-auto-pill {
+      background: rgba(0,99,229,0.06);
+      border-color: rgba(0,99,229,0.10);
     }
 
     .hero-grid {
@@ -359,6 +476,15 @@
       box-shadow: 0 14px 44px rgba(0,0,0,0.16);
     }
 
+    body.theme-day .magic-card {
+      background:
+        radial-gradient(circle at 12% 6%, rgba(255,255,255,0.82), transparent 24%),
+        radial-gradient(circle at 100% 0%, rgba(255,159,224,0.14), transparent 38%),
+        rgba(255,255,255,0.48);
+      border-color: rgba(0,99,229,0.10);
+      box-shadow: 0 14px 44px rgba(0,99,229,0.08);
+    }
+
     .magic-card:before {
       content: "✦";
       position: absolute;
@@ -369,9 +495,13 @@
       animation: twinkle 2.6s ease-in-out infinite;
     }
 
+    body.theme-day .magic-card:before {
+      color: rgba(0,99,229,0.42);
+    }
+
     .magic-card strong {
       display: block;
-      color: #FFFFFF;
+      color: var(--text);
       font-size: 18px;
       line-height: 1.45;
       font-weight: 1000;
@@ -381,7 +511,7 @@
     .magic-card span {
       display: block;
       margin-top: 8px;
-      color: rgba(255,255,255,0.62);
+      color: var(--sub);
       font-size: 12px;
       line-height: 1.6;
       font-weight: 700;
@@ -399,6 +529,10 @@
       overflow: hidden;
     }
 
+    body.theme-day .magic-line {
+      background: rgba(0,99,229,0.08);
+    }
+
     .magic-line:before {
       content: "";
       position: absolute;
@@ -407,6 +541,10 @@
       border-radius: inherit;
       background: linear-gradient(90deg, var(--cyan2), #FFFFFF, var(--pink));
       animation: progressGlow 3s ease-in-out infinite;
+    }
+
+    body.theme-day .magic-line:before {
+      background: linear-gradient(90deg, var(--blue), var(--cyan), var(--pink2));
     }
 
     @keyframes progressGlow {
@@ -432,13 +570,20 @@
       gap: 10px;
     }
 
+    body.theme-day .mini-bubble {
+      background:
+        linear-gradient(135deg, rgba(0,99,229,0.06), rgba(255,159,224,0.08)),
+        rgba(255,255,255,0.52);
+      border-color: rgba(0,99,229,0.10);
+    }
+
     .mini-bubble-icon {
       width: 40px;
       height: 40px;
       border-radius: 16px;
       display: grid;
       place-items: center;
-      color: var(--dark);
+      color: #040714;
       background: linear-gradient(135deg, var(--cyan2), #FFFFFF 52%, var(--pink));
       font-size: 17px;
       font-weight: 1000;
@@ -447,7 +592,7 @@
 
     .mini-bubble strong {
       display: block;
-      color: #FFFFFF;
+      color: var(--text);
       font-size: 13px;
       line-height: 1.35;
       font-weight: 1000;
@@ -455,7 +600,7 @@
 
     .mini-bubble span {
       display: block;
-      color: rgba(255,255,255,0.56);
+      color: var(--muted);
       font-size: 11px;
       line-height: 1.45;
       font-weight: 700;
@@ -471,15 +616,26 @@
         radial-gradient(circle at 0% 0%, rgba(184,251,255,0.12), transparent 34%),
         rgba(255,255,255,0.055);
       border: 1px solid rgba(184,251,255,0.18);
-      color: rgba(255,255,255,0.78);
+      color: var(--sub);
       font-size: 12px;
       line-height: 1.55;
       overflow-wrap: anywhere;
       margin-top: auto;
     }
 
+    body.theme-day .latest-card {
+      background:
+        radial-gradient(circle at 0% 0%, rgba(0,99,229,0.09), transparent 34%),
+        rgba(255,255,255,0.58);
+      border-color: rgba(0,99,229,0.12);
+    }
+
     .latest-card strong {
       color: var(--cyan2);
+    }
+
+    body.theme-day .latest-card strong {
+      color: var(--blue);
     }
 
     .latest-mini-list {
@@ -493,10 +649,15 @@
       border-radius: 15px;
       background: rgba(255,255,255,0.045);
       border: 1px solid rgba(255,255,255,0.08);
-      color: rgba(255,255,255,0.68);
+      color: var(--sub);
       font-size: 11px;
       line-height: 1.45;
       font-weight: 700;
+    }
+
+    body.theme-day .latest-mini-item {
+      background: rgba(0,99,229,0.045);
+      border-color: rgba(0,99,229,0.08);
     }
 
     .app-card {
@@ -508,10 +669,17 @@
         radial-gradient(circle at 18% 0%, rgba(184,251,255,0.14), transparent 30%),
         radial-gradient(circle at 100% 20%, rgba(255,214,244,0.14), transparent 34%),
         linear-gradient(180deg, rgba(255,255,255,0.145), rgba(255,255,255,0.06)),
-        rgba(4,7,20,0.86);
+        var(--card);
       box-shadow: var(--shadow);
       backdrop-filter: blur(24px);
       overflow: hidden;
+    }
+
+    body.theme-day .app-card {
+      background:
+        radial-gradient(circle at 18% 0%, rgba(0,99,229,0.09), transparent 30%),
+        radial-gradient(circle at 100% 20%, rgba(255,159,224,0.14), transparent 34%),
+        linear-gradient(180deg, rgba(255,255,255,0.88), rgba(255,255,255,0.58));
     }
 
     .app-card:before {
@@ -536,9 +704,14 @@
       background: rgba(255,255,255,0.052);
     }
 
+    body.theme-day .app-top {
+      border-color: rgba(0,99,229,0.10);
+      background: rgba(0,99,229,0.045);
+    }
+
     .app-top h2 {
       margin: 0;
-      color: #FFFFFF;
+      color: var(--text);
       font-size: 19px;
       line-height: 1.42;
       font-weight: 1000;
@@ -555,7 +728,7 @@
       flex: 0 0 auto;
       padding: 8px 10px;
       border-radius: 999px;
-      color: var(--dark);
+      color: #040714;
       background: linear-gradient(135deg, var(--cyan2), #FFFFFF 52%, var(--pink));
       font-size: 11px;
       font-weight: 950;
@@ -567,7 +740,7 @@
       margin-bottom: 14px;
       padding: 12px 13px;
       border-radius: 22px;
-      color: rgba(255,255,255,0.72);
+      color: var(--sub);
       background:
         radial-gradient(circle at 0% 0%, rgba(184,251,255,0.12), transparent 36%),
         rgba(255,255,255,0.052);
@@ -575,6 +748,13 @@
       font-size: 12px;
       line-height: 1.65;
       font-weight: 750;
+    }
+
+    body.theme-day .quick-hint {
+      background:
+        radial-gradient(circle at 0% 0%, rgba(0,99,229,0.08), transparent 36%),
+        rgba(255,255,255,0.46);
+      border-color: rgba(0,99,229,0.09);
     }
 
     .form-grid {
@@ -592,7 +772,7 @@
       justify-content: space-between;
       gap: 10px;
       margin: 0 4px 8px;
-      color: rgba(255,255,255,0.88);
+      color: var(--text);
       font-size: 13px;
       font-weight: 850;
     }
@@ -627,10 +807,21 @@
       border: 1px solid rgba(184,251,255,0.20);
     }
 
+    body.theme-day .required {
+      color: var(--blue);
+      background: rgba(0,99,229,0.06);
+      border-color: rgba(0,99,229,0.12);
+    }
+
     .optional {
-      color: rgba(255,255,255,0.58);
+      color: var(--muted);
       background: rgba(255,255,255,0.055);
       border: 1px solid rgba(255,255,255,0.10);
+    }
+
+    body.theme-day .optional {
+      background: rgba(0,99,229,0.045);
+      border-color: rgba(0,99,229,0.08);
     }
 
     input,
@@ -640,11 +831,17 @@
       outline: none;
       border-radius: 21px;
       background: rgba(255,255,255,0.09);
-      color: #FFFFFF;
+      color: var(--text);
       font-size: 16px;
       font-weight: 650;
       transition: .18s ease;
       line-height: 1.55;
+    }
+
+    body.theme-day input,
+    body.theme-day textarea {
+      border-color: rgba(0,99,229,0.14);
+      background: rgba(255,255,255,0.74);
     }
 
     input {
@@ -665,11 +862,22 @@
       font-weight: 520;
     }
 
+    body.theme-day input::placeholder,
+    body.theme-day textarea::placeholder {
+      color: rgba(7,22,52,0.38);
+    }
+
     input:focus,
     textarea:focus {
       border-color: rgba(184,251,255,0.60);
       box-shadow: 0 0 0 4px rgba(184,251,255,0.10);
       transform: translateY(-1px);
+    }
+
+    body.theme-day input:focus,
+    body.theme-day textarea:focus {
+      border-color: rgba(0,99,229,0.40);
+      box-shadow: 0 0 0 4px rgba(0,99,229,0.08);
     }
 
     input.valid,
@@ -689,15 +897,23 @@
       font-size: 11px;
       line-height: 1.45;
       font-weight: 800;
-      color: rgba(255,255,255,0.50);
+      color: var(--muted);
     }
 
     .validation-msg.ok {
       color: var(--ok);
     }
 
+    body.theme-day .validation-msg.ok {
+      color: #00875A;
+    }
+
     .validation-msg.bad {
       color: var(--danger);
+    }
+
+    body.theme-day .validation-msg.bad {
+      color: #C93653;
     }
 
     .quick-device-grid {
@@ -710,7 +926,7 @@
     .quick-device-btn {
       min-height: 38px;
       border-radius: 15px;
-      color: rgba(255,255,255,0.88);
+      color: var(--text);
       background: rgba(255,255,255,0.065);
       border: 1px solid rgba(255,255,255,0.12);
       font-size: 12px;
@@ -723,8 +939,13 @@
       width: auto;
     }
 
+    body.theme-day .quick-device-btn {
+      background: rgba(255,255,255,0.66);
+      border-color: rgba(0,99,229,0.10);
+    }
+
     .quick-device-btn.selected {
-      color: var(--dark);
+      color: #040714;
       background: linear-gradient(135deg, var(--cyan2), #FFFFFF 52%, var(--pink));
       box-shadow: 0 10px 24px rgba(255,214,244,0.14);
     }
@@ -739,7 +960,7 @@
       position: relative;
       min-height: 60px;
       border-radius: 20px;
-      color: rgba(255,255,255,0.90);
+      color: var(--text);
       background: rgba(255,255,255,0.07);
       border: 1px solid rgba(255,255,255,0.13);
       display: grid;
@@ -749,6 +970,11 @@
       width: 100%;
     }
 
+    body.theme-day .screen-btn {
+      background: rgba(255,255,255,0.64);
+      border-color: rgba(0,99,229,0.10);
+    }
+
     .screen-btn strong {
       font-size: 20px;
       line-height: 1.15;
@@ -756,13 +982,13 @@
     }
 
     .screen-btn span {
-      color: rgba(255,255,255,0.48);
+      color: var(--muted);
       font-size: 10px;
       font-weight: 850;
     }
 
     .screen-btn.selected {
-      color: var(--dark);
+      color: #040714;
       border-color: rgba(184,251,255,0.72);
       background: linear-gradient(135deg, var(--cyan2), #FFFFFF 52%, var(--pink));
       transform: translateY(-3px);
@@ -776,7 +1002,7 @@
     .note-count {
       margin-top: 7px;
       text-align: right;
-      color: rgba(255,255,255,0.46);
+      color: var(--muted);
       font-size: 11px;
       font-weight: 760;
     }
@@ -831,9 +1057,15 @@
 
     .btn-secondary,
     .btn-copy {
-      color: rgba(255,255,255,0.84);
+      color: var(--text);
       background: rgba(255,255,255,0.06);
       border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    body.theme-day .btn-secondary,
+    body.theme-day .btn-copy {
+      background: rgba(255,255,255,0.70);
+      border-color: rgba(0,99,229,0.10);
     }
 
     .btn-secondary {
@@ -841,14 +1073,110 @@
     }
 
     .btn-copy.copied {
-      color: var(--dark);
+      color: #040714;
       background: linear-gradient(135deg, var(--cyan2), #FFFFFF 52%, var(--ok));
       border-color: rgba(164,255,212,0.35);
     }
 
+    .status-strip {
+      margin-top: 12px;
+      padding: 12px 13px;
+      border-radius: 22px;
+      color: var(--sub);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(184,251,255,0.11), transparent 36%),
+        rgba(255,255,255,0.052);
+      border: 1px solid rgba(184,251,255,0.15);
+      display: grid;
+      gap: 8px;
+    }
+
+    body.theme-day .status-strip {
+      background:
+        radial-gradient(circle at 0% 0%, rgba(0,99,229,0.08), transparent 36%),
+        rgba(255,255,255,0.58);
+      border-color: rgba(0,99,229,0.10);
+    }
+
+    .status-line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 12px;
+      line-height: 1.45;
+      font-weight: 850;
+    }
+
+    .status-left {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--cyan);
+      box-shadow: 0 0 14px rgba(73,232,255,0.72);
+      flex: 0 0 auto;
+    }
+
+    .status-dot.ok {
+      background: var(--ok);
+      box-shadow: 0 0 14px rgba(164,255,212,0.72);
+    }
+
+    .status-dot.warn {
+      background: var(--warn);
+      box-shadow: 0 0 14px rgba(255,230,166,0.72);
+    }
+
+    .status-dot.bad {
+      background: var(--danger);
+      box-shadow: 0 0 14px rgba(255,180,194,0.72);
+    }
+
+    .status-text {
+      overflow-wrap: anywhere;
+    }
+
+    .last-request-time {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .cooldown-bar {
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      overflow: hidden;
+      display: none;
+    }
+
+    body.theme-day .cooldown-bar {
+      background: rgba(0,99,229,0.08);
+    }
+
+    .cooldown-fill {
+      width: 0%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--cyan2), #FFFFFF, var(--pink));
+      transition: width .25s ease;
+    }
+
+    body.theme-day .cooldown-fill {
+      background: linear-gradient(90deg, var(--blue), var(--cyan), var(--pink2));
+    }
+
     .privacy {
       margin-top: 12px;
-      color: rgba(255,255,255,0.43);
+      color: var(--muted);
       font-size: 11px;
       line-height: 1.65;
       text-align: center;
@@ -870,6 +1198,14 @@
       overflow: hidden;
     }
 
+    body.theme-day .result-box {
+      background:
+        radial-gradient(circle at 50% 0%, rgba(0,99,229,0.08), transparent 34%),
+        linear-gradient(135deg, rgba(0,99,229,0.10), rgba(255,159,224,0.10)),
+        rgba(255,255,255,0.64);
+      border-color: rgba(0,99,229,0.12);
+    }
+
     .result-box:before {
       content: "✦";
       position: absolute;
@@ -878,6 +1214,10 @@
       color: rgba(255,255,255,0.45);
       font-size: 16px;
       animation: twinkle 2.6s ease-in-out infinite;
+    }
+
+    body.theme-day .result-box:before {
+      color: rgba(0,99,229,0.35);
     }
 
     .result-box:after {
@@ -914,7 +1254,7 @@
 
     .result-title {
       margin: 0;
-      color: #FFFFFF;
+      color: var(--text);
       font-size: 21px;
       font-weight: 1000;
       position: relative;
@@ -924,7 +1264,7 @@
     .result-message {
       margin: 9px auto 0;
       max-width: 380px;
-      color: rgba(255,255,255,0.72);
+      color: var(--sub);
       font-size: 14px;
       line-height: 1.7;
       white-space: pre-line;
@@ -938,7 +1278,7 @@
       max-width: 100%;
       padding: 10px 13px;
       border-radius: 999px;
-      color: rgba(255,255,255,0.86);
+      color: var(--text);
       background: rgba(255,255,255,0.06);
       border: 1px solid rgba(184,251,255,0.15);
       font-size: 12px;
@@ -948,12 +1288,17 @@
       z-index: 1;
     }
 
+    body.theme-day .request-id {
+      background: rgba(0,99,229,0.045);
+      border-color: rgba(0,99,229,0.10);
+    }
+
     .otp-safe {
       margin: 13px auto 0;
       max-width: 400px;
       padding: 12px 14px;
       border-radius: 22px;
-      color: rgba(217,250,255,0.96);
+      color: var(--text);
       background: rgba(73,232,255,0.10);
       border: 1px solid rgba(184,251,255,0.24);
       font-size: 13px;
@@ -962,6 +1307,57 @@
       display: none;
       position: relative;
       z-index: 1;
+    }
+
+    body.theme-day .otp-safe {
+      background: rgba(0,99,229,0.06);
+      border-color: rgba(0,99,229,0.12);
+    }
+
+    .auto-retry-box {
+      display: none;
+      margin: 13px auto 0;
+      max-width: 420px;
+      padding: 12px;
+      border-radius: 22px;
+      background: rgba(255,230,166,0.10);
+      border: 1px solid rgba(255,230,166,0.22);
+      position: relative;
+      z-index: 1;
+    }
+
+    body.theme-day .auto-retry-box {
+      background: rgba(255,193,7,0.10);
+      border-color: rgba(255,193,7,0.18);
+    }
+
+    .auto-retry-title {
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 950;
+      line-height: 1.55;
+    }
+
+    .auto-retry-sub {
+      margin-top: 4px;
+      color: var(--sub);
+      font-size: 12px;
+      line-height: 1.55;
+      font-weight: 750;
+    }
+
+    .auto-retry-actions {
+      margin-top: 10px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .auto-retry-actions .btn-primary,
+    .auto-retry-actions .btn-secondary {
+      min-height: 44px;
+      border-radius: 16px;
+      font-size: 13px;
     }
 
     .otp-box {
@@ -978,15 +1374,22 @@
       z-index: 1;
     }
 
+    body.theme-day .otp-box {
+      background:
+        radial-gradient(circle at 50% 0%, rgba(0,99,229,0.08), transparent 44%),
+        rgba(255,255,255,0.58);
+      border-color: rgba(0,99,229,0.12);
+    }
+
     .otp-label {
-      color: rgba(255,255,255,0.62);
+      color: var(--muted);
       font-size: 12px;
       font-weight: 850;
     }
 
     .otp-code {
       margin-top: 8px;
-      color: #FFFFFF;
+      color: var(--text);
       font-size: 36px;
       letter-spacing: 6px;
       font-weight: 1000;
@@ -997,7 +1400,7 @@
 
     .otp-note {
       margin-top: 9px;
-      color: rgba(255,255,255,0.60);
+      color: var(--muted);
       font-size: 12px;
       line-height: 1.55;
       font-weight: 700;
@@ -1044,7 +1447,7 @@
       z-index: 80;
       max-width: calc(100vw - 28px);
       background: rgba(255,255,255,0.96);
-      color: var(--dark);
+      color: #040714;
       border-radius: 999px;
       padding: 12px 16px;
       font-size: 14px;
@@ -1093,7 +1496,7 @@
       border-radius: 22px;
       display: grid;
       place-items: center;
-      color: var(--dark);
+      color: #040714;
       background: linear-gradient(135deg, var(--cyan2), #FFFFFF 52%, var(--pink));
       font-size: 22px;
       font-weight: 1000;
@@ -1113,7 +1516,7 @@
     }
 
     .loading-message {
-      color: var(--sub);
+      color: rgba(249,251,255,0.72);
       font-size: 13px;
       line-height: 1.75;
     }
@@ -1167,9 +1570,13 @@
         margin-right: auto;
       }
 
-      .lead {
+      .lead,
+      .theme-auto-pill {
         margin-left: auto;
         margin-right: auto;
+      }
+
+      .lead {
         font-size: 14px;
       }
 
@@ -1231,6 +1638,12 @@
         margin-top: 8px;
         font-size: 12px;
         line-height: 1.55;
+      }
+
+      .theme-auto-pill {
+        margin-top: 8px;
+        font-size: 10.5px;
+        padding: 7px 10px;
       }
 
       .magic-card {
@@ -1343,6 +1756,16 @@
         font-size: 14px;
       }
 
+      .status-line {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .last-request-time {
+        white-space: normal;
+      }
+
       .copy-area .btn-copy {
         width: 100%;
         min-width: 0;
@@ -1353,6 +1776,10 @@
       .result-actions {
         grid-template-columns: 1fr;
         gap: 8px;
+      }
+
+      .auto-retry-actions {
+        grid-template-columns: 1fr;
       }
 
       .result-actions .btn-primary,
@@ -1425,6 +1852,7 @@
           <p class="lead">
             กรอกข้อมูลในหน้าเดียว แล้วกดรับรหัส ระบบจะแสดง OTP บนหน้าเว็บทันทีเมื่อพบรหัส
           </p>
+          <div class="theme-auto-pill" id="themeAutoPill">โหมดอัตโนมัติ</div>
         </div>
 
         <div class="hero-grid">
@@ -1479,7 +1907,7 @@
               <span class="label-main"><span class="label-dot"></span>ชื่อ LINE</span>
               <span class="required">จำเป็น</span>
             </div>
-            <input id="customerName" type="text" placeholder="ชื่อ LINE ตามรายการ" autocomplete="name" maxlength="120">
+            <input id="customerName" type="text" placeholder="เช่น คุณเอ" autocomplete="name" maxlength="120">
             <div class="validation-msg" id="nameValidation">กรอกชื่อ LINE ก่อน</div>
           </div>
 
@@ -1488,7 +1916,7 @@
               <span class="label-main"><span class="label-dot"></span>อีเมล</span>
               <span class="required">จำเป็น</span>
             </div>
-            <input id="email" type="email" placeholder="customer@email.com" autocomplete="email" inputmode="email" maxlength="160">
+            <input id="email" type="email" placeholder="email ที่ใช้สมัคร Disney+" autocomplete="email" inputmode="email" maxlength="160">
             <div class="validation-msg" id="emailValidation">กรอกอีเมลก่อน</div>
           </div>
 
@@ -1497,7 +1925,7 @@
               <span class="label-main"><span class="label-dot"></span>อุปกรณ์</span>
               <span class="required">จำเป็น</span>
             </div>
-            <input id="device" type="text" placeholder="เช่น iPhone, Android, TV" autocomplete="off" maxlength="80">
+            <input id="device" type="text" placeholder="เช่น iPhone / TV / Android" autocomplete="off" maxlength="80">
             <div class="validation-msg" id="deviceValidation">เลือกหรือกรอกอุปกรณ์</div>
 
             <div class="quick-device-grid" id="quickDeviceGrid">
@@ -1543,6 +1971,19 @@
           <button class="btn-secondary" onclick="clearDraft()" type="button">ล้าง</button>
         </div>
 
+        <div class="status-strip" id="statusStrip">
+          <div class="status-line">
+            <div class="status-left">
+              <span class="status-dot" id="statusDot"></span>
+              <span class="status-text" id="statusText">พร้อมรับรหัส</span>
+            </div>
+            <div class="last-request-time" id="lastRequestTime">ยังไม่เคยขอรหัส</div>
+          </div>
+          <div class="cooldown-bar" id="cooldownBar">
+            <div class="cooldown-fill" id="cooldownFill"></div>
+          </div>
+        </div>
+
         <div class="privacy" id="autosaveText">บันทึกแบบร่างแล้ว</div>
 
         <div class="result-box" id="resultBox">
@@ -1552,7 +1993,16 @@
           <div class="request-id" id="requestIdBox">เลขอ้างอิง: -</div>
 
           <div class="otp-safe" id="otpSafeBox">
-            ยังไม่พบรหัส ลองใหม่อีกครั้ง
+            ยังไม่พบรหัส OTP ในเมลล่าสุด กรุณารอ 10–30 วินาที แล้วกดขอรหัสใหม่
+          </div>
+
+          <div class="auto-retry-box" id="autoRetryBox">
+            <div class="auto-retry-title" id="autoRetryTitle">ลองอีกครั้งอัตโนมัติใน 10 วินาที</div>
+            <div class="auto-retry-sub">ระบบจะลองค้นหา OTP ใหม่ให้อัตโนมัติ ลูกค้าไม่ต้องกดรัว</div>
+            <div class="auto-retry-actions">
+              <button class="btn-primary" id="retryNowBtn" onclick="retryNow()" type="button">ลองตอนนี้</button>
+              <button class="btn-secondary" id="cancelRetryBtn" onclick="cancelAutoRetry()" type="button">ยกเลิก</button>
+            </div>
           </div>
 
           <div class="otp-box" id="otpBox">
@@ -1566,7 +2016,9 @@
 
           <div class="result-actions">
             <button class="btn-primary" onclick="requestNewOtp()" type="button">ขอรหัสใหม่</button>
+            <button class="btn-secondary" onclick="editRequestInfo()" type="button">แก้ไขข้อมูล</button>
             <button class="btn-secondary" onclick="startNewRequest()" type="button">เริ่มใหม่</button>
+            <button class="btn-secondary" onclick="scrollToForm()" type="button">กลับไปด้านบน</button>
           </div>
         </div>
       </div>
@@ -1589,9 +2041,13 @@
     const SHOP_LINE_NAME = '426 SHOP';
     const SHOP_SUBTITLE = 'รับรหัส OTP';
     const REQUEST_TIMEOUT_MS = 18000;
-    const DRAFT_KEY = 'disneyOtpSimpleDraftV1';
-    const HISTORY_KEY = 'disneyOtpSimpleLatestV1';
-    const HISTORY_LIST_KEY = 'disneyOtpSimpleListV1';
+    const DRAFT_KEY = 'disneyOtpSimpleDraftV2';
+    const HISTORY_KEY = 'disneyOtpSimpleLatestV2';
+    const HISTORY_LIST_KEY = 'disneyOtpSimpleListV2';
+    const LAST_REQUEST_TIME_KEY = 'disneyOtpLastRequestTimeV2';
+    const AUTO_RETRY_SECONDS = 10;
+    const COOLDOWN_SECONDS = 15;
+    const MAX_AUTO_RETRY_COUNT = 2;
 
     let selectedScreen = '';
     let selectedDeviceQuick = '';
@@ -1603,12 +2059,20 @@
     let latestRequestId = '';
     let latestOtp = '';
     let latestExpireMinutes = 15;
+    let autoRetryTimer = null;
+    let autoRetrySecondsLeft = AUTO_RETRY_SECONDS;
+    let autoRetryCount = 0;
+    let cooldownTimer = null;
+    let cooldownEndAt = 0;
+    let lastRequestAt = '';
+    let isSubmitting = false;
+    let currentRequestToken = '';
 
     const loadingMessages = [
-      'กำลังตรวจสอบ...',
-      'กำลังค้นหารหัส...',
-      'กำลังรับ OTP...',
-      'กำลังแสดงผล...'
+      'ตรวจสอบข้อมูล',
+      'กำลังค้นหารหัส',
+      'กำลังรับ OTP',
+      'กำลังแสดงผล'
     ];
 
     const app = document.getElementById('app');
@@ -1626,6 +2090,10 @@
     const resultMessage = document.getElementById('resultMessage');
     const requestIdBox = document.getElementById('requestIdBox');
     const otpSafeBox = document.getElementById('otpSafeBox');
+    const autoRetryBox = document.getElementById('autoRetryBox');
+    const autoRetryTitle = document.getElementById('autoRetryTitle');
+    const retryNowBtn = document.getElementById('retryNowBtn');
+    const cancelRetryBtn = document.getElementById('cancelRetryBtn');
     const otpBox = document.getElementById('otpBox');
     const otpCode = document.getElementById('otpCode');
     const otpExpireNote = document.getElementById('otpExpireNote');
@@ -1645,15 +2113,43 @@
     const latestText = document.getElementById('latestText');
     const latestMiniList = document.getElementById('latestMiniList');
     const autosaveText = document.getElementById('autosaveText');
+    const statusDot = document.getElementById('statusDot');
+    const statusText = document.getElementById('statusText');
+    const lastRequestTime = document.getElementById('lastRequestTime');
+    const cooldownBar = document.getElementById('cooldownBar');
+    const cooldownFill = document.getElementById('cooldownFill');
+    const themeAutoPill = document.getElementById('themeAutoPill');
 
     brandTitle.textContent = SHOP_LINE_NAME || '426 SHOP';
     brandSub.textContent = SHOP_SUBTITLE || 'รับรหัส OTP';
 
+    applyAutoTheme();
     restoreDraft();
+    restoreLastRequestTime();
     loadLatestHistory();
     updateNoteCount();
     validateRealtime();
     bindEvents();
+    updateStatus('พร้อมรับรหัส', 'idle');
+
+    function applyAutoTheme() {
+      const hour = new Date().getHours();
+      const isDay = hour >= 7 && hour < 18;
+
+      document.body.classList.remove('theme-day', 'theme-night');
+      document.body.classList.add(isDay ? 'theme-day' : 'theme-night');
+
+      const themeText = isDay ? 'โหมดสว่างอัตโนมัติ' : 'โหมดมืดอัตโนมัติ';
+
+      if (themeAutoPill) {
+        themeAutoPill.textContent = themeText + ' • ' + formatTimeShort(new Date());
+      }
+
+      const metaTheme = document.querySelector('meta[name="theme-color"]');
+      if (metaTheme) {
+        metaTheme.setAttribute('content', isDay ? '#EAF8FF' : '#071634');
+      }
+    }
 
     function bindEvents() {
       [customerNameInput, emailInput, deviceInput, customerNoteInput].forEach(function(input) {
@@ -1698,6 +2194,13 @@
           showToast('เลือก ' + deviceName + ' แล้ว');
         });
       });
+
+      document.addEventListener('visibilitychange', function() {
+        if (!document.hidden) {
+          applyAutoTheme();
+          updateCooldownUi();
+        }
+      });
     }
 
     function hasValidInfo() {
@@ -1711,23 +2214,43 @@
       return hasValidInfo() && device.length >= 2 && !!selectedScreen;
     }
 
-    function submitRequest() {
+    function submitRequest(options) {
+      options = options || {};
+
+      const bypassCooldown = options.bypassCooldown === true;
+      const isAutoRetry = options.autoRetry === true;
       const customerName = customerNameInput.value.trim();
       const email = emailInput.value.trim();
       const device = deviceInput.value.trim();
       const customerNote = customerNoteInput.value.trim();
 
+      cancelAutoRetry(false);
       resetResult(false);
+
+      if (isSubmitting) {
+        showToast('กำลังค้นหารหัสอยู่');
+        return;
+      }
+
+      if (!bypassCooldown && isCooldownActive()) {
+        const left = getCooldownLeftSeconds();
+        showToast('รอสักครู่ ลองใหม่ได้ใน ' + left + ' วินาที');
+        updateStatus('รอคูลดาวน์อีก ' + left + ' วินาที', 'warn');
+        return;
+      }
 
       if (!WEB_APP_URL || WEB_APP_URL.indexOf('ใส่_GOOGLE_APPS_SCRIPT') !== -1) {
         showError('ตั้งค่า WEB_APP_URL ก่อน');
         return;
       }
 
+      updateStatus('ตรวจสอบข้อมูล', 'idle');
+
       if (!customerName || customerName.length < 2) {
         showToast('กรอกชื่อ LINE ก่อน');
         validateRealtime();
         focusInput(customerNameInput);
+        updateStatus('กรอกชื่อ LINE ก่อน', 'bad');
         return;
       }
 
@@ -1735,6 +2258,7 @@
         showToast('กรอกอีเมลก่อน');
         validateRealtime();
         focusInput(emailInput);
+        updateStatus('กรอกอีเมลให้ถูกต้อง', 'bad');
         return;
       }
 
@@ -1742,16 +2266,23 @@
         showToast('กรอกอุปกรณ์ก่อน');
         validateRealtime();
         focusInput(deviceInput);
+        updateStatus('กรอกอุปกรณ์ก่อน', 'bad');
         return;
       }
 
       if (!selectedScreen) {
         showToast('เลือกจอก่อน');
         validateRealtime();
+        updateStatus('เลือกจอก่อน', 'bad');
         return;
       }
 
+      isSubmitting = true;
+      currentRequestToken = createRequestToken();
+      markLastRequestTime();
+      startCooldown(COOLDOWN_SECONDS);
       setLoading(true);
+      updateStatus(isAutoRetry ? 'กำลังลองค้นหารหัสอีกครั้ง' : 'กำลังค้นหารหัส', 'idle');
 
       jsonpRequest({
         action: 'otp',
@@ -1766,26 +2297,38 @@
         userAgent: navigator.userAgent || '',
         pageUrl: window.location.href || '',
         referrer: document.referrer || '',
-        submittedAt: new Date().toISOString()
+        submittedAt: new Date().toISOString(),
+        clientTime: new Date().toISOString(),
+        clientTimezone: getClientTimezone(),
+        requestToken: currentRequestToken
       }, function(res) {
+        isSubmitting = false;
         setLoading(false);
 
         if (!res) {
           showError('ลองใหม่อีกครั้ง');
+          updateStatus('รับรหัสไม่ได้', 'bad');
           return;
         }
 
         if (!res.ok || !res.otp) {
+          const friendlyMessage = getFriendlyErrorMessage(res);
           showResult(
-            res.message || res.savedMessage || 'ยังไม่พบรหัส',
+            friendlyMessage,
             res.requestId || res.id || '',
             {
               otpFound: false,
               otpDisplayAllowed: false,
               otp: '',
-              expireMinutes: res.expireMinutes || 15
+              expireMinutes: res.expireMinutes || 15,
+              resultStatus: res.resultStatus || '',
+              thaiTime: res.thaiTime || '',
+              mailAgeMinutes: res.mailAgeMinutes || '',
+              source: res.source || '',
+              note: res.note || ''
             }
           );
+          updateStatus('ยังไม่พบรหัส', 'warn');
           return;
         }
 
@@ -1796,12 +2339,20 @@
             otpFound: true,
             otpDisplayAllowed: true,
             otp: res.otp || '',
-            expireMinutes: res.expireMinutes || 15
+            expireMinutes: res.expireMinutes || 15,
+            resultStatus: res.resultStatus || 'OTP_FOUND',
+            thaiTime: res.thaiTime || '',
+            mailCreatedAt: res.mailCreatedAt || '',
+            mailAgeMinutes: res.mailAgeMinutes || '',
+            source: res.source || ''
           }
         );
+        updateStatus('พบ OTP แล้ว', 'ok');
       }, function() {
+        isSubmitting = false;
         setLoading(false);
-        showError('ลองใหม่อีกครั้ง');
+        showError('เชื่อมต่อไม่สำเร็จ กรุณาลองใหม่อีกครั้ง');
+        updateStatus('เชื่อมต่อไม่สำเร็จ', 'bad');
       });
     }
 
@@ -1812,8 +2363,89 @@
         return;
       }
 
+      if (isCooldownActive()) {
+        const left = getCooldownLeftSeconds();
+        showToast('รอสักครู่ ลองใหม่ได้ใน ' + left + ' วินาที');
+        updateStatus('รอคูลดาวน์อีก ' + left + ' วินาที', 'warn');
+        return;
+      }
+
+      autoRetryCount = 0;
       showToast('กำลังขอรหัสใหม่');
       submitRequest();
+    }
+
+    function retryNow() {
+      cancelAutoRetry(false);
+
+      if (!hasValidRequestInfo()) {
+        showToast('กรอกข้อมูลให้ครบก่อน');
+        validateRealtime();
+        return;
+      }
+
+      showToast('กำลังลองอีกครั้ง');
+      submitRequest({
+        bypassCooldown: true,
+        autoRetry: true
+      });
+    }
+
+    function startAutoRetry() {
+      cancelAutoRetry(false);
+
+      if (!hasValidRequestInfo()) return;
+      if (autoRetryCount >= MAX_AUTO_RETRY_COUNT) {
+        if (autoRetryBox) autoRetryBox.style.display = 'none';
+        return;
+      }
+
+      autoRetrySecondsLeft = AUTO_RETRY_SECONDS;
+      autoRetryCount++;
+
+      if (autoRetryBox) autoRetryBox.style.display = 'block';
+      updateAutoRetryText();
+
+      autoRetryTimer = setInterval(function() {
+        autoRetrySecondsLeft--;
+        updateAutoRetryText();
+
+        if (autoRetrySecondsLeft <= 0) {
+          cancelAutoRetry(false);
+          submitRequest({
+            bypassCooldown: true,
+            autoRetry: true
+          });
+        }
+      }, 1000);
+    }
+
+    function updateAutoRetryText() {
+      if (!autoRetryTitle) return;
+
+      autoRetryTitle.textContent =
+        'ลองอีกครั้งอัตโนมัติใน ' +
+        autoRetrySecondsLeft +
+        ' วินาที' +
+        ' • ครั้งที่ ' +
+        autoRetryCount +
+        '/' +
+        MAX_AUTO_RETRY_COUNT;
+    }
+
+    function cancelAutoRetry(showMessage) {
+      if (autoRetryTimer) {
+        clearInterval(autoRetryTimer);
+        autoRetryTimer = null;
+      }
+
+      if (autoRetryBox) {
+        autoRetryBox.style.display = 'none';
+      }
+
+      if (showMessage !== false) {
+        showToast('ยกเลิกลองอัตโนมัติแล้ว');
+      }
     }
 
     function jsonpRequest(params, onSuccess, onError) {
@@ -1884,19 +2516,22 @@
       latestOtp = hasOtp ? String(otpData.otp || '').trim() : '';
       latestExpireMinutes = otpData && otpData.expireMinutes ? otpData.expireMinutes : 15;
 
-      saveLatestHistory(finalRequestId, hasOtp ? 'พบรหัส' : 'รอรหัส');
+      saveLatestHistory(finalRequestId, hasOtp ? 'พบรหัส' : 'ยังไม่พบรหัส');
 
       resultBox.style.display = 'block';
       resultIcon.textContent = hasOtp ? '✓' : '!';
       resultTitle.textContent = hasOtp ? 'รหัส OTP' : 'ยังไม่พบรหัส';
-      resultMessage.textContent = message || (hasOtp ? 'พบรหัสแล้ว' : 'ลองใหม่อีกครั้ง');
+      resultMessage.textContent = buildResultMessage(message, otpData, hasOtp);
 
       requestIdBox.textContent = 'เลขอ้างอิง: ' + finalRequestId;
 
       if (hasOtp) {
+        cancelAutoRetry(false);
+        autoRetryCount = 0;
         otpCode.textContent = latestOtp;
         otpBox.style.display = 'block';
         otpSafeBox.style.display = 'none';
+        if (autoRetryBox) autoRetryBox.style.display = 'none';
         otpExpireNote.textContent = 'ใช้ภายใน ' + latestExpireMinutes + ' นาที';
         launchConfetti();
         showToast('พบรหัสแล้ว');
@@ -1904,7 +2539,9 @@
         otpCode.textContent = '------';
         otpBox.style.display = 'none';
         otpSafeBox.style.display = 'block';
+        otpSafeBox.textContent = message || 'ยังไม่พบรหัส OTP ในเมลล่าสุด กรุณารอ 10–30 วินาที แล้วกดขอรหัสใหม่';
         showToast('ยังไม่พบรหัส');
+        startAutoRetry();
       }
 
       try {
@@ -1914,7 +2551,76 @@
       scrollToResult();
     }
 
+    function buildResultMessage(message, otpData, hasOtp) {
+      let lines = [];
+
+      if (message) {
+        lines.push(message);
+      } else {
+        lines.push(hasOtp ? 'พบรหัสแล้ว' : 'ยังไม่พบรหัส OTP ในเมลล่าสุด กรุณารอ 10–30 วินาที แล้วกดขอรหัสใหม่');
+      }
+
+      if (otpData && otpData.thaiTime) {
+        lines.push('เวลาเมลล่าสุด: ' + otpData.thaiTime);
+      }
+
+      if (otpData && otpData.mailAgeMinutes !== undefined && otpData.mailAgeMinutes !== null && otpData.mailAgeMinutes !== '') {
+        lines.push('อายุเมลประมาณ: ' + otpData.mailAgeMinutes + ' นาที');
+      }
+
+      if (otpData && otpData.source) {
+        lines.push('แหล่งข้อมูล: ' + otpData.source);
+      }
+
+      return lines.join('\n');
+    }
+
+    function getFriendlyErrorMessage(res) {
+      const status = res && res.resultStatus ? String(res.resultStatus) : '';
+      const rawMessage = res && res.message ? String(res.message) : '';
+
+      if (status === 'INVALID_EMAIL') {
+        return 'อีเมลไม่ถูกต้อง กรุณาตรวจสอบแล้วลองใหม่อีกครั้ง';
+      }
+
+      if (status === 'MISSING_DEVICE') {
+        return 'กรุณาระบุอุปกรณ์ที่ใช้งาน เช่น iPhone / TV / Android';
+      }
+
+      if (status === 'MISSING_SCREEN') {
+        return 'กรุณาเลือกจอหรือโปรไฟล์ก่อนรับรหัส';
+      }
+
+      if (status === 'RATE_LIMITED') {
+        return 'มีการขอรหัสถี่เกินไป กรุณารอสักครู่แล้วลองใหม่';
+      }
+
+      if (status === 'OTP_NOT_FOUND') {
+        return 'ยังไม่พบรหัส OTP ในเมลล่าสุด กรุณารอ 10–30 วินาที แล้วกดขอรหัสใหม่';
+      }
+
+      if (status === 'MAILY_ERROR') {
+        return 'ระบบเช็ก OTP ไม่สำเร็จ กรุณาลองใหม่อีกครั้ง';
+      }
+
+      if (status === 'MISSING_MAILY_API_KEY') {
+        return 'ระบบยังไม่ได้ตั้งค่า API Key กรุณาแจ้งแอดมิน';
+      }
+
+      if (rawMessage) {
+        if (rawMessage.indexOf('ไม่พบ') !== -1) {
+          return 'ยังไม่พบรหัส OTP ในเมลล่าสุด กรุณารอ 10–30 วินาที แล้วกดขอรหัสใหม่';
+        }
+
+        return rawMessage;
+      }
+
+      return 'ยังไม่พบรหัส OTP ในเมลล่าสุด กรุณารอ 10–30 วินาที แล้วกดขอรหัสใหม่';
+    }
+
     function showError(message) {
+      cancelAutoRetry(false);
+
       latestRequestId = '';
       latestOtp = '';
 
@@ -1925,6 +2631,7 @@
       requestIdBox.textContent = 'เลขอ้างอิง: -';
       otpBox.style.display = 'none';
       otpSafeBox.style.display = 'none';
+      if (autoRetryBox) autoRetryBox.style.display = 'none';
       showToast(message || 'รับรหัสไม่ได้');
       scrollToResult();
     }
@@ -1937,6 +2644,7 @@
       requestIdBox.textContent = 'เลขอ้างอิง: -';
       otpBox.style.display = 'none';
       otpSafeBox.style.display = 'none';
+      if (autoRetryBox) autoRetryBox.style.display = 'none';
       otpCode.textContent = '------';
 
       if (copyOtpBtn) {
@@ -1953,8 +2661,8 @@
         return;
       }
 
-      btnText.textContent = 'รับรหัส';
-      submitBtn.disabled = false;
+      btnText.textContent = isCooldownActive() ? 'รอสักครู่...' : 'รับรหัส';
+      submitBtn.disabled = isCooldownActive();
       hideLoadingOverlay();
     }
 
@@ -1968,6 +2676,7 @@
       loadingTextTimer = setInterval(function() {
         loadingTextIndex = (loadingTextIndex + 1) % loadingMessages.length;
         loadingMessage.textContent = loadingMessages[loadingTextIndex];
+        updateStatus(loadingMessages[loadingTextIndex], 'idle');
       }, 1000);
     }
 
@@ -2111,7 +2820,26 @@
       document.body.removeChild(area);
     }
 
+    function editRequestInfo() {
+      cancelAutoRetry(false);
+      resultBox.style.display = 'none';
+      updateStatus('แก้ไขข้อมูลได้เลย', 'idle');
+      scrollToForm();
+
+      setTimeout(function() {
+        focusInput(customerNameInput);
+      }, 120);
+    }
+
+    function scrollToForm() {
+      try {
+        app.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } catch (err) {}
+    }
+
     function startNewRequest() {
+      cancelAutoRetry(false);
+
       customerNameInput.value = '';
       emailInput.value = '';
       deviceInput.value = '';
@@ -2121,6 +2849,7 @@
       latestRequestId = '';
       latestOtp = '';
       latestExpireMinutes = 15;
+      autoRetryCount = 0;
 
       screenButtons.forEach(function(btn) {
         btn.classList.remove('selected');
@@ -2137,6 +2866,7 @@
       updateNoteCount();
       validateRealtime();
       resetResult(true);
+      updateStatus('พร้อมรับรหัส', 'idle');
       showToast('เริ่มใหม่แล้ว');
 
       setTimeout(function() {
@@ -2145,6 +2875,8 @@
     }
 
     function clearDraft() {
+      cancelAutoRetry(false);
+
       try {
         localStorage.removeItem(DRAFT_KEY);
       } catch (err) {}
@@ -2158,6 +2890,7 @@
       latestRequestId = '';
       latestOtp = '';
       latestExpireMinutes = 15;
+      autoRetryCount = 0;
 
       screenButtons.forEach(function(btn) {
         btn.classList.remove('selected');
@@ -2170,6 +2903,7 @@
       updateNoteCount();
       validateRealtime();
       resetResult(true);
+      updateStatus('ล้างข้อมูลแล้ว', 'idle');
       showToast('ล้างแล้ว');
 
       setTimeout(function() {
@@ -2326,6 +3060,128 @@
       }, 1500);
     }
 
+    function updateStatus(text, type) {
+      if (!statusText || !statusDot) return;
+
+      statusText.textContent = text || 'พร้อมรับรหัส';
+
+      statusDot.classList.remove('ok', 'warn', 'bad');
+
+      if (type === 'ok') {
+        statusDot.classList.add('ok');
+      } else if (type === 'warn') {
+        statusDot.classList.add('warn');
+      } else if (type === 'bad') {
+        statusDot.classList.add('bad');
+      }
+    }
+
+    function markLastRequestTime() {
+      lastRequestAt = new Date().toISOString();
+
+      try {
+        localStorage.setItem(LAST_REQUEST_TIME_KEY, lastRequestAt);
+      } catch (err) {}
+
+      updateLastRequestTime();
+    }
+
+    function restoreLastRequestTime() {
+      try {
+        lastRequestAt = localStorage.getItem(LAST_REQUEST_TIME_KEY) || '';
+      } catch (err) {
+        lastRequestAt = '';
+      }
+
+      updateLastRequestTime();
+    }
+
+    function updateLastRequestTime() {
+      if (!lastRequestTime) return;
+
+      if (!lastRequestAt) {
+        lastRequestTime.textContent = 'ยังไม่เคยขอรหัส';
+        return;
+      }
+
+      const d = new Date(lastRequestAt);
+
+      if (isNaN(d.getTime())) {
+        lastRequestTime.textContent = 'ยังไม่เคยขอรหัส';
+        return;
+      }
+
+      lastRequestTime.textContent = 'ขอล่าสุดเมื่อ ' + formatTimeShort(d) + ' น.';
+    }
+
+    function startCooldown(seconds) {
+      seconds = Number(seconds || COOLDOWN_SECONDS);
+      cooldownEndAt = Date.now() + seconds * 1000;
+
+      if (cooldownTimer) clearInterval(cooldownTimer);
+
+      updateCooldownUi();
+
+      cooldownTimer = setInterval(function() {
+        updateCooldownUi();
+
+        if (!isCooldownActive()) {
+          clearInterval(cooldownTimer);
+          cooldownTimer = null;
+          cooldownEndAt = 0;
+          updateCooldownUi();
+        }
+      }, 250);
+    }
+
+    function isCooldownActive() {
+      return cooldownEndAt && Date.now() < cooldownEndAt;
+    }
+
+    function getCooldownLeftSeconds() {
+      if (!isCooldownActive()) return 0;
+      return Math.max(0, Math.ceil((cooldownEndAt - Date.now()) / 1000));
+    }
+
+    function updateCooldownUi() {
+      if (!cooldownBar || !cooldownFill || !submitBtn || !btnText) return;
+
+      if (!isCooldownActive()) {
+        cooldownBar.style.display = 'none';
+        cooldownFill.style.width = '0%';
+
+        if (!isSubmitting) {
+          submitBtn.disabled = false;
+          btnText.textContent = 'รับรหัส';
+        }
+
+        return;
+      }
+
+      const left = getCooldownLeftSeconds();
+      const total = COOLDOWN_SECONDS;
+      const done = Math.max(0, Math.min(100, ((total - left) / total) * 100));
+
+      cooldownBar.style.display = 'block';
+      cooldownFill.style.width = done + '%';
+
+      if (!isSubmitting) {
+        submitBtn.disabled = true;
+        btnText.textContent = 'รอ ' + left + ' วิ';
+      }
+    }
+
+    function createRequestToken() {
+      return [
+        'REQ',
+        Date.now(),
+        Math.random().toString(36).slice(2),
+        customerNameInput.value.trim(),
+        emailInput.value.trim(),
+        selectedScreen
+      ].join('-');
+    }
+
     function createLocalRequestId() {
       const d = new Date();
       const y = String(d.getFullYear()).slice(-2);
@@ -2370,6 +3226,25 @@
 
     function isEmail(value) {
       return /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(String(value || '').trim());
+    }
+
+    function formatTimeShort(date) {
+      try {
+        return new Date(date).toLocaleTimeString('th-TH', {
+          hour: '2-digit',
+          minute: '2-digit'
+        });
+      } catch (err) {
+        return '';
+      }
+    }
+
+    function getClientTimezone() {
+      try {
+        return Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+      } catch (err) {
+        return '';
+      }
     }
   </script>
 </body>
