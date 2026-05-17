@@ -11,6 +11,7 @@
     :root {
       --bg: #040714;
       --bg2: #071634;
+      --card: rgba(4,7,20,0.86);
       --blue: #0063E5;
       --blue2: #174BFF;
       --cyan: #49E8FF;
@@ -28,7 +29,6 @@
       --dark: #040714;
       --border: rgba(184,251,255,0.22);
       --shadow: 0 28px 88px rgba(0,0,0,0.48);
-      --bottom-h: 82px;
     }
 
     * {
@@ -70,14 +70,14 @@
     }
 
     button:disabled {
-      opacity: .46;
+      opacity: .48;
       cursor: not-allowed;
     }
 
     .page {
       position: relative;
       min-height: 100dvh;
-      padding: max(16px, env(safe-area-inset-top)) 14px calc(var(--bottom-h) + 16px + env(safe-area-inset-bottom));
+      padding: max(16px, env(safe-area-inset-top)) 14px calc(18px + env(safe-area-inset-bottom));
       display: flex;
       justify-content: center;
       align-items: center;
@@ -95,7 +95,7 @@
       position: absolute;
       inset: 0;
       pointer-events: none;
-      opacity: .38;
+      opacity: .35;
       background-image:
         radial-gradient(circle, rgba(255,255,255,0.24) 0 1px, transparent 1.7px),
         radial-gradient(circle, rgba(255,214,244,0.16) 0 1.4px, transparent 2px);
@@ -108,7 +108,7 @@
       position: absolute;
       inset: 0;
       pointer-events: none;
-      opacity: .30;
+      opacity: .25;
       background:
         radial-gradient(circle at 22% 28%, rgba(255,255,255,0.10) 0 42px, transparent 43px),
         radial-gradient(circle at 28% 28%, rgba(255,255,255,0.08) 0 23px, transparent 24px),
@@ -183,9 +183,9 @@
       position: relative;
       z-index: 2;
       width: 100%;
-      max-width: 1060px;
+      max-width: 1080px;
       display: grid;
-      grid-template-columns: minmax(0, .92fr) minmax(360px, 486px);
+      grid-template-columns: minmax(0, .88fr) minmax(350px, 500px);
       gap: 22px;
       align-items: center;
     }
@@ -194,7 +194,7 @@
       display: flex;
       flex-direction: column;
       gap: 14px;
-      min-height: 610px;
+      min-height: 560px;
       justify-content: center;
     }
 
@@ -260,7 +260,7 @@
     }
 
     .hero-main {
-      max-width: 620px;
+      max-width: 640px;
       padding: 22px;
       border-radius: 36px;
       background:
@@ -288,21 +288,6 @@
     @keyframes heroShine {
       0%, 58% { transform: translateX(-120%); }
       100% { transform: translateX(120%); }
-    }
-
-    .hero-main:after {
-      content: "";
-      position: absolute;
-      width: 120px;
-      height: 120px;
-      right: -52px;
-      bottom: -56px;
-      border-radius: 999px;
-      background:
-        radial-gradient(circle at 50% 50%, rgba(255,255,255,0.10) 0 38px, transparent 39px),
-        radial-gradient(circle at 74% 31%, rgba(255,255,255,0.10) 0 18px, transparent 19px),
-        radial-gradient(circle at 26% 31%, rgba(255,255,255,0.10) 0 18px, transparent 19px);
-      pointer-events: none;
     }
 
     .badge {
@@ -353,8 +338,8 @@
       font-weight: 540;
     }
 
-    .hero-playground {
-      max-width: 620px;
+    .hero-grid {
+      max-width: 640px;
       display: grid;
       grid-template-columns: 1.08fr .92fr;
       gap: 10px;
@@ -390,7 +375,7 @@
       font-size: 18px;
       line-height: 1.45;
       font-weight: 1000;
-      max-width: 230px;
+      max-width: 260px;
     }
 
     .magic-card span {
@@ -400,7 +385,7 @@
       font-size: 12px;
       line-height: 1.6;
       font-weight: 700;
-      max-width: 270px;
+      max-width: 300px;
     }
 
     .magic-line {
@@ -479,7 +464,7 @@
 
     .latest-card {
       display: none;
-      max-width: 620px;
+      max-width: 640px;
       padding: 13px 14px;
       border-radius: 26px;
       background:
@@ -578,43 +563,27 @@
       box-shadow: 0 10px 24px rgba(184,251,255,0.16);
     }
 
-    .page-dots {
-      display: flex;
-      gap: 7px;
+    .quick-hint {
       margin-bottom: 14px;
-      padding: 0 3px;
+      padding: 12px 13px;
+      border-radius: 22px;
+      color: rgba(255,255,255,0.72);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(184,251,255,0.12), transparent 36%),
+        rgba(255,255,255,0.052);
+      border: 1px solid rgba(255,255,255,0.10);
+      font-size: 12px;
+      line-height: 1.65;
+      font-weight: 750;
     }
 
-    .dot {
-      height: 8px;
-      border-radius: 999px;
-      flex: 1;
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.08);
-      overflow: hidden;
-    }
-
-    .dot.active {
-      background: linear-gradient(90deg, var(--cyan2), #FFFFFF, var(--pink));
-      box-shadow: 0 0 18px rgba(184,251,255,0.22);
-    }
-
-    .view {
-      display: none;
-      animation: viewIn .22s ease both;
-    }
-
-    .view.active {
-      display: block;
-    }
-
-    @keyframes viewIn {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
+    .form-grid {
+      display: grid;
+      gap: 13px;
     }
 
     .field {
-      margin-bottom: 13px;
+      margin: 0;
     }
 
     .label {
@@ -684,7 +653,7 @@
     }
 
     textarea {
-      min-height: 98px;
+      min-height: 86px;
       resize: vertical;
       padding: 13px 15px;
       line-height: 1.65;
@@ -729,98 +698,6 @@
 
     .validation-msg.bad {
       color: var(--danger);
-    }
-
-    .guide-panel {
-      margin: 14px 0 0;
-      padding: 13px;
-      border-radius: 26px;
-      background:
-        radial-gradient(circle at 0% 0%, rgba(184,251,255,0.13), transparent 36%),
-        radial-gradient(circle at 100% 0%, rgba(255,214,244,0.14), transparent 38%),
-        linear-gradient(135deg, rgba(255,255,255,0.074), rgba(255,255,255,0.038));
-      border: 1px solid rgba(255,255,255,0.11);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .guide-panel:before {
-      content: "";
-      position: absolute;
-      width: 86px;
-      height: 86px;
-      right: -42px;
-      top: -42px;
-      border-radius: 999px;
-      background: rgba(255,214,244,0.16);
-      pointer-events: none;
-    }
-
-    .guide-title {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      margin-bottom: 10px;
-      color: #FFFFFF;
-      font-size: 13px;
-      font-weight: 1000;
-      position: relative;
-      z-index: 1;
-    }
-
-    .guide-title span {
-      color: rgba(255,255,255,0.52);
-      font-size: 10px;
-      font-weight: 800;
-    }
-
-    .usage-list {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      gap: 8px;
-    }
-
-    .usage-item {
-      display: grid;
-      grid-template-columns: 34px 1fr;
-      gap: 10px;
-      align-items: start;
-      padding: 10px;
-      border-radius: 19px;
-      background: rgba(255,255,255,0.055);
-      border: 1px solid rgba(255,255,255,0.09);
-    }
-
-    .usage-no {
-      width: 34px;
-      height: 34px;
-      border-radius: 14px;
-      display: grid;
-      place-items: center;
-      color: var(--dark);
-      background: linear-gradient(135deg, var(--cyan2), #FFFFFF 52%, var(--pink));
-      font-size: 14px;
-      font-weight: 1000;
-      box-shadow: 0 10px 20px rgba(184,251,255,0.12);
-    }
-
-    .usage-text strong {
-      display: block;
-      color: #FFFFFF;
-      font-size: 12.5px;
-      line-height: 1.45;
-      font-weight: 1000;
-    }
-
-    .usage-text span {
-      display: block;
-      margin-top: 3px;
-      color: rgba(255,255,255,0.58);
-      font-size: 11px;
-      line-height: 1.55;
-      font-weight: 700;
     }
 
     .quick-device-grid {
@@ -904,7 +781,7 @@
       font-weight: 760;
     }
 
-    .main-actions {
+    .actions {
       display: grid;
       grid-template-columns: 1fr auto;
       gap: 10px;
@@ -978,6 +855,7 @@
     }
 
     .result-box {
+      display: none;
       margin-top: 14px;
       border-radius: 30px;
       padding: 18px;
@@ -1045,7 +923,7 @@
 
     .result-message {
       margin: 9px auto 0;
-      max-width: 360px;
+      max-width: 380px;
       color: rgba(255,255,255,0.72);
       font-size: 14px;
       line-height: 1.7;
@@ -1072,7 +950,7 @@
 
     .otp-safe {
       margin: 13px auto 0;
-      max-width: 380px;
+      max-width: 400px;
       padding: 12px 14px;
       border-radius: 22px;
       color: rgba(217,250,255,0.96);
@@ -1089,7 +967,7 @@
     .otp-box {
       display: none;
       margin: 13px auto 0;
-      max-width: 360px;
+      max-width: 380px;
       padding: 14px;
       border-radius: 26px;
       background:
@@ -1158,66 +1036,10 @@
       font-size: 14px;
     }
 
-    .empty-result {
-      padding: 26px 14px;
-      border-radius: 28px;
-      background:
-        radial-gradient(circle at 50% 0%, rgba(184,251,255,0.09), transparent 42%),
-        rgba(255,255,255,0.052);
-      border: 1px solid rgba(255,255,255,0.10);
-      text-align: center;
-      color: rgba(255,255,255,0.68);
-      font-size: 14px;
-      line-height: 1.75;
-      font-weight: 720;
-    }
-
-    .bottom-nav {
-      position: fixed;
-      left: 50%;
-      bottom: calc(12px + env(safe-area-inset-bottom));
-      transform: translateX(-50%);
-      z-index: 60;
-      width: min(520px, calc(100vw - 24px));
-      min-height: 66px;
-      padding: 8px;
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 7px;
-      border-radius: 28px;
-      background: rgba(4,7,20,0.84);
-      border: 1px solid rgba(184,251,255,0.18);
-      box-shadow: 0 18px 54px rgba(0,0,0,0.34);
-      backdrop-filter: blur(22px);
-    }
-
-    .nav-btn {
-      min-height: 50px;
-      border-radius: 21px;
-      color: rgba(255,255,255,0.62);
-      background: transparent;
-      display: grid;
-      place-items: center;
-      gap: 2px;
-      font-size: 11px;
-      font-weight: 850;
-    }
-
-    .nav-icon {
-      font-size: 18px;
-      line-height: 1;
-      font-weight: 1000;
-    }
-
-    .nav-btn.active {
-      color: #040714;
-      background: linear-gradient(135deg, var(--cyan2), #FFFFFF 52%, var(--pink));
-    }
-
     .toast {
       position: fixed;
       left: 50%;
-      bottom: calc(var(--bottom-h) + 18px + env(safe-area-inset-bottom));
+      bottom: calc(18px + env(safe-area-inset-bottom));
       transform: translateX(-50%) translateY(20px);
       z-index: 80;
       max-width: calc(100vw - 28px);
@@ -1323,7 +1145,7 @@
       }
 
       .wrap {
-        max-width: 580px;
+        max-width: 590px;
         display: flex;
         flex-direction: column;
         align-items: stretch;
@@ -1356,29 +1178,15 @@
         letter-spacing: -1.4px;
       }
 
-      .hero-playground {
+      .hero-grid {
         grid-template-columns: 1fr;
       }
     }
 
-    @media (max-width: 560px) {
-      .usage-list {
-        gap: 7px;
-      }
-
-      .usage-item {
-        padding: 9px;
-      }
-    }
-
     @media (max-width: 430px) {
-      :root {
-        --bottom-h: 78px;
-      }
-
       .page {
         min-height: 100svh;
-        padding: 10px 12px calc(var(--bottom-h) + 10px + env(safe-area-inset-bottom));
+        padding: 10px 12px calc(12px + env(safe-area-inset-bottom));
       }
 
       .wrap {
@@ -1426,7 +1234,7 @@
       }
 
       .magic-card {
-        min-height: 130px;
+        min-height: 126px;
         border-radius: 24px;
         padding: 14px;
       }
@@ -1474,8 +1282,14 @@
         display: none;
       }
 
-      .field {
-        margin-bottom: 10px;
+      .quick-hint {
+        font-size: 11px;
+        border-radius: 18px;
+        padding: 10px 11px;
+      }
+
+      .form-grid {
+        gap: 10px;
       }
 
       .label {
@@ -1491,7 +1305,7 @@
       }
 
       textarea {
-        min-height: 90px;
+        min-height: 78px;
         font-size: 14px;
         border-radius: 17px;
         padding: 10px 12px;
@@ -1517,7 +1331,7 @@
         font-size: 17px;
       }
 
-      .main-actions {
+      .actions {
         grid-template-columns: 1fr;
         gap: 8px;
       }
@@ -1552,17 +1366,8 @@
         line-height: 1.55;
       }
 
-      .bottom-nav {
-        bottom: calc(8px + env(safe-area-inset-bottom));
-        width: calc(100vw - 18px);
-        min-height: 62px;
-        border-radius: 24px;
-      }
-
-      .nav-btn {
-        min-height: 46px;
-        border-radius: 18px;
-        font-size: 10px;
+      .toast {
+        bottom: calc(12px + env(safe-area-inset-bottom));
       }
     }
 
@@ -1570,6 +1375,11 @@
       h1 {
         font-size: 23px;
         letter-spacing: -.8px;
+      }
+
+      .otp-code {
+        font-size: 32px;
+        letter-spacing: 5px;
       }
     }
 
@@ -1613,31 +1423,31 @@
             รับรหัส<span class="gradient-text">ดิสนีย์</span>
           </h1>
           <p class="lead">
-            กรอกข้อมูลให้ตรงรายการ แล้วรับรหัส OTP ได้ทันที
+            กรอกข้อมูลในหน้าเดียว แล้วกดรับรหัส ระบบจะแสดง OTP บนหน้าเว็บทันทีเมื่อพบรหัส
           </p>
         </div>
 
-        <div class="hero-playground">
+        <div class="hero-grid">
           <div class="magic-card">
-            <strong>พร้อมรับรหัสในไม่กี่ขั้นตอน</strong>
-            <span>กรอกชื่อ LINE อีเมล อุปกรณ์ และจอให้ตรงกับรายการเพื่อให้ตรวจสอบได้รวดเร็ว</span>
+            <strong>ใช้งานง่ายขึ้นในหน้าเดียว</strong>
+            <span>กรอกชื่อ LINE อีเมล อุปกรณ์ และเลือกจอ จากนั้นกดรับรหัสได้เลย</span>
             <div class="magic-line"></div>
           </div>
 
           <div class="mini-stack">
             <div class="mini-bubble">
-              <div class="mini-bubble-icon">✦</div>
+              <div class="mini-bubble-icon">1</div>
               <div>
-                <strong>ข้อมูลตรงรายการ</strong>
-                <span>ช่วยให้รับรหัสไวขึ้น</span>
+                <strong>กรอกข้อมูล</strong>
+                <span>ใช้ข้อมูลให้ตรงรายการ</span>
               </div>
             </div>
 
             <div class="mini-bubble">
               <div class="mini-bubble-icon">✓</div>
               <div>
-                <strong>คัดลอก OTP ได้เลย</strong>
-                <span>หลังระบบพบรหัส</span>
+                <strong>แสดง OTP ทันที</strong>
+                <span>คัดลอกรหัสได้เลย</span>
               </div>
             </div>
           </div>
@@ -1653,19 +1463,17 @@
       <div class="app-card" id="app">
         <div class="app-top">
           <div>
-            <h2 id="pageTitle">กรอกข้อมูล</h2>
-            <p id="pageSub">ตรวจสอบตามข้อมูลจริง</p>
+            <h2>รับรหัส OTP</h2>
+            <p>กรอกให้ครบในหน้าเดียว แล้วกดรับรหัส</p>
           </div>
           <div class="status-pill">D+</div>
         </div>
 
-        <div class="page-dots">
-          <div class="dot active" data-view="info"></div>
-          <div class="dot" data-view="check"></div>
-          <div class="dot" data-view="result"></div>
+        <div class="quick-hint">
+          ทำง่าย ๆ: กรอกชื่อ LINE + อีเมล + อุปกรณ์ + เลือกจอ แล้วกดปุ่ม “รับรหัส” รหัสจะแสดงด้านล่างทันทีเมื่อระบบพบ OTP
         </div>
 
-        <section class="view active" id="viewInfo">
+        <div class="form-grid">
           <div class="field">
             <div class="label">
               <span class="label-main"><span class="label-dot"></span>ชื่อ LINE</span>
@@ -1684,46 +1492,6 @@
             <div class="validation-msg" id="emailValidation">กรอกอีเมลก่อน</div>
           </div>
 
-          <div class="guide-panel">
-            <div class="guide-title">
-              วิธีใช้งาน
-              <span>ทำตามลำดับ 1–2–3</span>
-            </div>
-
-            <div class="usage-list">
-              <div class="usage-item">
-                <div class="usage-no">1</div>
-                <div class="usage-text">
-                  <strong>กรอกชื่อ LINE และอีเมล</strong>
-                  <span>ใช้ข้อมูลให้ตรงกับรายการที่สั่งซื้อ</span>
-                </div>
-              </div>
-
-              <div class="usage-item">
-                <div class="usage-no">2</div>
-                <div class="usage-text">
-                  <strong>เลือกอุปกรณ์และจอ</strong>
-                  <span>เลือกให้ตรงกับเครื่องที่ต้องการใช้งาน</span>
-                </div>
-              </div>
-
-              <div class="usage-item">
-                <div class="usage-no">3</div>
-                <div class="usage-text">
-                  <strong>กดรับรหัส OTP</strong>
-                  <span>เมื่อพบรหัสแล้วสามารถคัดลอกไปใช้ได้ทันที</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="main-actions">
-            <button class="btn-primary" onclick="goNextFromInfo()" type="button">ต่อไป</button>
-            <button class="btn-secondary" onclick="clearDraft()" type="button">ล้าง</button>
-          </div>
-        </section>
-
-        <section class="view" id="viewCheck">
           <div class="field">
             <div class="label">
               <span class="label-main"><span class="label-dot"></span>อุปกรณ์</span>
@@ -1766,66 +1534,44 @@
             <textarea id="customerNote" placeholder="กรอกข้อมูลตามจริง เนื่องจากสามารถตรวจสอบได้" maxlength="700"></textarea>
             <div class="note-count" id="noteCount">0/700</div>
           </div>
+        </div>
 
-          <div class="main-actions">
-            <button class="btn-primary" id="submitBtn" onclick="submitRequest()" type="button">
-              <span id="btnText">รับรหัส</span>
-            </button>
-            <button class="btn-secondary" onclick="goView('info')" type="button">กลับ</button>
+        <div class="actions">
+          <button class="btn-primary" id="submitBtn" onclick="submitRequest()" type="button">
+            <span id="btnText">รับรหัส</span>
+          </button>
+          <button class="btn-secondary" onclick="clearDraft()" type="button">ล้าง</button>
+        </div>
+
+        <div class="privacy" id="autosaveText">บันทึกแบบร่างแล้ว</div>
+
+        <div class="result-box" id="resultBox">
+          <div class="result-icon" id="resultIcon">✓</div>
+          <h3 class="result-title" id="resultTitle">รหัส OTP</h3>
+          <div class="result-message" id="resultMessage">เรียบร้อย</div>
+          <div class="request-id" id="requestIdBox">เลขอ้างอิง: -</div>
+
+          <div class="otp-safe" id="otpSafeBox">
+            ยังไม่พบรหัส ลองใหม่อีกครั้ง
           </div>
 
-          <div class="privacy" id="autosaveText">บันทึกแบบร่างแล้ว</div>
-        </section>
-
-        <section class="view" id="viewResult">
-          <div class="empty-result" id="emptyResult">
-            ยังไม่มีรหัส<br>
-            กรอกข้อมูลก่อน
-          </div>
-
-          <div class="result-box" id="resultBox" style="display:none;">
-            <div class="result-icon" id="resultIcon">✓</div>
-            <h3 class="result-title" id="resultTitle">รหัส OTP</h3>
-            <div class="result-message" id="resultMessage">เรียบร้อย</div>
-            <div class="request-id" id="requestIdBox">เลขอ้างอิง: -</div>
-
-            <div class="otp-safe" id="otpSafeBox">
-              ยังไม่พบรหัส ลองใหม่อีกครั้ง
-            </div>
-
-            <div class="otp-box" id="otpBox">
-              <div class="otp-label">OTP</div>
-              <div class="otp-code" id="otpCode">------</div>
-              <div class="otp-note" id="otpExpireNote">ใช้ภายใน 15 นาที</div>
-              <div class="copy-area">
-                <button class="btn-copy" id="copyOtpBtn" onclick="copyOtp()" type="button">คัดลอกรหัส</button>
-              </div>
-            </div>
-
-            <div class="result-actions">
-              <button class="btn-primary" onclick="requestNewOtp()" type="button">ขอรหัสใหม่</button>
-              <button class="btn-secondary" onclick="goHome()" type="button">หน้าหลัก</button>
+          <div class="otp-box" id="otpBox">
+            <div class="otp-label">OTP</div>
+            <div class="otp-code" id="otpCode">------</div>
+            <div class="otp-note" id="otpExpireNote">ใช้ภายใน 15 นาที</div>
+            <div class="copy-area">
+              <button class="btn-copy" id="copyOtpBtn" onclick="copyOtp()" type="button">คัดลอกรหัส</button>
             </div>
           </div>
-        </section>
+
+          <div class="result-actions">
+            <button class="btn-primary" onclick="requestNewOtp()" type="button">ขอรหัสใหม่</button>
+            <button class="btn-secondary" onclick="startNewRequest()" type="button">เริ่มใหม่</button>
+          </div>
+        </div>
       </div>
     </section>
   </main>
-
-  <nav class="bottom-nav" aria-label="เมนูหลัก">
-    <button type="button" class="nav-btn active" data-view="info" onclick="goView('info')">
-      <span class="nav-icon">⌂</span>
-      <span>ข้อมูล</span>
-    </button>
-    <button type="button" class="nav-btn" data-view="check" onclick="goView('check')">
-      <span class="nav-icon">◎</span>
-      <span>ตรวจสอบ</span>
-    </button>
-    <button type="button" class="nav-btn" data-view="result" onclick="goView('result')">
-      <span class="nav-icon">✓</span>
-      <span>รหัส</span>
-    </button>
-  </nav>
 
   <div class="loading-overlay" id="loadingOverlay">
     <div class="loading-card">
@@ -1843,9 +1589,9 @@
     const SHOP_LINE_NAME = '426 SHOP';
     const SHOP_SUBTITLE = 'รับรหัส OTP';
     const REQUEST_TIMEOUT_MS = 18000;
-    const DRAFT_KEY = 'disneyOtpCenterDraftV8';
-    const HISTORY_KEY = 'disneyOtpCenterLatestV8';
-    const HISTORY_LIST_KEY = 'disneyOtpCenterListV8';
+    const DRAFT_KEY = 'disneyOtpSimpleDraftV1';
+    const HISTORY_KEY = 'disneyOtpSimpleLatestV1';
+    const HISTORY_LIST_KEY = 'disneyOtpSimpleListV1';
 
     let selectedScreen = '';
     let selectedDeviceQuick = '';
@@ -1854,11 +1600,9 @@
     let loadingTextTimer = null;
     let loadingTextIndex = 0;
     let autosaveTimer = null;
-    let lastSummaryText = '';
     let latestRequestId = '';
     let latestOtp = '';
     let latestExpireMinutes = 15;
-    let currentView = 'info';
 
     const loadingMessages = [
       'กำลังตรวจสอบ...',
@@ -1867,26 +1611,9 @@
       'กำลังแสดงผล...'
     ];
 
-    const pageCopy = {
-      info: {
-        title: 'กรอกข้อมูล',
-        sub: 'ตรวจสอบตามข้อมูลจริง'
-      },
-      check: {
-        title: 'เลือกข้อมูล',
-        sub: 'อุปกรณ์ จอ และหมายเหตุ'
-      },
-      result: {
-        title: 'รหัส OTP',
-        sub: 'คัดลอกรหัสได้เลย'
-      }
-    };
-
     const app = document.getElementById('app');
     const brandTitle = document.getElementById('brandTitle');
     const brandSub = document.getElementById('brandSub');
-    const pageTitle = document.getElementById('pageTitle');
-    const pageSub = document.getElementById('pageSub');
     const customerNameInput = document.getElementById('customerName');
     const emailInput = document.getElementById('email');
     const deviceInput = document.getElementById('device');
@@ -1894,7 +1621,6 @@
     const submitBtn = document.getElementById('submitBtn');
     const btnText = document.getElementById('btnText');
     const resultBox = document.getElementById('resultBox');
-    const emptyResult = document.getElementById('emptyResult');
     const resultIcon = document.getElementById('resultIcon');
     const resultTitle = document.getElementById('resultTitle');
     const resultMessage = document.getElementById('resultMessage');
@@ -1928,7 +1654,6 @@
     updateNoteCount();
     validateRealtime();
     bindEvents();
-    goView('info', true);
 
     function bindEvents() {
       [customerNameInput, emailInput, deviceInput, customerNoteInput].forEach(function(input) {
@@ -1941,11 +1666,7 @@
 
         input.addEventListener('keydown', function(e) {
           if (e.key === 'Enter' && input !== customerNoteInput) {
-            if (currentView === 'info') {
-              goNextFromInfo();
-            } else if (currentView === 'check') {
-              submitRequest();
-            }
+            submitRequest();
           }
         });
 
@@ -1990,69 +1711,6 @@
       return hasValidInfo() && device.length >= 2 && !!selectedScreen;
     }
 
-    function goNextFromInfo() {
-      if (!hasValidInfo()) {
-        showToast('กรอกชื่อ LINE และอีเมลก่อน');
-        validateRealtime();
-
-        if (!customerNameInput.value.trim()) {
-          try { customerNameInput.focus(); } catch (err) {}
-        } else {
-          try { emailInput.focus(); } catch (err) {}
-        }
-
-        return;
-      }
-
-      goView('check');
-    }
-
-    function goView(viewName, silent) {
-      const targetView = viewName || 'info';
-
-      if ((targetView === 'check' || targetView === 'result') && !hasValidInfo()) {
-        currentView = 'info';
-        showToast('กรอกชื่อ LINE และอีเมลก่อน');
-        validateRealtime();
-
-        if (!customerNameInput.value.trim()) {
-          try { customerNameInput.focus(); } catch (err) {}
-        } else {
-          try { emailInput.focus(); } catch (err) {}
-        }
-
-        viewName = 'info';
-      }
-
-      currentView = viewName || 'info';
-
-      document.querySelectorAll('.view').forEach(function(view) {
-        view.classList.remove('active');
-      });
-
-      document.querySelectorAll('.nav-btn').forEach(function(btn) {
-        btn.classList.toggle('active', btn.getAttribute('data-view') === currentView);
-      });
-
-      document.querySelectorAll('.dot').forEach(function(dot) {
-        dot.classList.toggle('active', dot.getAttribute('data-view') === currentView);
-      });
-
-      const target = document.getElementById('view' + capitalize(currentView));
-      if (target) target.classList.add('active');
-
-      pageTitle.textContent = pageCopy[currentView].title;
-      pageSub.textContent = pageCopy[currentView].sub;
-
-      if (!silent) {
-        setTimeout(function() {
-          try {
-            app.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          } catch (err) {}
-        }, 50);
-      }
-    }
-
     function submitRequest() {
       const customerName = customerNameInput.value.trim();
       const email = emailInput.value.trim();
@@ -2068,37 +1726,27 @@
 
       if (!customerName || customerName.length < 2) {
         showToast('กรอกชื่อ LINE ก่อน');
-        goView('info');
-        setTimeout(function() {
-          try { customerNameInput.focus(); } catch (err) {}
-        }, 120);
         validateRealtime();
+        focusInput(customerNameInput);
         return;
       }
 
       if (!email || !isEmail(email)) {
         showToast('กรอกอีเมลก่อน');
-        goView('info');
-        setTimeout(function() {
-          try { emailInput.focus(); } catch (err) {}
-        }, 120);
         validateRealtime();
+        focusInput(emailInput);
         return;
       }
 
-      if (!device) {
+      if (!device || device.length < 2) {
         showToast('กรอกอุปกรณ์ก่อน');
-        goView('check');
-        setTimeout(function() {
-          try { deviceInput.focus(); } catch (err) {}
-        }, 120);
         validateRealtime();
+        focusInput(deviceInput);
         return;
       }
 
       if (!selectedScreen) {
         showToast('เลือกจอก่อน');
-        goView('check');
         validateRealtime();
         return;
       }
@@ -2128,7 +1776,7 @@
         }
 
         if (!res.ok || !res.otp) {
-          showSuccess(
+          showResult(
             res.message || res.savedMessage || 'ยังไม่พบรหัส',
             res.requestId || res.id || '',
             {
@@ -2141,7 +1789,7 @@
           return;
         }
 
-        showSuccess(
+        showResult(
           'พบรหัสแล้ว',
           res.requestId || res.id || '',
           {
@@ -2160,21 +1808,12 @@
     function requestNewOtp() {
       if (!hasValidRequestInfo()) {
         showToast('กรอกข้อมูลให้ครบก่อน');
-        if (!hasValidInfo()) {
-          goView('info');
-        } else {
-          goView('check');
-        }
         validateRealtime();
         return;
       }
 
       showToast('กำลังขอรหัสใหม่');
       submitRequest();
-    }
-
-    function goHome() {
-      goView('info');
     }
 
     function jsonpRequest(params, onSuccess, onError) {
@@ -2233,7 +1872,7 @@
       document.body.appendChild(script);
     }
 
-    function showSuccess(message, requestId, otpData) {
+    function showResult(message, requestId, otpData) {
       const finalRequestId = requestId || createLocalRequestId();
       const hasOtp =
         otpData &&
@@ -2244,11 +1883,9 @@
       latestRequestId = finalRequestId;
       latestOtp = hasOtp ? String(otpData.otp || '').trim() : '';
       latestExpireMinutes = otpData && otpData.expireMinutes ? otpData.expireMinutes : 15;
-      lastSummaryText = buildSummaryText(finalRequestId);
 
       saveLatestHistory(finalRequestId, hasOtp ? 'พบรหัส' : 'รอรหัส');
 
-      if (emptyResult) emptyResult.style.display = 'none';
       resultBox.style.display = 'block';
       resultIcon.textContent = hasOtp ? '✓' : '!';
       resultTitle.textContent = hasOtp ? 'รหัส OTP' : 'ยังไม่พบรหัส';
@@ -2274,11 +1911,13 @@
         localStorage.removeItem(DRAFT_KEY);
       } catch (err) {}
 
-      goView('result');
+      scrollToResult();
     }
 
     function showError(message) {
-      if (emptyResult) emptyResult.style.display = 'none';
+      latestRequestId = '';
+      latestOtp = '';
+
       resultBox.style.display = 'block';
       resultIcon.textContent = '!';
       resultTitle.textContent = 'รับรหัสไม่ได้';
@@ -2287,12 +1926,11 @@
       otpBox.style.display = 'none';
       otpSafeBox.style.display = 'none';
       showToast(message || 'รับรหัสไม่ได้');
-      goView('result');
+      scrollToResult();
     }
 
     function resetResult(clearAll) {
       if (clearAll) {
-        if (emptyResult) emptyResult.style.display = 'block';
         resultBox.style.display = 'none';
       }
 
@@ -2419,18 +2057,6 @@
       });
     }
 
-    function buildSummaryText(requestId) {
-      return [
-        '426 SHOP',
-        'เลขอ้างอิง: ' + (requestId || '-'),
-        'ชื่อ LINE: ' + (customerNameInput.value.trim() || '-'),
-        'อีเมล: ' + (emailInput.value.trim() || '-'),
-        'อุปกรณ์: ' + (deviceInput.value.trim() || '-'),
-        'จอ: ' + (selectedScreen ? selectedScreen : '-'),
-        'หมายเหตุ: ' + (customerNoteInput.value.trim() || '-')
-      ].join('\n');
-    }
-
     function copyOtp() {
       if (!latestOtp) {
         showToast('ยังไม่มีรหัส');
@@ -2492,7 +2118,6 @@
       customerNoteInput.value = '';
       selectedScreen = '';
       selectedDeviceQuick = '';
-      lastSummaryText = '';
       latestRequestId = '';
       latestOtp = '';
       latestExpireMinutes = 15;
@@ -2513,10 +2138,9 @@
       validateRealtime();
       resetResult(true);
       showToast('เริ่มใหม่แล้ว');
-      goView('info');
 
       setTimeout(function() {
-        try { customerNameInput.focus(); } catch (err) {}
+        focusInput(customerNameInput);
       }, 150);
     }
 
@@ -2531,7 +2155,6 @@
       customerNoteInput.value = '';
       selectedScreen = '';
       selectedDeviceQuick = '';
-      lastSummaryText = '';
       latestRequestId = '';
       latestOtp = '';
       latestExpireMinutes = 15;
@@ -2548,7 +2171,10 @@
       validateRealtime();
       resetResult(true);
       showToast('ล้างแล้ว');
-      goView('info');
+
+      setTimeout(function() {
+        focusInput(customerNameInput);
+      }, 150);
     }
 
     function saveDraftSoon() {
@@ -2712,6 +2338,25 @@
       return 'OTP-' + y + m + day + '-' + h + min + '-' + rand;
     }
 
+    function scrollToResult() {
+      setTimeout(function() {
+        try {
+          resultBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } catch (err) {
+          try {
+            app.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          } catch (e) {}
+        }
+      }, 80);
+    }
+
+    function focusInput(input) {
+      try {
+        input.focus();
+        input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } catch (err) {}
+    }
+
     function showToast(message) {
       toast.textContent = message || 'เรียบร้อย';
       toast.classList.add('show');
@@ -2725,11 +2370,6 @@
 
     function isEmail(value) {
       return /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(String(value || '').trim());
-    }
-
-    function capitalize(value) {
-      value = String(value || '');
-      return value.charAt(0).toUpperCase() + value.slice(1);
     }
   </script>
 </body>
