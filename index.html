@@ -1993,11 +1993,11 @@
           <div class="request-id" id="requestIdBox">เลขอ้างอิง: -</div>
 
           <div class="otp-safe" id="otpSafeBox">
-            ยังไม่พบรหัส OTP ในเมลล่าสุด กรุณารอ 10–30 วินาที แล้วกดขอรหัสใหม่
+            ยังไม่พบรหัส OTP ในเมลล่าสุด กรุณารอ 3–10 วินาที ระบบจะลองใหม่ให้อัตโนมัติ
           </div>
 
           <div class="auto-retry-box" id="autoRetryBox">
-            <div class="auto-retry-title" id="autoRetryTitle">ลองอีกครั้งอัตโนมัติใน 10 วินาที</div>
+            <div class="auto-retry-title" id="autoRetryTitle">ลองอีกครั้งอัตโนมัติใน 3 วินาที</div>
             <div class="auto-retry-sub">ระบบจะลองค้นหา OTP ใหม่ให้อัตโนมัติ ลูกค้าไม่ต้องกดรัว</div>
             <div class="auto-retry-actions">
               <button class="btn-primary" id="retryNowBtn" onclick="retryNow()" type="button">ลองตอนนี้</button>
@@ -2040,14 +2040,24 @@
     const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwe24EQaOFwra5jexOMg7VY5yskHBlbnqEW2E2VP35IMVfJERqY3tge-YHJt-iKvpF8kA/exec';
     const SHOP_LINE_NAME = '426 SHOP';
     const SHOP_SUBTITLE = 'รับรหัส OTP';
-    const REQUEST_TIMEOUT_MS = 18000;
-    const DRAFT_KEY = 'disneyOtpSimpleDraftV2';
-    const HISTORY_KEY = 'disneyOtpSimpleLatestV2';
-    const HISTORY_LIST_KEY = 'disneyOtpSimpleListV2';
-    const LAST_REQUEST_TIME_KEY = 'disneyOtpLastRequestTimeV2';
-    const AUTO_RETRY_SECONDS = 10;
-    const COOLDOWN_SECONDS = 15;
-    const MAX_AUTO_RETRY_COUNT = 2;
+
+    /*
+      FAST MODE UPDATE
+      - ลด timeout จาก 18 วิ เหลือ 12 วิ
+      - ลด auto retry จาก 10 วิ เหลือ 3 วิ
+      - ลด cooldown จาก 15 วิ เหลือ 4 วิ
+      - เพิ่มจำนวนลองซ้ำอัตโนมัติจาก 2 เป็น 4
+      - ส่งพารามิเตอร์ fast/preferLatest/cacheBust ให้ backend ใช้ค้นหาแบบเร็วได้ ถ้า backend รองรับ
+    */
+    const REQUEST_TIMEOUT_MS = 12000;
+    const DRAFT_KEY = 'disneyOtpSimpleDraftV3Fast';
+    const HISTORY_KEY = 'disneyOtpSimpleLatestV3Fast';
+    const HISTORY_LIST_KEY = 'disneyOtpSimpleListV3Fast';
+    const LAST_REQUEST_TIME_KEY = 'disneyOtpLastRequestTimeV3Fast';
+    const AUTO_RETRY_SECONDS = 3;
+    const COOLDOWN_SECONDS = 4;
+    const MAX_AUTO_RETRY_COUNT = 4;
+    const LOADING_MESSAGE_INTERVAL_MS = 550;
 
     let selectedScreen = '';
     let selectedDeviceQuick = '';
@@ -2070,8 +2080,8 @@
 
     const loadingMessages = [
       'ตรวจสอบข้อมูล',
-      'กำลังค้นหารหัส',
-      'กำลังรับ OTP',
+      'ค้นหาเมลล่าสุด',
+      'ดึง OTP แบบเร็ว',
       'กำลังแสดงผล'
     ];
 
@@ -2130,7 +2140,7 @@
     updateNoteCount();
     validateRealtime();
     bindEvents();
-    updateStatus('พร้อมรับรหัส', 'idle');
+    updateStatus('พร้อมรับรหัสแบบเร็ว', 'idle');
 
     function applyAutoTheme() {
       const hour = new Date().getHours();
@@ -2282,10 +2292,16 @@
       markLastRequestTime();
       startCooldown(COOLDOWN_SECONDS);
       setLoading(true);
-      updateStatus(isAutoRetry ? 'กำลังลองค้นหารหัสอีกครั้ง' : 'กำลังค้นหารหัส', 'idle');
+      updateStatus(isAutoRetry ? 'กำลังลองค้นหารหัสอีกครั้งแบบเร็ว' : 'กำลังค้นหารหัสแบบเร็ว', 'idle');
 
       jsonpRequest({
         action: 'otp',
+        fast: '1',
+        clientFastMode: '1',
+        preferLatest: '1',
+        noFallbackRaw: '1',
+        maxAgeMinutes: '30',
+        cacheBust: Date.now(),
         customerName: customerName,
         name: customerName,
         lineName: customerName,
@@ -2328,7 +2344,7 @@
               note: res.note || ''
             }
           );
-          updateStatus('ยังไม่พบรหัส', 'warn');
+          updateStatus('ยังไม่พบรหัส กำลังเตรียมลองใหม่', 'warn');
           return;
         }
 
@@ -2500,6 +2516,7 @@
         }
       }
 
+      script.async = true;
       script.src = url;
       document.body.appendChild(script);
     }
@@ -2539,7 +2556,7 @@
         otpCode.textContent = '------';
         otpBox.style.display = 'none';
         otpSafeBox.style.display = 'block';
-        otpSafeBox.textContent = message || 'ยังไม่พบรหัส OTP ในเมลล่าสุด กรุณารอ 10–30 วินาที แล้วกดขอรหัสใหม่';
+        otpSafeBox.textContent = message || 'ยังไม่พบรหัส OTP ในเมลล่าสุด กรุณารอ 3–10 วินาที ระบบจะลองใหม่ให้อัตโนมัติ';
         showToast('ยังไม่พบรหัส');
         startAutoRetry();
       }
@@ -2557,7 +2574,7 @@
       if (message) {
         lines.push(message);
       } else {
-        lines.push(hasOtp ? 'พบรหัสแล้ว' : 'ยังไม่พบรหัส OTP ในเมลล่าสุด กรุณารอ 10–30 วินาที แล้วกดขอรหัสใหม่');
+        lines.push(hasOtp ? 'พบรหัสแล้ว' : 'ยังไม่พบรหัส OTP ในเมลล่าสุด กรุณารอ 3–10 วินาที ระบบจะลองใหม่ให้อัตโนมัติ');
       }
 
       if (otpData && otpData.thaiTime) {
@@ -2596,10 +2613,10 @@
       }
 
       if (status === 'OTP_NOT_FOUND') {
-        return 'ยังไม่พบรหัส OTP ในเมลล่าสุด กรุณารอ 10–30 วินาที แล้วกดขอรหัสใหม่';
+        return 'ยังไม่พบรหัส OTP ในเมลล่าสุด กรุณารอ 3–10 วินาที ระบบจะลองใหม่ให้อัตโนมัติ';
       }
 
-      if (status === 'MAILY_ERROR') {
+      if (status === 'MAILY_ERROR' || status === 'GMAIL_ERROR') {
         return 'ระบบเช็ก OTP ไม่สำเร็จ กรุณาลองใหม่อีกครั้ง';
       }
 
@@ -2609,13 +2626,13 @@
 
       if (rawMessage) {
         if (rawMessage.indexOf('ไม่พบ') !== -1) {
-          return 'ยังไม่พบรหัส OTP ในเมลล่าสุด กรุณารอ 10–30 วินาที แล้วกดขอรหัสใหม่';
+          return 'ยังไม่พบรหัส OTP ในเมลล่าสุด กรุณารอ 3–10 วินาที ระบบจะลองใหม่ให้อัตโนมัติ';
         }
 
         return rawMessage;
       }
 
-      return 'ยังไม่พบรหัส OTP ในเมลล่าสุด กรุณารอ 10–30 วินาที แล้วกดขอรหัสใหม่';
+      return 'ยังไม่พบรหัส OTP ในเมลล่าสุด กรุณารอ 3–10 วินาที ระบบจะลองใหม่ให้อัตโนมัติ';
     }
 
     function showError(message) {
@@ -2677,7 +2694,7 @@
         loadingTextIndex = (loadingTextIndex + 1) % loadingMessages.length;
         loadingMessage.textContent = loadingMessages[loadingTextIndex];
         updateStatus(loadingMessages[loadingTextIndex], 'idle');
-      }, 1000);
+      }, LOADING_MESSAGE_INTERVAL_MS);
     }
 
     function hideLoadingOverlay() {
@@ -2866,7 +2883,7 @@
       updateNoteCount();
       validateRealtime();
       resetResult(true);
-      updateStatus('พร้อมรับรหัส', 'idle');
+      updateStatus('พร้อมรับรหัสแบบเร็ว', 'idle');
       showToast('เริ่มใหม่แล้ว');
 
       setTimeout(function() {
@@ -2918,7 +2935,7 @@
 
       autosaveTimer = setTimeout(function() {
         saveDraft();
-      }, 350);
+      }, 250);
     }
 
     function saveDraft() {
@@ -3131,7 +3148,7 @@
           cooldownEndAt = 0;
           updateCooldownUi();
         }
-      }, 250);
+      }, 200);
     }
 
     function isCooldownActive() {
@@ -3221,7 +3238,7 @@
 
       toastTimer = setTimeout(function() {
         toast.classList.remove('show');
-      }, 1800);
+      }, 1600);
     }
 
     function isEmail(value) {
