@@ -24,7 +24,8 @@
       --purple: #a594ff;
       --yellow: #ffe78a;
       --green: #49c994;
-      --red: #ff6e91;
+      --red: #ff2f5f;
+      --redSoft: rgba(255,47,95,.12);
       --orange: #ffad42;
       --white: #ffffff;
 
@@ -48,6 +49,8 @@
       --blue2: #7aa0ff;
       --purple: #b9adff;
       --yellow: #ffe98e;
+      --red: #ff5f7f;
+      --redSoft: rgba(255,95,127,.14);
 
       --border: rgba(255,157,221,.22);
       --border2: rgba(255,255,255,.15);
@@ -1163,7 +1166,7 @@
 
     .status-dot.bad {
       background: var(--red);
-      box-shadow: 0 0 0 5px rgba(255,110,145,.12);
+      box-shadow: 0 0 0 5px var(--redSoft);
     }
 
     .cooldown,
@@ -1420,11 +1423,18 @@
     }
 
     .otp-note {
-      margin-top: 7px;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.5;
-      font-weight: 700;
+      width: fit-content;
+      max-width: 100%;
+      margin: 9px auto 0;
+      padding: 7px 12px;
+      border-radius: 999px;
+      color: var(--red);
+      background: var(--redSoft);
+      border: 1px solid rgba(255,47,95,.28);
+      font-size: 13px;
+      line-height: 1.35;
+      font-weight: 1000;
+      box-shadow: 0 8px 18px rgba(255,47,95,.08);
     }
 
     .soft-alert {
@@ -1708,21 +1718,25 @@
       min-height: 19px;
     }
 
-    .loading-line {
+    .loading-wait-text {
+      width: fit-content;
+      max-width: 100%;
       margin: 13px auto 0;
-      width: 100%;
-      height: 8px;
+      padding: 9px 14px;
       border-radius: 999px;
-      background: rgba(255,139,210,.13);
-      overflow: hidden;
+      color: #c74791;
+      background: rgba(255,139,210,.12);
+      border: 1px solid rgba(255,139,210,.18);
+      font-size: 13px;
+      line-height: 1.35;
+      font-weight: 1000;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.46);
     }
 
-    .loading-line-fill {
-      width: 0%;
-      height: 100%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, var(--pink), var(--purple), var(--blue));
-      transition: width .22s ease;
+    body.theme-night .loading-wait-text {
+      color: var(--pink2);
+      background: rgba(255,157,221,.10);
+      border-color: rgba(255,157,221,.18);
     }
 
     .toast {
@@ -2126,7 +2140,8 @@
       }
 
       .otp-note {
-        font-size: 10.5px;
+        padding: 6px 11px;
+        font-size: 12px;
       }
 
       .soft-alert {
@@ -2213,6 +2228,12 @@
       }
 
       .loading-mini {
+        font-size: 12px;
+      }
+
+      .loading-wait-text {
+        margin-top: 12px;
+        padding: 8px 13px;
         font-size: 12px;
       }
     }
@@ -2528,7 +2549,7 @@
             </li>
             <li>
               <span class="howto-num">6</span>
-              <span>ถ้าเมลนี้เคยรับรหัสของจอเดิมแล้ว ระบบจะไม่ให้รับซ้ำ ต้องติดต่อแอดมิน</span>
+              <span>ถ้ายังไม่พบรหัส ให้กดปุ่มขอรหัสใหม่อีกครั้งเอง</span>
             </li>
           </ul>
         </div>
@@ -2546,9 +2567,7 @@
         </div>
       </div>
       <div class="loading-mini" id="loadingMini">กำลังเริ่มค้นหา</div>
-      <div class="loading-line">
-        <div class="loading-line-fill" id="loadingLineFill"></div>
-      </div>
+      <div class="loading-wait-text" id="loadingWaitText">รอสักครู่นะคะ</div>
     </div>
   </div>
 
@@ -2566,10 +2585,8 @@
     const WEB_TOKEN = '';
     const SERVICE_BRAND = 'disney';
     const REQUEST_TIMEOUT_MS = 15000;
-    const AUTO_RETRY_SECONDS = 3;
-    const MAX_AUTO_RETRY = 3;
     const COOLDOWN_SECONDS = 4;
-    const DRAFT_KEY = 'starHeartOtpEmailScreenBrandLockDraftV7MobilePercent';
+    const DRAFT_KEY = 'starHeartOtpEmailScreenBrandLockDraftV8NoAutoRetry';
 
     /************************************************************
      * STATE
@@ -2583,12 +2600,8 @@
     let jsonpCounter = 0;
     let isSubmitting = false;
     let toastTimer = null;
-    let loadingTimer = null;
     let loadingPercentTimer = null;
     let loadingPercent = 0;
-    let autoRetryTimer = null;
-    let autoRetryCount = 0;
-    let autoRetryLeft = AUTO_RETRY_SECONDS;
     let cooldownTimer = null;
     let cooldownEndAt = 0;
 
@@ -2639,7 +2652,6 @@
     const percentRing = document.getElementById('percentRing');
     const percentNumber = document.getElementById('percentNumber');
     const loadingMini = document.getElementById('loadingMini');
-    const loadingLineFill = document.getElementById('loadingLineFill');
 
     const toast = document.getElementById('toast');
     const confetti = document.getElementById('confetti');
@@ -2766,15 +2778,13 @@
      * MAIN ACTIONS
      ************************************************************/
 
-    function submitRequest(options) {
-      options = options || {};
-
+    function submitRequest() {
       if (isSubmitting) {
         showToast('กำลังค้นหาอยู่');
         return;
       }
 
-      if (!options.bypassCooldown && isCooldownActive()) {
+      if (isCooldownActive()) {
         showToast('รออีก ' + getCooldownLeft() + ' วิ');
         return;
       }
@@ -2793,10 +2803,9 @@
       resetResult(false);
 
       isSubmitting = true;
-      autoRetryCount = options.autoRetry ? autoRetryCount : 0;
 
       setLoading(true);
-      updateStatus(options.autoRetry ? 'ลองใหม่...' : 'กำลังค้นหา...', 'idle');
+      updateStatus('กำลังค้นหา...', 'idle');
       updateSecurityState('checking');
       startCooldown(COOLDOWN_SECONDS);
       markLastRequest();
@@ -2811,11 +2820,12 @@
 
       jsonpRequest(params, function(res) {
         isSubmitting = false;
+
         finishLoadingPercent(function() {
           setLoading(false);
 
           if (!res) {
-            showError('ไม่ได้รับข้อมูลจากระบบ กรุณาลองใหม่อีกครั้ง');
+            showError('ไม่ได้รับข้อมูลจากระบบ กรุณากดขอรหัสใหม่อีกครั้ง');
             return;
           }
 
@@ -2829,7 +2839,7 @@
       }, function() {
         isSubmitting = false;
         setLoading(false);
-        showError('เชื่อมต่อระบบไม่ได้ กรุณาลองใหม่อีกครั้ง');
+        showError('เชื่อมต่อระบบไม่ได้ กรุณากดขอรหัสใหม่อีกครั้ง');
       });
     }
 
@@ -2888,8 +2898,6 @@
     }
 
     function clearForm() {
-      cancelAutoRetry();
-
       customerNameInput.value = '';
       emailInput.value = '';
       deviceInput.value = '';
@@ -2900,7 +2908,6 @@
       latestOtp = '';
       latestRequestId = '';
       latestExpireMinutes = 15;
-      autoRetryCount = 0;
 
       screenButtons.forEach(function(btn) {
         btn.classList.remove('selected');
@@ -2987,7 +2994,7 @@
       } else {
         showSoftAlert(
           'ยังไม่พบ OTP',
-          'หากเพิ่งกดส่งรหัสจาก Disney+ กรุณารอสักครู่ ระบบจะลองค้นหาให้อัตโนมัติ',
+          'กรุณารอสักครู่ แล้วกดปุ่มขอรหัสใหม่อีกครั้งเอง',
           '♡'
         );
         updateSecurityState('waiting');
@@ -2995,11 +3002,6 @@
 
       updateStatus(msg, locked ? 'bad' : 'warn');
       showToast(isScreenLocked(res) ? 'รับซ้ำไม่ได้' : 'ยังไม่พบ OTP');
-
-      if (shouldAutoRetry(res)) {
-        startAutoRetry();
-      }
-
       scrollToResult();
     }
 
@@ -3011,13 +3013,13 @@
 
       resultIcon.textContent = '♡';
       resultTitle.textContent = 'เกิดข้อผิดพลาด';
-      resultMessage.textContent = message || 'กรุณาลองใหม่อีกครั้ง';
+      resultMessage.textContent = message || 'กรุณากดขอรหัสใหม่อีกครั้ง';
       requestIdBox.textContent = 'เลขอ้างอิง: -';
       otpEnvelope.classList.remove('show');
 
       showSoftAlert(
         'ตรวจสอบอีกครั้ง',
-        message || 'กรุณาลองใหม่อีกครั้ง',
+        message || 'กรุณากดขอรหัสใหม่อีกครั้ง',
         '♡'
       );
 
@@ -3054,63 +3056,8 @@
     }
 
     /************************************************************
-     * AUTO RETRY / COOLDOWN
+     * COOLDOWN
      ************************************************************/
-
-    function shouldAutoRetry(res) {
-      if (!res) return false;
-
-      const status = String(res.resultStatus || '');
-
-      if (status === 'SCREEN_ALREADY_USED') return false;
-      if (status === 'OTP_ALREADY_ISSUED') return false;
-      if (status === 'OTP_ALREADY_USED') return false;
-      if (status === 'RATE_LIMITED') return false;
-      if (status === 'INVALID_EMAIL') return false;
-      if (status === 'MISSING_DEVICE') return false;
-      if (status === 'MISSING_SCREEN') return false;
-      if (status === 'INVALID_WEB_TOKEN') return false;
-      if (status === 'INVALID_PIN') return false;
-
-      if (status === 'OTP_NOT_FOUND') return autoRetryCount < MAX_AUTO_RETRY;
-      if (status === 'MAILY_ERROR') return autoRetryCount < MAX_AUTO_RETRY;
-      if (status === '') return autoRetryCount < MAX_AUTO_RETRY;
-
-      return false;
-    }
-
-    function startAutoRetry() {
-      cancelAutoRetry();
-
-      if (autoRetryCount >= MAX_AUTO_RETRY) return;
-
-      autoRetryCount++;
-      autoRetryLeft = AUTO_RETRY_SECONDS;
-
-      updateStatus('ลองใหม่ใน ' + autoRetryLeft + ' วิ', 'warn');
-
-      autoRetryTimer = setInterval(function() {
-        autoRetryLeft--;
-
-        if (autoRetryLeft <= 0) {
-          cancelAutoRetry();
-          submitRequest({
-            autoRetry: true,
-            bypassCooldown: true
-          });
-          return;
-        }
-
-        updateStatus('ลองใหม่ใน ' + autoRetryLeft + ' วิ', 'warn');
-      }, 1000);
-    }
-
-    function cancelAutoRetry() {
-      if (autoRetryTimer) {
-        clearInterval(autoRetryTimer);
-        autoRetryTimer = null;
-      }
-    }
 
     function startCooldown(seconds) {
       cooldownEndAt = Date.now() + Number(seconds || COOLDOWN_SECONDS) * 1000;
@@ -3192,7 +3139,7 @@
 
     function startLoadingPercent() {
       loadingPercent = 0;
-      renderLoadingPercent(0, 'เริ่มค้นหา');
+      renderLoadingPercent(0, 'กำลังเริ่มค้นหา');
 
       if (loadingPercentTimer) {
         clearInterval(loadingPercentTimer);
@@ -3247,7 +3194,6 @@
       percentRing.style.setProperty('--p', value);
       percentNumber.textContent = Math.round(value) + '%';
       loadingMini.textContent = text || 'กำลังค้นหา';
-      loadingLineFill.style.width = value + '%';
     }
 
     /************************************************************
@@ -3485,8 +3431,8 @@
 
       if (state === 'waiting') {
         securityTitle.textContent = 'ยังไม่พบ OTP';
-        securityDetail.textContent = 'ระบบจะลองค้นหาอีกครั้งถ้ายังไม่ถูกล็อก';
-        securityState.textContent = 'รอ OTP';
+        securityDetail.textContent = 'กดปุ่มขอรหัสใหม่อีกครั้งเมื่อต้องการค้นหาใหม่';
+        securityState.textContent = 'รอขอใหม่';
         return;
       }
 
@@ -3663,7 +3609,7 @@
 
     function getFriendlyMessage(res) {
       if (!res) {
-        return 'ไม่พบการตอบกลับจากระบบ กรุณาลองใหม่';
+        return 'ไม่พบการตอบกลับจากระบบ กรุณากดขอรหัสใหม่อีกครั้ง';
       }
 
       const status = String(res.resultStatus || '');
@@ -3706,7 +3652,7 @@
       }
 
       if (status === 'OTP_NOT_FOUND') {
-        return 'ยังไม่พบ OTP ในเมลล่าสุด ระบบจะลองใหม่ให้อัตโนมัติ';
+        return 'ยังไม่พบ OTP กรุณารอสักครู่ แล้วกดขอรหัสใหม่อีกครั้งเอง';
       }
 
       if (status === 'MISSING_MAILY_API_KEY') {
@@ -3714,14 +3660,14 @@
       }
 
       if (status === 'MAILY_ERROR') {
-        return 'ระบบเช็ก OTP ไม่สำเร็จ กรุณาลองใหม่อีกครั้ง';
+        return 'ระบบเช็ก OTP ไม่สำเร็จ กรุณากดขอรหัสใหม่อีกครั้ง';
       }
 
       if (msg) {
         return msg;
       }
 
-      return 'ยังไม่พบรหัส กรุณารอสักครู่แล้วลองใหม่';
+      return 'ยังไม่พบรหัส กรุณากดขอรหัสใหม่อีกครั้ง';
     }
 
     function isScreenLocked(res) {
