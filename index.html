@@ -3,58 +3,57 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#ff9fdc">
+  <meta name="theme-color" content="#f8fbff">
   <meta name="description" content="รับรหัส OTP Disney+">
   <title>รับรหัส OTP</title>
 
   <style>
     :root {
-      --bg1: #fff4fb;
-      --bg2: #edf8ff;
-      --bg3: #f7f1ff;
-
-      --text: #293052;
-      --sub: rgba(41,48,82,.70);
-      --muted: rgba(41,48,82,.48);
-
-      --pink: #ff8bd2;
-      --pink2: #ffd7f0;
-      --blue: #69bdff;
-      --blue2: #3d7cff;
-      --purple: #a594ff;
-      --yellow: #ffe78a;
-      --green: #49c994;
+      --bg1: #f8fbff;
+      --bg2: #ffffff;
+      --bg3: #f4f0ff;
+      --card: rgba(255,255,255,.86);
+      --card2: rgba(255,255,255,.70);
+      --text: #17203a;
+      --sub: rgba(23,32,58,.68);
+      --muted: rgba(23,32,58,.48);
+      --line: rgba(116,143,190,.18);
+      --white: #ffffff;
+      --blue: #5aa7ff;
+      --blue2: #2f6fff;
+      --pink: #ff8ccf;
+      --pink2: #ffe2f4;
+      --purple: #9a8cff;
+      --yellow: #ffe89b;
+      --green: #32bf86;
       --red: #ff2f5f;
       --redSoft: rgba(255,47,95,.12);
       --orange: #ffad42;
-      --white: #ffffff;
-
-      --border: rgba(255,139,210,.22);
-      --border2: rgba(255,255,255,.78);
-      --shadow: 0 24px 66px rgba(106,78,150,.15);
+      --shadow: 0 24px 70px rgba(42,69,120,.12);
+      --shadow2: 0 14px 38px rgba(42,69,120,.10);
     }
 
     body.theme-night {
-      --bg1: #171432;
-      --bg2: #111c3f;
-      --bg3: #21143a;
-
-      --text: #f8f6ff;
-      --sub: rgba(248,246,255,.72);
-      --muted: rgba(248,246,255,.50);
-
-      --pink: #ff9ddd;
-      --pink2: #ffc6ec;
-      --blue: #76c8ff;
-      --blue2: #7aa0ff;
-      --purple: #b9adff;
-      --yellow: #ffe98e;
-      --red: #ff5f7f;
-      --redSoft: rgba(255,95,127,.14);
-
-      --border: rgba(255,157,221,.22);
-      --border2: rgba(255,255,255,.15);
-      --shadow: 0 24px 76px rgba(0,0,0,.34);
+      --bg1: #111827;
+      --bg2: #172033;
+      --bg3: #201a36;
+      --card: rgba(23,32,51,.86);
+      --card2: rgba(255,255,255,.07);
+      --text: #f8fbff;
+      --sub: rgba(248,251,255,.72);
+      --muted: rgba(248,251,255,.50);
+      --line: rgba(255,255,255,.12);
+      --blue: #75bdff;
+      --blue2: #86a6ff;
+      --pink: #ff9fd8;
+      --pink2: rgba(255,159,216,.14);
+      --purple: #b4aaff;
+      --yellow: #ffe89b;
+      --green: #5ee0ad;
+      --red: #ff6f8f;
+      --redSoft: rgba(255,111,143,.14);
+      --shadow: 0 24px 70px rgba(0,0,0,.35);
+      --shadow2: 0 14px 38px rgba(0,0,0,.22);
     }
 
     * {
@@ -88,7 +87,7 @@
       appearance: none;
       border: 0;
       cursor: pointer;
-      transition: transform .16s ease, opacity .16s ease, background .16s ease, box-shadow .16s ease;
+      transition: transform .16s ease, opacity .16s ease, box-shadow .16s ease, background .16s ease;
     }
 
     button:active {
@@ -103,25 +102,15 @@
     .page {
       position: relative;
       min-height: 100dvh;
-      padding: max(16px, env(safe-area-inset-top)) 14px calc(20px + env(safe-area-inset-bottom));
+      padding: max(18px, env(safe-area-inset-top)) 14px calc(20px + env(safe-area-inset-bottom));
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       overflow: hidden;
       background:
-        radial-gradient(circle at 12% 8%, rgba(255,139,210,.34), transparent 30%),
-        radial-gradient(circle at 88% 10%, rgba(105,189,255,.30), transparent 31%),
-        radial-gradient(circle at 18% 82%, rgba(255,231,138,.30), transparent 34%),
-        radial-gradient(circle at 78% 88%, rgba(165,148,255,.24), transparent 38%),
-        linear-gradient(135deg, var(--bg1) 0%, var(--bg2) 48%, var(--bg3) 100%);
-    }
-
-    body.theme-night .page {
-      background:
-        radial-gradient(circle at 12% 8%, rgba(255,157,221,.18), transparent 30%),
-        radial-gradient(circle at 88% 10%, rgba(118,200,255,.18), transparent 31%),
-        radial-gradient(circle at 18% 82%, rgba(255,233,142,.12), transparent 34%),
-        radial-gradient(circle at 78% 88%, rgba(185,173,255,.18), transparent 38%),
+        radial-gradient(circle at 10% 8%, rgba(90,167,255,.18), transparent 30%),
+        radial-gradient(circle at 88% 12%, rgba(255,140,207,.18), transparent 32%),
+        radial-gradient(circle at 50% 100%, rgba(154,140,255,.15), transparent 42%),
         linear-gradient(135deg, var(--bg1) 0%, var(--bg2) 48%, var(--bg3) 100%);
     }
 
@@ -130,61 +119,59 @@
       position: absolute;
       inset: 0;
       pointer-events: none;
-      opacity: .50;
+      opacity: .55;
       background-image:
-        radial-gradient(circle, rgba(255,255,255,.92) 0 1.4px, transparent 2px),
-        radial-gradient(circle, rgba(255,139,210,.26) 0 1.2px, transparent 2.2px),
-        radial-gradient(circle, rgba(105,189,255,.20) 0 1.2px, transparent 2.2px);
-      background-size: 38px 38px, 66px 66px, 92px 92px;
-      mask-image: linear-gradient(to bottom, rgba(0,0,0,.96), rgba(0,0,0,.58), transparent 94%);
+        radial-gradient(circle, rgba(90,167,255,.18) 0 1.2px, transparent 2px),
+        radial-gradient(circle, rgba(255,140,207,.16) 0 1.2px, transparent 2px);
+      background-size: 44px 44px, 78px 78px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,.9), transparent 92%);
     }
 
     body.theme-night .page:before {
       opacity: .30;
       background-image:
-        radial-gradient(circle, rgba(255,255,255,.30) 0 1.4px, transparent 2px),
-        radial-gradient(circle, rgba(255,157,221,.18) 0 1.2px, transparent 2.2px),
-        radial-gradient(circle, rgba(118,200,255,.16) 0 1.2px, transparent 2.2px);
+        radial-gradient(circle, rgba(255,255,255,.22) 0 1.2px, transparent 2px),
+        radial-gradient(circle, rgba(255,159,216,.18) 0 1.2px, transparent 2px);
     }
 
     .soft {
       position: absolute;
       pointer-events: none;
       border-radius: 999px;
-      filter: blur(30px);
-      opacity: .72;
+      filter: blur(34px);
+      opacity: .62;
       animation: softMove 8s ease-in-out infinite;
     }
 
     .soft.one {
-      width: 290px;
-      height: 290px;
-      left: -140px;
-      top: 80px;
-      background: rgba(255,139,210,.28);
+      width: 300px;
+      height: 300px;
+      left: -145px;
+      top: 90px;
+      background: rgba(90,167,255,.20);
     }
 
     .soft.two {
-      width: 260px;
-      height: 260px;
-      right: -130px;
+      width: 280px;
+      height: 280px;
+      right: -150px;
       top: 100px;
-      background: rgba(105,189,255,.24);
+      background: rgba(255,140,207,.18);
       animation-delay: 1.2s;
     }
 
     .soft.three {
-      width: 340px;
-      height: 340px;
-      left: 44%;
-      bottom: -230px;
-      background: rgba(165,148,255,.18);
+      width: 360px;
+      height: 360px;
+      left: 42%;
+      bottom: -250px;
+      background: rgba(154,140,255,.16);
       animation-delay: 2.1s;
     }
 
     @keyframes softMove {
       0%, 100% { transform: translate3d(0,0,0) scale(1); }
-      50% { transform: translate3d(18px,-16px,0) scale(1.06); }
+      50% { transform: translate3d(18px,-16px,0) scale(1.05); }
     }
 
     .float {
@@ -193,24 +180,14 @@
       pointer-events: none;
       font-weight: 1000;
       animation: floatItem 4.5s ease-in-out infinite;
-      text-shadow: 0 10px 24px rgba(255,139,210,.18);
+      text-shadow: 0 10px 24px rgba(90,167,255,.18);
     }
 
-    .float.star {
-      color: rgba(255,255,255,.96);
-    }
+    .float.star { color: rgba(90,167,255,.38); }
+    .float.heart { color: rgba(255,140,207,.50); }
 
-    .float.heart {
-      color: rgba(255,139,210,.86);
-    }
-
-    body.theme-night .float.star {
-      color: rgba(255,255,255,.56);
-    }
-
-    body.theme-night .float.heart {
-      color: rgba(255,157,221,.74);
-    }
+    body.theme-night .float.star { color: rgba(255,255,255,.38); }
+    body.theme-night .float.heart { color: rgba(255,159,216,.58); }
 
     .float.f1 { left: 8%; top: 13%; font-size: 24px; }
     .float.f2 { right: 10%; top: 16%; font-size: 20px; animation-delay: .6s; }
@@ -220,7 +197,7 @@
     .float.f6 { left: 74%; top: 58%; font-size: 18px; animation-delay: 2.3s; }
 
     @keyframes floatItem {
-      0%, 100% { opacity: .56; transform: translateY(0) scale(.95) rotate(0); }
+      0%, 100% { opacity: .55; transform: translateY(0) scale(.95) rotate(0); }
       50% { opacity: 1; transform: translateY(-11px) scale(1.08) rotate(8deg); }
     }
 
@@ -229,7 +206,7 @@
       z-index: 3;
       width: min(1080px, 100%);
       display: grid;
-      grid-template-columns: minmax(0, .92fr) minmax(340px, 480px);
+      grid-template-columns: minmax(0, .90fr) minmax(340px, 480px);
       gap: 20px;
       align-items: center;
     }
@@ -254,11 +231,9 @@
       place-items: center;
       color: var(--white);
       background:
-        radial-gradient(circle at 25% 18%, rgba(255,255,255,.56), transparent 30%),
+        radial-gradient(circle at 25% 18%, rgba(255,255,255,.46), transparent 30%),
         linear-gradient(135deg, var(--blue), var(--purple), var(--pink));
-      box-shadow: 0 16px 36px rgba(255,139,210,.25);
-      font-size: 24px;
-      font-weight: 1000;
+      box-shadow: 0 16px 36px rgba(90,167,255,.20);
       position: relative;
       overflow: hidden;
     }
@@ -299,17 +274,18 @@
       padding: 24px;
       border-radius: 38px;
       background:
-        radial-gradient(circle at 12% 0%, rgba(255,255,255,.72), transparent 34%),
-        linear-gradient(135deg, rgba(255,255,255,.72), rgba(255,255,255,.44));
-      border: 1px solid var(--border2);
+        radial-gradient(circle at 12% 0%, rgba(255,255,255,.82), transparent 36%),
+        linear-gradient(135deg, rgba(255,255,255,.92), rgba(255,255,255,.68));
+      border: 1px solid rgba(255,255,255,.86);
       box-shadow: var(--shadow);
       backdrop-filter: blur(24px);
     }
 
     body.theme-night .hero-card {
       background:
-        radial-gradient(circle at 12% 0%, rgba(255,255,255,.12), transparent 34%),
-        linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.045));
+        radial-gradient(circle at 12% 0%, rgba(255,255,255,.10), transparent 36%),
+        linear-gradient(135deg, rgba(255,255,255,.09), rgba(255,255,255,.045));
+      border-color: var(--line);
     }
 
     .hero-card:before {
@@ -320,7 +296,7 @@
       right: -82px;
       top: -92px;
       border-radius: 999px;
-      background: radial-gradient(circle, rgba(255,139,210,.34), transparent 70%);
+      background: radial-gradient(circle, rgba(90,167,255,.18), transparent 70%);
     }
 
     .hero-card:after {
@@ -328,7 +304,7 @@
       position: absolute;
       right: 23px;
       top: 20px;
-      color: rgba(255,139,210,.42);
+      color: rgba(90,167,255,.25);
       font-size: 18px;
       letter-spacing: 6px;
       font-weight: 1000;
@@ -340,22 +316,22 @@
       gap: 7px;
       padding: 8px 12px;
       border-radius: 999px;
-      color: #c74791;
-      background: rgba(255,139,210,.13);
-      border: 1px solid rgba(255,139,210,.18);
+      color: #2f6fff;
+      background: rgba(90,167,255,.10);
+      border: 1px solid rgba(90,167,255,.16);
       font-size: 12px;
       font-weight: 1000;
     }
 
     body.theme-night .badge {
-      color: var(--pink2);
-      background: rgba(255,157,221,.11);
-      border-color: rgba(255,157,221,.18);
+      color: var(--blue);
+      background: rgba(117,189,255,.10);
+      border-color: rgba(117,189,255,.16);
     }
 
     .badge:before {
       content: "★";
-      color: var(--pink);
+      color: var(--blue);
     }
 
     h1 {
@@ -367,7 +343,7 @@
     }
 
     .gradient {
-      background: linear-gradient(135deg, var(--blue2), var(--blue), var(--pink), var(--purple));
+      background: linear-gradient(135deg, var(--blue2), var(--blue), var(--purple), var(--pink));
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
@@ -390,16 +366,16 @@
       gap: 8px;
       padding: 9px 12px;
       border-radius: 999px;
-      background: rgba(255,255,255,.58);
-      border: 1px solid rgba(255,255,255,.76);
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(90,167,255,.13);
       color: var(--sub);
       font-size: 12px;
       font-weight: 900;
     }
 
     body.theme-night .mini-ribbon {
-      background: rgba(255,255,255,.07);
-      border-color: rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      border-color: var(--line);
     }
 
     .mini-ribbon:before {
@@ -419,19 +395,19 @@
       padding: 16px;
       border-radius: 31px;
       background:
-        radial-gradient(circle at 0% 0%, rgba(255,255,255,.86), transparent 40%),
-        rgba(255,255,255,.58);
-      border: 1px solid rgba(255,255,255,.78);
-      box-shadow: 0 18px 48px rgba(100,80,150,.10);
+        radial-gradient(circle at 0% 0%, rgba(255,255,255,.88), transparent 40%),
+        rgba(255,255,255,.70);
+      border: 1px solid rgba(255,255,255,.82);
+      box-shadow: var(--shadow2);
       position: relative;
       overflow: hidden;
     }
 
     body.theme-night .info-card {
       background:
-        radial-gradient(circle at 0% 0%, rgba(255,255,255,.11), transparent 40%),
+        radial-gradient(circle at 0% 0%, rgba(255,255,255,.09), transparent 40%),
         rgba(255,255,255,.055);
-      border-color: rgba(255,255,255,.12);
+      border-color: var(--line);
     }
 
     .info-card:before {
@@ -442,11 +418,11 @@
       right: -50px;
       bottom: -50px;
       border-radius: 999px;
-      background: radial-gradient(circle, rgba(105,189,255,.22), transparent 70%);
+      background: radial-gradient(circle, rgba(90,167,255,.18), transparent 70%);
     }
 
     .info-card.pink:before {
-      background: radial-gradient(circle, rgba(255,139,210,.24), transparent 70%);
+      background: radial-gradient(circle, rgba(255,140,207,.18), transparent 70%);
     }
 
     .info-icon {
@@ -486,26 +462,26 @@
       padding: 17px;
       border-radius: 38px;
       background:
-        radial-gradient(circle at 8% 0%, rgba(255,255,255,.78), transparent 38%),
-        linear-gradient(180deg, rgba(255,255,255,.86), rgba(255,255,255,.62));
-      border: 1px solid rgba(255,255,255,.82);
+        radial-gradient(circle at 8% 0%, rgba(255,255,255,.82), transparent 38%),
+        linear-gradient(180deg, rgba(255,255,255,.94), rgba(255,255,255,.72));
+      border: 1px solid rgba(255,255,255,.88);
       box-shadow: var(--shadow);
       backdrop-filter: blur(26px);
     }
 
     body.theme-night .app-card {
       background:
-        radial-gradient(circle at 8% 0%, rgba(255,255,255,.11), transparent 38%),
-        linear-gradient(180deg, rgba(255,255,255,.095), rgba(255,255,255,.045));
-      border-color: rgba(255,255,255,.14);
+        radial-gradient(circle at 8% 0%, rgba(255,255,255,.10), transparent 38%),
+        linear-gradient(180deg, rgba(255,255,255,.085), rgba(255,255,255,.04));
+      border-color: var(--line);
     }
 
     .app-card:before {
       content: "";
       position: absolute;
       inset: 0 0 auto;
-      height: 7px;
-      background: linear-gradient(90deg, var(--pink), var(--purple), var(--blue), var(--yellow), var(--pink));
+      height: 6px;
+      background: linear-gradient(90deg, var(--blue), var(--purple), var(--pink), var(--yellow), var(--blue));
     }
 
     .app-card:after {
@@ -513,7 +489,7 @@
       position: absolute;
       right: 18px;
       top: 15px;
-      color: rgba(255,139,210,.25);
+      color: rgba(90,167,255,.22);
       font-size: 15px;
       font-weight: 1000;
       letter-spacing: 5px;
@@ -527,16 +503,16 @@
       gap: 12px;
       padding: 13px;
       border-radius: 27px;
-      background: rgba(255,255,255,.62);
-      border: 1px solid rgba(255,255,255,.80);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.8);
+      background: rgba(255,255,255,.76);
+      border: 1px solid rgba(90,167,255,.12);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.80);
       position: relative;
       z-index: 1;
     }
 
     body.theme-night .app-top {
-      background: rgba(255,255,255,.065);
-      border-color: rgba(255,255,255,.12);
+      background: rgba(255,255,255,.055);
+      border-color: var(--line);
     }
 
     .app-top h2 {
@@ -560,10 +536,10 @@
       color: var(--white);
       background:
         radial-gradient(circle at 25% 18%, rgba(255,255,255,.28), transparent 32%),
-        linear-gradient(135deg, var(--pink), var(--purple));
+        linear-gradient(135deg, var(--blue), var(--purple));
       font-size: 12px;
       font-weight: 1000;
-      box-shadow: 0 10px 20px rgba(255,139,210,.18);
+      box-shadow: 0 10px 20px rgba(90,167,255,.16);
     }
 
     .stepper {
@@ -579,8 +555,8 @@
       min-height: 50px;
       padding: 8px;
       border-radius: 18px;
-      background: rgba(255,255,255,.54);
-      border: 1px solid rgba(255,255,255,.72);
+      background: rgba(255,255,255,.68);
+      border: 1px solid rgba(90,167,255,.12);
       display: flex;
       align-items: center;
       gap: 7px;
@@ -590,18 +566,18 @@
 
     body.theme-night .step {
       background: rgba(255,255,255,.055);
-      border-color: rgba(255,255,255,.10);
+      border-color: var(--line);
     }
 
     .step.active {
-      background: linear-gradient(135deg, rgba(255,139,210,.18), rgba(105,189,255,.14));
-      border-color: rgba(255,139,210,.22);
+      background: linear-gradient(135deg, rgba(90,167,255,.14), rgba(154,140,255,.10));
+      border-color: rgba(90,167,255,.22);
       transform: translateY(-1px);
     }
 
     .step.done {
-      background: linear-gradient(135deg, rgba(73,201,148,.18), rgba(105,189,255,.12));
-      border-color: rgba(73,201,148,.22);
+      background: linear-gradient(135deg, rgba(50,191,134,.16), rgba(90,167,255,.10));
+      border-color: rgba(50,191,134,.22);
     }
 
     .step-num {
@@ -612,17 +588,13 @@
       place-items: center;
       flex: 0 0 auto;
       color: var(--white);
-      background: linear-gradient(135deg, var(--pink), var(--purple));
+      background: linear-gradient(135deg, var(--blue), var(--purple));
       font-size: 12px;
       font-weight: 1000;
     }
 
     .step.done .step-num {
       background: linear-gradient(135deg, var(--green), var(--blue));
-    }
-
-    .step-text {
-      min-width: 0;
     }
 
     .step-text strong {
@@ -642,7 +614,6 @@
     }
 
     .hint,
-    .safe-hint,
     .security-mini {
       margin-top: 10px;
       padding: 11px 12px;
@@ -652,42 +623,23 @@
       font-weight: 800;
       position: relative;
       z-index: 1;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.68);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.58);
     }
 
     .hint {
       color: var(--sub);
-      background: rgba(255,255,255,.56);
-      border: 1px solid rgba(255,255,255,.74);
+      background: rgba(255,255,255,.66);
+      border: 1px solid rgba(90,167,255,.12);
     }
 
     body.theme-night .hint {
       background: rgba(255,255,255,.055);
-      border-color: rgba(255,255,255,.11);
+      border-color: var(--line);
     }
 
     .hint:before {
       content: "♡";
       color: var(--pink);
-      font-weight: 1000;
-      margin-right: 6px;
-    }
-
-    .safe-hint {
-      color: #8a5a00;
-      background: rgba(255,231,138,.35);
-      border: 1px solid rgba(255,173,66,.24);
-    }
-
-    body.theme-night .safe-hint {
-      color: var(--yellow);
-      background: rgba(255,233,142,.10);
-      border-color: rgba(255,233,142,.16);
-    }
-
-    .safe-hint:before {
-      content: "★";
-      color: var(--orange);
       font-weight: 1000;
       margin-right: 6px;
     }
@@ -698,13 +650,13 @@
       justify-content: space-between;
       gap: 10px;
       color: var(--sub);
-      background: rgba(255,255,255,.50);
-      border: 1px solid rgba(255,255,255,.72);
+      background: rgba(255,255,255,.64);
+      border: 1px solid rgba(90,167,255,.12);
     }
 
     body.theme-night .security-mini {
       background: rgba(255,255,255,.055);
-      border-color: rgba(255,255,255,.11);
+      border-color: var(--line);
     }
 
     .security-left {
@@ -721,7 +673,7 @@
       display: grid;
       place-items: center;
       color: var(--white);
-      background: linear-gradient(135deg, var(--pink), var(--purple));
+      background: linear-gradient(135deg, var(--blue), var(--purple));
       flex: 0 0 auto;
       font-size: 14px;
       font-weight: 1000;
@@ -798,7 +750,7 @@
       position: absolute;
       left: -2px;
       top: -7px;
-      color: var(--pink);
+      color: var(--blue);
       font-size: 13px;
       line-height: 1;
     }
@@ -813,20 +765,16 @@
     }
 
     .req {
-      color: #c74791;
-      background: rgba(255,139,210,.12);
-    }
-
-    body.theme-night .req {
-      color: var(--pink2);
-      background: rgba(255,157,221,.10);
+      color: #2f6fff;
+      background: rgba(90,167,255,.10);
     }
 
     .opt {
       color: var(--muted);
-      background: rgba(255,255,255,.60);
+      background: rgba(255,255,255,.70);
     }
 
+    body.theme-night .req,
     body.theme-night .opt {
       background: rgba(255,255,255,.08);
     }
@@ -834,9 +782,9 @@
     input,
     textarea {
       width: 100%;
-      border: 1px solid rgba(255,139,210,.18);
+      border: 1px solid rgba(90,167,255,.15);
       outline: none;
-      background: rgba(255,255,255,.78);
+      background: rgba(255,255,255,.82);
       color: var(--text);
       border-radius: 20px;
       padding: 12px 13px;
@@ -849,9 +797,9 @@
 
     body.theme-night input,
     body.theme-night textarea {
-      background: rgba(255,255,255,.08);
-      border-color: rgba(255,255,255,.13);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
+      background: rgba(255,255,255,.075);
+      border-color: var(--line);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
     }
 
     input {
@@ -865,19 +813,19 @@
 
     input::placeholder,
     textarea::placeholder {
-      color: rgba(42,49,86,.36);
+      color: rgba(23,32,58,.34);
       font-weight: 600;
     }
 
     body.theme-night input::placeholder,
     body.theme-night textarea::placeholder {
-      color: rgba(248,246,255,.38);
+      color: rgba(248,251,255,.36);
     }
 
     input:focus,
     textarea:focus {
-      border-color: rgba(255,139,210,.54);
-      box-shadow: 0 0 0 5px rgba(255,139,210,.11), inset 0 1px 0 rgba(255,255,255,.82);
+      border-color: rgba(90,167,255,.52);
+      box-shadow: 0 0 0 5px rgba(90,167,255,.10), inset 0 1px 0 rgba(255,255,255,.80);
       transform: translateY(-1px);
     }
 
@@ -890,7 +838,7 @@
     }
 
     .validation.ok {
-      color: #189263;
+      color: #16865e;
     }
 
     body.theme-night .validation.ok {
@@ -916,16 +864,16 @@
       padding: 7px 10px;
       border-radius: 16px;
       color: var(--text);
-      background: rgba(255,255,255,.62);
-      border: 1px solid rgba(255,139,210,.14);
+      background: rgba(255,255,255,.70);
+      border: 1px solid rgba(90,167,255,.12);
       font-size: 12px;
       font-weight: 900;
       box-shadow: inset 0 1px 0 rgba(255,255,255,.72);
     }
 
     body.theme-night .chip {
-      background: rgba(255,255,255,.07);
-      border-color: rgba(255,255,255,.12);
+      background: rgba(255,255,255,.065);
+      border-color: var(--line);
     }
 
     .chip:before {
@@ -937,8 +885,8 @@
       color: var(--white);
       background:
         radial-gradient(circle at 22% 16%, rgba(255,255,255,.30), transparent 32%),
-        linear-gradient(135deg, var(--pink), var(--purple));
-      box-shadow: 0 10px 20px rgba(255,139,210,.17);
+        linear-gradient(135deg, var(--blue), var(--purple));
+      box-shadow: 0 10px 20px rgba(90,167,255,.16);
     }
 
     .chip.selected:before {
@@ -955,8 +903,8 @@
       min-height: 54px;
       border-radius: 19px;
       color: var(--text);
-      background: rgba(255,255,255,.62);
-      border: 1px solid rgba(255,139,210,.14);
+      background: rgba(255,255,255,.70);
+      border: 1px solid rgba(90,167,255,.12);
       display: grid;
       place-items: center;
       padding: 7px 4px;
@@ -966,8 +914,8 @@
     }
 
     body.theme-night .screen-btn {
-      background: rgba(255,255,255,.07);
-      border-color: rgba(255,255,255,.12);
+      background: rgba(255,255,255,.065);
+      border-color: var(--line);
     }
 
     .screen-btn strong {
@@ -987,8 +935,8 @@
       color: var(--white);
       background:
         radial-gradient(circle at 25% 18%, rgba(255,255,255,.32), transparent 32%),
-        linear-gradient(135deg, var(--pink), var(--purple), var(--blue));
-      box-shadow: 0 12px 24px rgba(255,139,210,.18);
+        linear-gradient(135deg, var(--blue), var(--purple), var(--pink));
+      box-shadow: 0 12px 24px rgba(90,167,255,.16);
       transform: translateY(-2px);
     }
 
@@ -1006,7 +954,7 @@
       font-weight: 1000;
       pointer-events: none;
       animation: screenPop .75s ease-out forwards;
-      text-shadow: 0 8px 20px rgba(255,139,210,.22);
+      text-shadow: 0 8px 20px rgba(255,140,207,.22);
     }
 
     @keyframes screenPop {
@@ -1051,9 +999,9 @@
     .btn-primary {
       color: var(--white);
       background:
-        radial-gradient(circle at 18% 0%, rgba(255,255,255,.36), transparent 34%),
-        linear-gradient(135deg, var(--pink), var(--purple), var(--blue));
-      box-shadow: 0 16px 30px rgba(255,139,210,.24);
+        radial-gradient(circle at 18% 0%, rgba(255,255,255,.32), transparent 34%),
+        linear-gradient(135deg, var(--blue), var(--purple));
+      box-shadow: 0 16px 30px rgba(90,167,255,.20);
     }
 
     .btn-primary:before {
@@ -1064,7 +1012,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,.32), transparent);
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.30), transparent);
       transform: translateX(-120%);
       animation: shine 2.6s ease-in-out infinite;
       pointer-events: none;
@@ -1077,14 +1025,14 @@
 
     .btn-secondary {
       color: var(--text);
-      background: rgba(255,255,255,.66);
-      border: 1px solid rgba(255,139,210,.14);
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(90,167,255,.12);
       box-shadow: inset 0 1px 0 rgba(255,255,255,.72);
     }
 
     body.theme-night .btn-secondary {
-      background: rgba(255,255,255,.07);
-      border-color: rgba(255,255,255,.12);
+      background: rgba(255,255,255,.065);
+      border-color: var(--line);
     }
 
     .btn-secondary:before {
@@ -1095,7 +1043,7 @@
     .btn-copy {
       color: var(--white);
       background:
-        radial-gradient(circle at 18% 0%, rgba(255,255,255,.30), transparent 34%),
+        radial-gradient(circle at 18% 0%, rgba(255,255,255,.28), transparent 34%),
         linear-gradient(135deg, var(--purple), var(--pink));
     }
 
@@ -1115,8 +1063,8 @@
       gap: 8px;
       padding: 11px 12px;
       border-radius: 22px;
-      background: rgba(255,255,255,.58);
-      border: 1px solid rgba(255,255,255,.76);
+      background: rgba(255,255,255,.66);
+      border: 1px solid rgba(90,167,255,.12);
       position: relative;
       z-index: 1;
       box-shadow: inset 0 1px 0 rgba(255,255,255,.72);
@@ -1124,7 +1072,7 @@
 
     body.theme-night .status {
       background: rgba(255,255,255,.055);
-      border-color: rgba(255,255,255,.11);
+      border-color: var(--line);
     }
 
     .status-line {
@@ -1150,13 +1098,13 @@
       height: 9px;
       border-radius: 999px;
       flex: 0 0 auto;
-      background: var(--pink);
-      box-shadow: 0 0 0 5px rgba(255,139,210,.12);
+      background: var(--blue);
+      box-shadow: 0 0 0 5px rgba(90,167,255,.10);
     }
 
     .status-dot.ok {
       background: var(--green);
-      box-shadow: 0 0 0 5px rgba(72,201,148,.12);
+      box-shadow: 0 0 0 5px rgba(50,191,134,.12);
     }
 
     .status-dot.warn {
@@ -1175,7 +1123,7 @@
       height: 8px;
       overflow: hidden;
       border-radius: 999px;
-      background: rgba(255,139,210,.13);
+      background: rgba(90,167,255,.10);
     }
 
     .cooldown-fill,
@@ -1183,7 +1131,7 @@
       width: 0%;
       height: 100%;
       border-radius: inherit;
-      background: linear-gradient(90deg, var(--pink), var(--purple), var(--blue));
+      background: linear-gradient(90deg, var(--blue), var(--purple), var(--pink));
       transition: width .2s ease;
     }
 
@@ -1216,21 +1164,21 @@
       border-radius: 32px;
       text-align: center;
       background:
-        radial-gradient(circle at 50% 0%, rgba(255,255,255,.90), transparent 52%),
-        linear-gradient(135deg, rgba(255,139,210,.15), rgba(105,189,255,.13));
-      border: 1px solid rgba(255,255,255,.84);
+        radial-gradient(circle at 50% 0%, rgba(255,255,255,.92), transparent 52%),
+        linear-gradient(135deg, rgba(90,167,255,.12), rgba(154,140,255,.10));
+      border: 1px solid rgba(255,255,255,.86);
       animation: pop .24s ease both;
       position: relative;
       z-index: 1;
       overflow: hidden;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.74);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.70);
     }
 
     body.theme-night .result {
       background:
-        radial-gradient(circle at 50% 0%, rgba(255,255,255,.12), transparent 52%),
-        linear-gradient(135deg, rgba(255,157,221,.12), rgba(118,200,255,.10));
-      border-color: rgba(255,255,255,.12);
+        radial-gradient(circle at 50% 0%, rgba(255,255,255,.10), transparent 52%),
+        linear-gradient(135deg, rgba(117,189,255,.10), rgba(180,170,255,.09));
+      border-color: var(--line);
     }
 
     .result:before {
@@ -1238,7 +1186,7 @@
       position: absolute;
       left: 17px;
       top: 14px;
-      color: rgba(255,139,210,.34);
+      color: rgba(90,167,255,.24);
       font-size: 14px;
       letter-spacing: 4px;
       font-weight: 1000;
@@ -1249,7 +1197,7 @@
       position: absolute;
       right: 17px;
       bottom: 15px;
-      color: rgba(105,189,255,.30);
+      color: rgba(255,140,207,.25);
       font-size: 14px;
       letter-spacing: 4px;
       font-weight: 1000;
@@ -1269,11 +1217,11 @@
       place-items: center;
       color: var(--white);
       background:
-        radial-gradient(circle at 25% 18%, rgba(255,255,255,.34), transparent 32%),
-        linear-gradient(135deg, var(--pink), var(--purple), var(--blue));
+        radial-gradient(circle at 25% 18%, rgba(255,255,255,.30), transparent 32%),
+        linear-gradient(135deg, var(--blue), var(--purple));
       font-size: 28px;
       font-weight: 1000;
-      box-shadow: 0 16px 34px rgba(255,139,210,.18);
+      box-shadow: 0 16px 34px rgba(90,167,255,.16);
       position: relative;
       z-index: 1;
     }
@@ -1305,8 +1253,8 @@
       padding: 8px 11px;
       border-radius: 999px;
       color: var(--muted);
-      background: rgba(255,255,255,.64);
-      border: 1px solid rgba(255,139,210,.12);
+      background: rgba(255,255,255,.70);
+      border: 1px solid rgba(90,167,255,.10);
       font-size: 11px;
       font-weight: 900;
       overflow-wrap: anywhere;
@@ -1315,8 +1263,8 @@
     }
 
     body.theme-night .request-id {
-      background: rgba(255,255,255,.07);
-      border-color: rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      border-color: var(--line);
     }
 
     .result.otp-only {
@@ -1368,7 +1316,7 @@
       top: 0;
       height: 50px;
       border-radius: 23px 23px 10px 10px;
-      background: linear-gradient(135deg, rgba(255,139,210,.34), rgba(165,148,255,.28));
+      background: linear-gradient(135deg, rgba(90,167,255,.22), rgba(154,140,255,.18));
       border: 1px solid rgba(255,255,255,.70);
       transform-origin: bottom center;
       animation: flapOpen .8s ease both;
@@ -1376,7 +1324,7 @@
     }
 
     body.theme-night .envelope-flap {
-      border-color: rgba(255,255,255,.12);
+      border-color: var(--line);
     }
 
     @keyframes flapOpen {
@@ -1389,16 +1337,16 @@
       position: relative;
       padding: 15px 14px;
       border-radius: 27px;
-      background: rgba(255,255,255,.78);
-      border: 1px solid rgba(255,139,210,.16);
+      background: rgba(255,255,255,.84);
+      border: 1px solid rgba(90,167,255,.13);
       z-index: 2;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.76), 0 16px 30px rgba(255,139,210,.12);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.76), 0 16px 30px rgba(90,167,255,.10);
       animation: cardRise .7s ease both;
     }
 
     body.theme-night .otp-box {
-      background: rgba(255,255,255,.075);
-      border-color: rgba(255,255,255,.12);
+      background: rgba(255,255,255,.07);
+      border-color: var(--line);
     }
 
     @keyframes cardRise {
@@ -1419,7 +1367,7 @@
       letter-spacing: 7px;
       font-weight: 1000;
       user-select: all;
-      text-shadow: 0 8px 24px rgba(255,139,210,.14);
+      text-shadow: 0 8px 24px rgba(90,167,255,.10);
     }
 
     .otp-note {
@@ -1448,15 +1396,15 @@
       font-weight: 850;
       position: relative;
       z-index: 1;
-      background: rgba(255,231,138,.35);
-      border: 1px solid rgba(255,173,66,.24);
+      background: rgba(255,232,155,.38);
+      border: 1px solid rgba(255,173,66,.22);
       color: #8a5a00;
     }
 
     body.theme-night .soft-alert {
       color: var(--yellow);
-      background: rgba(255,233,142,.10);
-      border-color: rgba(255,233,142,.16);
+      background: rgba(255,232,155,.10);
+      border-color: rgba(255,232,155,.16);
     }
 
     .soft-alert.show {
@@ -1519,9 +1467,9 @@
       margin-top: 15px;
       padding: 14px;
       border-radius: 28px;
-      background: rgba(255,255,255,.58);
-      border: 1px solid rgba(255,255,255,.80);
-      box-shadow: 0 14px 34px rgba(100,80,150,.08);
+      background: rgba(255,255,255,.68);
+      border: 1px solid rgba(90,167,255,.12);
+      box-shadow: var(--shadow2);
       position: relative;
       overflow: hidden;
       z-index: 1;
@@ -1529,7 +1477,7 @@
 
     body.theme-night .howto {
       background: rgba(255,255,255,.055);
-      border-color: rgba(255,255,255,.11);
+      border-color: var(--line);
     }
 
     .howto:before {
@@ -1537,7 +1485,7 @@
       position: absolute;
       right: 16px;
       top: 14px;
-      color: rgba(255,139,210,.28);
+      color: rgba(90,167,255,.22);
       font-weight: 1000;
       letter-spacing: 5px;
       pointer-events: none;
@@ -1578,7 +1526,7 @@
       color: var(--white);
       background:
         radial-gradient(circle at 25% 18%, rgba(255,255,255,.28), transparent 32%),
-        linear-gradient(135deg, var(--pink), var(--purple));
+        linear-gradient(135deg, var(--blue), var(--purple));
       font-size: 12px;
       font-weight: 1000;
     }
@@ -1590,7 +1538,7 @@
       display: none;
       place-items: center;
       padding: 20px;
-      background: rgba(42,49,86,.18);
+      background: rgba(23,32,58,.14);
       backdrop-filter: blur(12px);
     }
 
@@ -1609,8 +1557,8 @@
       border-radius: 34px;
       text-align: center;
       background:
-        radial-gradient(circle at 18% 0%, rgba(255,255,255,.82), transparent 42%),
-        rgba(255,255,255,.94);
+        radial-gradient(circle at 18% 0%, rgba(255,255,255,.86), transparent 42%),
+        rgba(255,255,255,.96);
       border: 1px solid rgba(255,255,255,.86);
       box-shadow: var(--shadow);
       position: relative;
@@ -1619,9 +1567,9 @@
 
     body.theme-night .loading-card {
       background:
-        radial-gradient(circle at 18% 0%, rgba(255,255,255,.13), transparent 42%),
-        rgba(30,28,63,.94);
-      border-color: rgba(255,255,255,.13);
+        radial-gradient(circle at 18% 0%, rgba(255,255,255,.12), transparent 42%),
+        rgba(23,32,51,.94);
+      border-color: var(--line);
     }
 
     .loading-card:before {
@@ -1629,7 +1577,7 @@
       position: absolute;
       left: 20px;
       top: 15px;
-      color: rgba(255,139,210,.30);
+      color: rgba(90,167,255,.24);
       letter-spacing: 5px;
       font-weight: 1000;
       font-size: 13px;
@@ -1649,8 +1597,8 @@
       inset: 0;
       border-radius: 999px;
       background:
-        conic-gradient(var(--pink) calc(var(--p, 0) * 1%), rgba(255,139,210,.14) 0);
-      box-shadow: 0 18px 38px rgba(255,139,210,.16);
+        conic-gradient(var(--blue) calc(var(--p, 0) * 1%), rgba(90,167,255,.12) 0);
+      box-shadow: 0 18px 38px rgba(90,167,255,.14);
       transition: background .2s ease;
     }
 
@@ -1659,13 +1607,13 @@
       position: absolute;
       inset: 10px;
       border-radius: inherit;
-      background: rgba(255,255,255,.92);
+      background: rgba(255,255,255,.95);
       border: 1px solid rgba(255,255,255,.76);
     }
 
     body.theme-night .percent-ring:before {
-      background: rgba(30,28,63,.95);
-      border-color: rgba(255,255,255,.12);
+      background: rgba(23,32,51,.95);
+      border-color: var(--line);
     }
 
     .percent-ring:after {
@@ -1679,10 +1627,10 @@
       display: grid;
       place-items: center;
       color: var(--white);
-      background: linear-gradient(135deg, var(--pink), var(--purple));
+      background: linear-gradient(135deg, var(--blue), var(--purple));
       font-size: 14px;
       font-weight: 1000;
-      box-shadow: 0 10px 20px rgba(255,139,210,.18);
+      box-shadow: 0 10px 20px rgba(90,167,255,.16);
     }
 
     .percent-text {
@@ -1698,7 +1646,7 @@
       line-height: 1;
       font-weight: 1000;
       letter-spacing: -1.5px;
-      background: linear-gradient(135deg, var(--blue2), var(--pink), var(--purple));
+      background: linear-gradient(135deg, var(--blue2), var(--blue), var(--purple));
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
@@ -1724,9 +1672,9 @@
       margin: 13px auto 0;
       padding: 9px 14px;
       border-radius: 999px;
-      color: #c74791;
-      background: rgba(255,139,210,.12);
-      border: 1px solid rgba(255,139,210,.18);
+      color: #2f6fff;
+      background: rgba(90,167,255,.10);
+      border: 1px solid rgba(90,167,255,.16);
       font-size: 13px;
       line-height: 1.35;
       font-weight: 1000;
@@ -1734,9 +1682,9 @@
     }
 
     body.theme-night .loading-wait-text {
-      color: var(--pink2);
-      background: rgba(255,157,221,.10);
-      border-color: rgba(255,157,221,.18);
+      color: var(--blue);
+      background: rgba(117,189,255,.10);
+      border-color: rgba(117,189,255,.16);
     }
 
     .toast {
@@ -1751,8 +1699,8 @@
       padding: 12px 16px;
       border-radius: 999px;
       color: var(--white);
-      background: rgba(42,49,86,.94);
-      box-shadow: 0 18px 40px rgba(42,49,86,.22);
+      background: rgba(23,32,58,.94);
+      box-shadow: 0 18px 40px rgba(23,32,58,.18);
       font-size: 14px;
       font-weight: 900;
       text-align: center;
@@ -1967,17 +1915,12 @@
       }
 
       .hint,
-      .safe-hint,
       .security-mini {
         margin-top: 8px;
         padding: 9px 10px;
         border-radius: 18px;
         font-size: 10.5px;
         line-height: 1.45;
-      }
-
-      .safe-hint {
-        display: none;
       }
 
       .security-mini {
@@ -2339,14 +2282,14 @@
         <div class="info-grid">
           <div class="info-card pink">
             <div class="info-icon">♥</div>
-            <strong>ล็อกตามเมลและจอ</strong>
-            <span>ถ้าเมลเดียวกันรับรหัสจอ 6 แล้ว เมลนั้นจะรับจอ 6 ซ้ำไม่ได้ แต่จออื่นยังรับได้</span>
+            <strong>ใช้งานง่าย</strong>
+            <span>กรอกข้อมูล เลือกอุปกรณ์ เลือกจอ แล้วกดรับรหัสได้ในหน้าเดียว</span>
           </div>
 
           <div class="info-card">
             <div class="info-icon">★</div>
-            <strong>ใช้งานในหน้าเดียว</strong>
-            <span>กรอกชื่อ LINE อีเมล อุปกรณ์ เลือกจอ แล้วกดรับรหัสได้ทันที</span>
+            <strong>แสดงรหัสชัดเจน</strong>
+            <span>เมื่อพบ OTP ระบบจะแสดงกล่องรหัสพร้อมปุ่มคัดลอกทันที</span>
           </div>
         </div>
       </div>
@@ -2388,19 +2331,15 @@
           หลังได้ OTP แล้ว ให้คัดลอกรหัสไปใส่ใน Disney+
         </div>
 
-        <div class="safe-hint">
-          เมื่อเมลนี้ได้รับ OTP ของจอนี้แล้ว ระบบจะบันทึกว่าเมลนี้ใช้สิทธิ์รับรหัสของจอนี้แล้ว คนอื่นใช้เมลเดียวกันกับจอเดิมก็รับซ้ำไม่ได้
-        </div>
-
         <div class="security-mini" id="securityMini">
           <div class="security-left">
             <div class="security-icon">★</div>
             <div>
-              <strong id="securityTitle">ล็อกด้วยอีเมล + จอ</strong>
-              <div id="securityDetail">พร้อมป้องกันการรับรหัสซ้ำของจอเดิม</div>
+              <strong id="securityTitle">พร้อมรับรหัส</strong>
+              <div id="securityDetail">กรอกข้อมูลให้ครบ แล้วกดรับรหัส</div>
             </div>
           </div>
-          <div class="security-state" id="securityState">รอรับรหัส</div>
+          <div class="security-state" id="securityState">พร้อม</div>
         </div>
 
         <div class="form">
@@ -2488,7 +2427,7 @@
         </div>
 
         <div class="privacy">
-          ระบบล็อกด้วยอีเมล + จอ + บริการ เพื่อป้องกันการรับรหัสซ้ำ
+          กรุณากรอกข้อมูลให้ถูกต้องตามรายการที่สั่งซื้อ
         </div>
 
         <div class="result" id="resultBox">
@@ -2586,7 +2525,7 @@
     const SERVICE_BRAND = 'disney';
     const REQUEST_TIMEOUT_MS = 15000;
     const COOLDOWN_SECONDS = 4;
-    const DRAFT_KEY = 'starHeartOtpEmailScreenBrandLockDraftV8NoAutoRetry';
+    const DRAFT_KEY = 'cleanOtpDraftOnlyV2';
 
     /************************************************************
      * STATE
@@ -2961,7 +2900,7 @@
       copyBtn.textContent = 'คัดลอก OTP';
 
       updateStatus('พร้อมใช้งาน', 'ok');
-      updateSecurityState('locked');
+      updateSecurityState('success');
       updateSteps(true);
       showToast('คัดลอก OTP ได้เลย');
       launchConfetti();
@@ -2978,7 +2917,7 @@
       resultBox.classList.remove('otp-only');
 
       resultIcon.textContent = locked ? '♥' : '♡';
-      resultTitle.textContent = isScreenLocked(res) ? 'เมลนี้รับรหัสจอนี้ไปแล้ว' : 'ยังไม่พบรหัส';
+      resultTitle.textContent = locked ? 'รับรหัสไม่ได้' : 'ยังไม่พบรหัส';
       resultMessage.textContent = msg;
       requestIdBox.textContent = 'เลขอ้างอิง: ' + (res && (res.requestId || res.id) ? (res.requestId || res.id) : '-');
 
@@ -2986,7 +2925,7 @@
 
       if (locked) {
         showSoftAlert(
-          isScreenLocked(res) ? 'เมลนี้เคยรับรหัสจอนี้แล้ว' : 'จอนี้เพิ่งรับรหัสไปแล้ว',
+          'รับรหัสไม่ได้',
           msg,
           '♥'
         );
@@ -3001,7 +2940,7 @@
       }
 
       updateStatus(msg, locked ? 'bad' : 'warn');
-      showToast(isScreenLocked(res) ? 'รับซ้ำไม่ได้' : 'ยังไม่พบ OTP');
+      showToast(locked ? 'รับรหัสไม่ได้' : 'ยังไม่พบ OTP');
       scrollToResult();
     }
 
@@ -3407,38 +3346,38 @@
     function updateSecurityState(state) {
       securityMini.classList.remove('locked');
 
-      if (state === 'locked') {
+      if (state === 'success') {
         securityMini.classList.add('locked');
-        securityTitle.textContent = 'บันทึกสิทธิ์จอนี้แล้ว';
-        securityDetail.textContent = 'เมลนี้กับจอนี้จะรับรหัสซ้ำไม่ได้';
-        securityState.textContent = 'ล็อกแล้ว';
+        securityTitle.textContent = 'ได้รับ OTP แล้ว';
+        securityDetail.textContent = 'คัดลอกรหัสไปใช้งานได้ทันที';
+        securityState.textContent = 'สำเร็จ';
         return;
       }
 
       if (state === 'blocked') {
-        securityTitle.textContent = 'เมลนี้เคยรับจอนี้แล้ว';
-        securityDetail.textContent = 'กรุณาติดต่อแอดมินหากต้องการตรวจสอบ';
-        securityState.textContent = 'รับซ้ำไม่ได้';
+        securityTitle.textContent = 'รับรหัสไม่ได้';
+        securityDetail.textContent = 'กรุณาตรวจสอบข้อมูลหรือแจ้งแอดมิน';
+        securityState.textContent = 'ไม่สำเร็จ';
         return;
       }
 
       if (state === 'checking') {
-        securityTitle.textContent = 'กำลังตรวจสอบสิทธิ์';
-        securityDetail.textContent = 'ระบบกำลังตรวจสอบเมลและจอที่เลือก';
+        securityTitle.textContent = 'กำลังตรวจสอบ';
+        securityDetail.textContent = 'กรุณารอสักครู่นะคะ';
         securityState.textContent = 'กำลังเช็ก';
         return;
       }
 
       if (state === 'waiting') {
         securityTitle.textContent = 'ยังไม่พบ OTP';
-        securityDetail.textContent = 'กดปุ่มขอรหัสใหม่อีกครั้งเมื่อต้องการค้นหาใหม่';
+        securityDetail.textContent = 'กดขอรหัสใหม่อีกครั้งเมื่อต้องการค้นหาใหม่';
         securityState.textContent = 'รอขอใหม่';
         return;
       }
 
-      securityTitle.textContent = 'ล็อกด้วยอีเมล + จอ';
-      securityDetail.textContent = 'พร้อมป้องกันการรับรหัสซ้ำของจอเดิม';
-      securityState.textContent = 'รอรับรหัส';
+      securityTitle.textContent = 'พร้อมรับรหัส';
+      securityDetail.textContent = 'กรอกข้อมูลให้ครบ แล้วกดรับรหัส';
+      securityState.textContent = 'พร้อม';
     }
 
     function markLastRequest() {
@@ -3462,7 +3401,7 @@
       const metaTheme = document.querySelector('meta[name="theme-color"]');
 
       if (metaTheme) {
-        metaTheme.setAttribute('content', isNight ? '#171432' : '#ff9fdc');
+        metaTheme.setAttribute('content', isNight ? '#111827' : '#f8fbff');
       }
     }
 
@@ -3508,7 +3447,7 @@
       confetti.innerHTML = '';
 
       const pieces = ['★', '✦', '✧', '♡', '♥', 'OTP'];
-      const colors = ['#ff8bd2', '#a594ff', '#69bdff', '#ffe78a', '#49c994'];
+      const colors = ['#5aa7ff', '#9a8cff', '#ff8ccf', '#ffe89b', '#32bf86'];
       const count = 34;
 
       for (let i = 0; i < count; i++) {
@@ -3536,7 +3475,7 @@
       const cx = rect.left + rect.width / 2;
       const cy = rect.top + rect.height / 2;
       const pieces = ['★', '♡', '♥', '✦'];
-      const colors = ['#ff8bd2', '#a594ff', '#69bdff', '#ffe78a'];
+      const colors = ['#5aa7ff', '#9a8cff', '#ff8ccf', '#ffe89b'];
 
       for (let i = 0; i < 10; i++) {
         const item = document.createElement('div');
@@ -3616,7 +3555,7 @@
       const msg = String(res.message || '');
 
       if (status === 'SCREEN_ALREADY_USED') {
-        return 'เมลนี้เคยรับรหัสจอนี้แล้ว ไม่สามารถรับรหัสซ้ำได้ กรุณาติดต่อแอดมิน';
+        return 'อีเมลนี้เคยรับรหัสจอนี้แล้ว กรุณาติดต่อแอดมิน';
       }
 
       if (status === 'OTP_ALREADY_ISSUED') {
