@@ -3,75 +3,32 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#071634">
+  <meta name="theme-color" content="#7cc7ff">
   <meta name="description" content="รับรหัสดิสนีย์">
-  <title>รับรหัสดิสนีย์</title>
+  <title>รับรหัสดิสนีย์ OTP</title>
 
   <style>
     :root {
-      --bg: #040714;
-      --bg2: #071634;
-      --card: rgba(4,7,20,0.86);
-      --blue: #0063E5;
-      --blue2: #174BFF;
-      --cyan: #49E8FF;
-      --cyan2: #B8FBFF;
-      --pink: #FFD6F4;
-      --pink2: #FF9FE0;
-      --purple: #A9B8FF;
-      --yellow: #FFF1B8;
-      --white: #FFFFFF;
-      --text: #F9FBFF;
-      --sub: rgba(249,251,255,0.72);
-      --muted: rgba(249,251,255,0.50);
-      --ok: #A9FFD8;
-      --danger: #FFB4C2;
-      --warn: #FFE6A6;
-      --dark: #040714;
-      --border: rgba(184,251,255,0.22);
-      --shadow: 0 28px 88px rgba(0,0,0,0.48);
-      --page-bg-1: #0A1D51;
-      --page-bg-2: #071634;
-      --page-bg-3: #040714;
-      --theme-accent: #49E8FF;
-      --theme-accent2: #FFD6F4;
-      --theme-soft: rgba(184,251,255,0.12);
-    }
-
-    body.theme-day {
-      --bg: #F7FBFF;
-      --bg2: #DFF4FF;
-      --card: rgba(255,255,255,0.82);
-      --text: #071634;
-      --sub: rgba(7,22,52,0.70);
-      --muted: rgba(7,22,52,0.52);
-      --dark: #071634;
-      --border: rgba(0,99,229,0.18);
-      --shadow: 0 28px 88px rgba(0,99,229,0.16);
-      --page-bg-1: #EAF8FF;
-      --page-bg-2: #DDEEFF;
-      --page-bg-3: #FFF7FE;
-      --theme-accent: #0063E5;
-      --theme-accent2: #FF9FE0;
-      --theme-soft: rgba(0,99,229,0.08);
-    }
-
-    body.theme-night {
-      --bg: #040714;
-      --bg2: #071634;
-      --card: rgba(4,7,20,0.86);
-      --text: #F9FBFF;
-      --sub: rgba(249,251,255,0.72);
-      --muted: rgba(249,251,255,0.50);
-      --dark: #040714;
-      --border: rgba(184,251,255,0.22);
-      --shadow: 0 28px 88px rgba(0,0,0,0.48);
-      --page-bg-1: #0A1D51;
-      --page-bg-2: #071634;
-      --page-bg-3: #040714;
-      --theme-accent: #49E8FF;
-      --theme-accent2: #FFD6F4;
-      --theme-soft: rgba(184,251,255,0.12);
+      --bg1: #e9f7ff;
+      --bg2: #fff1fb;
+      --bg3: #eef1ff;
+      --card: rgba(255,255,255,.82);
+      --card2: rgba(255,255,255,.62);
+      --text: #12305a;
+      --sub: rgba(18,48,90,.68);
+      --muted: rgba(18,48,90,.46);
+      --blue: #2d9cff;
+      --blue2: #3366ff;
+      --pink: #ff8fd8;
+      --pink2: #ffd4f2;
+      --purple: #9f9cff;
+      --yellow: #ffe993;
+      --green: #54d6a0;
+      --red: #ff6f91;
+      --orange: #ffb347;
+      --white: #fff;
+      --border: rgba(45,156,255,.18);
+      --shadow: 0 24px 70px rgba(60,90,140,.18);
     }
 
     * {
@@ -82,11 +39,10 @@
     html,
     body {
       margin: 0;
-      width: 100%;
       min-height: 100%;
-      color: var(--text);
-      background: var(--bg);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Prompt", "Noto Sans Thai", sans-serif;
+      color: var(--text);
+      background: var(--bg1);
       -webkit-font-smoothing: antialiased;
     }
 
@@ -102,14 +58,14 @@
     }
 
     button {
+      border: 0;
       appearance: none;
       cursor: pointer;
-      border: 0;
-      transition: transform .15s ease, box-shadow .15s ease, background .15s ease, border-color .15s ease, opacity .15s ease;
+      transition: transform .16s ease, box-shadow .16s ease, opacity .16s ease;
     }
 
     button:active {
-      transform: scale(.985);
+      transform: scale(.98);
     }
 
     button:disabled {
@@ -120,158 +76,106 @@
     .page {
       position: relative;
       min-height: 100dvh;
-      padding: max(16px, env(safe-area-inset-top)) 14px calc(18px + env(safe-area-inset-bottom));
+      padding: max(18px, env(safe-area-inset-top)) 14px calc(20px + env(safe-area-inset-bottom));
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       overflow: hidden;
       background:
-        radial-gradient(circle at 50% -12%, rgba(0,99,229,0.60), transparent 34%),
-        radial-gradient(circle at 8% 12%, rgba(73,232,255,0.28), transparent 32%),
-        radial-gradient(circle at 94% 15%, rgba(255,159,224,0.21), transparent 34%),
-        radial-gradient(circle at 50% 100%, rgba(169,184,255,0.20), transparent 42%),
-        linear-gradient(180deg, var(--page-bg-1) 0%, var(--page-bg-2) 45%, var(--page-bg-3) 100%);
-    }
-
-    body.theme-day .page {
-      background:
-        radial-gradient(circle at 50% -12%, rgba(0,99,229,0.24), transparent 34%),
-        radial-gradient(circle at 8% 12%, rgba(73,232,255,0.22), transparent 32%),
-        radial-gradient(circle at 94% 15%, rgba(255,159,224,0.22), transparent 34%),
-        radial-gradient(circle at 50% 100%, rgba(169,184,255,0.18), transparent 42%),
-        linear-gradient(180deg, var(--page-bg-1) 0%, var(--page-bg-2) 45%, var(--page-bg-3) 100%);
+        radial-gradient(circle at 12% 10%, rgba(255,143,216,.34), transparent 30%),
+        radial-gradient(circle at 90% 14%, rgba(45,156,255,.28), transparent 32%),
+        radial-gradient(circle at 50% 100%, rgba(159,156,255,.25), transparent 38%),
+        linear-gradient(140deg, var(--bg1), var(--bg2) 52%, var(--bg3));
     }
 
     .page:before {
       content: "";
       position: absolute;
       inset: 0;
-      pointer-events: none;
-      opacity: .35;
-      background-image:
-        radial-gradient(circle, rgba(255,255,255,0.24) 0 1px, transparent 1.7px),
-        radial-gradient(circle, rgba(255,214,244,0.16) 0 1.4px, transparent 2px);
-      background-size: 56px 56px, 92px 92px;
-      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.78), transparent 82%);
-    }
-
-    body.theme-day .page:before {
       opacity: .42;
+      pointer-events: none;
       background-image:
-        radial-gradient(circle, rgba(0,99,229,0.16) 0 1px, transparent 1.7px),
-        radial-gradient(circle, rgba(255,159,224,0.16) 0 1.4px, transparent 2px);
+        radial-gradient(circle, rgba(255,255,255,.92) 0 1.5px, transparent 2px),
+        radial-gradient(circle, rgba(45,156,255,.18) 0 1px, transparent 2px),
+        radial-gradient(circle, rgba(255,143,216,.22) 0 1px, transparent 2px);
+      background-size: 42px 42px, 74px 74px, 96px 96px;
     }
 
-    .page:after {
-      content: "";
+    .blob {
       position: absolute;
-      inset: 0;
+      border-radius: 999px;
+      filter: blur(32px);
+      opacity: .7;
       pointer-events: none;
-      opacity: .25;
-      background:
-        radial-gradient(circle at 22% 28%, rgba(255,255,255,0.10) 0 42px, transparent 43px),
-        radial-gradient(circle at 28% 28%, rgba(255,255,255,0.08) 0 23px, transparent 24px),
-        radial-gradient(circle at 16% 28%, rgba(255,255,255,0.08) 0 23px, transparent 24px),
-        radial-gradient(circle at 78% 70%, rgba(255,214,244,0.10) 0 42px, transparent 43px),
-        radial-gradient(circle at 84% 70%, rgba(255,214,244,0.08) 0 23px, transparent 24px),
-        radial-gradient(circle at 72% 70%, rgba(255,214,244,0.08) 0 23px, transparent 24px);
+      animation: blob 8s ease-in-out infinite;
+    }
+
+    .blob.one {
+      width: 290px;
+      height: 290px;
+      left: -120px;
+      top: 80px;
+      background: rgba(45,156,255,.26);
+    }
+
+    .blob.two {
+      width: 250px;
+      height: 250px;
+      right: -100px;
+      top: 120px;
+      background: rgba(255,143,216,.28);
+      animation-delay: 1.2s;
+    }
+
+    .blob.three {
+      width: 320px;
+      height: 320px;
+      left: 46%;
+      bottom: -190px;
+      background: rgba(159,156,255,.22);
+      animation-delay: 2.1s;
+    }
+
+    @keyframes blob {
+      0%, 100% { transform: translate3d(0,0,0) scale(1); }
+      50% { transform: translate3d(16px,-18px,0) scale(1.06); }
     }
 
     .sparkle {
       position: absolute;
-      pointer-events: none;
-      color: rgba(255,255,255,0.66);
+      z-index: 1;
+      color: rgba(255,255,255,.95);
+      text-shadow: 0 8px 22px rgba(45,156,255,.20);
       font-weight: 1000;
-      animation: twinkle 2.8s ease-in-out infinite;
-      text-shadow: 0 0 18px rgba(184,251,255,0.58);
+      pointer-events: none;
+      animation: twinkle 2.6s ease-in-out infinite;
     }
 
-    body.theme-day .sparkle {
-      color: rgba(0,99,229,0.42);
-      text-shadow: 0 0 18px rgba(0,99,229,0.14);
-    }
-
-    .sparkle.s1 { left: 9%; top: 16%; font-size: 18px; animation-delay: .1s; }
-    .sparkle.s2 { left: 86%; top: 17%; font-size: 15px; animation-delay: .7s; }
-    .sparkle.s3 { left: 77%; top: 72%; font-size: 19px; animation-delay: 1.2s; }
-    .sparkle.s4 { left: 15%; top: 72%; font-size: 14px; animation-delay: 1.7s; }
-    .sparkle.s5 { left: 52%; top: 11%; font-size: 13px; animation-delay: 2.1s; }
-    .sparkle.s6 { left: 42%; top: 84%; font-size: 16px; animation-delay: 2.4s; }
+    .s1 { left: 9%; top: 14%; font-size: 20px; }
+    .s2 { right: 11%; top: 18%; font-size: 15px; animation-delay: .5s; }
+    .s3 { left: 16%; bottom: 18%; font-size: 17px; animation-delay: 1s; }
+    .s4 { right: 16%; bottom: 20%; font-size: 22px; animation-delay: 1.5s; }
+    .s5 { left: 49%; top: 9%; font-size: 14px; animation-delay: 2s; }
 
     @keyframes twinkle {
-      0%, 100% { opacity: .32; transform: scale(.88) rotate(0deg); }
-      50% { opacity: 1; transform: scale(1.15) rotate(8deg); }
-    }
-
-    .orb {
-      position: absolute;
-      border-radius: 999px;
-      pointer-events: none;
-      filter: blur(38px);
-      opacity: .78;
-      animation: orbFloat 9s ease-in-out infinite;
-    }
-
-    .orb.one {
-      width: 300px;
-      height: 300px;
-      left: -140px;
-      top: 88px;
-      background: rgba(0,99,229,0.44);
-    }
-
-    .orb.two {
-      width: 280px;
-      height: 280px;
-      right: -140px;
-      top: 78px;
-      background: rgba(73,232,255,0.25);
-      animation-delay: 1.2s;
-    }
-
-    .orb.three {
-      width: 360px;
-      height: 360px;
-      left: 45%;
-      bottom: -230px;
-      background: rgba(255,159,224,0.19);
-      animation-delay: 2.4s;
-    }
-
-    body.theme-day .orb.one {
-      background: rgba(0,99,229,0.18);
-    }
-
-    body.theme-day .orb.two {
-      background: rgba(73,232,255,0.18);
-    }
-
-    body.theme-day .orb.three {
-      background: rgba(255,159,224,0.18);
-    }
-
-    @keyframes orbFloat {
-      0%, 100% { transform: translate3d(0,0,0) scale(1); }
-      50% { transform: translate3d(18px,-16px,0) scale(1.06); }
+      0%,100% { opacity: .45; transform: scale(.86) rotate(0); }
+      50% { opacity: 1; transform: scale(1.16) rotate(8deg); }
     }
 
     .wrap {
       position: relative;
-      z-index: 2;
-      width: 100%;
-      max-width: 1080px;
+      z-index: 3;
+      width: min(1120px, 100%);
       display: grid;
-      grid-template-columns: minmax(0, .88fr) minmax(350px, 500px);
+      grid-template-columns: minmax(0, .95fr) minmax(360px, 490px);
       gap: 22px;
       align-items: center;
     }
 
     .hero {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      min-height: 560px;
-      justify-content: center;
+      display: grid;
+      gap: 16px;
+      align-content: center;
     }
 
     .brand {
@@ -280,822 +184,590 @@
       gap: 12px;
     }
 
-    .logo {
+    .brand-logo {
       width: 58px;
       height: 58px;
-      border-radius: 24px;
+      border-radius: 22px;
       display: grid;
       place-items: center;
-      background:
-        radial-gradient(circle at 30% 18%, rgba(255,255,255,0.50), transparent 28%),
-        linear-gradient(135deg, var(--cyan2), #FFFFFF 44%, var(--pink));
-      box-shadow: 0 18px 42px rgba(73,232,255,0.24), inset 0 1px 0 rgba(255,255,255,0.62);
-      flex: 0 0 auto;
-      position: relative;
-      animation: logoFloat 3.8s ease-in-out infinite;
-    }
-
-    .logo:before {
-      content: "D+";
-      font-size: 18px;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--blue), var(--purple), var(--pink));
+      box-shadow: 0 14px 32px rgba(45,156,255,.25);
       font-weight: 1000;
-      color: #040714;
-      letter-spacing: -1px;
-    }
-
-    .logo:after {
-      content: "";
-      position: absolute;
-      width: 16px;
-      height: 16px;
-      right: -3px;
-      top: -3px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, #FFFFFF, var(--pink));
-      box-shadow: 0 8px 18px rgba(255,214,244,0.26);
-    }
-
-    @keyframes logoFloat {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-4px) rotate(2deg); }
-    }
-
-    .brand-title {
       font-size: 18px;
-      font-weight: 1000;
-      color: var(--text);
-      line-height: 1.35;
-    }
-
-    .brand-sub {
-      margin-top: 2px;
-      color: var(--sub);
-      font-size: 12px;
-      font-weight: 650;
-      line-height: 1.45;
-    }
-
-    .hero-main {
-      max-width: 640px;
-      padding: 22px;
-      border-radius: 36px;
-      background:
-        radial-gradient(circle at 18% 0%, rgba(184,251,255,0.22), transparent 36%),
-        radial-gradient(circle at 100% 30%, rgba(255,214,244,0.20), transparent 38%),
-        linear-gradient(135deg, rgba(255,255,255,0.092), rgba(255,255,255,0.034));
-      border: 1px solid rgba(184,251,255,0.20);
-      box-shadow: 0 18px 60px rgba(0,0,0,0.20);
-      backdrop-filter: blur(18px);
       position: relative;
       overflow: hidden;
     }
 
-    body.theme-day .hero-main {
-      background:
-        radial-gradient(circle at 18% 0%, rgba(0,99,229,0.10), transparent 36%),
-        radial-gradient(circle at 100% 30%, rgba(255,159,224,0.18), transparent 38%),
-        linear-gradient(135deg, rgba(255,255,255,0.72), rgba(255,255,255,0.42));
-      border-color: rgba(0,99,229,0.14);
-      box-shadow: 0 18px 60px rgba(0,99,229,0.10);
-    }
-
-    .hero-main:before {
+    .brand-logo:before {
       content: "";
       position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background:
-        linear-gradient(110deg, transparent 0 30%, rgba(255,255,255,0.10) 42%, transparent 56% 100%);
-      transform: translateX(-120%);
-      animation: heroShine 5.5s ease-in-out infinite;
+      inset: -40%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.45), transparent);
+      transform: rotate(25deg) translateX(-80%);
+      animation: shine 4.6s ease-in-out infinite;
     }
 
-    @keyframes heroShine {
-      0%, 58% { transform: translateX(-120%); }
-      100% { transform: translateX(120%); }
+    @keyframes shine {
+      0%, 55% { transform: rotate(25deg) translateX(-80%); }
+      100% { transform: rotate(25deg) translateX(90%); }
+    }
+
+    .brand-title {
+      font-size: 19px;
+      line-height: 1.25;
+      font-weight: 1000;
+    }
+
+    .brand-sub {
+      margin-top: 3px;
+      color: var(--sub);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .hero-card {
+      position: relative;
+      overflow: hidden;
+      padding: 24px;
+      border-radius: 38px;
+      background: var(--card2);
+      border: 1px solid rgba(255,255,255,.72);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(20px);
+    }
+
+    .hero-card:after {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      right: -70px;
+      top: -70px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(255,143,216,.32), transparent 70%);
     }
 
     .badge {
-      width: fit-content;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      margin-bottom: 16px;
       padding: 9px 13px;
       border-radius: 999px;
-      color: var(--cyan2);
-      background: rgba(184,251,255,0.08);
-      border: 1px solid var(--border);
+      background: rgba(45,156,255,.10);
+      color: var(--blue2);
       font-size: 12px;
-      font-weight: 900;
-    }
-
-    body.theme-day .badge {
-      color: var(--blue);
-      background: rgba(0,99,229,0.07);
+      font-weight: 1000;
+      border: 1px solid rgba(45,156,255,.14);
     }
 
     .badge:before {
-      content: "OTP";
-      color: var(--text);
-      font-weight: 1000;
+      content: "✦";
     }
 
     h1 {
-      margin: 0;
-      color: var(--text);
-      font-size: clamp(34px, 5.4vw, 62px);
-      line-height: 1.08;
-      letter-spacing: -2px;
+      margin: 14px 0 0;
+      font-size: clamp(38px, 5.4vw, 66px);
+      line-height: 1.05;
+      letter-spacing: -2.5px;
       font-weight: 1000;
-      white-space: nowrap;
     }
 
-    .gradient-text {
-      display: inline;
-      background: linear-gradient(135deg, #FFFFFF 8%, var(--cyan2) 42%, var(--pink) 76%, var(--purple) 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    body.theme-day .gradient-text {
-      background: linear-gradient(135deg, #071634 8%, #0063E5 42%, #FF6ACB 76%, #6C7DFF 100%);
+    .gradient {
+      background: linear-gradient(135deg, var(--blue2), var(--blue), var(--pink), var(--purple));
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
     }
 
     .lead {
-      margin: 16px 0 0;
-      max-width: 560px;
+      margin: 14px 0 0;
       color: var(--sub);
+      max-width: 570px;
       font-size: 16px;
-      line-height: 1.7;
-      font-weight: 540;
+      line-height: 1.75;
+      font-weight: 650;
     }
 
-    .theme-auto-pill {
-      width: fit-content;
-      margin-top: 12px;
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      color: var(--sub);
-      background: rgba(255,255,255,0.055);
-      border: 1px solid rgba(255,255,255,0.10);
-      font-size: 11px;
-      font-weight: 850;
-    }
-
-    body.theme-day .theme-auto-pill {
-      background: rgba(0,99,229,0.06);
-      border-color: rgba(0,99,229,0.10);
-    }
-
-    .hero-grid {
-      max-width: 640px;
+    .mascot-zone {
       display: grid;
-      grid-template-columns: 1.08fr .92fr;
-      gap: 10px;
-    }
-
-    .magic-card {
-      min-height: 146px;
+      grid-template-columns: 160px 1fr;
+      gap: 14px;
+      align-items: center;
       padding: 16px;
-      border-radius: 30px;
+      border-radius: 32px;
+      background: rgba(255,255,255,.55);
+      border: 1px solid rgba(255,255,255,.78);
+      box-shadow: 0 18px 48px rgba(60,90,140,.12);
+    }
+
+    .mascot {
       position: relative;
-      overflow: hidden;
-      background:
-        radial-gradient(circle at 12% 6%, rgba(255,255,255,0.20), transparent 24%),
-        radial-gradient(circle at 100% 0%, rgba(255,214,244,0.18), transparent 38%),
-        rgba(255,255,255,0.060);
-      border: 1px solid rgba(255,255,255,0.12);
-      box-shadow: 0 14px 44px rgba(0,0,0,0.16);
+      width: 150px;
+      height: 150px;
+      margin: auto;
+      animation: floaty 3.8s ease-in-out infinite;
     }
 
-    body.theme-day .magic-card {
-      background:
-        radial-gradient(circle at 12% 6%, rgba(255,255,255,0.82), transparent 24%),
-        radial-gradient(circle at 100% 0%, rgba(255,159,224,0.14), transparent 38%),
-        rgba(255,255,255,0.48);
-      border-color: rgba(0,99,229,0.10);
-      box-shadow: 0 14px 44px rgba(0,99,229,0.08);
+    @keyframes floaty {
+      0%,100% { transform: translateY(0) rotate(-1deg); }
+      50% { transform: translateY(-8px) rotate(2deg); }
     }
 
-    .magic-card:before {
-      content: "✦";
+    .mascot-head {
       position: absolute;
-      right: 18px;
-      top: 14px;
-      color: rgba(255,255,255,0.70);
-      font-size: 20px;
-      animation: twinkle 2.6s ease-in-out infinite;
+      left: 23px;
+      top: 26px;
+      width: 104px;
+      height: 96px;
+      border-radius: 44% 44% 48% 48%;
+      background: linear-gradient(160deg, #fff, #eaf8ff 70%);
+      border: 4px solid #12305a;
+      box-shadow: 0 12px 0 rgba(18,48,90,.09);
     }
 
-    body.theme-day .magic-card:before {
-      color: rgba(0,99,229,0.42);
-    }
-
-    .magic-card strong {
-      display: block;
-      color: var(--text);
-      font-size: 18px;
-      line-height: 1.45;
-      font-weight: 1000;
-      max-width: 260px;
-    }
-
-    .magic-card span {
-      display: block;
-      margin-top: 8px;
-      color: var(--sub);
-      font-size: 12px;
-      line-height: 1.6;
-      font-weight: 700;
-      max-width: 300px;
-    }
-
-    .magic-line {
+    .mascot-ear {
       position: absolute;
-      left: 16px;
-      right: 16px;
-      bottom: 16px;
+      top: 13px;
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      background: linear-gradient(160deg, #fff, #eaf8ff);
+      border: 4px solid #12305a;
+    }
+
+    .mascot-ear.left { left: 16px; }
+    .mascot-ear.right { right: 16px; }
+
+    .mascot-eye {
+      position: absolute;
+      top: 64px;
+      width: 12px;
+      height: 18px;
+      border-radius: 999px;
+      background: #12305a;
+      animation: blink 4s infinite;
+    }
+
+    .mascot-eye.left { left: 58px; }
+    .mascot-eye.right { right: 58px; }
+
+    @keyframes blink {
+      0%, 92%, 100% { transform: scaleY(1); }
+      95% { transform: scaleY(.12); }
+    }
+
+    .mascot-cheek {
+      position: absolute;
+      top: 84px;
+      width: 16px;
       height: 10px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.08);
-      overflow: hidden;
+      background: rgba(255,143,216,.55);
     }
 
-    body.theme-day .magic-line {
-      background: rgba(0,99,229,0.08);
-    }
+    .mascot-cheek.left { left: 42px; }
+    .mascot-cheek.right { right: 42px; }
 
-    .magic-line:before {
-      content: "";
+    .mascot-mouth {
       position: absolute;
-      inset: 0;
-      width: 52%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, var(--cyan2), #FFFFFF, var(--pink));
-      animation: progressGlow 3s ease-in-out infinite;
+      left: 68px;
+      top: 82px;
+      width: 14px;
+      height: 12px;
+      border-bottom: 4px solid #12305a;
+      border-radius: 0 0 999px 999px;
     }
 
-    body.theme-day .magic-line:before {
-      background: linear-gradient(90deg, var(--blue), var(--cyan), var(--pink2));
-    }
-
-    @keyframes progressGlow {
-      0%, 100% { transform: translateX(0); width: 44%; }
-      50% { transform: translateX(72%); width: 30%; }
-    }
-
-    .mini-stack {
-      display: grid;
-      gap: 10px;
-    }
-
-    .mini-bubble {
-      min-height: 68px;
-      border-radius: 24px;
-      padding: 12px 13px;
-      background:
-        linear-gradient(135deg, rgba(184,251,255,0.10), rgba(255,214,244,0.08)),
-        rgba(255,255,255,0.055);
-      border: 1px solid rgba(255,255,255,0.11);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    body.theme-day .mini-bubble {
-      background:
-        linear-gradient(135deg, rgba(0,99,229,0.06), rgba(255,159,224,0.08)),
-        rgba(255,255,255,0.52);
-      border-color: rgba(0,99,229,0.10);
-    }
-
-    .mini-bubble-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 16px;
+    .mascot-star {
+      position: absolute;
+      right: 11px;
+      top: 9px;
+      width: 42px;
+      height: 42px;
       display: grid;
       place-items: center;
-      color: #040714;
-      background: linear-gradient(135deg, var(--cyan2), #FFFFFF 52%, var(--pink));
-      font-size: 17px;
+      border-radius: 17px;
+      color: #12305a;
+      background: linear-gradient(135deg, var(--yellow), #fff);
+      border: 3px solid #12305a;
       font-weight: 1000;
-      flex: 0 0 auto;
+      transform: rotate(12deg);
+      box-shadow: 0 8px 0 rgba(18,48,90,.10);
     }
 
-    .mini-bubble strong {
+    .mascot-body {
+      position: absolute;
+      left: 48px;
+      top: 112px;
+      width: 54px;
+      height: 32px;
+      border-radius: 20px 20px 18px 18px;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      border: 4px solid #12305a;
+    }
+
+    .speech h3 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 1000;
+    }
+
+    .speech p {
+      margin: 7px 0 0;
+      color: var(--sub);
+      font-size: 13px;
+      line-height: 1.65;
+      font-weight: 700;
+    }
+
+    .mini-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .mini {
+      min-height: 98px;
+      padding: 14px;
+      border-radius: 26px;
+      background: rgba(255,255,255,.58);
+      border: 1px solid rgba(255,255,255,.78);
+      box-shadow: 0 14px 34px rgba(60,90,140,.10);
+    }
+
+    .mini-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 15px;
+      display: grid;
+      place-items: center;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--blue), var(--pink));
+      font-weight: 1000;
+    }
+
+    .mini strong {
       display: block;
-      color: var(--text);
+      margin-top: 9px;
       font-size: 13px;
       line-height: 1.35;
       font-weight: 1000;
     }
 
-    .mini-bubble span {
+    .mini span {
       display: block;
+      margin-top: 4px;
       color: var(--muted);
       font-size: 11px;
       line-height: 1.45;
-      font-weight: 700;
-      margin-top: 3px;
-    }
-
-    .latest-card {
-      display: none;
-      max-width: 640px;
-      padding: 13px 14px;
-      border-radius: 26px;
-      background:
-        radial-gradient(circle at 0% 0%, rgba(184,251,255,0.12), transparent 34%),
-        rgba(255,255,255,0.055);
-      border: 1px solid rgba(184,251,255,0.18);
-      color: var(--sub);
-      font-size: 12px;
-      line-height: 1.55;
-      overflow-wrap: anywhere;
-      margin-top: auto;
-    }
-
-    body.theme-day .latest-card {
-      background:
-        radial-gradient(circle at 0% 0%, rgba(0,99,229,0.09), transparent 34%),
-        rgba(255,255,255,0.58);
-      border-color: rgba(0,99,229,0.12);
-    }
-
-    .latest-card strong {
-      color: var(--cyan2);
-    }
-
-    body.theme-day .latest-card strong {
-      color: var(--blue);
-    }
-
-    .latest-mini-list {
-      margin-top: 8px;
-      display: grid;
-      gap: 6px;
-    }
-
-    .latest-mini-item {
-      padding: 8px 10px;
-      border-radius: 15px;
-      background: rgba(255,255,255,0.045);
-      border: 1px solid rgba(255,255,255,0.08);
-      color: var(--sub);
-      font-size: 11px;
-      line-height: 1.45;
-      font-weight: 700;
-    }
-
-    body.theme-day .latest-mini-item {
-      background: rgba(0,99,229,0.045);
-      border-color: rgba(0,99,229,0.08);
+      font-weight: 750;
     }
 
     .app-card {
       position: relative;
-      border-radius: 36px;
-      padding: 20px;
-      border: 1px solid var(--border);
-      background:
-        radial-gradient(circle at 18% 0%, rgba(184,251,255,0.14), transparent 30%),
-        radial-gradient(circle at 100% 20%, rgba(255,214,244,0.14), transparent 34%),
-        linear-gradient(180deg, rgba(255,255,255,0.145), rgba(255,255,255,0.06)),
-        var(--card);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(24px);
       overflow: hidden;
-    }
-
-    body.theme-day .app-card {
-      background:
-        radial-gradient(circle at 18% 0%, rgba(0,99,229,0.09), transparent 30%),
-        radial-gradient(circle at 100% 20%, rgba(255,159,224,0.14), transparent 34%),
-        linear-gradient(180deg, rgba(255,255,255,0.88), rgba(255,255,255,0.58));
+      padding: 18px;
+      border-radius: 36px;
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,.78);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(22px);
     }
 
     .app-card:before {
       content: "";
       position: absolute;
-      inset: 0 0 auto 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--blue), var(--cyan), #FFFFFF, var(--pink), var(--blue));
-      opacity: .86;
-      pointer-events: none;
+      inset: 0 0 auto;
+      height: 6px;
+      background: linear-gradient(90deg, var(--blue), var(--purple), var(--pink), var(--yellow));
     }
 
     .app-top {
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       justify-content: space-between;
       gap: 12px;
-      margin-bottom: 14px;
-      padding: 15px;
-      border-radius: 25px;
-      border: 1px solid rgba(184,251,255,0.16);
-      background: rgba(255,255,255,0.052);
-    }
-
-    body.theme-day .app-top {
-      border-color: rgba(0,99,229,0.10);
-      background: rgba(0,99,229,0.045);
+      padding: 14px;
+      border-radius: 26px;
+      background: rgba(255,255,255,.58);
+      border: 1px solid rgba(255,255,255,.78);
     }
 
     .app-top h2 {
       margin: 0;
-      color: var(--text);
       font-size: 19px;
-      line-height: 1.42;
       font-weight: 1000;
     }
 
     .app-top p {
-      margin: 5px 0 0;
-      color: var(--muted);
+      margin: 4px 0 0;
+      color: var(--sub);
       font-size: 12px;
-      line-height: 1.55;
+      line-height: 1.5;
+      font-weight: 700;
     }
 
-    .status-pill {
+    .pill {
       flex: 0 0 auto;
-      padding: 8px 10px;
+      padding: 9px 11px;
       border-radius: 999px;
-      color: #040714;
-      background: linear-gradient(135deg, var(--cyan2), #FFFFFF 52%, var(--pink));
-      font-size: 11px;
-      font-weight: 950;
-      white-space: nowrap;
-      box-shadow: 0 10px 24px rgba(184,251,255,0.16);
+      color: var(--white);
+      background: linear-gradient(135deg, var(--blue), var(--pink));
+      font-size: 12px;
+      font-weight: 1000;
+      box-shadow: 0 10px 20px rgba(45,156,255,.16);
     }
 
-    .quick-hint {
-      margin-bottom: 14px;
+    .hint {
+      margin-top: 12px;
       padding: 12px 13px;
       border-radius: 22px;
       color: var(--sub);
-      background:
-        radial-gradient(circle at 0% 0%, rgba(184,251,255,0.12), transparent 36%),
-        rgba(255,255,255,0.052);
-      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,.50);
+      border: 1px solid rgba(255,255,255,.72);
       font-size: 12px;
       line-height: 1.65;
       font-weight: 750;
     }
 
-    body.theme-day .quick-hint {
-      background:
-        radial-gradient(circle at 0% 0%, rgba(0,99,229,0.08), transparent 36%),
-        rgba(255,255,255,0.46);
-      border-color: rgba(0,99,229,0.09);
-    }
-
-    .form-grid {
+    .form {
       display: grid;
-      gap: 13px;
+      gap: 12px;
+      margin-top: 12px;
     }
 
     .field {
-      margin: 0;
+      display: grid;
+      gap: 7px;
     }
 
     .label {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
-      margin: 0 4px 8px;
-      color: var(--text);
-      font-size: 13px;
-      font-weight: 850;
-    }
-
-    .label-main {
-      display: flex;
-      align-items: center;
+      padding: 0 4px;
       gap: 8px;
+      font-size: 13px;
+      font-weight: 1000;
     }
 
-    .label-dot {
-      width: 7px;
-      height: 7px;
+    .label span:first-child {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
       border-radius: 999px;
-      background: var(--cyan);
-      box-shadow: 0 0 13px rgba(73,232,255,0.76);
-      flex: 0 0 auto;
+      background: var(--pink);
+      box-shadow: 0 0 0 4px rgba(255,143,216,.12);
     }
 
-    .required,
-    .optional {
-      font-size: 11px;
-      font-weight: 850;
+    .req,
+    .opt {
       padding: 5px 8px;
       border-radius: 999px;
-      white-space: nowrap;
+      font-size: 11px;
+      font-weight: 1000;
     }
 
-    .required {
-      color: var(--cyan2);
-      background: rgba(184,251,255,0.075);
-      border: 1px solid rgba(184,251,255,0.20);
+    .req {
+      color: #135f9f;
+      background: rgba(45,156,255,.10);
     }
 
-    body.theme-day .required {
-      color: var(--blue);
-      background: rgba(0,99,229,0.06);
-      border-color: rgba(0,99,229,0.12);
-    }
-
-    .optional {
+    .opt {
       color: var(--muted);
-      background: rgba(255,255,255,0.055);
-      border: 1px solid rgba(255,255,255,0.10);
-    }
-
-    body.theme-day .optional {
-      background: rgba(0,99,229,0.045);
-      border-color: rgba(0,99,229,0.08);
+      background: rgba(255,255,255,.58);
     }
 
     input,
     textarea {
       width: 100%;
-      border: 1px solid rgba(255,255,255,0.15);
+      border: 1px solid rgba(45,156,255,.15);
       outline: none;
-      border-radius: 21px;
-      background: rgba(255,255,255,0.09);
+      background: rgba(255,255,255,.74);
       color: var(--text);
+      border-radius: 20px;
+      padding: 13px 14px;
       font-size: 16px;
-      font-weight: 650;
-      transition: .18s ease;
-      line-height: 1.55;
-    }
-
-    body.theme-day input,
-    body.theme-day textarea {
-      border-color: rgba(0,99,229,0.14);
-      background: rgba(255,255,255,0.74);
+      font-weight: 720;
+      line-height: 1.5;
+      transition: border-color .16s ease, box-shadow .16s ease, transform .16s ease;
     }
 
     input {
-      min-height: 58px;
-      padding: 13px 15px;
+      min-height: 56px;
     }
 
     textarea {
-      min-height: 86px;
+      min-height: 78px;
       resize: vertical;
-      padding: 13px 15px;
-      line-height: 1.65;
     }
 
     input::placeholder,
     textarea::placeholder {
-      color: rgba(255,255,255,0.38);
-      font-weight: 520;
-    }
-
-    body.theme-day input::placeholder,
-    body.theme-day textarea::placeholder {
-      color: rgba(7,22,52,0.38);
+      color: rgba(18,48,90,.35);
+      font-weight: 600;
     }
 
     input:focus,
     textarea:focus {
-      border-color: rgba(184,251,255,0.60);
-      box-shadow: 0 0 0 4px rgba(184,251,255,0.10);
+      border-color: rgba(45,156,255,.48);
+      box-shadow: 0 0 0 5px rgba(45,156,255,.10);
       transform: translateY(-1px);
     }
 
-    body.theme-day input:focus,
-    body.theme-day textarea:focus {
-      border-color: rgba(0,99,229,0.40);
-      box-shadow: 0 0 0 4px rgba(0,99,229,0.08);
-    }
-
-    input.valid,
-    textarea.valid {
-      border-color: rgba(164,255,212,0.50);
-      box-shadow: 0 0 0 4px rgba(164,255,212,0.08);
-    }
-
-    input.invalid,
-    textarea.invalid {
-      border-color: rgba(255,180,194,0.58);
-      box-shadow: 0 0 0 4px rgba(255,180,194,0.08);
-    }
-
-    .validation-msg {
-      margin: 7px 5px 0;
-      font-size: 11px;
-      line-height: 1.45;
-      font-weight: 800;
+    .validation {
+      min-height: 16px;
       color: var(--muted);
+      padding: 0 5px;
+      font-size: 11px;
+      font-weight: 850;
     }
 
-    .validation-msg.ok {
-      color: var(--ok);
+    .validation.ok {
+      color: #189263;
     }
 
-    body.theme-day .validation-msg.ok {
-      color: #00875A;
+    .validation.bad {
+      color: #d84262;
     }
 
-    .validation-msg.bad {
-      color: var(--danger);
-    }
-
-    body.theme-day .validation-msg.bad {
-      color: #C93653;
-    }
-
-    .quick-device-grid {
+    .chips {
       display: flex;
-      gap: 8px;
       flex-wrap: wrap;
-      margin-top: 9px;
+      gap: 8px;
     }
 
-    .quick-device-btn {
-      min-height: 38px;
+    .chip {
+      min-height: 36px;
+      padding: 8px 11px;
       border-radius: 15px;
       color: var(--text);
-      background: rgba(255,255,255,0.065);
-      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,.58);
+      border: 1px solid rgba(45,156,255,.12);
       font-size: 12px;
-      font-weight: 850;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      padding: 8px 12px;
-      width: auto;
+      font-weight: 900;
     }
 
-    body.theme-day .quick-device-btn {
-      background: rgba(255,255,255,0.66);
-      border-color: rgba(0,99,229,0.10);
-    }
-
-    .quick-device-btn.selected {
-      color: #040714;
-      background: linear-gradient(135deg, var(--cyan2), #FFFFFF 52%, var(--pink));
-      box-shadow: 0 10px 24px rgba(255,214,244,0.14);
+    .chip.selected {
+      color: var(--white);
+      background: linear-gradient(135deg, var(--blue), var(--pink));
+      box-shadow: 0 10px 20px rgba(45,156,255,.16);
     }
 
     .screen-grid {
       display: grid;
-      grid-template-columns: repeat(6, minmax(0, 1fr));
-      gap: 8px;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 7px;
     }
 
     .screen-btn {
-      position: relative;
-      min-height: 60px;
-      border-radius: 20px;
+      min-height: 58px;
+      border-radius: 19px;
+      background: rgba(255,255,255,.58);
+      border: 1px solid rgba(45,156,255,.12);
       color: var(--text);
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.13);
       display: grid;
       place-items: center;
-      gap: 2px;
       padding: 8px 4px;
-      width: 100%;
-    }
-
-    body.theme-day .screen-btn {
-      background: rgba(255,255,255,0.64);
-      border-color: rgba(0,99,229,0.10);
     }
 
     .screen-btn strong {
       font-size: 20px;
-      line-height: 1.15;
+      line-height: 1;
       font-weight: 1000;
     }
 
     .screen-btn span {
+      margin-top: 3px;
       color: var(--muted);
       font-size: 10px;
-      font-weight: 850;
+      font-weight: 900;
     }
 
     .screen-btn.selected {
-      color: #040714;
-      border-color: rgba(184,251,255,0.72);
-      background: linear-gradient(135deg, var(--cyan2), #FFFFFF 52%, var(--pink));
-      transform: translateY(-3px);
-      box-shadow: 0 12px 26px rgba(184,251,255,0.14);
+      color: var(--white);
+      background: linear-gradient(135deg, var(--blue), var(--purple), var(--pink));
+      box-shadow: 0 12px 24px rgba(45,156,255,.18);
+      transform: translateY(-2px);
     }
 
     .screen-btn.selected span {
-      color: rgba(4,7,20,0.64);
+      color: rgba(255,255,255,.78);
     }
 
     .note-count {
-      margin-top: 7px;
       text-align: right;
       color: var(--muted);
       font-size: 11px;
-      font-weight: 760;
+      font-weight: 850;
     }
 
     .actions {
+      margin-top: 14px;
       display: grid;
       grid-template-columns: 1fr auto;
       gap: 10px;
-      margin-top: 14px;
     }
 
     .btn-primary,
     .btn-secondary,
-    .btn-copy {
-      position: relative;
-      min-height: 56px;
-      border-radius: 22px;
-      display: flex;
+    .btn-copy,
+    .btn-success,
+    .btn-danger {
+      min-height: 54px;
+      padding: 12px 16px;
+      border-radius: 21px;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 9px;
-      font-size: 15px;
-      font-weight: 950;
-      padding: 12px 16px;
+      gap: 8px;
       text-align: center;
-      overflow: hidden;
+      font-size: 15px;
+      font-weight: 1000;
     }
 
     .btn-primary {
-      color: #FFFFFF;
-      background:
-        radial-gradient(circle at 15% 0%, rgba(255,255,255,0.30), transparent 30%),
-        linear-gradient(135deg, rgba(0,99,229,0.96), rgba(23,75,255,0.92), rgba(73,232,255,0.56));
-      border: 1px solid rgba(184,251,255,0.34);
-      box-shadow: 0 16px 34px rgba(0,99,229,0.24);
-    }
-
-    .btn-primary:before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      transform: translateX(-120%);
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent);
-      animation: buttonShine 3s ease-in-out infinite;
-      pointer-events: none;
-    }
-
-    @keyframes buttonShine {
-      0%, 60% { transform: translateX(-120%); }
-      100% { transform: translateX(120%); }
-    }
-
-    .btn-secondary,
-    .btn-copy {
-      color: var(--text);
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.12);
-    }
-
-    body.theme-day .btn-secondary,
-    body.theme-day .btn-copy {
-      background: rgba(255,255,255,0.70);
-      border-color: rgba(0,99,229,0.10);
+      color: var(--white);
+      background: linear-gradient(135deg, var(--blue2), var(--blue), var(--pink));
+      box-shadow: 0 16px 28px rgba(45,156,255,.22);
     }
 
     .btn-secondary {
-      min-width: 112px;
+      color: var(--text);
+      background: rgba(255,255,255,.62);
+      border: 1px solid rgba(45,156,255,.12);
     }
 
-    .btn-copy.copied {
-      color: #040714;
-      background: linear-gradient(135deg, var(--cyan2), #FFFFFF 52%, var(--ok));
-      border-color: rgba(164,255,212,0.35);
+    .btn-success {
+      color: var(--white);
+      background: linear-gradient(135deg, #26b879, var(--green));
+      box-shadow: 0 16px 28px rgba(38,184,121,.20);
     }
 
-    .status-strip {
+    .btn-danger {
+      color: var(--white);
+      background: linear-gradient(135deg, #ff5678, var(--red));
+    }
+
+    .btn-copy {
+      color: var(--white);
+      background: linear-gradient(135deg, var(--purple), var(--pink));
+    }
+
+    .status {
       margin-top: 12px;
-      padding: 12px 13px;
-      border-radius: 22px;
-      color: var(--sub);
-      background:
-        radial-gradient(circle at 0% 0%, rgba(184,251,255,0.11), transparent 36%),
-        rgba(255,255,255,0.052);
-      border: 1px solid rgba(184,251,255,0.15);
       display: grid;
       gap: 8px;
-    }
-
-    body.theme-day .status-strip {
-      background:
-        radial-gradient(circle at 0% 0%, rgba(0,99,229,0.08), transparent 36%),
-        rgba(255,255,255,0.58);
-      border-color: rgba(0,99,229,0.10);
+      padding: 12px 13px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.55);
+      border: 1px solid rgba(255,255,255,.75);
     }
 
     .status-line {
@@ -1103,6 +775,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 10px;
+      color: var(--sub);
       font-size: 12px;
       line-height: 1.45;
       font-weight: 850;
@@ -1116,347 +789,255 @@
     }
 
     .status-dot {
-      width: 8px;
-      height: 8px;
+      width: 9px;
+      height: 9px;
       border-radius: 999px;
-      background: var(--cyan);
-      box-shadow: 0 0 14px rgba(73,232,255,0.72);
       flex: 0 0 auto;
+      background: var(--blue);
+      box-shadow: 0 0 0 5px rgba(45,156,255,.10);
     }
 
     .status-dot.ok {
-      background: var(--ok);
-      box-shadow: 0 0 14px rgba(164,255,212,0.72);
+      background: var(--green);
+      box-shadow: 0 0 0 5px rgba(84,214,160,.12);
     }
 
     .status-dot.warn {
-      background: var(--warn);
-      box-shadow: 0 0 14px rgba(255,230,166,0.72);
+      background: var(--orange);
+      box-shadow: 0 0 0 5px rgba(255,179,71,.14);
     }
 
     .status-dot.bad {
-      background: var(--danger);
-      box-shadow: 0 0 14px rgba(255,180,194,0.72);
+      background: var(--red);
+      box-shadow: 0 0 0 5px rgba(255,111,145,.12);
     }
 
-    .status-text {
-      overflow-wrap: anywhere;
-    }
-
-    .last-request-time {
-      color: var(--muted);
-      font-size: 11px;
-      font-weight: 800;
-      white-space: nowrap;
-    }
-
-    .cooldown-bar {
-      height: 8px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.08);
-      overflow: hidden;
+    .cooldown {
       display: none;
-    }
-
-    body.theme-day .cooldown-bar {
-      background: rgba(0,99,229,0.08);
+      height: 8px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(45,156,255,.10);
     }
 
     .cooldown-fill {
       width: 0%;
       height: 100%;
       border-radius: inherit;
-      background: linear-gradient(90deg, var(--cyan2), #FFFFFF, var(--pink));
-      transition: width .25s ease;
+      background: linear-gradient(90deg, var(--blue), var(--pink));
+      transition: width .2s ease;
     }
 
-    body.theme-day .cooldown-fill {
-      background: linear-gradient(90deg, var(--blue), var(--cyan), var(--pink2));
-    }
-
-    .privacy {
-      margin-top: 12px;
-      color: var(--muted);
-      font-size: 11px;
-      line-height: 1.65;
-      text-align: center;
-    }
-
-    .result-box {
+    .result {
       display: none;
       margin-top: 14px;
+      padding: 16px;
       border-radius: 30px;
-      padding: 18px;
-      background:
-        radial-gradient(circle at 50% 0%, rgba(184,251,255,0.13), transparent 34%),
-        linear-gradient(135deg, rgba(0,99,229,0.18), rgba(255,214,244,0.10)),
-        rgba(255,255,255,0.06);
-      border: 1px solid rgba(184,251,255,0.18);
       text-align: center;
-      animation: resultIn .28s ease both;
-      position: relative;
-      overflow: hidden;
-    }
-
-    body.theme-day .result-box {
       background:
-        radial-gradient(circle at 50% 0%, rgba(0,99,229,0.08), transparent 34%),
-        linear-gradient(135deg, rgba(0,99,229,0.10), rgba(255,159,224,0.10)),
-        rgba(255,255,255,0.64);
-      border-color: rgba(0,99,229,0.12);
+        radial-gradient(circle at 50% 0%, rgba(255,255,255,.86), transparent 52%),
+        linear-gradient(135deg, rgba(45,156,255,.10), rgba(255,143,216,.14));
+      border: 1px solid rgba(255,255,255,.82);
+      animation: pop .24s ease both;
     }
 
-    .result-box:before {
-      content: "✦";
-      position: absolute;
-      left: 18px;
-      top: 15px;
-      color: rgba(255,255,255,0.45);
-      font-size: 16px;
-      animation: twinkle 2.6s ease-in-out infinite;
-    }
-
-    body.theme-day .result-box:before {
-      color: rgba(0,99,229,0.35);
-    }
-
-    .result-box:after {
-      content: "✧";
-      position: absolute;
-      right: 18px;
-      bottom: 18px;
-      color: rgba(255,214,244,0.48);
-      font-size: 18px;
-      animation: twinkle 3.1s ease-in-out infinite;
-      animation-delay: .8s;
-    }
-
-    @keyframes resultIn {
+    @keyframes pop {
       from { opacity: 0; transform: translateY(10px) scale(.985); }
       to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
     .result-icon {
-      width: 64px;
-      height: 64px;
-      margin: 0 auto 12px;
+      width: 62px;
+      height: 62px;
+      margin: 0 auto 10px;
       border-radius: 24px;
       display: grid;
       place-items: center;
-      color: #040714;
-      background: linear-gradient(135deg, var(--cyan2), #FFFFFF 52%, var(--pink));
-      font-size: 29px;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--blue), var(--pink));
+      font-size: 28px;
       font-weight: 1000;
-      box-shadow: 0 18px 38px rgba(184,251,255,0.16);
-      position: relative;
-      z-index: 1;
+      box-shadow: 0 16px 34px rgba(45,156,255,.18);
     }
 
-    .result-title {
+    .result h3 {
       margin: 0;
-      color: var(--text);
       font-size: 21px;
       font-weight: 1000;
-      position: relative;
-      z-index: 1;
     }
 
     .result-message {
-      margin: 9px auto 0;
-      max-width: 380px;
+      margin: 8px auto 0;
+      max-width: 390px;
       color: var(--sub);
-      font-size: 14px;
-      line-height: 1.7;
-      white-space: pre-line;
-      position: relative;
-      z-index: 1;
-    }
-
-    .request-id {
-      margin: 13px auto 0;
-      width: fit-content;
-      max-width: 100%;
-      padding: 10px 13px;
-      border-radius: 999px;
-      color: var(--text);
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(184,251,255,0.15);
-      font-size: 12px;
-      font-weight: 850;
-      overflow-wrap: anywhere;
-      position: relative;
-      z-index: 1;
-    }
-
-    body.theme-day .request-id {
-      background: rgba(0,99,229,0.045);
-      border-color: rgba(0,99,229,0.10);
-    }
-
-    .otp-safe {
-      margin: 13px auto 0;
-      max-width: 400px;
-      padding: 12px 14px;
-      border-radius: 22px;
-      color: var(--text);
-      background: rgba(73,232,255,0.10);
-      border: 1px solid rgba(184,251,255,0.24);
       font-size: 13px;
       line-height: 1.65;
-      font-weight: 850;
-      display: none;
-      position: relative;
-      z-index: 1;
+      white-space: pre-line;
+      font-weight: 700;
     }
 
-    body.theme-day .otp-safe {
-      background: rgba(0,99,229,0.06);
-      border-color: rgba(0,99,229,0.12);
-    }
-
-    .auto-retry-box {
-      display: none;
-      margin: 13px auto 0;
-      max-width: 420px;
-      padding: 12px;
-      border-radius: 22px;
-      background: rgba(255,230,166,0.10);
-      border: 1px solid rgba(255,230,166,0.22);
-      position: relative;
-      z-index: 1;
-    }
-
-    body.theme-day .auto-retry-box {
-      background: rgba(255,193,7,0.10);
-      border-color: rgba(255,193,7,0.18);
-    }
-
-    .auto-retry-title {
-      color: var(--text);
-      font-size: 13px;
-      font-weight: 950;
-      line-height: 1.55;
-    }
-
-    .auto-retry-sub {
-      margin-top: 4px;
-      color: var(--sub);
-      font-size: 12px;
-      line-height: 1.55;
-      font-weight: 750;
-    }
-
-    .auto-retry-actions {
-      margin-top: 10px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-    }
-
-    .auto-retry-actions .btn-primary,
-    .auto-retry-actions .btn-secondary {
-      min-height: 44px;
-      border-radius: 16px;
-      font-size: 13px;
+    .request-id,
+    .session-id {
+      width: fit-content;
+      max-width: 100%;
+      margin: 10px auto 0;
+      padding: 8px 11px;
+      border-radius: 999px;
+      color: var(--muted);
+      background: rgba(255,255,255,.58);
+      border: 1px solid rgba(45,156,255,.10);
+      font-size: 11px;
+      font-weight: 900;
+      overflow-wrap: anywhere;
     }
 
     .otp-box {
       display: none;
       margin: 13px auto 0;
-      max-width: 380px;
+      max-width: 390px;
       padding: 14px;
       border-radius: 26px;
-      background:
-        radial-gradient(circle at 50% 0%, rgba(255,255,255,0.12), transparent 44%),
-        rgba(255,255,255,0.07);
-      border: 1px solid rgba(184,251,255,0.26);
-      position: relative;
-      z-index: 1;
-    }
-
-    body.theme-day .otp-box {
-      background:
-        radial-gradient(circle at 50% 0%, rgba(0,99,229,0.08), transparent 44%),
-        rgba(255,255,255,0.58);
-      border-color: rgba(0,99,229,0.12);
+      background: rgba(255,255,255,.70);
+      border: 1px solid rgba(45,156,255,.14);
     }
 
     .otp-label {
       color: var(--muted);
       font-size: 12px;
-      font-weight: 850;
+      font-weight: 900;
     }
 
     .otp-code {
-      margin-top: 8px;
+      margin-top: 7px;
       color: var(--text);
-      font-size: 36px;
-      letter-spacing: 6px;
+      font-size: 38px;
+      letter-spacing: 7px;
       font-weight: 1000;
       user-select: all;
-      overflow-wrap: anywhere;
-      text-shadow: 0 0 24px rgba(184,251,255,0.20);
     }
 
     .otp-note {
-      margin-top: 9px;
+      margin-top: 7px;
       color: var(--muted);
       font-size: 12px;
-      line-height: 1.55;
+      line-height: 1.5;
       font-weight: 700;
     }
 
-    .copy-area {
-      margin-top: 14px;
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      position: relative;
-      z-index: 1;
-    }
-
-    .copy-area .btn-copy {
-      width: auto;
-      min-width: 170px;
-      border-radius: 999px;
-      min-height: 50px;
-    }
-
     .result-actions {
-      margin-top: 14px;
+      margin-top: 13px;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 9px;
-      position: relative;
-      z-index: 1;
     }
 
     .result-actions .btn-primary,
-    .result-actions .btn-secondary {
-      min-height: 50px;
-      border-radius: 20px;
-      font-size: 14px;
+    .result-actions .btn-secondary,
+    .result-actions .btn-copy,
+    .result-actions .btn-success,
+    .result-actions .btn-danger {
+      min-height: 48px;
+      border-radius: 18px;
+      font-size: 13px;
+    }
+
+    .login-box {
+      display: none;
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 22px;
+      color: #176744;
+      background: rgba(84,214,160,.14);
+      border: 1px solid rgba(84,214,160,.25);
+      font-size: 12px;
+      line-height: 1.6;
+      font-weight: 850;
+    }
+
+    .privacy {
+      margin-top: 10px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 10.5px;
+      line-height: 1.55;
+      font-weight: 750;
+    }
+
+    .loading {
+      position: fixed;
+      inset: 0;
+      z-index: 70;
+      display: none;
+      place-items: center;
+      padding: 20px;
+      background: rgba(18,48,90,.18);
+      backdrop-filter: blur(12px);
+    }
+
+    .loading.show {
+      display: grid;
+    }
+
+    .loading-card {
+      width: min(350px, 100%);
+      padding: 22px;
+      border-radius: 32px;
+      text-align: center;
+      background: rgba(255,255,255,.92);
+      border: 1px solid rgba(255,255,255,.84);
+      box-shadow: var(--shadow);
+    }
+
+    .loading-mascot {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 12px;
+      border-radius: 26px;
+      display: grid;
+      place-items: center;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--blue), var(--pink));
+      font-size: 28px;
+      font-weight: 1000;
+      animation: pulse .95s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%,100% { transform: scale(1) rotate(0); }
+      50% { transform: scale(1.08) rotate(3deg); }
+    }
+
+    .loading-title {
+      font-size: 17px;
+      font-weight: 1000;
+    }
+
+    .loading-message {
+      margin-top: 6px;
+      color: var(--sub);
+      font-size: 13px;
+      line-height: 1.55;
+      font-weight: 750;
     }
 
     .toast {
       position: fixed;
       left: 50%;
       bottom: calc(18px + env(safe-area-inset-bottom));
-      transform: translateX(-50%) translateY(20px);
-      z-index: 80;
+      z-index: 90;
       max-width: calc(100vw - 28px);
-      background: rgba(255,255,255,0.96);
-      color: #040714;
-      border-radius: 999px;
-      padding: 12px 16px;
-      font-size: 14px;
-      font-weight: 850;
-      box-shadow: 0 18px 42px rgba(0,0,0,0.24);
+      transform: translateX(-50%) translateY(22px);
       opacity: 0;
       pointer-events: none;
-      transition: .22s ease;
+      padding: 12px 16px;
+      border-radius: 999px;
+      color: var(--white);
+      background: rgba(18,48,90,.94);
+      box-shadow: 0 18px 40px rgba(18,48,90,.22);
+      font-size: 14px;
+      font-weight: 900;
       text-align: center;
+      transition: .2s ease;
     }
 
     .toast.show {
@@ -1464,82 +1045,25 @@
       transform: translateX(-50%) translateY(0);
     }
 
-    .loading-overlay {
+    .confetti {
       position: fixed;
       inset: 0;
-      z-index: 70;
-      display: none;
-      place-items: center;
-      padding: 20px;
-      background: rgba(4,7,20,0.64);
-      backdrop-filter: blur(14px);
-    }
-
-    .loading-overlay.show {
-      display: grid;
-    }
-
-    .loading-card {
-      width: min(360px, 100%);
-      border-radius: 32px;
-      padding: 22px;
-      text-align: center;
-      border: 1px solid rgba(184,251,255,0.22);
-      background: rgba(4,7,20,0.92);
-      box-shadow: 0 30px 90px rgba(0,0,0,0.40);
-    }
-
-    .loader {
-      width: 56px;
-      height: 56px;
-      margin: 0 auto 14px;
-      border-radius: 22px;
-      display: grid;
-      place-items: center;
-      color: #040714;
-      background: linear-gradient(135deg, var(--cyan2), #FFFFFF 52%, var(--pink));
-      font-size: 22px;
-      font-weight: 1000;
-      animation: loaderPulse 1.3s ease-in-out infinite;
-    }
-
-    @keyframes loaderPulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.08) rotate(3deg); }
-    }
-
-    .loading-title {
-      color: #FFFFFF;
-      font-size: 17px;
-      font-weight: 950;
-      margin-bottom: 7px;
-    }
-
-    .loading-message {
-      color: rgba(249,251,255,0.72);
-      font-size: 13px;
-      line-height: 1.75;
-    }
-
-    .confetti-layer {
-      position: fixed;
-      inset: 0;
-      z-index: 90;
+      z-index: 95;
       pointer-events: none;
       overflow: hidden;
     }
 
     .confetti-piece {
       position: absolute;
-      bottom: 20%;
-      font-size: 17px;
-      animation: confettiUp 1.15s ease-out forwards;
+      bottom: 18%;
+      font-size: 18px;
+      animation: confetti 1.1s ease-out forwards;
     }
 
-    @keyframes confettiUp {
-      0% { transform: translate3d(0,0,0) scale(.8) rotate(0deg); opacity: 0; }
+    @keyframes confetti {
+      0% { opacity: 0; transform: translate3d(0,0,0) scale(.8) rotate(0); }
       12% { opacity: 1; }
-      100% { transform: translate3d(var(--x), -240px, 0) scale(1.25) rotate(180deg); opacity: 0; }
+      100% { opacity: 0; transform: translate3d(var(--x), -240px, 0) scale(1.25) rotate(200deg); }
     }
 
     @media (max-width: 920px) {
@@ -1552,183 +1076,137 @@
         display: flex;
         flex-direction: column;
         align-items: stretch;
-        gap: 16px;
       }
 
-      .hero {
-        min-height: auto;
-        gap: 14px;
-      }
-
-      .hero-main {
+      .hero-card {
         text-align: center;
-        margin: 0 auto;
       }
 
       .badge {
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .lead,
-      .theme-auto-pill {
-        margin-left: auto;
-        margin-right: auto;
+        margin: 0 auto;
       }
 
       .lead {
-        font-size: 14px;
+        margin-left: auto;
+        margin-right: auto;
       }
 
-      h1 {
-        font-size: clamp(30px, 8.5vw, 52px);
-        letter-spacing: -1.4px;
-      }
-
-      .hero-grid {
+      .mini-list {
         grid-template-columns: 1fr;
       }
     }
 
-    @media (max-width: 430px) {
+    @media (max-width: 520px) {
       .page {
-        min-height: 100svh;
-        padding: 10px 12px calc(12px + env(safe-area-inset-bottom));
+        padding: 10px 11px calc(12px + env(safe-area-inset-bottom));
       }
 
       .wrap {
-        gap: 10px;
+        gap: 12px;
       }
 
-      .hero-main {
-        padding: 14px;
-        border-radius: 26px;
+      .brand-logo {
+        width: 48px;
+        height: 48px;
+        border-radius: 18px;
+        font-size: 15px;
       }
 
       .brand-title {
-        font-size: 14px;
+        font-size: 16px;
       }
 
       .brand-sub {
         font-size: 11px;
       }
 
-      .logo {
-        width: 46px;
-        height: 46px;
-        border-radius: 18px;
-      }
-
-      .logo:before {
-        font-size: 14px;
-      }
-
-      .badge {
-        display: none;
+      .hero-card {
+        padding: 16px;
+        border-radius: 28px;
       }
 
       h1 {
-        font-size: clamp(25px, 7.2vw, 31px);
-        line-height: 1.15;
-        letter-spacing: -1px;
-        white-space: nowrap;
+        font-size: clamp(29px, 8vw, 39px);
+        letter-spacing: -1.3px;
       }
 
       .lead {
-        margin-top: 8px;
-        font-size: 12px;
-        line-height: 1.55;
+        font-size: 13px;
+        line-height: 1.6;
       }
 
-      .theme-auto-pill {
-        margin-top: 8px;
-        font-size: 10.5px;
-        padding: 7px 10px;
+      .mascot-zone {
+        grid-template-columns: 1fr;
+        text-align: center;
+        border-radius: 26px;
       }
 
-      .magic-card {
-        min-height: 126px;
-        border-radius: 24px;
-        padding: 14px;
+      .mascot {
+        width: 130px;
+        height: 130px;
       }
 
-      .magic-card strong {
-        font-size: 15px;
+      .mascot-head {
+        left: 18px;
+        top: 24px;
+        width: 94px;
+        height: 86px;
       }
 
-      .magic-card span {
-        font-size: 11px;
-      }
-
-      .mini-bubble {
-        min-height: 62px;
-        border-radius: 20px;
-      }
-
-      .mini-bubble-icon {
+      .mascot-ear {
         width: 36px;
         height: 36px;
-        border-radius: 14px;
-        font-size: 15px;
+      }
+
+      .mascot-eye.left { left: 50px; }
+      .mascot-eye.right { right: 50px; }
+      .mascot-cheek.left { left: 35px; }
+      .mascot-cheek.right { right: 35px; }
+      .mascot-mouth { left: 58px; top: 78px; }
+
+      .mascot-star {
+        right: 8px;
+        top: 7px;
+        width: 36px;
+        height: 36px;
+      }
+
+      .mascot-body {
+        left: 40px;
+        top: 104px;
       }
 
       .app-card {
         padding: 12px;
-        border-radius: 26px;
+        border-radius: 28px;
       }
 
       .app-top {
-        padding: 11px;
-        border-radius: 21px;
+        padding: 12px;
+        border-radius: 22px;
       }
 
       .app-top h2 {
-        font-size: 16px;
+        font-size: 17px;
       }
 
-      .app-top p {
-        font-size: 11px;
-        line-height: 1.45;
-      }
-
-      .status-pill {
+      .pill {
         display: none;
       }
 
-      .quick-hint {
+      .hint {
         font-size: 11px;
-        border-radius: 18px;
-        padding: 10px 11px;
-      }
-
-      .form-grid {
-        gap: 10px;
-      }
-
-      .label {
-        font-size: 12px;
-        margin-bottom: 6px;
       }
 
       input {
         min-height: 50px;
         font-size: 15px;
         border-radius: 17px;
-        padding: 10px 12px;
       }
 
       textarea {
-        min-height: 78px;
         font-size: 14px;
         border-radius: 17px;
-        padding: 10px 12px;
-      }
-
-      .quick-device-btn {
-        min-height: 34px;
-        padding: 7px 10px;
-        font-size: 11px;
-        border-radius: 13px;
       }
 
       .screen-grid {
@@ -1740,73 +1218,31 @@
         border-radius: 16px;
       }
 
-      .screen-btn strong {
-        font-size: 17px;
-      }
-
       .actions {
         grid-template-columns: 1fr;
-        gap: 8px;
       }
 
       .btn-primary,
-      .btn-secondary {
+      .btn-secondary,
+      .btn-copy,
+      .btn-success,
+      .btn-danger {
         min-height: 50px;
         border-radius: 18px;
-        font-size: 14px;
       }
 
       .status-line {
         align-items: flex-start;
         flex-direction: column;
-        gap: 6px;
       }
 
-      .last-request-time {
-        white-space: normal;
-      }
-
-      .copy-area .btn-copy {
-        width: 100%;
-        min-width: 0;
-        min-height: 48px;
-        font-size: 14px;
+      .otp-code {
+        font-size: 34px;
+        letter-spacing: 5px;
       }
 
       .result-actions {
         grid-template-columns: 1fr;
-        gap: 8px;
-      }
-
-      .auto-retry-actions {
-        grid-template-columns: 1fr;
-      }
-
-      .result-actions .btn-primary,
-      .result-actions .btn-secondary {
-        min-height: 48px;
-        border-radius: 18px;
-      }
-
-      .privacy {
-        font-size: 10.5px;
-        line-height: 1.55;
-      }
-
-      .toast {
-        bottom: calc(12px + env(safe-area-inset-bottom));
-      }
-    }
-
-    @media (max-width: 360px) {
-      h1 {
-        font-size: 23px;
-        letter-spacing: -.8px;
-      }
-
-      .otp-code {
-        font-size: 32px;
-        letter-spacing: 5px;
       }
     }
 
@@ -1824,67 +1260,72 @@
 
 <body>
   <main class="page">
-    <div class="orb one"></div>
-    <div class="orb two"></div>
-    <div class="orb three"></div>
+    <div class="blob one"></div>
+    <div class="blob two"></div>
+    <div class="blob three"></div>
+
     <div class="sparkle s1">✦</div>
     <div class="sparkle s2">✧</div>
     <div class="sparkle s3">✦</div>
     <div class="sparkle s4">✧</div>
-    <div class="sparkle s5">✦</div>
-    <div class="sparkle s6">✧</div>
+    <div class="sparkle s5">★</div>
 
     <section class="wrap">
       <div class="hero">
         <div class="brand">
-          <div class="logo" aria-hidden="true"></div>
+          <div class="brand-logo">D+</div>
           <div>
-            <div class="brand-title" id="brandTitle">426 SHOP</div>
-            <div class="brand-sub" id="brandSub">รับรหัส OTP</div>
+            <div class="brand-title">426 SHOP</div>
+            <div class="brand-sub">รับรหัส OTP ดิสนีย์</div>
           </div>
         </div>
 
-        <div class="hero-main">
-          <div class="badge">รับรหัส</div>
-          <h1>
-            รับรหัส<span class="gradient-text">ดิสนีย์</span>
-          </h1>
+        <div class="hero-card">
+          <div class="badge">รับรหัสแบบปลอดภัยขึ้น</div>
+          <h1>รับรหัส<span class="gradient">ดิสนีย์</span></h1>
           <p class="lead">
-            กรอกข้อมูลในหน้าเดียว แล้วกดรับรหัส ระบบจะแสดง OTP บนหน้าเว็บทันทีเมื่อพบรหัส
+            กรอกข้อมูลให้ครบ กดรับรหัส แล้วกดยืนยันหลังใช้รหัสล็อกอิน ระบบจะล็อก OTP ให้ใช้ได้ครั้งเดียว และช่วยกันนำรหัสไปใช้หลายเครื่อง
           </p>
-          <div class="theme-auto-pill" id="themeAutoPill">โหมดอัตโนมัติ</div>
         </div>
 
-        <div class="hero-grid">
-          <div class="magic-card">
-            <strong>ใช้งานง่ายขึ้นในหน้าเดียว</strong>
-            <span>กรอกชื่อ LINE อีเมล อุปกรณ์ และเลือกจอ จากนั้นกดรับรหัสได้เลย</span>
-            <div class="magic-line"></div>
+        <div class="mascot-zone">
+          <div class="mascot" aria-hidden="true">
+            <div class="mascot-ear left"></div>
+            <div class="mascot-ear right"></div>
+            <div class="mascot-head"></div>
+            <div class="mascot-eye left"></div>
+            <div class="mascot-eye right"></div>
+            <div class="mascot-cheek left"></div>
+            <div class="mascot-cheek right"></div>
+            <div class="mascot-mouth"></div>
+            <div class="mascot-star">★</div>
+            <div class="mascot-body"></div>
           </div>
 
-          <div class="mini-stack">
-            <div class="mini-bubble">
-              <div class="mini-bubble-icon">1</div>
-              <div>
-                <strong>กรอกข้อมูล</strong>
-                <span>ใช้ข้อมูลให้ตรงรายการ</span>
-              </div>
-            </div>
-
-            <div class="mini-bubble">
-              <div class="mini-bubble-icon">✓</div>
-              <div>
-                <strong>แสดง OTP ทันที</strong>
-                <span>คัดลอกรหัสได้เลย</span>
-              </div>
-            </div>
+          <div class="speech">
+            <h3>น้องดาว OTP พร้อมช่วยแล้ว</h3>
+            <p>
+              อยู่หน้าเดิมสามารถกดขอรหัสซ้ำได้ แต่ถ้าออกจากหน้านี้แล้วเปิดใหม่ ระบบจะมองว่าเป็นคนละหน้าและจะกันการขอซ้ำตาม pageSession
+            </p>
           </div>
         </div>
 
-        <div class="latest-card" id="latestCard">
-          <strong>ล่าสุด:</strong>
-          <span id="latestText">-</span>
-          <div class="latest-mini-list" id="latestMiniList"></div>
+        <div class="mini-list">
+          <div class="mini">
+            <div class="mini-icon">1</div>
+            <strong>ผูกกับหน้านี้</strong>
+            <span>ใช้ pageSession กันเปิดหน้าใหม่มาขอซ้ำ</span>
+          </div>
+          <div class="mini">
+            <div class="mini-icon">2</div>
+            <strong>OTP ใช้ครั้งเดียว</strong>
+            <span>ใช้แล้วต้องกดยืนยันเพื่อ mark ว่าใช้แล้ว</span>
+          </div>
+          <div class="mini">
+            <div class="mini-icon">3</div>
+            <strong>กันหลายเครื่อง</strong>
+            <span>verify แล้วระบบสร้าง session ให้เครื่องนี้</span>
+          </div>
         </div>
       </div>
 
@@ -1892,57 +1333,55 @@
         <div class="app-top">
           <div>
             <h2>รับรหัส OTP</h2>
-            <p>กรอกให้ครบในหน้าเดียว แล้วกดรับรหัส</p>
+            <p>กรอกข้อมูลให้ครบ แล้วกดรับรหัส</p>
           </div>
-          <div class="status-pill">D+</div>
+          <div class="pill">Disney+</div>
         </div>
 
-        <div class="quick-hint">
-          ทำง่าย ๆ: กรอกชื่อ LINE + อีเมล + อุปกรณ์ + เลือกจอ แล้วกดปุ่ม “รับรหัส” รหัสจะแสดงด้านล่างทันทีเมื่อระบบพบ OTP
+        <div class="hint">
+          หลังได้ OTP แล้ว ให้คัดลอกรหัสไปใส่ใน Disney+ จากนั้นกลับมากดปุ่ม “ฉันใช้รหัสนี้ล็อกอินแล้ว” เพื่อกันการใช้รหัสซ้ำหรือเอาไปล็อกอินหลายเครื่อง
         </div>
 
-        <div class="form-grid">
+        <div class="form">
           <div class="field">
             <div class="label">
-              <span class="label-main"><span class="label-dot"></span>ชื่อ LINE</span>
-              <span class="required">จำเป็น</span>
+              <span><i class="dot"></i>ชื่อ LINE</span>
+              <em class="req">จำเป็น</em>
             </div>
-            <input id="customerName" type="text" placeholder="เช่น คุณเอ" autocomplete="name" maxlength="120">
-            <div class="validation-msg" id="nameValidation">กรอกชื่อ LINE ก่อน</div>
+            <input id="customerName" type="text" maxlength="120" autocomplete="name" placeholder="เช่น คุณเอ">
+            <div class="validation" id="nameValidation">กรอกชื่อ LINE ก่อน</div>
           </div>
 
           <div class="field">
             <div class="label">
-              <span class="label-main"><span class="label-dot"></span>อีเมล</span>
-              <span class="required">จำเป็น</span>
+              <span><i class="dot"></i>อีเมล Disney+</span>
+              <em class="req">จำเป็น</em>
             </div>
-            <input id="email" type="email" placeholder="email ที่ใช้สมัคร Disney+" autocomplete="email" inputmode="email" maxlength="160">
-            <div class="validation-msg" id="emailValidation">กรอกอีเมลก่อน</div>
+            <input id="email" type="email" maxlength="160" autocomplete="email" inputmode="email" placeholder="email@example.com">
+            <div class="validation" id="emailValidation">กรอกอีเมลก่อน</div>
           </div>
 
           <div class="field">
             <div class="label">
-              <span class="label-main"><span class="label-dot"></span>อุปกรณ์</span>
-              <span class="required">จำเป็น</span>
+              <span><i class="dot"></i>อุปกรณ์</span>
+              <em class="req">จำเป็น</em>
             </div>
-            <input id="device" type="text" placeholder="เช่น iPhone / TV / Android" autocomplete="off" maxlength="80">
-            <div class="validation-msg" id="deviceValidation">เลือกหรือกรอกอุปกรณ์</div>
-
-            <div class="quick-device-grid" id="quickDeviceGrid">
-              <button type="button" class="quick-device-btn" data-device="iPhone">iPhone</button>
-              <button type="button" class="quick-device-btn" data-device="Android">Android</button>
-              <button type="button" class="quick-device-btn" data-device="iPad">iPad</button>
-              <button type="button" class="quick-device-btn" data-device="TV">TV</button>
-              <button type="button" class="quick-device-btn" data-device="Chrome">Chrome</button>
+            <input id="device" type="text" maxlength="80" autocomplete="off" placeholder="เช่น iPhone / Android / TV">
+            <div class="chips" id="deviceChips">
+              <button type="button" class="chip" data-device="iPhone">iPhone</button>
+              <button type="button" class="chip" data-device="Android">Android</button>
+              <button type="button" class="chip" data-device="iPad">iPad</button>
+              <button type="button" class="chip" data-device="TV">TV</button>
+              <button type="button" class="chip" data-device="Chrome">Chrome</button>
             </div>
+            <div class="validation" id="deviceValidation">เลือกหรือกรอกอุปกรณ์</div>
           </div>
 
           <div class="field">
             <div class="label">
-              <span class="label-main"><span class="label-dot"></span>จอ / โปรไฟล์</span>
-              <span class="required">1–6</span>
+              <span><i class="dot"></i>จอ / โปรไฟล์</span>
+              <em class="req">1–6</em>
             </div>
-
             <div class="screen-grid" id="screenGrid">
               <button type="button" class="screen-btn" data-screen="1"><strong>1</strong><span>จอ</span></button>
               <button type="button" class="screen-btn" data-screen="2"><strong>2</strong><span>จอ</span></button>
@@ -1951,223 +1390,206 @@
               <button type="button" class="screen-btn" data-screen="5"><strong>5</strong><span>จอ</span></button>
               <button type="button" class="screen-btn" data-screen="6"><strong>6</strong><span>จอ</span></button>
             </div>
-            <div class="validation-msg" id="screenValidation">เลือกจอ</div>
+            <div class="validation" id="screenValidation">เลือกจอ</div>
           </div>
 
           <div class="field">
             <div class="label">
-              <span class="label-main"><span class="label-dot"></span>หมายเหตุ</span>
-              <span class="optional">ถ้ามี</span>
+              <span><i class="dot"></i>หมายเหตุ</span>
+              <em class="opt">ถ้ามี</em>
             </div>
-            <textarea id="customerNote" placeholder="กรอกข้อมูลตามจริง เนื่องจากสามารถตรวจสอบได้" maxlength="700"></textarea>
+            <textarea id="customerNote" maxlength="700" placeholder="เช่น ลูกค้าแจ้งว่าใช้บนทีวีห้องนั่งเล่น"></textarea>
             <div class="note-count" id="noteCount">0/700</div>
           </div>
         </div>
 
         <div class="actions">
-          <button class="btn-primary" id="submitBtn" onclick="submitRequest()" type="button">
-            <span id="btnText">รับรหัส</span>
+          <button type="button" class="btn-primary" id="submitBtn" onclick="submitRequest()">
+            <span id="submitText">รับรหัส</span>
           </button>
-          <button class="btn-secondary" onclick="clearDraft()" type="button">ล้าง</button>
+          <button type="button" class="btn-secondary" onclick="clearForm()">ล้าง</button>
         </div>
 
-        <div class="status-strip" id="statusStrip">
+        <div class="status">
           <div class="status-line">
             <div class="status-left">
               <span class="status-dot" id="statusDot"></span>
-              <span class="status-text" id="statusText">พร้อมรับรหัส</span>
+              <span id="statusText">พร้อมรับรหัส</span>
             </div>
-            <div class="last-request-time" id="lastRequestTime">ยังไม่เคยขอรหัส</div>
+            <span id="lastRequestText">ยังไม่เคยขอรหัส</span>
           </div>
-          <div class="cooldown-bar" id="cooldownBar">
+          <div class="cooldown" id="cooldown">
             <div class="cooldown-fill" id="cooldownFill"></div>
           </div>
         </div>
 
-        <div class="privacy" id="autosaveText">บันทึกแบบร่างแล้ว</div>
+        <div class="privacy">
+          Page Session: <span id="pageSessionText">-</span>
+        </div>
 
-        <div class="result-box" id="resultBox">
+        <div class="result" id="resultBox">
           <div class="result-icon" id="resultIcon">✓</div>
-          <h3 class="result-title" id="resultTitle">รหัส OTP</h3>
-          <div class="result-message" id="resultMessage">เรียบร้อย</div>
+          <h3 id="resultTitle">รหัส OTP</h3>
+          <div class="result-message" id="resultMessage">-</div>
           <div class="request-id" id="requestIdBox">เลขอ้างอิง: -</div>
-
-          <div class="otp-safe" id="otpSafeBox">
-            ยังไม่พบรหัส OTP ในเมลล่าสุด กรุณารอ 3–10 วินาที ระบบจะลองใหม่ให้อัตโนมัติ
-          </div>
-
-          <div class="auto-retry-box" id="autoRetryBox">
-            <div class="auto-retry-title" id="autoRetryTitle">ลองอีกครั้งอัตโนมัติใน 3 วินาที</div>
-            <div class="auto-retry-sub">ระบบจะลองค้นหา OTP ใหม่ให้อัตโนมัติ ลูกค้าไม่ต้องกดรัว</div>
-            <div class="auto-retry-actions">
-              <button class="btn-primary" id="retryNowBtn" onclick="retryNow()" type="button">ลองตอนนี้</button>
-              <button class="btn-secondary" id="cancelRetryBtn" onclick="cancelAutoRetry()" type="button">ยกเลิก</button>
-            </div>
-          </div>
+          <div class="session-id" id="sessionIdBox" style="display:none;">Session: -</div>
 
           <div class="otp-box" id="otpBox">
             <div class="otp-label">OTP</div>
             <div class="otp-code" id="otpCode">------</div>
-            <div class="otp-note" id="otpExpireNote">ใช้ภายใน 15 นาที</div>
-            <div class="copy-area">
-              <button class="btn-copy" id="copyOtpBtn" onclick="copyOtp()" type="button">คัดลอกรหัส</button>
-            </div>
+            <div class="otp-note" id="otpNote">ใช้ภายใน 15 นาที</div>
+          </div>
+
+          <div class="login-box" id="loginBox">
+            ล็อกอินเครื่องนี้แล้ว ระบบจะกันการใช้ซ้ำตาม session ของอีเมลนี้
           </div>
 
           <div class="result-actions">
-            <button class="btn-primary" onclick="requestNewOtp()" type="button">ขอรหัสใหม่</button>
-            <button class="btn-secondary" onclick="editRequestInfo()" type="button">แก้ไขข้อมูล</button>
-            <button class="btn-secondary" onclick="startNewRequest()" type="button">เริ่มใหม่</button>
-            <button class="btn-secondary" onclick="scrollToForm()" type="button">กลับไปด้านบน</button>
+            <button type="button" class="btn-copy" id="copyBtn" onclick="copyOtp()">คัดลอก OTP</button>
+            <button type="button" class="btn-success" id="verifyBtn" onclick="verifyOtpUsed()">ฉันใช้รหัสนี้ล็อกอินแล้ว</button>
+            <button type="button" class="btn-primary" onclick="requestNewOtp()">ขอรหัสใหม่</button>
+            <button type="button" class="btn-secondary" onclick="editInfo()">แก้ไขข้อมูล</button>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <div class="loading-overlay" id="loadingOverlay">
+  <div class="loading" id="loading">
     <div class="loading-card">
-      <div class="loader">OTP</div>
-      <div class="loading-title">กำลังรับรหัส</div>
-      <div class="loading-message" id="loadingMessage">กำลังตรวจสอบ...</div>
+      <div class="loading-mascot">★</div>
+      <div class="loading-title">น้องดาวกำลังหารหัส</div>
+      <div class="loading-message" id="loadingMessage">กำลังตรวจสอบข้อมูล...</div>
     </div>
   </div>
 
-  <div class="confetti-layer" id="confettiLayer"></div>
+  <div class="confetti" id="confetti"></div>
   <div class="toast" id="toast">เรียบร้อย</div>
 
   <script>
+    /************************************************************
+     * CONFIG
+     ************************************************************/
+
     const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwe24EQaOFwra5jexOMg7VY5yskHBlbnqEW2E2VP35IMVfJERqY3tge-YHJt-iKvpF8kA/exec';
-    const SHOP_LINE_NAME = '426 SHOP';
-    const SHOP_SUBTITLE = 'รับรหัส OTP';
 
     /*
-      FAST MODE UPDATE
-      - ลด timeout จาก 18 วิ เหลือ 12 วิ
-      - ลด auto retry จาก 10 วิ เหลือ 3 วิ
-      - ลด cooldown จาก 15 วิ เหลือ 4 วิ
-      - เพิ่มจำนวนลองซ้ำอัตโนมัติจาก 2 เป็น 4
-      - ส่งพารามิเตอร์ fast/preferLatest/cacheBust ให้ backend ใช้ค้นหาแบบเร็วได้ ถ้า backend รองรับ
+      ถ้า Apps Script ตั้ง WEB_TOKEN ไว้ ให้ใส่ค่าเดียวกันตรงนี้
+      ถ้าไม่ได้ตั้ง WEB_TOKEN ปล่อยว่างได้
     */
-    const REQUEST_TIMEOUT_MS = 12000;
-    const DRAFT_KEY = 'disneyOtpSimpleDraftV3Fast';
-    const HISTORY_KEY = 'disneyOtpSimpleLatestV3Fast';
-    const HISTORY_LIST_KEY = 'disneyOtpSimpleListV3Fast';
-    const LAST_REQUEST_TIME_KEY = 'disneyOtpLastRequestTimeV3Fast';
+    const WEB_TOKEN = '';
+
+    const SERVICE_BRAND = 'disney';
+    const SHOP_NAME = '426 SHOP';
+
+    const REQUEST_TIMEOUT_MS = 15000;
     const AUTO_RETRY_SECONDS = 3;
+    const MAX_AUTO_RETRY = 3;
     const COOLDOWN_SECONDS = 4;
-    const MAX_AUTO_RETRY_COUNT = 4;
-    const LOADING_MESSAGE_INTERVAL_MS = 550;
+    const DRAFT_KEY = 'cuteDisneyOtpDraftV1';
+
+    /*
+      สำคัญ:
+      pageSession นี้สร้างใหม่ทุกครั้งที่เปิดหน้า
+      ถ้าออกจากหน้าแล้วเปิดใหม่ pageSession จะเปลี่ยน
+      backend จะกัน PAGE_SESSION_CHANGED ตามที่ตั้งไว้ใน Apps Script
+    */
+    const PAGE_SESSION = createPageSession();
+
+    /************************************************************
+     * STATE
+     ************************************************************/
 
     let selectedScreen = '';
-    let selectedDeviceQuick = '';
-    let jsonpCounter = 0;
-    let toastTimer = null;
-    let loadingTextTimer = null;
-    let loadingTextIndex = 0;
-    let autosaveTimer = null;
-    let latestRequestId = '';
+    let selectedDevice = '';
     let latestOtp = '';
+    let latestRequestId = '';
+    let latestSessionId = '';
     let latestExpireMinutes = 15;
+    let jsonpCounter = 0;
+    let isSubmitting = false;
+    let isVerifying = false;
+    let toastTimer = null;
+    let loadingTimer = null;
     let autoRetryTimer = null;
-    let autoRetrySecondsLeft = AUTO_RETRY_SECONDS;
     let autoRetryCount = 0;
+    let autoRetryLeft = AUTO_RETRY_SECONDS;
     let cooldownTimer = null;
     let cooldownEndAt = 0;
-    let lastRequestAt = '';
-    let isSubmitting = false;
-    let currentRequestToken = '';
 
-    const loadingMessages = [
-      'ตรวจสอบข้อมูล',
-      'ค้นหาเมลล่าสุด',
-      'ดึง OTP แบบเร็ว',
-      'กำลังแสดงผล'
-    ];
+    /************************************************************
+     * ELEMENTS
+     ************************************************************/
 
-    const app = document.getElementById('app');
-    const brandTitle = document.getElementById('brandTitle');
-    const brandSub = document.getElementById('brandSub');
     const customerNameInput = document.getElementById('customerName');
     const emailInput = document.getElementById('email');
     const deviceInput = document.getElementById('device');
     const customerNoteInput = document.getElementById('customerNote');
-    const submitBtn = document.getElementById('submitBtn');
-    const btnText = document.getElementById('btnText');
-    const resultBox = document.getElementById('resultBox');
-    const resultIcon = document.getElementById('resultIcon');
-    const resultTitle = document.getElementById('resultTitle');
-    const resultMessage = document.getElementById('resultMessage');
-    const requestIdBox = document.getElementById('requestIdBox');
-    const otpSafeBox = document.getElementById('otpSafeBox');
-    const autoRetryBox = document.getElementById('autoRetryBox');
-    const autoRetryTitle = document.getElementById('autoRetryTitle');
-    const retryNowBtn = document.getElementById('retryNowBtn');
-    const cancelRetryBtn = document.getElementById('cancelRetryBtn');
-    const otpBox = document.getElementById('otpBox');
-    const otpCode = document.getElementById('otpCode');
-    const otpExpireNote = document.getElementById('otpExpireNote');
-    const copyOtpBtn = document.getElementById('copyOtpBtn');
-    const toast = document.getElementById('toast');
-    const loadingOverlay = document.getElementById('loadingOverlay');
-    const loadingMessage = document.getElementById('loadingMessage');
-    const confettiLayer = document.getElementById('confettiLayer');
-    const screenButtons = document.querySelectorAll('.screen-btn');
-    const quickDeviceButtons = document.querySelectorAll('.quick-device-btn');
+
     const nameValidation = document.getElementById('nameValidation');
     const emailValidation = document.getElementById('emailValidation');
     const deviceValidation = document.getElementById('deviceValidation');
     const screenValidation = document.getElementById('screenValidation');
     const noteCount = document.getElementById('noteCount');
-    const latestCard = document.getElementById('latestCard');
-    const latestText = document.getElementById('latestText');
-    const latestMiniList = document.getElementById('latestMiniList');
-    const autosaveText = document.getElementById('autosaveText');
+
+    const submitBtn = document.getElementById('submitBtn');
+    const submitText = document.getElementById('submitText');
+
+    const resultBox = document.getElementById('resultBox');
+    const resultIcon = document.getElementById('resultIcon');
+    const resultTitle = document.getElementById('resultTitle');
+    const resultMessage = document.getElementById('resultMessage');
+    const requestIdBox = document.getElementById('requestIdBox');
+    const sessionIdBox = document.getElementById('sessionIdBox');
+
+    const otpBox = document.getElementById('otpBox');
+    const otpCode = document.getElementById('otpCode');
+    const otpNote = document.getElementById('otpNote');
+
+    const loginBox = document.getElementById('loginBox');
+    const verifyBtn = document.getElementById('verifyBtn');
+    const copyBtn = document.getElementById('copyBtn');
+
     const statusDot = document.getElementById('statusDot');
     const statusText = document.getElementById('statusText');
-    const lastRequestTime = document.getElementById('lastRequestTime');
-    const cooldownBar = document.getElementById('cooldownBar');
+    const lastRequestText = document.getElementById('lastRequestText');
+
+    const cooldown = document.getElementById('cooldown');
     const cooldownFill = document.getElementById('cooldownFill');
-    const themeAutoPill = document.getElementById('themeAutoPill');
 
-    brandTitle.textContent = SHOP_LINE_NAME || '426 SHOP';
-    brandSub.textContent = SHOP_SUBTITLE || 'รับรหัส OTP';
+    const loading = document.getElementById('loading');
+    const loadingMessage = document.getElementById('loadingMessage');
+    const toast = document.getElementById('toast');
+    const confetti = document.getElementById('confetti');
+    const pageSessionText = document.getElementById('pageSessionText');
 
-    applyAutoTheme();
-    restoreDraft();
-    restoreLastRequestTime();
-    loadLatestHistory();
-    updateNoteCount();
-    validateRealtime();
-    bindEvents();
-    updateStatus('พร้อมรับรหัสแบบเร็ว', 'idle');
+    const screenButtons = Array.from(document.querySelectorAll('.screen-btn'));
+    const chipButtons = Array.from(document.querySelectorAll('.chip'));
 
-    function applyAutoTheme() {
-      const hour = new Date().getHours();
-      const isDay = hour >= 7 && hour < 18;
+    /************************************************************
+     * INIT
+     ************************************************************/
 
-      document.body.classList.remove('theme-day', 'theme-night');
-      document.body.classList.add(isDay ? 'theme-day' : 'theme-night');
+    init();
 
-      const themeText = isDay ? 'โหมดสว่างอัตโนมัติ' : 'โหมดมืดอัตโนมัติ';
+    function init() {
+      pageSessionText.textContent = PAGE_SESSION.slice(0, 8) + '...';
 
-      if (themeAutoPill) {
-        themeAutoPill.textContent = themeText + ' • ' + formatTimeShort(new Date());
-      }
+      restoreDraft();
+      updateNoteCount();
+      validateForm();
+      bindEvents();
+      updateStatus('พร้อมรับรหัส', 'idle');
 
-      const metaTheme = document.querySelector('meta[name="theme-color"]');
-      if (metaTheme) {
-        metaTheme.setAttribute('content', isDay ? '#EAF8FF' : '#071634');
-      }
+      customerNameInput.focus();
     }
 
     function bindEvents() {
       [customerNameInput, emailInput, deviceInput, customerNoteInput].forEach(function(input) {
         input.addEventListener('input', function() {
           if (input === customerNoteInput) updateNoteCount();
-          if (input === deviceInput) clearQuickDeviceSelectedIfManualChange();
-          validateRealtime();
-          saveDraftSoon();
+          validateForm();
+          saveDraft();
         });
 
         input.addEventListener('keydown', function(e) {
@@ -2176,292 +1598,511 @@
           }
         });
 
-        input.addEventListener('blur', validateRealtime);
+        input.addEventListener('blur', validateForm);
       });
 
       screenButtons.forEach(function(btn) {
         btn.addEventListener('click', function() {
-          selectedScreen = btn.getAttribute('data-screen') || '';
+          selectedScreen = btn.dataset.screen || '';
 
           screenButtons.forEach(function(item) {
             item.classList.remove('selected');
           });
 
           btn.classList.add('selected');
-          validateRealtime();
-          saveDraftSoon();
+          validateForm();
+          saveDraft();
           showToast('เลือกจอ ' + selectedScreen + ' แล้ว');
         });
       });
 
-      quickDeviceButtons.forEach(function(btn) {
+      chipButtons.forEach(function(btn) {
         btn.addEventListener('click', function() {
-          const deviceName = btn.getAttribute('data-device') || '';
-          deviceInput.value = deviceName;
-          setQuickDeviceSelected(deviceName);
-          validateRealtime();
-          saveDraftSoon();
-          showToast('เลือก ' + deviceName + ' แล้ว');
+          selectedDevice = btn.dataset.device || '';
+          deviceInput.value = selectedDevice;
+
+          chipButtons.forEach(function(item) {
+            item.classList.remove('selected');
+          });
+
+          btn.classList.add('selected');
+          validateForm();
+          saveDraft();
+          showToast('เลือก ' + selectedDevice + ' แล้ว');
         });
       });
 
-      document.addEventListener('visibilitychange', function() {
-        if (!document.hidden) {
-          applyAutoTheme();
-          updateCooldownUi();
+      deviceInput.addEventListener('input', function() {
+        if (deviceInput.value.trim() !== selectedDevice) {
+          selectedDevice = '';
+          chipButtons.forEach(function(item) {
+            item.classList.remove('selected');
+          });
         }
+      });
+
+      /*
+        ไม่เรียก close-page-session ตอนออกจากหน้า
+        เพราะต้องการให้เปิดหน้าใหม่แล้ว pageSession เปลี่ยน จากนั้น backend ตอบ PAGE_SESSION_CHANGED
+      */
+      window.addEventListener('pagehide', function() {
+        try {
+          saveDraft();
+        } catch (err) {}
       });
     }
 
-    function hasValidInfo() {
-      const lineName = customerNameInput.value.trim();
-      const email = emailInput.value.trim();
-      return lineName.length >= 2 && !!email && isEmail(email);
-    }
-
-    function hasValidRequestInfo() {
-      const device = deviceInput.value.trim();
-      return hasValidInfo() && device.length >= 2 && !!selectedScreen;
-    }
+    /************************************************************
+     * MAIN ACTIONS
+     ************************************************************/
 
     function submitRequest(options) {
       options = options || {};
-
-      const bypassCooldown = options.bypassCooldown === true;
-      const isAutoRetry = options.autoRetry === true;
-      const customerName = customerNameInput.value.trim();
-      const email = emailInput.value.trim();
-      const device = deviceInput.value.trim();
-      const customerNote = customerNoteInput.value.trim();
-
-      cancelAutoRetry(false);
-      resetResult(false);
 
       if (isSubmitting) {
         showToast('กำลังค้นหารหัสอยู่');
         return;
       }
 
-      if (!bypassCooldown && isCooldownActive()) {
-        const left = getCooldownLeftSeconds();
-        showToast('รอสักครู่ ลองใหม่ได้ใน ' + left + ' วินาที');
-        updateStatus('รอคูลดาวน์อีก ' + left + ' วินาที', 'warn');
+      if (!options.bypassCooldown && isCooldownActive()) {
+        showToast('รออีก ' + getCooldownLeft() + ' วินาที');
         return;
       }
 
-      if (!WEB_APP_URL || WEB_APP_URL.indexOf('ใส่_GOOGLE_APPS_SCRIPT') !== -1) {
-        showError('ตั้งค่า WEB_APP_URL ก่อน');
+      if (!validateForm(true)) {
+        showToast('กรอกข้อมูลให้ครบก่อน');
         return;
       }
 
-      updateStatus('ตรวจสอบข้อมูล', 'idle');
-
-      if (!customerName || customerName.length < 2) {
-        showToast('กรอกชื่อ LINE ก่อน');
-        validateRealtime();
-        focusInput(customerNameInput);
-        updateStatus('กรอกชื่อ LINE ก่อน', 'bad');
-        return;
-      }
-
-      if (!email || !isEmail(email)) {
-        showToast('กรอกอีเมลก่อน');
-        validateRealtime();
-        focusInput(emailInput);
-        updateStatus('กรอกอีเมลให้ถูกต้อง', 'bad');
-        return;
-      }
-
-      if (!device || device.length < 2) {
-        showToast('กรอกอุปกรณ์ก่อน');
-        validateRealtime();
-        focusInput(deviceInput);
-        updateStatus('กรอกอุปกรณ์ก่อน', 'bad');
-        return;
-      }
-
-      if (!selectedScreen) {
-        showToast('เลือกจอก่อน');
-        validateRealtime();
-        updateStatus('เลือกจอก่อน', 'bad');
-        return;
-      }
+      resetResult(false);
 
       isSubmitting = true;
-      currentRequestToken = createRequestToken();
-      markLastRequestTime();
-      startCooldown(COOLDOWN_SECONDS);
-      setLoading(true);
-      updateStatus(isAutoRetry ? 'กำลังลองค้นหารหัสอีกครั้งแบบเร็ว' : 'กำลังค้นหารหัสแบบเร็ว', 'idle');
+      autoRetryCount = options.autoRetry ? autoRetryCount : 0;
 
-      jsonpRequest({
-        action: 'otp',
-        fast: '1',
-        clientFastMode: '1',
-        preferLatest: '1',
-        noFallbackRaw: '1',
-        maxAgeMinutes: '30',
-        cacheBust: Date.now(),
-        customerName: customerName,
-        name: customerName,
-        lineName: customerName,
-        email: email,
-        device: device,
-        screen: selectedScreen,
-        customerNote: customerNote,
-        note: customerNote,
-        userAgent: navigator.userAgent || '',
-        pageUrl: window.location.href || '',
-        referrer: document.referrer || '',
-        submittedAt: new Date().toISOString(),
-        clientTime: new Date().toISOString(),
-        clientTimezone: getClientTimezone(),
-        requestToken: currentRequestToken
-      }, function(res) {
+      setLoading(true, options.autoRetry ? 'กำลังลองค้นหา OTP อีกครั้ง...' : 'กำลังค้นหา OTP ล่าสุด...');
+      updateStatus(options.autoRetry ? 'กำลังลองใหม่...' : 'กำลังรับรหัส...', 'idle');
+      startCooldown(COOLDOWN_SECONDS);
+      markLastRequest();
+
+      const params = buildBaseParams('otp');
+      params.requestToken = createRequestToken();
+      params.fast = '1';
+      params.clientFastMode = '1';
+      params.preferLatest = '1';
+      params.noFallbackRaw = '1';
+      params.cacheBust = Date.now();
+
+      jsonpRequest(params, function(res) {
         isSubmitting = false;
         setLoading(false);
 
         if (!res) {
-          showError('ลองใหม่อีกครั้ง');
-          updateStatus('รับรหัสไม่ได้', 'bad');
+          showError('ไม่ได้รับข้อมูลจากระบบ กรุณาลองใหม่อีกครั้ง');
           return;
         }
 
         if (!res.ok || !res.otp) {
-          const friendlyMessage = getFriendlyErrorMessage(res);
-          showResult(
-            friendlyMessage,
-            res.requestId || res.id || '',
-            {
-              otpFound: false,
-              otpDisplayAllowed: false,
-              otp: '',
-              expireMinutes: res.expireMinutes || 15,
-              resultStatus: res.resultStatus || '',
-              thaiTime: res.thaiTime || '',
-              mailAgeMinutes: res.mailAgeMinutes || '',
-              source: res.source || '',
-              note: res.note || ''
-            }
-          );
-          updateStatus('ยังไม่พบรหัส กำลังเตรียมลองใหม่', 'warn');
+          handleOtpNotFound(res);
           return;
         }
 
-        showResult(
-          'พบรหัสแล้ว',
-          res.requestId || res.id || '',
-          {
-            otpFound: true,
-            otpDisplayAllowed: true,
-            otp: res.otp || '',
-            expireMinutes: res.expireMinutes || 15,
-            resultStatus: res.resultStatus || 'OTP_FOUND',
-            thaiTime: res.thaiTime || '',
-            mailCreatedAt: res.mailCreatedAt || '',
-            mailAgeMinutes: res.mailAgeMinutes || '',
-            source: res.source || ''
-          }
-        );
-        updateStatus('พบ OTP แล้ว', 'ok');
+        handleOtpFound(res);
       }, function() {
         isSubmitting = false;
         setLoading(false);
-        showError('เชื่อมต่อไม่สำเร็จ กรุณาลองใหม่อีกครั้ง');
-        updateStatus('เชื่อมต่อไม่สำเร็จ', 'bad');
+        showError('เชื่อมต่อระบบไม่ได้ กรุณาลองใหม่อีกครั้ง');
       });
     }
 
     function requestNewOtp() {
-      if (!hasValidRequestInfo()) {
+      if (!validateForm(true)) {
         showToast('กรอกข้อมูลให้ครบก่อน');
-        validateRealtime();
         return;
       }
 
       if (isCooldownActive()) {
-        const left = getCooldownLeftSeconds();
-        showToast('รอสักครู่ ลองใหม่ได้ใน ' + left + ' วินาที');
-        updateStatus('รอคูลดาวน์อีก ' + left + ' วินาที', 'warn');
+        showToast('รออีก ' + getCooldownLeft() + ' วินาที');
         return;
       }
 
-      autoRetryCount = 0;
       showToast('กำลังขอรหัสใหม่');
       submitRequest();
     }
 
-    function retryNow() {
-      cancelAutoRetry(false);
-
-      if (!hasValidRequestInfo()) {
-        showToast('กรอกข้อมูลให้ครบก่อน');
-        validateRealtime();
+    function verifyOtpUsed() {
+      if (isVerifying) {
+        showToast('กำลังยืนยันอยู่');
         return;
       }
 
-      showToast('กำลังลองอีกครั้ง');
-      submitRequest({
-        bypassCooldown: true,
-        autoRetry: true
+      if (!latestOtp) {
+        showToast('ยังไม่มี OTP ให้ยืนยัน');
+        return;
+      }
+
+      if (!validateForm(true)) {
+        showToast('ข้อมูลไม่ครบ');
+        return;
+      }
+
+      isVerifying = true;
+      verifyBtn.disabled = true;
+      setLoading(true, 'กำลังยืนยันว่าใช้ OTP แล้ว...');
+      updateStatus('กำลังยืนยันการล็อกอิน...', 'idle');
+
+      const params = buildBaseParams('verify-otp');
+      params.otp = latestOtp;
+
+      jsonpRequest(params, function(res) {
+        isVerifying = false;
+        verifyBtn.disabled = false;
+        setLoading(false);
+
+        if (!res || !res.ok) {
+          const msg = getFriendlyMessage(res);
+          showToast(msg);
+          updateStatus(msg, 'bad');
+          showVerifyError(msg, res);
+          return;
+        }
+
+        latestSessionId = res.sessionId || '';
+        showLoginSuccess(res);
+      }, function() {
+        isVerifying = false;
+        verifyBtn.disabled = false;
+        setLoading(false);
+        showToast('ยืนยันไม่สำเร็จ กรุณาลองใหม่');
+        updateStatus('ยืนยันไม่สำเร็จ', 'bad');
       });
     }
 
-    function startAutoRetry() {
-      cancelAutoRetry(false);
-
-      if (!hasValidRequestInfo()) return;
-      if (autoRetryCount >= MAX_AUTO_RETRY_COUNT) {
-        if (autoRetryBox) autoRetryBox.style.display = 'none';
+    function copyOtp() {
+      if (!latestOtp) {
+        showToast('ยังไม่มี OTP');
         return;
       }
 
-      autoRetrySecondsLeft = AUTO_RETRY_SECONDS;
-      autoRetryCount++;
+      copyText(latestOtp, function(ok) {
+        if (ok) {
+          showToast('คัดลอก OTP แล้ว');
+          copyBtn.textContent = 'คัดลอกแล้ว ✓';
 
-      if (autoRetryBox) autoRetryBox.style.display = 'block';
-      updateAutoRetryText();
+          setTimeout(function() {
+            copyBtn.textContent = 'คัดลอก OTP';
+          }, 1800);
+        } else {
+          showToast('คัดลอกไม่ได้');
+        }
+      });
+    }
+
+    function editInfo() {
+      resultBox.style.display = 'none';
+      updateStatus('แก้ไขข้อมูลได้เลย', 'idle');
+
+      try {
+        document.getElementById('app').scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      } catch (err) {}
+    }
+
+    function clearForm() {
+      customerNameInput.value = '';
+      emailInput.value = '';
+      deviceInput.value = '';
+      customerNoteInput.value = '';
+
+      selectedScreen = '';
+      selectedDevice = '';
+      latestOtp = '';
+      latestRequestId = '';
+      latestSessionId = '';
+      latestExpireMinutes = 15;
+      autoRetryCount = 0;
+
+      screenButtons.forEach(function(btn) {
+        btn.classList.remove('selected');
+      });
+
+      chipButtons.forEach(function(btn) {
+        btn.classList.remove('selected');
+      });
+
+      try {
+        localStorage.removeItem(DRAFT_KEY);
+      } catch (err) {}
+
+      resetResult(true);
+      updateNoteCount();
+      validateForm();
+      updateStatus('ล้างข้อมูลแล้ว', 'idle');
+      showToast('ล้างข้อมูลแล้ว');
+      customerNameInput.focus();
+    }
+
+    /************************************************************
+     * RESPONSE HANDLERS
+     ************************************************************/
+
+    function handleOtpFound(res) {
+      latestOtp = String(res.otp || '').replace(/[^\d]/g, '');
+      latestExpireMinutes = res.expireMinutes || 15;
+      latestRequestId = res.requestId || res.id || createLocalRequestId();
+
+      resultBox.style.display = 'block';
+      resultIcon.textContent = '✓';
+      resultTitle.textContent = 'พบรหัส OTP แล้ว';
+      resultMessage.textContent = buildOtpFoundMessage(res);
+      requestIdBox.textContent = 'เลขอ้างอิง: ' + latestRequestId;
+
+      sessionIdBox.style.display = 'none';
+      loginBox.style.display = 'none';
+
+      otpBox.style.display = 'block';
+      otpCode.textContent = latestOtp;
+      otpNote.textContent = 'ใช้ภายใน ' + latestExpireMinutes + ' นาที • หลังใช้แล้วให้กดยืนยันด้านล่าง';
+
+      verifyBtn.disabled = false;
+      copyBtn.disabled = false;
+
+      updateStatus('พบ OTP แล้ว กรุณาคัดลอกและกดยืนยันหลังใช้', 'ok');
+      showToast('พบ OTP แล้ว');
+      launchConfetti();
+      scrollToResult();
+    }
+
+    function handleOtpNotFound(res) {
+      const msg = getFriendlyMessage(res);
+
+      latestOtp = '';
+      resultBox.style.display = 'block';
+      resultIcon.textContent = '!';
+      resultTitle.textContent = 'ยังไม่พบรหัส';
+      resultMessage.textContent = msg;
+      requestIdBox.textContent = 'เลขอ้างอิง: ' + (res && (res.requestId || res.id) ? (res.requestId || res.id) : '-');
+
+      sessionIdBox.style.display = 'none';
+      loginBox.style.display = 'none';
+      otpBox.style.display = 'none';
+
+      updateStatus(msg, 'warn');
+      showToast('ยังไม่พบ OTP');
+
+      if (shouldAutoRetry(res)) {
+        startAutoRetry();
+      }
+
+      scrollToResult();
+    }
+
+    function showLoginSuccess(res) {
+      resultBox.style.display = 'block';
+      resultIcon.textContent = '🔐';
+      resultTitle.textContent = 'ล็อกอินสำเร็จแล้ว';
+      resultMessage.textContent = 'บันทึกว่า OTP นี้ถูกใช้แล้ว และสร้าง session สำหรับเครื่องนี้เรียบร้อย';
+      requestIdBox.textContent = 'เลขอ้างอิง: ' + (latestRequestId || '-');
+
+      if (latestSessionId) {
+        sessionIdBox.style.display = 'block';
+        sessionIdBox.textContent = 'Session: ' + latestSessionId;
+      }
+
+      loginBox.style.display = 'block';
+      verifyBtn.disabled = true;
+      verifyBtn.textContent = 'ยืนยันแล้ว ✓';
+
+      updateStatus('ล็อกอินเครื่องนี้แล้ว', 'ok');
+      showToast('ล็อกอินสำเร็จแล้ว');
+      launchConfetti();
+      scrollToResult();
+    }
+
+    function showVerifyError(message, res) {
+      resultBox.style.display = 'block';
+      resultIcon.textContent = '!';
+      resultTitle.textContent = 'ยืนยันไม่ได้';
+      resultMessage.textContent = message || 'กรุณาลองใหม่อีกครั้ง';
+
+      if (res && res.resultStatus === 'ALREADY_LOGIN_OTHER_DEVICE') {
+        resultMessage.textContent = 'อีเมลนี้กำลังใช้งานอยู่บนอุปกรณ์อื่น กรุณาออกจากระบบก่อน';
+      }
+
+      scrollToResult();
+    }
+
+    function showError(message) {
+      latestOtp = '';
+
+      resultBox.style.display = 'block';
+      resultIcon.textContent = '!';
+      resultTitle.textContent = 'เกิดข้อผิดพลาด';
+      resultMessage.textContent = message || 'กรุณาลองใหม่อีกครั้ง';
+      requestIdBox.textContent = 'เลขอ้างอิง: -';
+      sessionIdBox.style.display = 'none';
+      loginBox.style.display = 'none';
+      otpBox.style.display = 'none';
+
+      updateStatus(message || 'เกิดข้อผิดพลาด', 'bad');
+      showToast(message || 'เกิดข้อผิดพลาด');
+      scrollToResult();
+    }
+
+    function resetResult(clearAll) {
+      if (clearAll) {
+        resultBox.style.display = 'none';
+      }
+
+      sessionIdBox.style.display = 'none';
+      loginBox.style.display = 'none';
+      otpBox.style.display = 'none';
+      otpCode.textContent = '------';
+      requestIdBox.textContent = 'เลขอ้างอิง: -';
+
+      verifyBtn.disabled = false;
+      verifyBtn.textContent = 'ฉันใช้รหัสนี้ล็อกอินแล้ว';
+      copyBtn.disabled = false;
+      copyBtn.textContent = 'คัดลอก OTP';
+    }
+
+    /************************************************************
+     * AUTO RETRY / COOLDOWN
+     ************************************************************/
+
+    function shouldAutoRetry(res) {
+      if (!res) return false;
+
+      const status = String(res.resultStatus || '');
+
+      if (status === 'OTP_NOT_FOUND') return autoRetryCount < MAX_AUTO_RETRY;
+      if (status === 'MAILY_ERROR') return autoRetryCount < MAX_AUTO_RETRY;
+      if (status === '') return autoRetryCount < MAX_AUTO_RETRY;
+
+      return false;
+    }
+
+    function startAutoRetry() {
+      cancelAutoRetry();
+
+      if (autoRetryCount >= MAX_AUTO_RETRY) return;
+
+      autoRetryCount++;
+      autoRetryLeft = AUTO_RETRY_SECONDS;
+
+      updateStatus('ยังไม่พบ OTP จะลองใหม่ใน ' + autoRetryLeft + ' วิ', 'warn');
 
       autoRetryTimer = setInterval(function() {
-        autoRetrySecondsLeft--;
-        updateAutoRetryText();
+        autoRetryLeft--;
 
-        if (autoRetrySecondsLeft <= 0) {
-          cancelAutoRetry(false);
+        if (autoRetryLeft <= 0) {
+          cancelAutoRetry();
           submitRequest({
-            bypassCooldown: true,
-            autoRetry: true
+            autoRetry: true,
+            bypassCooldown: true
           });
+          return;
         }
+
+        updateStatus('ยังไม่พบ OTP จะลองใหม่ใน ' + autoRetryLeft + ' วิ', 'warn');
       }, 1000);
     }
 
-    function updateAutoRetryText() {
-      if (!autoRetryTitle) return;
-
-      autoRetryTitle.textContent =
-        'ลองอีกครั้งอัตโนมัติใน ' +
-        autoRetrySecondsLeft +
-        ' วินาที' +
-        ' • ครั้งที่ ' +
-        autoRetryCount +
-        '/' +
-        MAX_AUTO_RETRY_COUNT;
-    }
-
-    function cancelAutoRetry(showMessage) {
+    function cancelAutoRetry() {
       if (autoRetryTimer) {
         clearInterval(autoRetryTimer);
         autoRetryTimer = null;
       }
+    }
 
-      if (autoRetryBox) {
-        autoRetryBox.style.display = 'none';
+    function startCooldown(seconds) {
+      cooldownEndAt = Date.now() + Number(seconds || COOLDOWN_SECONDS) * 1000;
+
+      if (cooldownTimer) {
+        clearInterval(cooldownTimer);
       }
 
-      if (showMessage !== false) {
-        showToast('ยกเลิกลองอัตโนมัติแล้ว');
+      updateCooldown();
+
+      cooldownTimer = setInterval(function() {
+        updateCooldown();
+
+        if (!isCooldownActive()) {
+          clearInterval(cooldownTimer);
+          cooldownTimer = null;
+          cooldownEndAt = 0;
+          updateCooldown();
+        }
+      }, 200);
+    }
+
+    function isCooldownActive() {
+      return cooldownEndAt && Date.now() < cooldownEndAt;
+    }
+
+    function getCooldownLeft() {
+      if (!isCooldownActive()) return 0;
+      return Math.max(0, Math.ceil((cooldownEndAt - Date.now()) / 1000));
+    }
+
+    function updateCooldown() {
+      if (!isCooldownActive()) {
+        cooldown.style.display = 'none';
+        cooldownFill.style.width = '0%';
+
+        if (!isSubmitting) {
+          submitBtn.disabled = false;
+          submitText.textContent = 'รับรหัส';
+        }
+
+        return;
       }
+
+      const left = getCooldownLeft();
+      const done = Math.max(0, Math.min(100, ((COOLDOWN_SECONDS - left) / COOLDOWN_SECONDS) * 100));
+
+      cooldown.style.display = 'block';
+      cooldownFill.style.width = done + '%';
+
+      if (!isSubmitting) {
+        submitBtn.disabled = true;
+        submitText.textContent = 'รอ ' + left + ' วิ';
+      }
+    }
+
+    /************************************************************
+     * REQUEST
+     ************************************************************/
+
+    function buildBaseParams(action) {
+      return {
+        action: action,
+        webToken: WEB_TOKEN,
+        token: WEB_TOKEN,
+
+        brand: SERVICE_BRAND,
+        service: SERVICE_BRAND,
+
+        pageSession: PAGE_SESSION,
+
+        customerName: customerNameInput.value.trim(),
+        name: customerNameInput.value.trim(),
+        lineName: customerNameInput.value.trim(),
+
+        email: emailInput.value.trim().toLowerCase(),
+        device: deviceInput.value.trim(),
+        screen: selectedScreen,
+
+        customerNote: customerNoteInput.value.trim(),
+        note: customerNoteInput.value.trim(),
+
+        userAgent: navigator.userAgent || '',
+        pageUrl: window.location.href || '',
+        referrer: document.referrer || '',
+        clientTime: new Date().toISOString(),
+        clientTimezone: getClientTimezone()
+      };
     }
 
     function jsonpRequest(params, onSuccess, onError) {
@@ -2476,8 +2117,7 @@
         })
         .join('&');
 
-      const sep = WEB_APP_URL.indexOf('?') === -1 ? '?' : '&';
-      const url = WEB_APP_URL + sep + query;
+      const url = WEB_APP_URL + (WEB_APP_URL.indexOf('?') === -1 ? '?' : '&') + query;
 
       let done = false;
 
@@ -2485,21 +2125,30 @@
         if (done) return;
         done = true;
         cleanup();
-        if (typeof onSuccess === 'function') onSuccess(data);
+
+        if (typeof onSuccess === 'function') {
+          onSuccess(data);
+        }
       };
 
       script.onerror = function() {
         if (done) return;
         done = true;
         cleanup();
-        if (typeof onError === 'function') onError();
+
+        if (typeof onError === 'function') {
+          onError();
+        }
       };
 
       const timer = setTimeout(function() {
         if (done) return;
         done = true;
         cleanup();
-        if (typeof onError === 'function') onError();
+
+        if (typeof onError === 'function') {
+          onError();
+        }
       }, REQUEST_TIMEOUT_MS);
 
       function cleanup() {
@@ -2507,11 +2156,11 @@
 
         try {
           delete window[callbackName];
-        } catch (e) {
+        } catch (err) {
           window[callbackName] = undefined;
         }
 
-        if (script && script.parentNode) {
+        if (script.parentNode) {
           script.parentNode.removeChild(script);
         }
       }
@@ -2521,440 +2170,198 @@
       document.body.appendChild(script);
     }
 
-    function showResult(message, requestId, otpData) {
-      const finalRequestId = requestId || createLocalRequestId();
-      const hasOtp =
-        otpData &&
-        otpData.otpFound === true &&
-        otpData.otpDisplayAllowed === true &&
-        otpData.otp;
+    /************************************************************
+     * VALIDATION
+     ************************************************************/
 
-      latestRequestId = finalRequestId;
-      latestOtp = hasOtp ? String(otpData.otp || '').trim() : '';
-      latestExpireMinutes = otpData && otpData.expireMinutes ? otpData.expireMinutes : 15;
-
-      saveLatestHistory(finalRequestId, hasOtp ? 'พบรหัส' : 'ยังไม่พบรหัส');
-
-      resultBox.style.display = 'block';
-      resultIcon.textContent = hasOtp ? '✓' : '!';
-      resultTitle.textContent = hasOtp ? 'รหัส OTP' : 'ยังไม่พบรหัส';
-      resultMessage.textContent = buildResultMessage(message, otpData, hasOtp);
-
-      requestIdBox.textContent = 'เลขอ้างอิง: ' + finalRequestId;
-
-      if (hasOtp) {
-        cancelAutoRetry(false);
-        autoRetryCount = 0;
-        otpCode.textContent = latestOtp;
-        otpBox.style.display = 'block';
-        otpSafeBox.style.display = 'none';
-        if (autoRetryBox) autoRetryBox.style.display = 'none';
-        otpExpireNote.textContent = 'ใช้ภายใน ' + latestExpireMinutes + ' นาที';
-        launchConfetti();
-        showToast('พบรหัสแล้ว');
-      } else {
-        otpCode.textContent = '------';
-        otpBox.style.display = 'none';
-        otpSafeBox.style.display = 'block';
-        otpSafeBox.textContent = message || 'ยังไม่พบรหัส OTP ในเมลล่าสุด กรุณารอ 3–10 วินาที ระบบจะลองใหม่ให้อัตโนมัติ';
-        showToast('ยังไม่พบรหัส');
-        startAutoRetry();
-      }
-
-      try {
-        localStorage.removeItem(DRAFT_KEY);
-      } catch (err) {}
-
-      scrollToResult();
-    }
-
-    function buildResultMessage(message, otpData, hasOtp) {
-      let lines = [];
-
-      if (message) {
-        lines.push(message);
-      } else {
-        lines.push(hasOtp ? 'พบรหัสแล้ว' : 'ยังไม่พบรหัส OTP ในเมลล่าสุด กรุณารอ 3–10 วินาที ระบบจะลองใหม่ให้อัตโนมัติ');
-      }
-
-      if (otpData && otpData.thaiTime) {
-        lines.push('เวลาเมลล่าสุด: ' + otpData.thaiTime);
-      }
-
-      if (otpData && otpData.mailAgeMinutes !== undefined && otpData.mailAgeMinutes !== null && otpData.mailAgeMinutes !== '') {
-        lines.push('อายุเมลประมาณ: ' + otpData.mailAgeMinutes + ' นาที');
-      }
-
-      if (otpData && otpData.source) {
-        lines.push('แหล่งข้อมูล: ' + otpData.source);
-      }
-
-      return lines.join('\n');
-    }
-
-    function getFriendlyErrorMessage(res) {
-      const status = res && res.resultStatus ? String(res.resultStatus) : '';
-      const rawMessage = res && res.message ? String(res.message) : '';
-
-      if (status === 'INVALID_EMAIL') {
-        return 'อีเมลไม่ถูกต้อง กรุณาตรวจสอบแล้วลองใหม่อีกครั้ง';
-      }
-
-      if (status === 'MISSING_DEVICE') {
-        return 'กรุณาระบุอุปกรณ์ที่ใช้งาน เช่น iPhone / TV / Android';
-      }
-
-      if (status === 'MISSING_SCREEN') {
-        return 'กรุณาเลือกจอหรือโปรไฟล์ก่อนรับรหัส';
-      }
-
-      if (status === 'RATE_LIMITED') {
-        return 'มีการขอรหัสถี่เกินไป กรุณารอสักครู่แล้วลองใหม่';
-      }
-
-      if (status === 'OTP_NOT_FOUND') {
-        return 'ยังไม่พบรหัส OTP ในเมลล่าสุด กรุณารอ 3–10 วินาที ระบบจะลองใหม่ให้อัตโนมัติ';
-      }
-
-      if (status === 'MAILY_ERROR' || status === 'GMAIL_ERROR') {
-        return 'ระบบเช็ก OTP ไม่สำเร็จ กรุณาลองใหม่อีกครั้ง';
-      }
-
-      if (status === 'MISSING_MAILY_API_KEY') {
-        return 'ระบบยังไม่ได้ตั้งค่า API Key กรุณาแจ้งแอดมิน';
-      }
-
-      if (rawMessage) {
-        if (rawMessage.indexOf('ไม่พบ') !== -1) {
-          return 'ยังไม่พบรหัส OTP ในเมลล่าสุด กรุณารอ 3–10 วินาที ระบบจะลองใหม่ให้อัตโนมัติ';
-        }
-
-        return rawMessage;
-      }
-
-      return 'ยังไม่พบรหัส OTP ในเมลล่าสุด กรุณารอ 3–10 วินาที ระบบจะลองใหม่ให้อัตโนมัติ';
-    }
-
-    function showError(message) {
-      cancelAutoRetry(false);
-
-      latestRequestId = '';
-      latestOtp = '';
-
-      resultBox.style.display = 'block';
-      resultIcon.textContent = '!';
-      resultTitle.textContent = 'รับรหัสไม่ได้';
-      resultMessage.textContent = message || 'ลองใหม่อีกครั้ง';
-      requestIdBox.textContent = 'เลขอ้างอิง: -';
-      otpBox.style.display = 'none';
-      otpSafeBox.style.display = 'none';
-      if (autoRetryBox) autoRetryBox.style.display = 'none';
-      showToast(message || 'รับรหัสไม่ได้');
-      scrollToResult();
-    }
-
-    function resetResult(clearAll) {
-      if (clearAll) {
-        resultBox.style.display = 'none';
-      }
-
-      requestIdBox.textContent = 'เลขอ้างอิง: -';
-      otpBox.style.display = 'none';
-      otpSafeBox.style.display = 'none';
-      if (autoRetryBox) autoRetryBox.style.display = 'none';
-      otpCode.textContent = '------';
-
-      if (copyOtpBtn) {
-        copyOtpBtn.classList.remove('copied');
-        copyOtpBtn.textContent = 'คัดลอกรหัส';
-      }
-    }
-
-    function setLoading(isLoading) {
-      if (isLoading) {
-        btnText.textContent = 'กำลังรับ...';
-        submitBtn.disabled = true;
-        showLoadingOverlay();
-        return;
-      }
-
-      btnText.textContent = isCooldownActive() ? 'รอสักครู่...' : 'รับรหัส';
-      submitBtn.disabled = isCooldownActive();
-      hideLoadingOverlay();
-    }
-
-    function showLoadingOverlay() {
-      loadingTextIndex = 0;
-      loadingMessage.textContent = loadingMessages[0];
-      loadingOverlay.classList.add('show');
-
-      if (loadingTextTimer) clearInterval(loadingTextTimer);
-
-      loadingTextTimer = setInterval(function() {
-        loadingTextIndex = (loadingTextIndex + 1) % loadingMessages.length;
-        loadingMessage.textContent = loadingMessages[loadingTextIndex];
-        updateStatus(loadingMessages[loadingTextIndex], 'idle');
-      }, LOADING_MESSAGE_INTERVAL_MS);
-    }
-
-    function hideLoadingOverlay() {
-      loadingOverlay.classList.remove('show');
-
-      if (loadingTextTimer) {
-        clearInterval(loadingTextTimer);
-        loadingTextTimer = null;
-      }
-    }
-
-    function validateRealtime() {
-      const lineName = customerNameInput.value.trim();
+    function validateForm(showFocus) {
+      const name = customerNameInput.value.trim();
       const email = emailInput.value.trim();
       const device = deviceInput.value.trim();
 
-      setValidationState(
-        customerNameInput,
-        nameValidation,
-        !lineName ? null : lineName.length >= 2,
-        !lineName ? 'กรอกชื่อ LINE ก่อน' : lineName.length >= 2 ? 'ชื่อ LINE ถูกต้อง' : 'ชื่อสั้นเกินไป'
-      );
+      const nameOk = name.length >= 2;
+      const emailOk = isEmail(email);
+      const deviceOk = device.length >= 2;
+      const screenOk = !!selectedScreen;
 
-      setValidationState(
-        emailInput,
-        emailValidation,
-        !email ? null : isEmail(email),
-        !email ? 'กรอกอีเมลก่อน' : isEmail(email) ? 'อีเมลถูกต้อง' : 'อีเมลไม่ถูกต้อง'
-      );
+      setValidation(nameValidation, nameOk, name ? (nameOk ? 'ชื่อ LINE ถูกต้อง' : 'ชื่อสั้นเกินไป') : 'กรอกชื่อ LINE ก่อน');
+      setValidation(emailValidation, emailOk, email ? (emailOk ? 'อีเมลถูกต้อง' : 'อีเมลไม่ถูกต้อง') : 'กรอกอีเมลก่อน');
+      setValidation(deviceValidation, deviceOk, device ? (deviceOk ? 'อุปกรณ์ถูกต้อง' : 'ชื่ออุปกรณ์สั้นเกินไป') : 'เลือกหรือกรอกอุปกรณ์');
+      setValidation(screenValidation, screenOk, screenOk ? 'เลือกจอ ' + selectedScreen + ' แล้ว' : 'เลือกจอ');
 
-      setValidationState(
-        deviceInput,
-        deviceValidation,
-        !device ? null : device.length >= 2,
-        !device ? 'เลือกหรือกรอกอุปกรณ์' : device.length >= 2 ? 'อุปกรณ์ถูกต้อง' : 'สั้นเกินไป'
-      );
+      if (showFocus) {
+        if (!nameOk) {
+          customerNameInput.focus();
+          return false;
+        }
 
-      if (screenValidation) {
-        screenValidation.textContent = selectedScreen ? 'เลือกจอ ' + selectedScreen + ' แล้ว' : 'เลือกจอ';
-        screenValidation.classList.toggle('ok', !!selectedScreen);
-        screenValidation.classList.toggle('bad', false);
+        if (!emailOk) {
+          emailInput.focus();
+          return false;
+        }
+
+        if (!deviceOk) {
+          deviceInput.focus();
+          return false;
+        }
+
+        if (!screenOk) {
+          return false;
+        }
+      }
+
+      return nameOk && emailOk && deviceOk && screenOk;
+    }
+
+    function setValidation(el, ok, text) {
+      el.textContent = text;
+      el.classList.remove('ok', 'bad');
+
+      if (ok) {
+        el.classList.add('ok');
+      } else {
+        el.classList.add('bad');
       }
     }
 
-    function setValidationState(input, label, state, text) {
-      if (!input || !label) return;
-
-      input.classList.remove('valid', 'invalid');
-      label.classList.remove('ok', 'bad');
-      label.textContent = text || '';
-
-      if (state === true) {
-        input.classList.add('valid');
-        label.classList.add('ok');
-      }
-
-      if (state === false) {
-        input.classList.add('invalid');
-        label.classList.add('bad');
-      }
+    function isEmail(value) {
+      return /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(String(value || '').trim());
     }
 
-    function updateNoteCount() {
-      const len = customerNoteInput.value.length;
-      noteCount.textContent = len + '/700';
-    }
+    /************************************************************
+     * UI HELPERS
+     ************************************************************/
 
-    function setQuickDeviceSelected(deviceName) {
-      selectedDeviceQuick = deviceName || '';
+    function setLoading(show, message) {
+      if (show) {
+        loading.classList.add('show');
+        loadingMessage.textContent = message || 'กำลังตรวจสอบ...';
 
-      quickDeviceButtons.forEach(function(btn) {
-        const itemDevice = btn.getAttribute('data-device') || '';
-        btn.classList.toggle('selected', itemDevice === selectedDeviceQuick);
-      });
-    }
+        submitBtn.disabled = true;
+        submitText.textContent = 'กำลังรับ...';
 
-    function clearQuickDeviceSelectedIfManualChange() {
-      const current = deviceInput.value.trim();
+        const messages = [
+          'กำลังตรวจสอบข้อมูล...',
+          'กำลังค้นหาเมลล่าสุด...',
+          'น้องดาวกำลังมองหา OTP...',
+          'กำลังเตรียมแสดงรหัส...'
+        ];
 
-      if (!selectedDeviceQuick || current === selectedDeviceQuick) return;
+        let i = 0;
 
-      selectedDeviceQuick = '';
+        if (loadingTimer) {
+          clearInterval(loadingTimer);
+        }
 
-      quickDeviceButtons.forEach(function(btn) {
-        btn.classList.remove('selected');
-      });
-    }
+        loadingTimer = setInterval(function() {
+          i = (i + 1) % messages.length;
+          loadingMessage.textContent = messages[i];
+        }, 650);
 
-    function copyOtp() {
-      if (!latestOtp) {
-        showToast('ยังไม่มีรหัส');
         return;
       }
 
-      copyText(latestOtp, 'คัดลอกแล้ว');
+      loading.classList.remove('show');
 
-      if (copyOtpBtn) {
-        copyOtpBtn.classList.add('copied');
-        copyOtpBtn.textContent = 'คัดลอกแล้ว';
+      if (loadingTimer) {
+        clearInterval(loadingTimer);
+        loadingTimer = null;
+      }
 
-        setTimeout(function() {
-          copyOtpBtn.classList.remove('copied');
-          copyOtpBtn.textContent = 'คัดลอกรหัส';
-        }, 2200);
+      updateCooldown();
+    }
+
+    function updateStatus(text, type) {
+      statusText.textContent = text || 'พร้อมรับรหัส';
+
+      statusDot.classList.remove('ok', 'warn', 'bad');
+
+      if (type === 'ok') {
+        statusDot.classList.add('ok');
+      } else if (type === 'warn') {
+        statusDot.classList.add('warn');
+      } else if (type === 'bad') {
+        statusDot.classList.add('bad');
       }
     }
 
-    function copyText(text, successText) {
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(function() {
-          showToast(successText || 'คัดลอกแล้ว');
-        }).catch(function() {
-          fallbackCopyWithMessage(text, successText);
-        });
-      } else {
-        fallbackCopyWithMessage(text, successText);
-      }
+    function markLastRequest() {
+      const now = new Date();
+      lastRequestText.textContent = 'ขอล่าสุด ' + now.toLocaleTimeString('th-TH', {
+        hour: '2-digit',
+        minute: '2-digit'
+      }) + ' น.';
     }
 
-    function fallbackCopyWithMessage(text, successText) {
-      const area = document.createElement('textarea');
+    function showToast(message) {
+      toast.textContent = message || 'เรียบร้อย';
+      toast.classList.add('show');
 
-      area.value = text;
-      area.setAttribute('readonly', 'readonly');
-      area.style.position = 'fixed';
-      area.style.left = '-9999px';
-      area.style.top = '-9999px';
-
-      document.body.appendChild(area);
-      area.focus();
-      area.select();
-
-      try {
-        document.execCommand('copy');
-        showToast(successText || 'คัดลอกแล้ว');
-      } catch (err) {
-        showToast('คัดลอกไม่ได้');
+      if (toastTimer) {
+        clearTimeout(toastTimer);
       }
 
-      document.body.removeChild(area);
+      toastTimer = setTimeout(function() {
+        toast.classList.remove('show');
+      }, 1700);
     }
 
-    function editRequestInfo() {
-      cancelAutoRetry(false);
-      resultBox.style.display = 'none';
-      updateStatus('แก้ไขข้อมูลได้เลย', 'idle');
-      scrollToForm();
+    function scrollToResult() {
+      setTimeout(function() {
+        try {
+          resultBox.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+          });
+        } catch (err) {}
+      }, 80);
+    }
+
+    function updateNoteCount() {
+      noteCount.textContent = customerNoteInput.value.length + '/700';
+    }
+
+    function launchConfetti() {
+      confetti.innerHTML = '';
+
+      const pieces = ['★', '✦', '✧', 'OTP', '♡', '✓'];
+      const colors = ['#2d9cff', '#ff8fd8', '#9f9cff', '#ffe993', '#54d6a0'];
+      const count = 28;
+
+      for (let i = 0; i < count; i++) {
+        const el = document.createElement('div');
+
+        el.className = 'confetti-piece';
+        el.textContent = pieces[Math.floor(Math.random() * pieces.length)];
+        el.style.left = (15 + Math.random() * 70) + '%';
+        el.style.color = colors[Math.floor(Math.random() * colors.length)];
+        el.style.setProperty('--x', ((Math.random() * 240) - 120) + 'px');
+        el.style.animationDelay = (Math.random() * .18) + 's';
+
+        confetti.appendChild(el);
+      }
 
       setTimeout(function() {
-        focusInput(customerNameInput);
-      }, 120);
+        confetti.innerHTML = '';
+      }, 1500);
     }
 
-    function scrollToForm() {
-      try {
-        app.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      } catch (err) {}
-    }
-
-    function startNewRequest() {
-      cancelAutoRetry(false);
-
-      customerNameInput.value = '';
-      emailInput.value = '';
-      deviceInput.value = '';
-      customerNoteInput.value = '';
-      selectedScreen = '';
-      selectedDeviceQuick = '';
-      latestRequestId = '';
-      latestOtp = '';
-      latestExpireMinutes = 15;
-      autoRetryCount = 0;
-
-      screenButtons.forEach(function(btn) {
-        btn.classList.remove('selected');
-      });
-
-      quickDeviceButtons.forEach(function(btn) {
-        btn.classList.remove('selected');
-      });
-
-      try {
-        localStorage.removeItem(DRAFT_KEY);
-      } catch (err) {}
-
-      updateNoteCount();
-      validateRealtime();
-      resetResult(true);
-      updateStatus('พร้อมรับรหัสแบบเร็ว', 'idle');
-      showToast('เริ่มใหม่แล้ว');
-
-      setTimeout(function() {
-        focusInput(customerNameInput);
-      }, 150);
-    }
-
-    function clearDraft() {
-      cancelAutoRetry(false);
-
-      try {
-        localStorage.removeItem(DRAFT_KEY);
-      } catch (err) {}
-
-      customerNameInput.value = '';
-      emailInput.value = '';
-      deviceInput.value = '';
-      customerNoteInput.value = '';
-      selectedScreen = '';
-      selectedDeviceQuick = '';
-      latestRequestId = '';
-      latestOtp = '';
-      latestExpireMinutes = 15;
-      autoRetryCount = 0;
-
-      screenButtons.forEach(function(btn) {
-        btn.classList.remove('selected');
-      });
-
-      quickDeviceButtons.forEach(function(btn) {
-        btn.classList.remove('selected');
-      });
-
-      updateNoteCount();
-      validateRealtime();
-      resetResult(true);
-      updateStatus('ล้างข้อมูลแล้ว', 'idle');
-      showToast('ล้างแล้ว');
-
-      setTimeout(function() {
-        focusInput(customerNameInput);
-      }, 150);
-    }
-
-    function saveDraftSoon() {
-      if (autosaveTimer) clearTimeout(autosaveTimer);
-
-      if (autosaveText) autosaveText.textContent = 'กำลังบันทึก...';
-
-      autosaveTimer = setTimeout(function() {
-        saveDraft();
-      }, 250);
-    }
+    /************************************************************
+     * STORAGE
+     ************************************************************/
 
     function saveDraft() {
       try {
-        const data = {
+        localStorage.setItem(DRAFT_KEY, JSON.stringify({
           customerName: customerNameInput.value || '',
           email: emailInput.value || '',
           device: deviceInput.value || '',
           note: customerNoteInput.value || '',
           screen: selectedScreen || '',
-          selectedDeviceQuick: selectedDeviceQuick || '',
+          selectedDevice: selectedDevice || '',
           savedAt: new Date().toISOString()
-        };
-
-        localStorage.setItem(DRAFT_KEY, JSON.stringify(data));
-        if (autosaveText) autosaveText.textContent = 'บันทึกแล้ว';
-      } catch (err) {
-        if (autosaveText) autosaveText.textContent = 'บันทึกแบบร่าง';
-      }
+        }));
+      } catch (err) {}
     }
 
     function restoreDraft() {
@@ -2969,223 +2376,111 @@
         deviceInput.value = data.device || '';
         customerNoteInput.value = data.note || '';
         selectedScreen = data.screen || '';
-        selectedDeviceQuick = data.selectedDeviceQuick || '';
+        selectedDevice = data.selectedDevice || '';
 
         if (selectedScreen) {
           screenButtons.forEach(function(btn) {
-            btn.classList.toggle('selected', btn.getAttribute('data-screen') === selectedScreen);
+            btn.classList.toggle('selected', btn.dataset.screen === selectedScreen);
           });
         }
 
-        if (selectedDeviceQuick) setQuickDeviceSelected(selectedDeviceQuick);
-      } catch (err) {}
-    }
-
-    function saveLatestHistory(requestId, otpStatusText) {
-      const customerName = customerNameInput.value.trim() || '-';
-      const device = deviceInput.value.trim() || '-';
-      const screen = selectedScreen ? 'จอ ' + selectedScreen : '-';
-      const time = new Date().toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit' });
-      const text = customerName + ' / ' + device + ' / ' + screen + ' / ' + time;
-
-      try {
-        localStorage.setItem(HISTORY_KEY, text);
-
-        const raw = localStorage.getItem(HISTORY_LIST_KEY);
-        const list = raw ? JSON.parse(raw) : [];
-
-        list.unshift({
-          customerName: customerName,
-          device: device,
-          screen: screen,
-          time: time,
-          requestId: requestId || '-',
-          otpStatus: otpStatusText || '-',
-          savedAt: new Date().toISOString()
-        });
-
-        localStorage.setItem(HISTORY_LIST_KEY, JSON.stringify(list.slice(0, 3)));
-      } catch (err) {}
-
-      latestText.textContent = text;
-      latestCard.style.display = 'block';
-      renderLatestMiniList();
-    }
-
-    function loadLatestHistory() {
-      try {
-        const text = localStorage.getItem(HISTORY_KEY);
-
-        if (text) {
-          latestText.textContent = text;
-          latestCard.style.display = 'block';
+        if (selectedDevice) {
+          chipButtons.forEach(function(btn) {
+            btn.classList.toggle('selected', btn.dataset.device === selectedDevice);
+          });
         }
-
-        renderLatestMiniList();
       } catch (err) {}
     }
 
-    function renderLatestMiniList() {
-      if (!latestMiniList) return;
+    /************************************************************
+     * MESSAGE HELPERS
+     ************************************************************/
 
-      latestMiniList.innerHTML = '';
+    function buildOtpFoundMessage(res) {
+      const lines = ['พบรหัสแล้ว กรุณาคัดลอก OTP ไปใช้ล็อกอิน'];
 
+      if (res.resultStatus) {
+        lines.push('สถานะ: ' + res.resultStatus);
+      }
+
+      if (res.thaiTime) {
+        lines.push('เวลาเมล: ' + res.thaiTime);
+      }
+
+      if (res.mailAgeMinutes !== undefined && res.mailAgeMinutes !== '') {
+        lines.push('อายุเมลประมาณ: ' + res.mailAgeMinutes + ' นาที');
+      }
+
+      return lines.join('\n');
+    }
+
+    function getFriendlyMessage(res) {
+      if (!res) {
+        return 'ไม่พบการตอบกลับจากระบบ กรุณาลองใหม่';
+      }
+
+      const status = String(res.resultStatus || '');
+      const msg = String(res.message || '');
+
+      if (status === 'PAGE_SESSION_CHANGED') {
+        return 'หน้านี้ไม่ใช่หน้าเดิมที่เริ่มขอรหัสไว้ หากออกจากหน้าแล้ว จะไม่สามารถขอรหัสซ้ำได้';
+      }
+
+      if (status === 'MISSING_PAGE_SESSION') {
+        return 'ไม่พบ session ของหน้านี้ กรุณาเปิดหน้าใหม่แล้วเริ่มใหม่';
+      }
+
+      if (status === 'OTP_ALREADY_USED') {
+        return 'รหัสนี้ถูกใช้แล้ว กรุณากดรับรหัสใหม่จากหน้าเดิม';
+      }
+
+      if (status === 'ALREADY_LOGIN_OTHER_DEVICE') {
+        return 'อีเมลนี้กำลังใช้งานอยู่บนอุปกรณ์อื่น กรุณาออกจากระบบก่อน';
+      }
+
+      if (status === 'DEVICE_MISMATCH') {
+        return 'รหัสนี้ถูกขอจากอุปกรณ์อื่น กรุณาขอรหัสใหม่จากอุปกรณ์นี้';
+      }
+
+      if (status === 'SCREEN_MISMATCH') {
+        return 'รหัสนี้ไม่ตรงกับจอที่เลือก กรุณาตรวจสอบจออีกครั้ง';
+      }
+
+      if (status === 'RATE_LIMITED') {
+        return 'มีการขอรหัสถี่เกินไป กรุณารอสักครู่แล้วลองใหม่';
+      }
+
+      if (status === 'OTP_NOT_FOUND') {
+        return 'ยังไม่พบ OTP ในเมลล่าสุด ระบบจะลองใหม่ให้อัตโนมัติ';
+      }
+
+      if (status === 'MISSING_MAILY_API_KEY') {
+        return 'ระบบยังไม่ได้ตั้งค่า MAILY_API_KEY กรุณาแจ้งแอดมิน';
+      }
+
+      if (status === 'MAILY_ERROR') {
+        return 'ระบบเช็ก OTP ไม่สำเร็จ กรุณาลองใหม่อีกครั้ง';
+      }
+
+      if (msg) {
+        return msg;
+      }
+
+      return 'ยังไม่พบรหัส กรุณารอสักครู่แล้วลองใหม่';
+    }
+
+    /************************************************************
+     * UTILITIES
+     ************************************************************/
+
+    function createPageSession() {
       try {
-        const raw = localStorage.getItem(HISTORY_LIST_KEY);
-        const list = raw ? JSON.parse(raw) : [];
-
-        list.slice(0, 2).forEach(function(item) {
-          const el = document.createElement('div');
-          el.className = 'latest-mini-item';
-          el.textContent =
-            (item.requestId || '-') +
-            ' • ' +
-            (item.customerName || '-') +
-            ' • ' +
-            (item.device || '-') +
-            ' • ' +
-            (item.screen || '-') +
-            ' • ' +
-            (item.otpStatus || '-');
-
-          latestMiniList.appendChild(el);
-        });
-      } catch (err) {}
-    }
-
-    function launchConfetti() {
-      confettiLayer.innerHTML = '';
-
-      const pieces = ['✓', 'OTP', '★', '•', '✦', '✧'];
-      const count = 30;
-
-      for (let i = 0; i < count; i++) {
-        const el = document.createElement('div');
-
-        el.className = 'confetti-piece';
-        el.textContent = pieces[Math.floor(Math.random() * pieces.length)];
-        el.style.left = (18 + Math.random() * 64) + '%';
-        el.style.color = ['#B8FBFF', '#49E8FF', '#FFFFFF', '#FFD6F4', '#A9B8FF', '#FFF1B8'][Math.floor(Math.random() * 6)];
-        el.style.setProperty('--x', ((Math.random() * 220) - 110) + 'px');
-        el.style.animationDelay = (Math.random() * .18) + 's';
-
-        confettiLayer.appendChild(el);
-      }
-
-      setTimeout(function() {
-        confettiLayer.innerHTML = '';
-      }, 1500);
-    }
-
-    function updateStatus(text, type) {
-      if (!statusText || !statusDot) return;
-
-      statusText.textContent = text || 'พร้อมรับรหัส';
-
-      statusDot.classList.remove('ok', 'warn', 'bad');
-
-      if (type === 'ok') {
-        statusDot.classList.add('ok');
-      } else if (type === 'warn') {
-        statusDot.classList.add('warn');
-      } else if (type === 'bad') {
-        statusDot.classList.add('bad');
-      }
-    }
-
-    function markLastRequestTime() {
-      lastRequestAt = new Date().toISOString();
-
-      try {
-        localStorage.setItem(LAST_REQUEST_TIME_KEY, lastRequestAt);
-      } catch (err) {}
-
-      updateLastRequestTime();
-    }
-
-    function restoreLastRequestTime() {
-      try {
-        lastRequestAt = localStorage.getItem(LAST_REQUEST_TIME_KEY) || '';
-      } catch (err) {
-        lastRequestAt = '';
-      }
-
-      updateLastRequestTime();
-    }
-
-    function updateLastRequestTime() {
-      if (!lastRequestTime) return;
-
-      if (!lastRequestAt) {
-        lastRequestTime.textContent = 'ยังไม่เคยขอรหัส';
-        return;
-      }
-
-      const d = new Date(lastRequestAt);
-
-      if (isNaN(d.getTime())) {
-        lastRequestTime.textContent = 'ยังไม่เคยขอรหัส';
-        return;
-      }
-
-      lastRequestTime.textContent = 'ขอล่าสุดเมื่อ ' + formatTimeShort(d) + ' น.';
-    }
-
-    function startCooldown(seconds) {
-      seconds = Number(seconds || COOLDOWN_SECONDS);
-      cooldownEndAt = Date.now() + seconds * 1000;
-
-      if (cooldownTimer) clearInterval(cooldownTimer);
-
-      updateCooldownUi();
-
-      cooldownTimer = setInterval(function() {
-        updateCooldownUi();
-
-        if (!isCooldownActive()) {
-          clearInterval(cooldownTimer);
-          cooldownTimer = null;
-          cooldownEndAt = 0;
-          updateCooldownUi();
+        if (window.crypto && crypto.randomUUID) {
+          return crypto.randomUUID();
         }
-      }, 200);
-    }
+      } catch (err) {}
 
-    function isCooldownActive() {
-      return cooldownEndAt && Date.now() < cooldownEndAt;
-    }
-
-    function getCooldownLeftSeconds() {
-      if (!isCooldownActive()) return 0;
-      return Math.max(0, Math.ceil((cooldownEndAt - Date.now()) / 1000));
-    }
-
-    function updateCooldownUi() {
-      if (!cooldownBar || !cooldownFill || !submitBtn || !btnText) return;
-
-      if (!isCooldownActive()) {
-        cooldownBar.style.display = 'none';
-        cooldownFill.style.width = '0%';
-
-        if (!isSubmitting) {
-          submitBtn.disabled = false;
-          btnText.textContent = 'รับรหัส';
-        }
-
-        return;
-      }
-
-      const left = getCooldownLeftSeconds();
-      const total = COOLDOWN_SECONDS;
-      const done = Math.max(0, Math.min(100, ((total - left) / total) * 100));
-
-      cooldownBar.style.display = 'block';
-      cooldownFill.style.width = done + '%';
-
-      if (!isSubmitting) {
-        submitBtn.disabled = true;
-        btnText.textContent = 'รอ ' + left + ' วิ';
-      }
+      return 'PAGE-' + Date.now() + '-' + Math.random().toString(36).slice(2);
     }
 
     function createRequestToken() {
@@ -3193,67 +2488,23 @@
         'REQ',
         Date.now(),
         Math.random().toString(36).slice(2),
-        customerNameInput.value.trim(),
-        emailInput.value.trim(),
-        selectedScreen
+        emailInput.value.trim().toLowerCase(),
+        selectedScreen,
+        PAGE_SESSION
       ].join('-');
     }
 
     function createLocalRequestId() {
       const d = new Date();
-      const y = String(d.getFullYear()).slice(-2);
-      const m = String(d.getMonth() + 1).padStart(2, '0');
-      const day = String(d.getDate()).padStart(2, '0');
-      const h = String(d.getHours()).padStart(2, '0');
-      const min = String(d.getMinutes()).padStart(2, '0');
-      const rand = Math.floor(Math.random() * 900 + 100);
-
-      return 'OTP-' + y + m + day + '-' + h + min + '-' + rand;
-    }
-
-    function scrollToResult() {
-      setTimeout(function() {
-        try {
-          resultBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        } catch (err) {
-          try {
-            app.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          } catch (e) {}
-        }
-      }, 80);
-    }
-
-    function focusInput(input) {
-      try {
-        input.focus();
-        input.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      } catch (err) {}
-    }
-
-    function showToast(message) {
-      toast.textContent = message || 'เรียบร้อย';
-      toast.classList.add('show');
-
-      if (toastTimer) clearTimeout(toastTimer);
-
-      toastTimer = setTimeout(function() {
-        toast.classList.remove('show');
-      }, 1600);
-    }
-
-    function isEmail(value) {
-      return /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(String(value || '').trim());
-    }
-
-    function formatTimeShort(date) {
-      try {
-        return new Date(date).toLocaleTimeString('th-TH', {
-          hour: '2-digit',
-          minute: '2-digit'
-        });
-      } catch (err) {
-        return '';
-      }
+      return 'OTP-' +
+        d.getFullYear() +
+        String(d.getMonth() + 1).padStart(2, '0') +
+        String(d.getDate()).padStart(2, '0') +
+        '-' +
+        String(d.getHours()).padStart(2, '0') +
+        String(d.getMinutes()).padStart(2, '0') +
+        '-' +
+        Math.floor(Math.random() * 900 + 100);
     }
 
     function getClientTimezone() {
@@ -3262,6 +2513,43 @@
       } catch (err) {
         return '';
       }
+    }
+
+    function copyText(text, callback) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function() {
+          callback(true);
+        }).catch(function() {
+          fallbackCopy(text, callback);
+        });
+      } else {
+        fallbackCopy(text, callback);
+      }
+    }
+
+    function fallbackCopy(text, callback) {
+      const area = document.createElement('textarea');
+
+      area.value = text;
+      area.setAttribute('readonly', 'readonly');
+      area.style.position = 'fixed';
+      area.style.left = '-9999px';
+      area.style.top = '-9999px';
+
+      document.body.appendChild(area);
+      area.focus();
+      area.select();
+
+      let ok = false;
+
+      try {
+        ok = document.execCommand('copy');
+      } catch (err) {
+        ok = false;
+      }
+
+      document.body.removeChild(area);
+      callback(ok);
     }
   </script>
 </body>
