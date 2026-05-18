@@ -9,26 +9,26 @@
 
   <style>
     :root {
-      --bg1: #fff4fb;
-      --bg2: #eef7ff;
+      --bg1: #fff5fb;
+      --bg2: #edf8ff;
       --bg3: #f5f0ff;
-      --card: rgba(255,255,255,.78);
-      --card2: rgba(255,255,255,.58);
-      --text: #25304f;
-      --sub: rgba(37,48,79,.68);
-      --muted: rgba(37,48,79,.48);
-      --blue: #5db7ff;
-      --blue2: #3b7dff;
-      --pink: #ff8fd8;
-      --pink2: #ffd6f2;
-      --purple: #a99cff;
-      --yellow: #ffe991;
-      --green: #54d6a0;
-      --red: #ff6f91;
-      --orange: #ffb347;
+      --card: rgba(255,255,255,.82);
+      --card2: rgba(255,255,255,.62);
+      --text: #24304f;
+      --sub: rgba(36,48,79,.68);
+      --muted: rgba(36,48,79,.48);
+      --blue: #64b9ff;
+      --blue2: #3d7cff;
+      --pink: #ff8fd6;
+      --pink2: #ffd9f2;
+      --purple: #a79bff;
+      --yellow: #ffe78d;
+      --green: #48c994;
+      --red: #ff6e91;
+      --orange: #ffae42;
       --white: #ffffff;
-      --border: rgba(255,143,216,.22);
-      --shadow: 0 28px 80px rgba(100,80,150,.16);
+      --border: rgba(255,143,214,.22);
+      --shadow: 0 26px 72px rgba(92,75,140,.15);
     }
 
     * {
@@ -76,15 +76,15 @@
     .page {
       position: relative;
       min-height: 100dvh;
-      padding: max(18px, env(safe-area-inset-top)) 14px calc(20px + env(safe-area-inset-bottom));
+      padding: max(18px, env(safe-area-inset-top)) 14px calc(22px + env(safe-area-inset-bottom));
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
       background:
-        radial-gradient(circle at 10% 10%, rgba(255,143,216,.34), transparent 30%),
-        radial-gradient(circle at 90% 14%, rgba(93,183,255,.30), transparent 30%),
-        radial-gradient(circle at 50% 100%, rgba(169,156,255,.28), transparent 40%),
+        radial-gradient(circle at 10% 8%, rgba(255,143,214,.32), transparent 30%),
+        radial-gradient(circle at 90% 13%, rgba(100,185,255,.30), transparent 30%),
+        radial-gradient(circle at 50% 100%, rgba(167,155,255,.25), transparent 42%),
         linear-gradient(140deg, var(--bg1), var(--bg2) 50%, var(--bg3));
     }
 
@@ -93,13 +93,13 @@
       position: absolute;
       inset: 0;
       pointer-events: none;
-      opacity: .48;
+      opacity: .52;
       background-image:
-        radial-gradient(circle, rgba(255,255,255,.95) 0 1.5px, transparent 2px),
-        radial-gradient(circle, rgba(255,143,216,.24) 0 1px, transparent 2px),
-        radial-gradient(circle, rgba(93,183,255,.20) 0 1px, transparent 2px);
-      background-size: 42px 42px, 72px 72px, 96px 96px;
-      mask-image: linear-gradient(to bottom, rgba(0,0,0,.95), rgba(0,0,0,.55), transparent 92%);
+        radial-gradient(circle, rgba(255,255,255,.96) 0 1.45px, transparent 2px),
+        radial-gradient(circle, rgba(255,143,214,.24) 0 1px, transparent 2px),
+        radial-gradient(circle, rgba(100,185,255,.20) 0 1px, transparent 2px);
+      background-size: 44px 44px, 74px 74px, 98px 98px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,.98), rgba(0,0,0,.55), transparent 94%);
     }
 
     .blob {
@@ -114,17 +114,17 @@
     .blob.one {
       width: 300px;
       height: 300px;
-      left: -120px;
-      top: 80px;
-      background: rgba(255,143,216,.28);
+      left: -125px;
+      top: 86px;
+      background: rgba(255,143,214,.28);
     }
 
     .blob.two {
-      width: 260px;
-      height: 260px;
-      right: -110px;
+      width: 265px;
+      height: 265px;
+      right: -115px;
       top: 120px;
-      background: rgba(93,183,255,.28);
+      background: rgba(100,185,255,.28);
       animation-delay: 1.2s;
     }
 
@@ -132,8 +132,8 @@
       width: 340px;
       height: 340px;
       left: 45%;
-      bottom: -210px;
-      background: rgba(169,156,255,.22);
+      bottom: -214px;
+      background: rgba(167,155,255,.22);
       animation-delay: 2.1s;
     }
 
@@ -147,7 +147,7 @@
       z-index: 1;
       pointer-events: none;
       font-weight: 1000;
-      text-shadow: 0 8px 24px rgba(255,143,216,.18);
+      text-shadow: 0 8px 24px rgba(255,143,214,.18);
       animation: floatDecor 4s ease-in-out infinite;
     }
 
@@ -156,7 +156,7 @@
     }
 
     .decor.heart {
-      color: rgba(255,143,216,.84);
+      color: rgba(255,143,214,.84);
     }
 
     .decor.d1 { left: 8%; top: 14%; font-size: 22px; }
@@ -203,7 +203,7 @@
       background:
         radial-gradient(circle at 25% 18%, rgba(255,255,255,.45), transparent 28%),
         linear-gradient(135deg, var(--blue), var(--purple), var(--pink));
-      box-shadow: 0 16px 34px rgba(255,143,216,.24);
+      box-shadow: 0 16px 34px rgba(255,143,214,.24);
       font-size: 24px;
       font-weight: 1000;
       position: relative;
@@ -259,7 +259,7 @@
       right: -80px;
       top: -85px;
       border-radius: 999px;
-      background: radial-gradient(circle, rgba(255,143,216,.32), transparent 70%);
+      background: radial-gradient(circle, rgba(255,143,214,.32), transparent 70%);
     }
 
     .hero-card:after {
@@ -267,7 +267,7 @@
       position: absolute;
       right: 22px;
       top: 22px;
-      color: rgba(255,143,216,.44);
+      color: rgba(255,143,214,.44);
       font-size: 18px;
       letter-spacing: 6px;
       font-weight: 1000;
@@ -280,8 +280,8 @@
       padding: 9px 13px;
       border-radius: 999px;
       color: #c74791;
-      background: rgba(255,143,216,.13);
-      border: 1px solid rgba(255,143,216,.18);
+      background: rgba(255,143,214,.13);
+      border: 1px solid rgba(255,143,214,.18);
       font-size: 12px;
       font-weight: 1000;
     }
@@ -315,14 +315,14 @@
       font-weight: 650;
     }
 
-    .heart-star-panel {
+    .info-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
     }
 
-    .decor-card {
-      min-height: 158px;
+    .info-card {
+      min-height: 148px;
       padding: 18px;
       border-radius: 32px;
       background: rgba(255,255,255,.56);
@@ -332,7 +332,7 @@
       overflow: hidden;
     }
 
-    .decor-card:before {
+    .info-card:before {
       content: "";
       position: absolute;
       width: 130px;
@@ -340,14 +340,14 @@
       right: -50px;
       bottom: -50px;
       border-radius: 999px;
-      background: radial-gradient(circle, rgba(93,183,255,.22), transparent 70%);
+      background: radial-gradient(circle, rgba(100,185,255,.22), transparent 70%);
     }
 
-    .decor-card.pink:before {
-      background: radial-gradient(circle, rgba(255,143,216,.24), transparent 70%);
+    .info-card.pink:before {
+      background: radial-gradient(circle, rgba(255,143,214,.24), transparent 70%);
     }
 
-    .decor-icon {
+    .info-icon {
       width: 52px;
       height: 52px;
       border-radius: 22px;
@@ -357,10 +357,10 @@
       background: linear-gradient(135deg, var(--blue), var(--purple), var(--pink));
       font-size: 24px;
       font-weight: 1000;
-      box-shadow: 0 14px 26px rgba(255,143,216,.16);
+      box-shadow: 0 14px 26px rgba(255,143,214,.16);
     }
 
-    .decor-card strong {
+    .info-card strong {
       display: block;
       margin-top: 14px;
       font-size: 17px;
@@ -368,56 +368,12 @@
       font-weight: 1000;
     }
 
-    .decor-card span {
+    .info-card span {
       display: block;
       margin-top: 7px;
       color: var(--sub);
       font-size: 12px;
       line-height: 1.6;
-      font-weight: 750;
-    }
-
-    .mini-list {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-    }
-
-    .mini {
-      min-height: 102px;
-      padding: 14px;
-      border-radius: 26px;
-      background: rgba(255,255,255,.56);
-      border: 1px solid rgba(255,255,255,.78);
-      box-shadow: 0 14px 34px rgba(100,80,150,.09);
-    }
-
-    .mini-icon {
-      width: 38px;
-      height: 38px;
-      border-radius: 15px;
-      display: grid;
-      place-items: center;
-      color: var(--white);
-      background: linear-gradient(135deg, var(--pink), var(--purple));
-      font-size: 18px;
-      font-weight: 1000;
-    }
-
-    .mini strong {
-      display: block;
-      margin-top: 9px;
-      font-size: 13px;
-      line-height: 1.35;
-      font-weight: 1000;
-    }
-
-    .mini span {
-      display: block;
-      margin-top: 4px;
-      color: var(--muted);
-      font-size: 11px;
-      line-height: 1.45;
       font-weight: 750;
     }
 
@@ -445,7 +401,7 @@
       position: absolute;
       right: 20px;
       top: 16px;
-      color: rgba(255,143,216,.26);
+      color: rgba(255,143,214,.26);
       font-size: 15px;
       font-weight: 1000;
       letter-spacing: 5px;
@@ -487,7 +443,7 @@
       background: linear-gradient(135deg, var(--pink), var(--purple));
       font-size: 12px;
       font-weight: 1000;
-      box-shadow: 0 10px 20px rgba(255,143,216,.18);
+      box-shadow: 0 10px 20px rgba(255,143,214,.18);
     }
 
     .hint {
@@ -516,8 +472,8 @@
       padding: 12px 13px;
       border-radius: 23px;
       color: #8a5a00;
-      background: rgba(255,233,145,.34);
-      border: 1px solid rgba(255,179,71,.24);
+      background: rgba(255,231,141,.34);
+      border: 1px solid rgba(255,174,66,.24);
       font-size: 12px;
       line-height: 1.65;
       font-weight: 800;
@@ -590,7 +546,7 @@
 
     .req {
       color: #c74791;
-      background: rgba(255,143,216,.12);
+      background: rgba(255,143,214,.12);
     }
 
     .opt {
@@ -601,7 +557,7 @@
     input,
     textarea {
       width: 100%;
-      border: 1px solid rgba(255,143,216,.18);
+      border: 1px solid rgba(255,143,214,.18);
       outline: none;
       background: rgba(255,255,255,.76);
       color: var(--text);
@@ -624,14 +580,14 @@
 
     input::placeholder,
     textarea::placeholder {
-      color: rgba(37,48,79,.36);
+      color: rgba(36,48,79,.36);
       font-weight: 600;
     }
 
     input:focus,
     textarea:focus {
-      border-color: rgba(255,143,216,.52);
-      box-shadow: 0 0 0 5px rgba(255,143,216,.11);
+      border-color: rgba(255,143,214,.52);
+      box-shadow: 0 0 0 5px rgba(255,143,214,.11);
       transform: translateY(-1px);
     }
 
@@ -663,7 +619,7 @@
       border-radius: 16px;
       color: var(--text);
       background: rgba(255,255,255,.60);
-      border: 1px solid rgba(255,143,216,.14);
+      border: 1px solid rgba(255,143,214,.14);
       font-size: 12px;
       font-weight: 900;
     }
@@ -676,7 +632,7 @@
     .chip.selected {
       color: var(--white);
       background: linear-gradient(135deg, var(--pink), var(--purple));
-      box-shadow: 0 10px 20px rgba(255,143,216,.17);
+      box-shadow: 0 10px 20px rgba(255,143,214,.17);
     }
 
     .chip.selected:before {
@@ -694,7 +650,7 @@
       border-radius: 20px;
       color: var(--text);
       background: rgba(255,255,255,.60);
-      border: 1px solid rgba(255,143,216,.14);
+      border: 1px solid rgba(255,143,214,.14);
       display: grid;
       place-items: center;
       padding: 8px 4px;
@@ -716,7 +672,7 @@
     .screen-btn.selected {
       color: var(--white);
       background: linear-gradient(135deg, var(--pink), var(--purple), var(--blue));
-      box-shadow: 0 12px 24px rgba(255,143,216,.18);
+      box-shadow: 0 12px 24px rgba(255,143,214,.18);
       transform: translateY(-2px);
     }
 
@@ -760,7 +716,7 @@
       background:
         radial-gradient(circle at 18% 0%, rgba(255,255,255,.34), transparent 34%),
         linear-gradient(135deg, var(--pink), var(--purple), var(--blue));
-      box-shadow: 0 16px 30px rgba(255,143,216,.24);
+      box-shadow: 0 16px 30px rgba(255,143,214,.24);
     }
 
     .btn-primary:before {
@@ -770,7 +726,7 @@
     .btn-secondary {
       color: var(--text);
       background: rgba(255,255,255,.64);
-      border: 1px solid rgba(255,143,216,.14);
+      border: 1px solid rgba(255,143,214,.14);
     }
 
     .btn-secondary:before {
@@ -823,22 +779,22 @@
       border-radius: 999px;
       flex: 0 0 auto;
       background: var(--pink);
-      box-shadow: 0 0 0 5px rgba(255,143,216,.12);
+      box-shadow: 0 0 0 5px rgba(255,143,214,.12);
     }
 
     .status-dot.ok {
       background: var(--green);
-      box-shadow: 0 0 0 5px rgba(84,214,160,.12);
+      box-shadow: 0 0 0 5px rgba(72,201,148,.12);
     }
 
     .status-dot.warn {
       background: var(--orange);
-      box-shadow: 0 0 0 5px rgba(255,179,71,.14);
+      box-shadow: 0 0 0 5px rgba(255,174,66,.14);
     }
 
     .status-dot.bad {
       background: var(--red);
-      box-shadow: 0 0 0 5px rgba(255,111,145,.12);
+      box-shadow: 0 0 0 5px rgba(255,110,145,.12);
     }
 
     .cooldown {
@@ -846,7 +802,7 @@
       height: 8px;
       overflow: hidden;
       border-radius: 999px;
-      background: rgba(255,143,216,.13);
+      background: rgba(255,143,214,.13);
     }
 
     .cooldown-fill {
@@ -876,7 +832,7 @@
       text-align: center;
       background:
         radial-gradient(circle at 50% 0%, rgba(255,255,255,.88), transparent 52%),
-        linear-gradient(135deg, rgba(255,143,216,.14), rgba(93,183,255,.12));
+        linear-gradient(135deg, rgba(255,143,214,.14), rgba(100,185,255,.12));
       border: 1px solid rgba(255,255,255,.82);
       animation: pop .24s ease both;
       position: relative;
@@ -889,7 +845,7 @@
       position: absolute;
       left: 18px;
       top: 15px;
-      color: rgba(255,143,216,.34);
+      color: rgba(255,143,214,.34);
       font-size: 14px;
       letter-spacing: 4px;
       font-weight: 1000;
@@ -900,7 +856,7 @@
       position: absolute;
       right: 18px;
       bottom: 16px;
-      color: rgba(93,183,255,.30);
+      color: rgba(100,185,255,.30);
       font-size: 14px;
       letter-spacing: 4px;
       font-weight: 1000;
@@ -922,7 +878,7 @@
       background: linear-gradient(135deg, var(--pink), var(--purple), var(--blue));
       font-size: 29px;
       font-weight: 1000;
-      box-shadow: 0 16px 34px rgba(255,143,216,.18);
+      box-shadow: 0 16px 34px rgba(255,143,214,.18);
       position: relative;
       z-index: 1;
     }
@@ -955,7 +911,7 @@
       border-radius: 999px;
       color: var(--muted);
       background: rgba(255,255,255,.62);
-      border: 1px solid rgba(255,143,216,.12);
+      border: 1px solid rgba(255,143,214,.12);
       font-size: 11px;
       font-weight: 900;
       overflow-wrap: anywhere;
@@ -970,7 +926,7 @@
       padding: 14px;
       border-radius: 27px;
       background: rgba(255,255,255,.72);
-      border: 1px solid rgba(255,143,216,.16);
+      border: 1px solid rgba(255,143,214,.16);
       position: relative;
       z-index: 1;
     }
@@ -988,7 +944,7 @@
       letter-spacing: 7px;
       font-weight: 1000;
       user-select: all;
-      text-shadow: 0 8px 24px rgba(255,143,216,.14);
+      text-shadow: 0 8px 24px rgba(255,143,214,.14);
     }
 
     .otp-note {
@@ -1005,8 +961,8 @@
       padding: 12px;
       border-radius: 23px;
       color: #8a5a00;
-      background: rgba(255,233,145,.34);
-      border: 1px solid rgba(255,179,71,.24);
+      background: rgba(255,231,141,.34);
+      border: 1px solid rgba(255,174,66,.24);
       font-size: 12px;
       line-height: 1.6;
       font-weight: 850;
@@ -1037,6 +993,68 @@
       font-size: 13px;
     }
 
+    .howto {
+      margin-top: 16px;
+      padding: 15px;
+      border-radius: 28px;
+      background: rgba(255,255,255,.56);
+      border: 1px solid rgba(255,255,255,.78);
+      box-shadow: 0 14px 34px rgba(100,80,150,.08);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .howto:before {
+      content: "★ ♡ ★";
+      position: absolute;
+      right: 16px;
+      top: 14px;
+      color: rgba(255,143,214,.28);
+      font-weight: 1000;
+      letter-spacing: 5px;
+      pointer-events: none;
+    }
+
+    .howto h3 {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.35;
+      font-weight: 1000;
+    }
+
+    .howto-list {
+      margin: 10px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 8px;
+    }
+
+    .howto-list li {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 9px;
+      align-items: start;
+      color: var(--sub);
+      font-size: 12px;
+      line-height: 1.55;
+      font-weight: 750;
+    }
+
+    .howto-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--pink), var(--purple));
+      font-size: 12px;
+      font-weight: 1000;
+      box-shadow: 0 8px 16px rgba(255,143,214,.15);
+    }
+
     .loading {
       position: fixed;
       inset: 0;
@@ -1044,7 +1062,7 @@
       display: none;
       place-items: center;
       padding: 20px;
-      background: rgba(37,48,79,.18);
+      background: rgba(36,48,79,.18);
       backdrop-filter: blur(12px);
     }
 
@@ -1069,7 +1087,7 @@
       position: absolute;
       left: 20px;
       top: 16px;
-      color: rgba(255,143,216,.30);
+      color: rgba(255,143,214,.30);
       letter-spacing: 5px;
       font-weight: 1000;
     }
@@ -1118,8 +1136,8 @@
       padding: 12px 16px;
       border-radius: 999px;
       color: var(--white);
-      background: rgba(37,48,79,.94);
-      box-shadow: 0 18px 40px rgba(37,48,79,.22);
+      background: rgba(36,48,79,.94);
+      box-shadow: 0 18px 40px rgba(36,48,79,.22);
       font-size: 14px;
       font-weight: 900;
       text-align: center;
@@ -1177,11 +1195,7 @@
         margin-right: auto;
       }
 
-      .heart-star-panel {
-        grid-template-columns: 1fr;
-      }
-
-      .mini-list {
+      .info-grid {
         grid-template-columns: 1fr;
       }
     }
@@ -1236,8 +1250,8 @@
         line-height: 1.6;
       }
 
-      .decor-card {
-        min-height: 132px;
+      .info-card {
+        min-height: 126px;
         border-radius: 26px;
       }
 
@@ -1346,44 +1360,24 @@
         </div>
 
         <div class="hero-card">
-          <div class="badge">ระบบรับรหัสน่ารัก ปลอดภัยขึ้น</div>
+          <div class="badge">ระบบรับรหัส OTP</div>
           <h1>รับรหัส <span class="gradient">OTP</span></h1>
           <p class="lead">
-            กรอกข้อมูลให้ครบ กดรับรหัส แล้วระบบจะแสดง OTP ล่าสุดให้ทันที หลังจากรหัสแสดงแล้ว ระบบจะล็อกการขอรหัสใหม่ชั่วคราวเพื่อความปลอดภัย
+            กรอกข้อมูลให้ครบ เลือกจอที่ใช้งาน แล้วกดรับรหัส ระบบจะแสดง OTP ล่าสุดให้เมื่อพบรหัส
           </p>
         </div>
 
-        <div class="heart-star-panel">
-          <div class="decor-card pink">
-            <div class="decor-icon">♥</div>
-            <strong>ไม่ต้องกดยืนยันเอง</strong>
-            <span>ทันทีที่รหัสแสดง ระบบถือว่า OTP นี้ถูกใช้สิทธิ์แล้ว ไม่ต้องพึ่งลูกค้ากดปุ่ม</span>
+        <div class="info-grid">
+          <div class="info-card pink">
+            <div class="info-icon">♥</div>
+            <strong>ล็อกตามจอที่รับรหัส</strong>
+            <span>ถ้าอีเมลเดียวกันรับรหัสที่จอ 6 แล้ว จอ 6 จะรับซ้ำไม่ได้ แต่จออื่นยังรับได้</span>
           </div>
 
-          <div class="decor-card">
-            <div class="decor-icon">★</div>
-            <strong>ล็อกการขอซ้ำ</strong>
-            <span>หลังแสดงรหัส อีเมล/จอนี้จะถูกล็อกชั่วคราวเพื่อลดการนำไปใช้หลายเครื่อง</span>
-          </div>
-        </div>
-
-        <div class="mini-list">
-          <div class="mini">
-            <div class="mini-icon">♡</div>
-            <strong>กรอกข้อมูลง่าย</strong>
-            <span>ชื่อ LINE อีเมล อุปกรณ์ และจอ</span>
-          </div>
-
-          <div class="mini">
-            <div class="mini-icon">★</div>
-            <strong>ค้นหา OTP เร็ว</strong>
-            <span>ส่งคำขอแบบ fast mode ไป backend</span>
-          </div>
-
-          <div class="mini">
-            <div class="mini-icon">♥</div>
-            <strong>แสดงแล้วล็อก</strong>
-            <span>ไม่ต้องรอลูกค้ากดว่าใช้รหัสแล้ว</span>
+          <div class="info-card">
+            <div class="info-icon">★</div>
+            <strong>ใช้งานในหน้าเดียว</strong>
+            <span>กรอกชื่อ LINE อีเมล อุปกรณ์ เลือกจอ แล้วกดรับรหัสได้ทันที</span>
           </div>
         </div>
       </div>
@@ -1398,11 +1392,11 @@
         </div>
 
         <div class="hint">
-          หลังได้ OTP แล้ว ให้คัดลอกรหัสไปใส่ใน Disney+ ได้เลย
+          หลังได้ OTP แล้ว ให้คัดลอกรหัสไปใส่ใน Disney+
         </div>
 
         <div class="safe-hint">
-          เพื่อความปลอดภัย เมื่อระบบแสดง OTP แล้ว จะถือว่ารหัสนี้ถูกใช้สิทธิ์แล้ว และจะล็อกการขอรหัสใหม่ชั่วคราว
+          เมื่อจอนี้ได้รับ OTP แล้ว ระบบจะบันทึกว่าอีเมลนี้ใช้สิทธิ์รับรหัสของจอนี้แล้ว
         </div>
 
         <div class="form">
@@ -1487,7 +1481,7 @@
         </div>
 
         <div class="privacy">
-          ระบบจะไม่ใช้การผูกหน้าเดิม และไม่ต้องกดปุ่มยืนยันหลังใช้รหัส
+          ระบบจะบันทึกเฉพาะข้อมูลที่ใช้ตรวจสอบการขอ OTP
         </div>
 
         <div class="result" id="resultBox">
@@ -1503,7 +1497,7 @@
           </div>
 
           <div class="lock-box" id="lockBox">
-            รหัสนี้ถูกแสดงแล้ว ระบบจะล็อกการขอรหัสใหม่ชั่วคราวเพื่อความปลอดภัย
+            ระบบบันทึกจอนี้แล้ว หากอีเมลนี้กลับมาขอรหัสของจอเดิมอีก ระบบจะไม่ให้รับซ้ำ
           </div>
 
           <div class="result-actions">
@@ -1512,6 +1506,36 @@
             <button type="button" class="btn-secondary" onclick="editInfo()">แก้ไขข้อมูล</button>
             <button type="button" class="btn-secondary" onclick="clearForm()">เริ่มใหม่</button>
           </div>
+        </div>
+
+        <div class="howto" id="howto">
+          <h3>วิธีใช้</h3>
+          <ul class="howto-list">
+            <li>
+              <span class="howto-num">1</span>
+              <span>กรอกชื่อ LINE และอีเมล Disney+ ให้ถูกต้อง</span>
+            </li>
+            <li>
+              <span class="howto-num">2</span>
+              <span>เลือกหรือกรอกอุปกรณ์ที่ใช้งาน เช่น iPhone, Android, TV หรือ Chrome</span>
+            </li>
+            <li>
+              <span class="howto-num">3</span>
+              <span>เลือกจอ / โปรไฟล์ 1–6 ให้ตรงกับรายการของลูกค้า</span>
+            </li>
+            <li>
+              <span class="howto-num">4</span>
+              <span>กดปุ่มรับรหัส แล้วรอระบบค้นหา OTP ล่าสุด</span>
+            </li>
+            <li>
+              <span class="howto-num">5</span>
+              <span>เมื่อรหัสแสดงแล้ว ให้กดคัดลอก OTP แล้วนำไปใส่ใน Disney+</span>
+            </li>
+            <li>
+              <span class="howto-num">6</span>
+              <span>ถ้าจอนี้เคยรับรหัสแล้ว ระบบจะไม่ให้รับซ้ำ ต้องติดต่อแอดมิน</span>
+            </li>
+          </ul>
         </div>
       </div>
     </section>
@@ -1546,7 +1570,7 @@
     const AUTO_RETRY_SECONDS = 3;
     const MAX_AUTO_RETRY = 3;
     const COOLDOWN_SECONDS = 4;
-    const DRAFT_KEY = 'starHeartOtpNoPageSessionDraftV1';
+    const DRAFT_KEY = 'starHeartOtpScreenLockDraftV2';
 
     /************************************************************
      * STATE
@@ -1719,6 +1743,11 @@
         return;
       }
 
+      if (!WEB_APP_URL || WEB_APP_URL.indexOf('script.google.com') === -1) {
+        showError('ยังไม่ได้ตั้งค่า WEB_APP_URL');
+        return;
+      }
+
       resetResult(false);
 
       isSubmitting = true;
@@ -1807,6 +1836,8 @@
     }
 
     function clearForm() {
+      cancelAutoRetry();
+
       customerNameInput.value = '';
       emailInput.value = '';
       deviceInput.value = '';
@@ -1865,7 +1896,7 @@
       copyBtn.disabled = false;
       copyBtn.textContent = 'คัดลอก OTP';
 
-      updateStatus('พบ OTP แล้ว ระบบล็อกการขอซ้ำชั่วคราวแล้ว', 'ok');
+      updateStatus('พบ OTP แล้ว', 'ok');
       showToast('พบ OTP แล้ว');
       launchConfetti();
       scrollToResult();
@@ -1877,15 +1908,15 @@
       latestOtp = '';
       resultBox.style.display = 'block';
       resultIcon.textContent = '♡';
-      resultTitle.textContent = isIssuedLocked(res) ? 'ขอรหัสซ้ำไม่ได้' : 'ยังไม่พบรหัส';
+      resultTitle.textContent = isScreenLocked(res) ? 'จอนี้รับรหัสไปแล้ว' : 'ยังไม่พบรหัส';
       resultMessage.textContent = msg;
       requestIdBox.textContent = 'เลขอ้างอิง: ' + (res && (res.requestId || res.id) ? (res.requestId || res.id) : '-');
 
       otpBox.style.display = 'none';
-      lockBox.style.display = isIssuedLocked(res) ? 'block' : 'none';
+      lockBox.style.display = isScreenLocked(res) || isIssuedLocked(res) ? 'block' : 'none';
 
-      updateStatus(msg, isIssuedLocked(res) ? 'bad' : 'warn');
-      showToast(isIssuedLocked(res) ? 'ระบบล็อกการขอซ้ำอยู่' : 'ยังไม่พบ OTP');
+      updateStatus(msg, isScreenLocked(res) || isIssuedLocked(res) ? 'bad' : 'warn');
+      showToast(isScreenLocked(res) ? 'จอนี้รับรหัสไปแล้ว' : 'ยังไม่พบ OTP');
 
       if (shouldAutoRetry(res)) {
         startAutoRetry();
@@ -1933,9 +1964,15 @@
 
       const status = String(res.resultStatus || '');
 
+      if (status === 'SCREEN_ALREADY_USED') return false;
       if (status === 'OTP_ALREADY_ISSUED') return false;
       if (status === 'OTP_ALREADY_USED') return false;
       if (status === 'RATE_LIMITED') return false;
+      if (status === 'INVALID_EMAIL') return false;
+      if (status === 'MISSING_DEVICE') return false;
+      if (status === 'MISSING_SCREEN') return false;
+      if (status === 'INVALID_WEB_TOKEN') return false;
+      if (status === 'INVALID_PIN') return false;
 
       if (status === 'OTP_NOT_FOUND') return autoRetryCount < MAX_AUTO_RETRY;
       if (status === 'MAILY_ERROR') return autoRetryCount < MAX_AUTO_RETRY;
@@ -2150,17 +2187,17 @@
 
       if (showFocus) {
         if (!nameOk) {
-          customerNameInput.focus();
+          focusInput(customerNameInput);
           return false;
         }
 
         if (!emailOk) {
-          emailInput.focus();
+          focusInput(emailInput);
           return false;
         }
 
         if (!deviceOk) {
-          deviceInput.focus();
+          focusInput(deviceInput);
           return false;
         }
 
@@ -2276,6 +2313,16 @@
       }, 80);
     }
 
+    function focusInput(input) {
+      try {
+        input.focus();
+        input.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        });
+      } catch (err) {}
+    }
+
     function updateNoteCount() {
       noteCount.textContent = customerNoteInput.value.length + '/700';
     }
@@ -2284,7 +2331,7 @@
       confetti.innerHTML = '';
 
       const pieces = ['★', '✦', '✧', '♡', '♥', 'OTP'];
-      const colors = ['#ff8fd8', '#a99cff', '#5db7ff', '#ffe991', '#54d6a0'];
+      const colors = ['#ff8fd6', '#a79bff', '#64b9ff', '#ffe78d', '#48c994'];
       const count = 32;
 
       for (let i = 0; i < count; i++) {
@@ -2358,7 +2405,7 @@
     function buildOtpFoundMessage(res) {
       const lines = [
         'พบรหัสแล้ว กรุณาคัดลอก OTP ไปใช้ล็อกอิน',
-        'หลังจากรหัสแสดงแล้ว ระบบจะล็อกการขอรหัสใหม่ชั่วคราว'
+        'ระบบบันทึกจอนี้แล้ว หากอีเมลนี้ขอรหัสจอเดิมอีก ระบบจะไม่ให้รับซ้ำ'
       ];
 
       if (res.resultStatus) {
@@ -2384,8 +2431,12 @@
       const status = String(res.resultStatus || '');
       const msg = String(res.message || '');
 
+      if (status === 'SCREEN_ALREADY_USED') {
+        return 'จอนี้เคยรับรหัสแล้ว ไม่สามารถรับรหัสซ้ำได้ กรุณาติดต่อแอดมิน';
+      }
+
       if (status === 'OTP_ALREADY_ISSUED') {
-        return 'อีเมลนี้เพิ่งรับรหัสไปแล้ว ระบบล็อกการขอซ้ำชั่วคราวเพื่อความปลอดภัย กรุณารอประมาณ 15 นาที หรือแจ้งแอดมิน';
+        return 'อีเมลนี้เพิ่งรับรหัสของจอนี้ไปแล้ว กรุณารอสักครู่ หรือแจ้งแอดมิน';
       }
 
       if (status === 'OTP_ALREADY_USED') {
@@ -2408,6 +2459,26 @@
         return 'มีการขอรหัสถี่เกินไป กรุณารอสักครู่แล้วลองใหม่';
       }
 
+      if (status === 'INVALID_EMAIL') {
+        return 'อีเมลไม่ถูกต้อง กรุณาตรวจสอบอีกครั้ง';
+      }
+
+      if (status === 'MISSING_DEVICE') {
+        return 'กรุณาระบุอุปกรณ์ที่ใช้งาน';
+      }
+
+      if (status === 'MISSING_SCREEN') {
+        return 'กรุณาเลือกจอที่ใช้งาน';
+      }
+
+      if (status === 'INVALID_WEB_TOKEN') {
+        return 'ไม่สามารถยืนยันหน้าเว็บได้ กรุณาแจ้งแอดมิน';
+      }
+
+      if (status === 'INVALID_PIN') {
+        return 'PIN ไม่ถูกต้อง';
+      }
+
       if (status === 'OTP_NOT_FOUND') {
         return 'ยังไม่พบ OTP ในเมลล่าสุด ระบบจะลองใหม่ให้อัตโนมัติ';
       }
@@ -2425,6 +2496,11 @@
       }
 
       return 'ยังไม่พบรหัส กรุณารอสักครู่แล้วลองใหม่';
+    }
+
+    function isScreenLocked(res) {
+      if (!res) return false;
+      return String(res.resultStatus || '') === 'SCREEN_ALREADY_USED' || res.permanentScreenLock === true;
     }
 
     function isIssuedLocked(res) {
