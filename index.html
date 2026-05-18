@@ -12,45 +12,31 @@
       --bg1: #fff4fb;
       --bg2: #edf8ff;
       --bg3: #f7f1ff;
-      --bg4: #fffdf5;
 
-      --card: rgba(255,255,255,.86);
-      --card2: rgba(255,255,255,.66);
-      --glass: rgba(255,255,255,.56);
-
-      --text: #2a3156;
-      --sub: rgba(42,49,86,.70);
-      --muted: rgba(42,49,86,.48);
+      --text: #293052;
+      --sub: rgba(41,48,82,.70);
+      --muted: rgba(41,48,82,.48);
 
       --pink: #ff8bd2;
       --pink2: #ffd7f0;
-      --pink3: #fff0fa;
       --blue: #69bdff;
       --blue2: #3d7cff;
       --purple: #a594ff;
-      --purple2: #eeeaff;
       --yellow: #ffe78a;
-      --cream: #fff7d8;
       --green: #49c994;
       --red: #ff6e91;
       --orange: #ffad42;
       --white: #ffffff;
 
       --border: rgba(255,139,210,.22);
-      --border2: rgba(255,255,255,.82);
-      --shadow: 0 28px 76px rgba(106,78,150,.16);
-      --shadow2: 0 18px 46px rgba(255,139,210,.14);
+      --border2: rgba(255,255,255,.78);
+      --shadow: 0 24px 66px rgba(106,78,150,.15);
     }
 
     body.theme-night {
       --bg1: #171432;
       --bg2: #111c3f;
       --bg3: #21143a;
-      --bg4: #151a35;
-
-      --card: rgba(25,25,56,.78);
-      --card2: rgba(31,31,69,.68);
-      --glass: rgba(255,255,255,.08);
 
       --text: #f8f6ff;
       --sub: rgba(248,246,255,.72);
@@ -58,17 +44,14 @@
 
       --pink: #ff9ddd;
       --pink2: #ffc6ec;
-      --pink3: rgba(255,157,221,.10);
       --blue: #76c8ff;
       --blue2: #7aa0ff;
       --purple: #b9adff;
-      --purple2: rgba(185,173,255,.12);
       --yellow: #ffe98e;
-      --cream: rgba(255,247,216,.13);
+
       --border: rgba(255,157,221,.22);
-      --border2: rgba(255,255,255,.16);
-      --shadow: 0 28px 86px rgba(0,0,0,.32);
-      --shadow2: 0 18px 46px rgba(255,157,221,.12);
+      --border2: rgba(255,255,255,.15);
+      --shadow: 0 24px 76px rgba(0,0,0,.34);
     }
 
     * {
@@ -79,6 +62,7 @@
     html,
     body {
       margin: 0;
+      width: 100%;
       min-height: 100%;
       color: var(--text);
       background: var(--bg1);
@@ -101,7 +85,7 @@
       appearance: none;
       border: 0;
       cursor: pointer;
-      transition: transform .16s ease, box-shadow .16s ease, opacity .16s ease, background .16s ease, border-color .16s ease;
+      transition: transform .16s ease, opacity .16s ease, background .16s ease, box-shadow .16s ease;
     }
 
     button:active {
@@ -109,14 +93,14 @@
     }
 
     button:disabled {
-      opacity: .48;
+      opacity: .46;
       cursor: not-allowed;
     }
 
     .page {
       position: relative;
       min-height: 100dvh;
-      padding: max(18px, env(safe-area-inset-top)) 14px calc(22px + env(safe-area-inset-bottom));
+      padding: max(16px, env(safe-area-inset-top)) 14px calc(20px + env(safe-area-inset-bottom));
       display: flex;
       align-items: center;
       justify-content: center;
@@ -143,70 +127,61 @@
       position: absolute;
       inset: 0;
       pointer-events: none;
-      opacity: .56;
+      opacity: .50;
       background-image:
-        radial-gradient(circle, rgba(255,255,255,.95) 0 1.6px, transparent 2.2px),
-        radial-gradient(circle, rgba(255,139,210,.28) 0 1.2px, transparent 2.2px),
-        radial-gradient(circle, rgba(105,189,255,.22) 0 1.2px, transparent 2.2px);
+        radial-gradient(circle, rgba(255,255,255,.92) 0 1.4px, transparent 2px),
+        radial-gradient(circle, rgba(255,139,210,.26) 0 1.2px, transparent 2.2px),
+        radial-gradient(circle, rgba(105,189,255,.20) 0 1.2px, transparent 2.2px);
       background-size: 38px 38px, 66px 66px, 92px 92px;
-      mask-image: linear-gradient(to bottom, rgba(0,0,0,.98), rgba(0,0,0,.58), transparent 94%);
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,.96), rgba(0,0,0,.58), transparent 94%);
     }
 
     body.theme-night .page:before {
-      opacity: .35;
+      opacity: .30;
       background-image:
-        radial-gradient(circle, rgba(255,255,255,.34) 0 1.4px, transparent 2.2px),
-        radial-gradient(circle, rgba(255,157,221,.20) 0 1.2px, transparent 2.2px),
-        radial-gradient(circle, rgba(118,200,255,.18) 0 1.2px, transparent 2.2px);
+        radial-gradient(circle, rgba(255,255,255,.30) 0 1.4px, transparent 2px),
+        radial-gradient(circle, rgba(255,157,221,.18) 0 1.2px, transparent 2.2px),
+        radial-gradient(circle, rgba(118,200,255,.16) 0 1.2px, transparent 2.2px);
     }
 
-    .soft-shape {
+    .soft {
       position: absolute;
       pointer-events: none;
-      opacity: .72;
-      filter: blur(30px);
       border-radius: 999px;
+      filter: blur(30px);
+      opacity: .72;
       animation: softMove 8s ease-in-out infinite;
     }
 
-    .soft-shape.one {
-      width: 310px;
-      height: 310px;
-      left: -135px;
-      top: 82px;
+    .soft.one {
+      width: 290px;
+      height: 290px;
+      left: -140px;
+      top: 80px;
       background: rgba(255,139,210,.28);
     }
 
-    .soft-shape.two {
-      width: 270px;
-      height: 270px;
-      right: -120px;
-      top: 110px;
-      background: rgba(105,189,255,.26);
+    .soft.two {
+      width: 260px;
+      height: 260px;
+      right: -130px;
+      top: 100px;
+      background: rgba(105,189,255,.24);
       animation-delay: 1.2s;
     }
 
-    .soft-shape.three {
-      width: 360px;
-      height: 360px;
+    .soft.three {
+      width: 340px;
+      height: 340px;
       left: 44%;
       bottom: -230px;
-      background: rgba(165,148,255,.20);
+      background: rgba(165,148,255,.18);
       animation-delay: 2.1s;
-    }
-
-    .soft-shape.four {
-      width: 220px;
-      height: 220px;
-      left: 16%;
-      bottom: 5%;
-      background: rgba(255,231,138,.20);
-      animation-delay: 2.8s;
     }
 
     @keyframes softMove {
       0%, 100% { transform: translate3d(0,0,0) scale(1); }
-      50% { transform: translate3d(18px,-18px,0) scale(1.06); }
+      50% { transform: translate3d(18px,-16px,0) scale(1.06); }
     }
 
     .float {
@@ -214,12 +189,12 @@
       z-index: 1;
       pointer-events: none;
       font-weight: 1000;
+      animation: floatItem 4.5s ease-in-out infinite;
       text-shadow: 0 10px 24px rgba(255,139,210,.18);
-      animation: floatItem 4.4s ease-in-out infinite;
     }
 
     .float.star {
-      color: rgba(255,255,255,.98);
+      color: rgba(255,255,255,.96);
     }
 
     .float.heart {
@@ -227,35 +202,19 @@
     }
 
     body.theme-night .float.star {
-      color: rgba(255,255,255,.58);
+      color: rgba(255,255,255,.56);
     }
 
     body.theme-night .float.heart {
-      color: rgba(255,157,221,.72);
+      color: rgba(255,157,221,.74);
     }
 
-    .float.bubble {
-      width: 28px;
-      height: 28px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.52);
-      border: 1px solid rgba(255,255,255,.72);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.9), 0 10px 24px rgba(105,189,255,.12);
-    }
-
-    body.theme-night .float.bubble {
-      background: rgba(255,255,255,.10);
-      border-color: rgba(255,255,255,.15);
-    }
-
-    .float.f1 { left: 8%; top: 14%; font-size: 24px; }
-    .float.f2 { right: 10%; top: 17%; font-size: 19px; animation-delay: .6s; }
-    .float.f3 { left: 14%; bottom: 18%; font-size: 20px; animation-delay: 1s; }
-    .float.f4 { right: 16%; bottom: 20%; font-size: 26px; animation-delay: 1.4s; }
+    .float.f1 { left: 8%; top: 13%; font-size: 24px; }
+    .float.f2 { right: 10%; top: 16%; font-size: 20px; animation-delay: .6s; }
+    .float.f3 { left: 13%; bottom: 18%; font-size: 20px; animation-delay: 1s; }
+    .float.f4 { right: 16%; bottom: 18%; font-size: 26px; animation-delay: 1.4s; }
     .float.f5 { left: 49%; top: 8%; font-size: 17px; animation-delay: 1.9s; }
-    .float.f6 { left: 72%; top: 58%; font-size: 18px; animation-delay: 2.3s; }
-    .float.f7 { left: 5%; top: 58%; animation-delay: 2.8s; }
-    .float.f8 { right: 7%; top: 70%; animation-delay: 3.1s; }
+    .float.f6 { left: 74%; top: 58%; font-size: 18px; animation-delay: 2.3s; }
 
     @keyframes floatItem {
       0%, 100% { opacity: .56; transform: translateY(0) scale(.95) rotate(0); }
@@ -265,16 +224,16 @@
     .wrap {
       position: relative;
       z-index: 3;
-      width: min(1120px, 100%);
+      width: min(1080px, 100%);
       display: grid;
-      grid-template-columns: minmax(0, .95fr) minmax(360px, 500px);
-      gap: 22px;
+      grid-template-columns: minmax(0, .92fr) minmax(340px, 480px);
+      gap: 20px;
       align-items: center;
     }
 
     .hero {
       display: grid;
-      gap: 16px;
+      gap: 14px;
       align-content: center;
     }
 
@@ -285,9 +244,9 @@
     }
 
     .brand-logo {
-      width: 62px;
-      height: 62px;
-      border-radius: 26px;
+      width: 58px;
+      height: 58px;
+      border-radius: 24px;
       display: grid;
       place-items: center;
       color: var(--white);
@@ -304,9 +263,9 @@
     .brand-logo:before {
       content: "★";
       position: absolute;
-      left: 12px;
-      top: 9px;
-      font-size: 23px;
+      left: 11px;
+      top: 8px;
+      font-size: 22px;
     }
 
     .brand-logo:after {
@@ -314,7 +273,7 @@
       position: absolute;
       right: 10px;
       bottom: 8px;
-      font-size: 18px;
+      font-size: 17px;
       color: rgba(255,255,255,.94);
     }
 
@@ -334,8 +293,8 @@
     .hero-card {
       position: relative;
       overflow: hidden;
-      padding: 26px;
-      border-radius: 42px;
+      padding: 24px;
+      border-radius: 38px;
       background:
         radial-gradient(circle at 12% 0%, rgba(255,255,255,.72), transparent 34%),
         linear-gradient(135deg, rgba(255,255,255,.72), rgba(255,255,255,.44));
@@ -355,8 +314,8 @@
       position: absolute;
       width: 220px;
       height: 220px;
-      right: -78px;
-      top: -86px;
+      right: -82px;
+      top: -92px;
       border-radius: 999px;
       background: radial-gradient(circle, rgba(255,139,210,.34), transparent 70%);
     }
@@ -365,7 +324,7 @@
       content: "♡ ★ ♡";
       position: absolute;
       right: 23px;
-      top: 22px;
+      top: 20px;
       color: rgba(255,139,210,.42);
       font-size: 18px;
       letter-spacing: 6px;
@@ -375,15 +334,14 @@
     .badge {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 9px 13px;
+      gap: 7px;
+      padding: 8px 12px;
       border-radius: 999px;
       color: #c74791;
       background: rgba(255,139,210,.13);
       border: 1px solid rgba(255,139,210,.18);
       font-size: 12px;
       font-weight: 1000;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.56);
     }
 
     body.theme-night .badge {
@@ -398,10 +356,10 @@
     }
 
     h1 {
-      margin: 14px 0 0;
-      font-size: clamp(38px, 5.5vw, 68px);
+      margin: 13px 0 0;
+      font-size: clamp(36px, 5vw, 62px);
       line-height: 1.05;
-      letter-spacing: -2.4px;
+      letter-spacing: -2.2px;
       font-weight: 1000;
     }
 
@@ -413,28 +371,27 @@
     }
 
     .lead {
-      margin: 14px 0 0;
+      margin: 13px 0 0;
       color: var(--sub);
-      max-width: 580px;
-      font-size: 16px;
-      line-height: 1.75;
+      max-width: 560px;
+      font-size: 15px;
+      line-height: 1.72;
       font-weight: 650;
     }
 
     .mini-ribbon {
       width: fit-content;
-      margin-top: 14px;
+      margin-top: 13px;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 10px 13px;
+      padding: 9px 12px;
       border-radius: 999px;
       background: rgba(255,255,255,.58);
       border: 1px solid rgba(255,255,255,.76);
       color: var(--sub);
       font-size: 12px;
       font-weight: 900;
-      box-shadow: 0 10px 26px rgba(255,139,210,.09);
     }
 
     body.theme-night .mini-ribbon {
@@ -451,13 +408,13 @@
     .info-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      gap: 11px;
     }
 
     .info-card {
-      min-height: 148px;
-      padding: 18px;
-      border-radius: 34px;
+      min-height: 136px;
+      padding: 16px;
+      border-radius: 31px;
       background:
         radial-gradient(circle at 0% 0%, rgba(255,255,255,.86), transparent 40%),
         rgba(255,255,255,.58);
@@ -485,57 +442,46 @@
       background: radial-gradient(circle, rgba(105,189,255,.22), transparent 70%);
     }
 
-    .info-card:after {
-      content: "♡";
-      position: absolute;
-      right: 20px;
-      top: 18px;
-      color: rgba(255,139,210,.32);
-      font-size: 22px;
-      font-weight: 1000;
-    }
-
     .info-card.pink:before {
       background: radial-gradient(circle, rgba(255,139,210,.24), transparent 70%);
     }
 
     .info-icon {
-      width: 54px;
-      height: 54px;
-      border-radius: 24px;
+      width: 50px;
+      height: 50px;
+      border-radius: 22px;
       display: grid;
       place-items: center;
       color: var(--white);
       background:
         radial-gradient(circle at 25% 20%, rgba(255,255,255,.35), transparent 30%),
         linear-gradient(135deg, var(--blue), var(--purple), var(--pink));
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 1000;
-      box-shadow: 0 14px 26px rgba(255,139,210,.16);
     }
 
     .info-card strong {
       display: block;
-      margin-top: 14px;
-      font-size: 17px;
+      margin-top: 12px;
+      font-size: 16px;
       line-height: 1.35;
       font-weight: 1000;
     }
 
     .info-card span {
       display: block;
-      margin-top: 7px;
+      margin-top: 6px;
       color: var(--sub);
       font-size: 12px;
-      line-height: 1.6;
+      line-height: 1.55;
       font-weight: 750;
     }
 
     .app-card {
       position: relative;
       overflow: hidden;
-      padding: 18px;
-      border-radius: 40px;
+      padding: 17px;
+      border-radius: 38px;
       background:
         radial-gradient(circle at 8% 0%, rgba(255,255,255,.78), transparent 38%),
         linear-gradient(180deg, rgba(255,255,255,.86), rgba(255,255,255,.62));
@@ -562,8 +508,8 @@
     .app-card:after {
       content: "♥ ★ ♥";
       position: absolute;
-      right: 20px;
-      top: 16px;
+      right: 18px;
+      top: 15px;
       color: rgba(255,139,210,.25);
       font-size: 15px;
       font-weight: 1000;
@@ -576,8 +522,8 @@
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      padding: 14px;
-      border-radius: 29px;
+      padding: 13px;
+      border-radius: 27px;
       background: rgba(255,255,255,.62);
       border: 1px solid rgba(255,255,255,.80);
       box-shadow: inset 0 1px 0 rgba(255,255,255,.8);
@@ -592,7 +538,7 @@
 
     .app-top h2 {
       margin: 0;
-      font-size: 19px;
+      font-size: 18px;
       font-weight: 1000;
     }
 
@@ -600,13 +546,13 @@
       margin: 4px 0 0;
       color: var(--sub);
       font-size: 12px;
-      line-height: 1.5;
+      line-height: 1.45;
       font-weight: 700;
     }
 
     .pill {
       flex: 0 0 auto;
-      padding: 9px 11px;
+      padding: 8px 10px;
       border-radius: 999px;
       color: var(--white);
       background:
@@ -618,23 +564,23 @@
     }
 
     .stepper {
-      margin-top: 12px;
+      margin-top: 11px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
+      gap: 7px;
       position: relative;
       z-index: 1;
     }
 
     .step {
-      min-height: 54px;
-      padding: 9px 8px;
-      border-radius: 20px;
+      min-height: 50px;
+      padding: 8px;
+      border-radius: 18px;
       background: rgba(255,255,255,.54);
       border: 1px solid rgba(255,255,255,.72);
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 7px;
       overflow: hidden;
       transition: transform .18s ease, background .18s ease, border-color .18s ease;
     }
@@ -656,9 +602,9 @@
     }
 
     .step-num {
-      width: 28px;
-      height: 28px;
-      border-radius: 12px;
+      width: 26px;
+      height: 26px;
+      border-radius: 11px;
       display: grid;
       place-items: center;
       flex: 0 0 auto;
@@ -666,7 +612,6 @@
       background: linear-gradient(135deg, var(--pink), var(--purple));
       font-size: 12px;
       font-weight: 1000;
-      box-shadow: 0 8px 16px rgba(255,139,210,.13);
     }
 
     .step.done .step-num {
@@ -679,8 +624,8 @@
 
     .step-text strong {
       display: block;
-      font-size: 12px;
-      line-height: 1.25;
+      font-size: 11px;
+      line-height: 1.2;
       font-weight: 1000;
     }
 
@@ -688,19 +633,19 @@
       display: block;
       margin-top: 2px;
       color: var(--muted);
-      font-size: 10px;
-      line-height: 1.25;
+      font-size: 9.5px;
+      line-height: 1.2;
       font-weight: 800;
     }
 
     .hint,
     .safe-hint,
     .security-mini {
-      margin-top: 11px;
-      padding: 12px 13px;
-      border-radius: 24px;
+      margin-top: 10px;
+      padding: 11px 12px;
+      border-radius: 22px;
       font-size: 12px;
-      line-height: 1.65;
+      line-height: 1.55;
       font-weight: 800;
       position: relative;
       z-index: 1;
@@ -779,6 +724,20 @@
       font-weight: 1000;
     }
 
+    .security-left strong {
+      display: block;
+      font-size: 12px;
+      line-height: 1.3;
+      font-weight: 1000;
+    }
+
+    .security-left div div {
+      font-size: 11px;
+      line-height: 1.4;
+      color: var(--muted);
+      font-weight: 800;
+    }
+
     .security-state {
       color: var(--muted);
       font-size: 11px;
@@ -796,15 +755,15 @@
 
     .form {
       display: grid;
-      gap: 12px;
-      margin-top: 12px;
+      gap: 11px;
+      margin-top: 11px;
       position: relative;
       z-index: 1;
     }
 
     .field {
       display: grid;
-      gap: 7px;
+      gap: 6px;
     }
 
     .label {
@@ -876,9 +835,9 @@
       outline: none;
       background: rgba(255,255,255,.78);
       color: var(--text);
-      border-radius: 22px;
-      padding: 13px 14px;
-      font-size: 16px;
+      border-radius: 20px;
+      padding: 12px 13px;
+      font-size: 15px;
       font-weight: 720;
       line-height: 1.5;
       transition: border-color .16s ease, box-shadow .16s ease, transform .16s ease;
@@ -893,11 +852,11 @@
     }
 
     input {
-      min-height: 56px;
+      min-height: 52px;
     }
 
     textarea {
-      min-height: 78px;
+      min-height: 74px;
       resize: vertical;
     }
 
@@ -920,10 +879,10 @@
     }
 
     .validation {
-      min-height: 16px;
+      min-height: 15px;
       color: var(--muted);
       padding: 0 5px;
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: 850;
     }
 
@@ -946,13 +905,13 @@
     .chips {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 7px;
     }
 
     .chip {
-      min-height: 36px;
-      padding: 8px 11px;
-      border-radius: 17px;
+      min-height: 34px;
+      padding: 7px 10px;
+      border-radius: 16px;
       color: var(--text);
       background: rgba(255,255,255,.62);
       border: 1px solid rgba(255,139,210,.14);
@@ -990,14 +949,14 @@
     }
 
     .screen-btn {
-      min-height: 58px;
-      border-radius: 21px;
+      min-height: 54px;
+      border-radius: 19px;
       color: var(--text);
       background: rgba(255,255,255,.62);
       border: 1px solid rgba(255,139,210,.14);
       display: grid;
       place-items: center;
-      padding: 8px 4px;
+      padding: 7px 4px;
       box-shadow: inset 0 1px 0 rgba(255,255,255,.75);
       position: relative;
       overflow: visible;
@@ -1009,7 +968,7 @@
     }
 
     .screen-btn strong {
-      font-size: 20px;
+      font-size: 19px;
       line-height: 1;
       font-weight: 1000;
     }
@@ -1061,10 +1020,10 @@
     }
 
     .actions {
-      margin-top: 14px;
+      margin-top: 13px;
       display: grid;
       grid-template-columns: 1fr auto;
-      gap: 10px;
+      gap: 9px;
       position: relative;
       z-index: 1;
     }
@@ -1072,15 +1031,15 @@
     .btn-primary,
     .btn-secondary,
     .btn-copy {
-      min-height: 54px;
-      padding: 12px 16px;
-      border-radius: 23px;
+      min-height: 52px;
+      padding: 12px 15px;
+      border-radius: 21px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
       text-align: center;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 1000;
       position: relative;
       overflow: hidden;
@@ -1148,11 +1107,11 @@
     }
 
     .status {
-      margin-top: 12px;
+      margin-top: 11px;
       display: grid;
       gap: 8px;
-      padding: 12px 13px;
-      border-radius: 24px;
+      padding: 11px 12px;
+      border-radius: 22px;
       background: rgba(255,255,255,.58);
       border: 1px solid rgba(255,255,255,.76);
       position: relative;
@@ -1172,7 +1131,7 @@
       gap: 10px;
       color: var(--sub);
       font-size: 12px;
-      line-height: 1.45;
+      line-height: 1.4;
       font-weight: 850;
     }
 
@@ -1237,11 +1196,11 @@
     }
 
     .privacy {
-      margin-top: 10px;
+      margin-top: 9px;
       color: var(--muted);
       text-align: center;
       font-size: 10.5px;
-      line-height: 1.55;
+      line-height: 1.5;
       font-weight: 750;
       position: relative;
       z-index: 1;
@@ -1249,9 +1208,9 @@
 
     .result {
       display: none;
-      margin-top: 14px;
-      padding: 16px;
-      border-radius: 34px;
+      margin-top: 13px;
+      padding: 15px;
+      border-radius: 32px;
       text-align: center;
       background:
         radial-gradient(circle at 50% 0%, rgba(255,255,255,.90), transparent 52%),
@@ -1274,8 +1233,8 @@
     .result:before {
       content: "♡ ★ ♡";
       position: absolute;
-      left: 18px;
-      top: 15px;
+      left: 17px;
+      top: 14px;
       color: rgba(255,139,210,.34);
       font-size: 14px;
       letter-spacing: 4px;
@@ -1285,8 +1244,8 @@
     .result:after {
       content: "★ ♡ ★";
       position: absolute;
-      right: 18px;
-      bottom: 16px;
+      right: 17px;
+      bottom: 15px;
       color: rgba(105,189,255,.30);
       font-size: 14px;
       letter-spacing: 4px;
@@ -1299,17 +1258,17 @@
     }
 
     .result-icon {
-      width: 66px;
-      height: 66px;
-      margin: 0 auto 10px;
-      border-radius: 27px;
+      width: 62px;
+      height: 62px;
+      margin: 0 auto 9px;
+      border-radius: 25px;
       display: grid;
       place-items: center;
       color: var(--white);
       background:
         radial-gradient(circle at 25% 18%, rgba(255,255,255,.34), transparent 32%),
         linear-gradient(135deg, var(--pink), var(--purple), var(--blue));
-      font-size: 30px;
+      font-size: 28px;
       font-weight: 1000;
       box-shadow: 0 16px 34px rgba(255,139,210,.18);
       position: relative;
@@ -1318,7 +1277,7 @@
 
     .result h3 {
       margin: 0;
-      font-size: 21px;
+      font-size: 20px;
       font-weight: 1000;
       position: relative;
       z-index: 1;
@@ -1329,7 +1288,7 @@
       max-width: 390px;
       color: var(--sub);
       font-size: 13px;
-      line-height: 1.65;
+      line-height: 1.6;
       white-space: pre-line;
       font-weight: 700;
       position: relative;
@@ -1358,16 +1317,16 @@
     }
 
     .result.otp-only {
-      padding-top: 18px;
+      padding-top: 16px;
     }
 
     .result.otp-only .result-icon {
-      margin-bottom: 8px;
+      margin-bottom: 7px;
     }
 
     .result.otp-only h3 {
-      font-size: 18px;
-      margin-bottom: 4px;
+      font-size: 17px;
+      margin-bottom: 2px;
     }
 
     .result.otp-only .result-message,
@@ -1377,8 +1336,8 @@
 
     .otp-envelope {
       display: none;
-      margin: 13px auto 0;
-      max-width: 400px;
+      margin: 12px auto 0;
+      max-width: 390px;
       perspective: 900px;
       position: relative;
       z-index: 2;
@@ -1390,7 +1349,7 @@
 
     .envelope-shell {
       position: relative;
-      padding-top: 24px;
+      padding-top: 22px;
       animation: envelopeIn .42s ease both;
     }
 
@@ -1404,8 +1363,8 @@
       left: 18px;
       right: 18px;
       top: 0;
-      height: 54px;
-      border-radius: 24px 24px 10px 10px;
+      height: 50px;
+      border-radius: 23px 23px 10px 10px;
       background: linear-gradient(135deg, rgba(255,139,210,.34), rgba(165,148,255,.28));
       border: 1px solid rgba(255,255,255,.70);
       transform-origin: bottom center;
@@ -1425,9 +1384,9 @@
 
     .otp-box {
       position: relative;
-      padding: 16px 14px 15px;
-      border-radius: 28px;
-      background: rgba(255,255,255,.76);
+      padding: 15px 14px;
+      border-radius: 27px;
+      background: rgba(255,255,255,.78);
       border: 1px solid rgba(255,139,210,.16);
       z-index: 2;
       box-shadow: inset 0 1px 0 rgba(255,255,255,.76), 0 16px 30px rgba(255,139,210,.12);
@@ -1471,11 +1430,11 @@
     .soft-alert {
       display: none;
       margin-top: 12px;
-      padding: 13px;
-      border-radius: 25px;
+      padding: 12px;
+      border-radius: 24px;
       text-align: left;
       font-size: 12px;
-      line-height: 1.65;
+      line-height: 1.6;
       font-weight: 850;
       position: relative;
       z-index: 1;
@@ -1492,7 +1451,7 @@
 
     .soft-alert.show {
       display: flex;
-      gap: 10px;
+      gap: 9px;
       align-items: flex-start;
       animation: pop .24s ease both;
     }
@@ -1502,8 +1461,8 @@
     }
 
     .soft-alert-icon {
-      width: 30px;
-      height: 30px;
+      width: 29px;
+      height: 29px;
       border-radius: 13px;
       display: grid;
       place-items: center;
@@ -1530,10 +1489,10 @@
     }
 
     .result-actions {
-      margin-top: 13px;
+      margin-top: 12px;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 9px;
+      gap: 8px;
       position: relative;
       z-index: 1;
     }
@@ -1541,15 +1500,15 @@
     .result-actions .btn-primary,
     .result-actions .btn-secondary,
     .result-actions .btn-copy {
-      min-height: 48px;
-      border-radius: 20px;
+      min-height: 46px;
+      border-radius: 19px;
       font-size: 13px;
     }
 
     .howto {
-      margin-top: 16px;
-      padding: 15px;
-      border-radius: 30px;
+      margin-top: 15px;
+      padding: 14px;
+      border-radius: 28px;
       background: rgba(255,255,255,.58);
       border: 1px solid rgba(255,255,255,.80);
       box-shadow: 0 14px 34px rgba(100,80,150,.08);
@@ -1591,19 +1550,19 @@
 
     .howto-list li {
       display: grid;
-      grid-template-columns: 28px 1fr;
+      grid-template-columns: 27px 1fr;
       gap: 9px;
       align-items: start;
       color: var(--sub);
       font-size: 12px;
-      line-height: 1.55;
+      line-height: 1.5;
       font-weight: 750;
     }
 
     .howto-num {
-      width: 28px;
-      height: 28px;
-      border-radius: 13px;
+      width: 27px;
+      height: 27px;
+      border-radius: 12px;
       display: grid;
       place-items: center;
       color: var(--white);
@@ -1612,7 +1571,6 @@
         linear-gradient(135deg, var(--pink), var(--purple));
       font-size: 12px;
       font-weight: 1000;
-      box-shadow: 0 8px 16px rgba(255,139,210,.15);
     }
 
     .loading {
@@ -1635,11 +1593,14 @@
     }
 
     .loading-card {
-      width: min(370px, 100%);
-      padding: 22px;
-      border-radius: 36px;
+      width: min(310px, calc(100vw - 44px));
+      min-height: 258px;
+      padding: 20px;
+      border-radius: 34px;
       text-align: center;
-      background: rgba(255,255,255,.94);
+      background:
+        radial-gradient(circle at 18% 0%, rgba(255,255,255,.82), transparent 42%),
+        rgba(255,255,255,.94);
       border: 1px solid rgba(255,255,255,.86);
       box-shadow: var(--shadow);
       position: relative;
@@ -1647,7 +1608,9 @@
     }
 
     body.theme-night .loading-card {
-      background: rgba(30,28,63,.94);
+      background:
+        radial-gradient(circle at 18% 0%, rgba(255,255,255,.13), transparent 42%),
+        rgba(30,28,63,.94);
       border-color: rgba(255,255,255,.13);
     }
 
@@ -1655,92 +1618,111 @@
       content: "♡ ★ ♡";
       position: absolute;
       left: 20px;
-      top: 16px;
+      top: 15px;
       color: rgba(255,139,210,.30);
       letter-spacing: 5px;
       font-weight: 1000;
+      font-size: 13px;
     }
 
-    .loading-icon {
-      width: 72px;
-      height: 72px;
-      margin: 0 auto 12px;
-      border-radius: 29px;
+    .percent-wrap {
+      width: 138px;
+      height: 138px;
+      margin: 8px auto 12px;
+      position: relative;
+      display: grid;
+      place-items: center;
+    }
+
+    .percent-ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 999px;
+      background:
+        conic-gradient(var(--pink) calc(var(--p, 0) * 1%), rgba(255,139,210,.14) 0);
+      box-shadow: 0 18px 38px rgba(255,139,210,.16);
+      transition: background .2s ease;
+    }
+
+    .percent-ring:before {
+      content: "";
+      position: absolute;
+      inset: 10px;
+      border-radius: inherit;
+      background: rgba(255,255,255,.92);
+      border: 1px solid rgba(255,255,255,.76);
+    }
+
+    body.theme-night .percent-ring:before {
+      background: rgba(30,28,63,.95);
+      border-color: rgba(255,255,255,.12);
+    }
+
+    .percent-ring:after {
+      content: "♥";
+      position: absolute;
+      right: 12px;
+      top: 12px;
+      width: 28px;
+      height: 28px;
+      border-radius: 12px;
       display: grid;
       place-items: center;
       color: var(--white);
-      background:
-        radial-gradient(circle at 25% 18%, rgba(255,255,255,.34), transparent 32%),
-        linear-gradient(135deg, var(--pink), var(--purple), var(--blue));
-      font-size: 28px;
+      background: linear-gradient(135deg, var(--pink), var(--purple));
+      font-size: 14px;
       font-weight: 1000;
-      animation: pulse .95s ease-in-out infinite;
+      box-shadow: 0 10px 20px rgba(255,139,210,.18);
     }
 
-    @keyframes pulse {
-      0%,100% { transform: scale(1) rotate(0); }
-      50% { transform: scale(1.08) rotate(4deg); }
+    .percent-text {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 1px;
+      place-items: center;
     }
 
-    .loading-title {
-      font-size: 17px;
+    .percent-number {
+      font-size: 36px;
+      line-height: 1;
       font-weight: 1000;
+      letter-spacing: -1.5px;
+      background: linear-gradient(135deg, var(--blue2), var(--pink), var(--purple));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
-    .loading-message {
-      margin-top: 6px;
+    .percent-label {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .loading-mini {
       color: var(--sub);
       font-size: 13px;
-      line-height: 1.55;
-      font-weight: 750;
-    }
-
-    .loading-steps {
-      margin-top: 14px;
-      display: grid;
-      gap: 7px;
-      text-align: left;
-    }
-
-    .loading-step {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--muted);
-      font-size: 12px;
+      line-height: 1.45;
       font-weight: 850;
+      min-height: 19px;
     }
 
-    .loading-step-dot {
-      width: 18px;
-      height: 18px;
-      border-radius: 8px;
-      display: grid;
-      place-items: center;
-      color: var(--white);
-      background: rgba(42,49,86,.18);
-      font-size: 10px;
-      font-weight: 1000;
+    .loading-line {
+      margin: 13px auto 0;
+      width: 100%;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255,139,210,.13);
+      overflow: hidden;
     }
 
-    body.theme-night .loading-step-dot {
-      background: rgba(255,255,255,.10);
-    }
-
-    .loading-step.active {
-      color: var(--text);
-    }
-
-    .loading-step.active .loading-step-dot {
-      background: linear-gradient(135deg, var(--pink), var(--purple));
-    }
-
-    .loading-step.done {
-      color: var(--green);
-    }
-
-    .loading-step.done .loading-step-dot {
-      background: linear-gradient(135deg, var(--green), var(--blue));
+    .loading-line-fill {
+      width: 0%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--pink), var(--purple), var(--blue));
+      transition: width .22s ease;
     }
 
     .toast {
@@ -1811,7 +1793,7 @@
       }
 
       .wrap {
-        max-width: 590px;
+        max-width: 570px;
         display: flex;
         flex-direction: column;
         align-items: stretch;
@@ -1837,77 +1819,105 @@
       }
     }
 
-    @media (max-width: 520px) {
+    @media (max-width: 560px) {
       .page {
-        padding: 10px 11px calc(12px + env(safe-area-inset-bottom));
+        padding: 9px 10px calc(11px + env(safe-area-inset-bottom));
       }
 
       .wrap {
-        gap: 12px;
+        width: min(100%, 420px);
+        gap: 10px;
+      }
+
+      .hero {
+        gap: 10px;
+      }
+
+      .brand {
+        gap: 10px;
       }
 
       .brand-logo {
-        width: 50px;
-        height: 50px;
-        border-radius: 20px;
+        width: 44px;
+        height: 44px;
+        border-radius: 18px;
       }
 
       .brand-logo:before {
-        font-size: 19px;
-        left: 10px;
-        top: 8px;
+        font-size: 17px;
+        left: 9px;
+        top: 7px;
       }
 
       .brand-logo:after {
-        font-size: 15px;
-        right: 9px;
-        bottom: 7px;
+        font-size: 14px;
+        right: 8px;
+        bottom: 6px;
       }
 
       .brand-title {
-        font-size: 16px;
+        font-size: 15px;
       }
 
       .brand-sub {
-        font-size: 11px;
+        font-size: 10.5px;
       }
 
       .hero-card {
-        padding: 16px;
-        border-radius: 31px;
+        padding: 13px;
+        border-radius: 27px;
+      }
+
+      .hero-card:after,
+      .app-card:after {
+        display: none;
+      }
+
+      .badge {
+        padding: 7px 10px;
+        font-size: 10.5px;
       }
 
       h1 {
-        font-size: clamp(29px, 8vw, 39px);
-        letter-spacing: -1.3px;
+        margin-top: 8px;
+        font-size: clamp(27px, 8vw, 34px);
+        letter-spacing: -1.2px;
       }
 
       .lead {
-        font-size: 13px;
-        line-height: 1.6;
+        margin-top: 8px;
+        font-size: 12px;
+        line-height: 1.5;
       }
 
       .mini-ribbon {
-        font-size: 11px;
+        margin-top: 9px;
+        padding: 7px 10px;
+        font-size: 10.5px;
       }
 
-      .info-card {
-        min-height: 126px;
-        border-radius: 28px;
+      .info-grid {
+        display: none;
       }
 
       .app-card {
-        padding: 12px;
-        border-radius: 31px;
+        width: min(100%, 390px);
+        margin: 0 auto;
+        padding: 10px;
+        border-radius: 28px;
       }
 
       .app-top {
-        padding: 12px;
-        border-radius: 24px;
+        padding: 10px;
+        border-radius: 21px;
       }
 
       .app-top h2 {
-        font-size: 17px;
+        font-size: 15.5px;
+      }
+
+      .app-top p {
+        font-size: 10.5px;
       }
 
       .pill {
@@ -1915,71 +1925,349 @@
       }
 
       .stepper {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 5px;
+        margin-top: 8px;
       }
 
       .step {
-        min-height: 48px;
+        min-height: 41px;
+        padding: 6px 5px;
+        border-radius: 15px;
+        gap: 5px;
+      }
+
+      .step-num {
+        width: 22px;
+        height: 22px;
+        border-radius: 9px;
+        font-size: 10px;
+      }
+
+      .step-text strong {
+        font-size: 9.7px;
+      }
+
+      .step-text span {
+        display: none;
       }
 
       .hint,
       .safe-hint,
       .security-mini {
-        font-size: 11px;
+        margin-top: 8px;
+        padding: 9px 10px;
+        border-radius: 18px;
+        font-size: 10.5px;
+        line-height: 1.45;
+      }
+
+      .safe-hint {
+        display: none;
       }
 
       .security-mini {
-        align-items: flex-start;
-        flex-direction: column;
+        display: none;
       }
 
-      .security-state {
-        white-space: normal;
+      .form {
+        gap: 8px;
+        margin-top: 8px;
+      }
+
+      .label {
+        font-size: 11.5px;
+        margin-bottom: -1px;
+      }
+
+      .req,
+      .opt {
+        font-size: 9.5px;
+        padding: 4px 7px;
       }
 
       input {
-        min-height: 50px;
-        font-size: 15px;
-        border-radius: 19px;
+        min-height: 45px;
+        border-radius: 16px;
+        padding: 9px 11px;
+        font-size: 14px;
       }
 
       textarea {
-        font-size: 14px;
-        border-radius: 19px;
+        min-height: 58px;
+        border-radius: 16px;
+        padding: 9px 11px;
+        font-size: 13px;
+      }
+
+      .validation {
+        min-height: 13px;
+        font-size: 9.8px;
+      }
+
+      .chips {
+        gap: 5px;
+      }
+
+      .chip {
+        min-height: 31px;
+        padding: 6px 8px;
+        border-radius: 13px;
+        font-size: 10.5px;
       }
 
       .screen-grid {
-        gap: 6px;
+        gap: 5px;
       }
 
       .screen-btn {
-        min-height: 50px;
-        border-radius: 17px;
+        min-height: 43px;
+        border-radius: 14px;
+        padding: 5px 3px;
+      }
+
+      .screen-btn strong {
+        font-size: 16px;
+      }
+
+      .screen-btn span {
+        font-size: 9px;
       }
 
       .actions {
-        grid-template-columns: 1fr;
+        margin-top: 9px;
+        grid-template-columns: 1fr .42fr;
+        gap: 7px;
       }
 
       .btn-primary,
       .btn-secondary,
       .btn-copy {
-        min-height: 50px;
-        border-radius: 20px;
+        min-height: 45px;
+        border-radius: 17px;
+        font-size: 13px;
+        padding: 9px 11px;
+      }
+
+      .status {
+        margin-top: 8px;
+        padding: 9px 10px;
+        border-radius: 18px;
       }
 
       .status-line {
-        align-items: flex-start;
-        flex-direction: column;
+        font-size: 10.5px;
+      }
+
+      #lastRequestText {
+        display: none;
+      }
+
+      .privacy {
+        margin-top: 7px;
+        font-size: 9.5px;
+      }
+
+      .result {
+        margin-top: 9px;
+        padding: 11px;
+        border-radius: 24px;
+      }
+
+      .result:before,
+      .result:after {
+        display: none;
+      }
+
+      .result-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 19px;
+        font-size: 22px;
+        margin-bottom: 6px;
+      }
+
+      .result h3 {
+        font-size: 16px;
+      }
+
+      .result.otp-only {
+        padding-top: 11px;
+      }
+
+      .otp-envelope {
+        max-width: 310px;
+        margin-top: 9px;
+      }
+
+      .envelope-shell {
+        padding-top: 17px;
+      }
+
+      .envelope-flap {
+        left: 15px;
+        right: 15px;
+        height: 40px;
+        border-radius: 19px 19px 8px 8px;
+      }
+
+      .otp-box {
+        padding: 12px 10px;
+        border-radius: 22px;
+      }
+
+      .otp-label {
+        font-size: 10.5px;
       }
 
       .otp-code {
-        font-size: 34px;
+        font-size: 32px;
         letter-spacing: 5px;
       }
 
+      .otp-note {
+        font-size: 10.5px;
+      }
+
+      .soft-alert {
+        padding: 10px;
+        border-radius: 18px;
+        font-size: 10.5px;
+      }
+
       .result-actions {
-        grid-template-columns: 1fr;
+        margin-top: 9px;
+        grid-template-columns: 1fr 1fr;
+        gap: 7px;
+      }
+
+      .result-actions .btn-primary,
+      .result-actions .btn-secondary,
+      .result-actions .btn-copy {
+        min-height: 41px;
+        border-radius: 15px;
+        font-size: 11.5px;
+      }
+
+      .howto {
+        margin-top: 10px;
+        padding: 11px;
+        border-radius: 22px;
+      }
+
+      .howto h3 {
+        font-size: 14px;
+      }
+
+      .howto-list {
+        gap: 6px;
+      }
+
+      .howto-list li {
+        grid-template-columns: 24px 1fr;
+        gap: 7px;
+        font-size: 10.5px;
+        line-height: 1.45;
+      }
+
+      .howto-num {
+        width: 24px;
+        height: 24px;
+        border-radius: 10px;
+        font-size: 10px;
+      }
+
+      .loading-card {
+        width: min(286px, calc(100vw - 52px));
+        min-height: 230px;
+        padding: 17px;
+        border-radius: 30px;
+      }
+
+      .percent-wrap {
+        width: 120px;
+        height: 120px;
+        margin-top: 7px;
+        margin-bottom: 10px;
+      }
+
+      .percent-ring:before {
+        inset: 9px;
+      }
+
+      .percent-ring:after {
+        right: 9px;
+        top: 9px;
+        width: 25px;
+        height: 25px;
+        border-radius: 10px;
+        font-size: 13px;
+      }
+
+      .percent-number {
+        font-size: 31px;
+      }
+
+      .percent-label {
+        font-size: 10px;
+      }
+
+      .loading-mini {
+        font-size: 12px;
+      }
+    }
+
+    @media (max-width: 375px) {
+      .wrap {
+        width: min(100%, 360px);
+      }
+
+      .app-card {
+        width: min(100%, 350px);
+        padding: 9px;
+      }
+
+      .hero-card {
+        padding: 12px;
+      }
+
+      h1 {
+        font-size: 25px;
+      }
+
+      .lead {
+        font-size: 11px;
+      }
+
+      .step {
+        min-height: 38px;
+      }
+
+      .step-text strong {
+        font-size: 9px;
+      }
+
+      input {
+        min-height: 42px;
+      }
+
+      .screen-btn {
+        min-height: 40px;
+      }
+
+      .btn-primary,
+      .btn-secondary,
+      .btn-copy {
+        min-height: 42px;
+      }
+
+      .otp-code {
+        font-size: 29px;
+        letter-spacing: 4px;
+      }
+
+      .loading-card {
+        width: min(270px, calc(100vw - 54px));
       }
     }
 
@@ -1997,10 +2285,9 @@
 
 <body>
   <main class="page">
-    <div class="soft-shape one"></div>
-    <div class="soft-shape two"></div>
-    <div class="soft-shape three"></div>
-    <div class="soft-shape four"></div>
+    <div class="soft one"></div>
+    <div class="soft two"></div>
+    <div class="soft three"></div>
 
     <div class="float star f1">★</div>
     <div class="float heart f2">♥</div>
@@ -2008,8 +2295,6 @@
     <div class="float heart f4">♡</div>
     <div class="float star f5">★</div>
     <div class="float heart f6">♥</div>
-    <div class="float bubble f7"></div>
-    <div class="float bubble f8"></div>
 
     <section class="wrap">
       <div class="hero">
@@ -2253,27 +2538,16 @@
 
   <div class="loading" id="loading">
     <div class="loading-card">
-      <div class="loading-icon">♥</div>
-      <div class="loading-title">กำลังหารหัส OTP</div>
-      <div class="loading-message" id="loadingMessage">กำลังตรวจสอบข้อมูล...</div>
-
-      <div class="loading-steps">
-        <div class="loading-step active" id="loadStep1">
-          <div class="loading-step-dot">1</div>
-          <div>ตรวจสอบข้อมูล</div>
+      <div class="percent-wrap">
+        <div class="percent-ring" id="percentRing" style="--p: 0;"></div>
+        <div class="percent-text">
+          <div class="percent-number" id="percentNumber">0%</div>
+          <div class="percent-label">ค้นหา OTP</div>
         </div>
-        <div class="loading-step" id="loadStep2">
-          <div class="loading-step-dot">2</div>
-          <div>ค้นหาเมลล่าสุด</div>
-        </div>
-        <div class="loading-step" id="loadStep3">
-          <div class="loading-step-dot">3</div>
-          <div>ดึงรหัส OTP</div>
-        </div>
-        <div class="loading-step" id="loadStep4">
-          <div class="loading-step-dot">4</div>
-          <div>เตรียมแสดงผล</div>
-        </div>
+      </div>
+      <div class="loading-mini" id="loadingMini">กำลังเริ่มค้นหา</div>
+      <div class="loading-line">
+        <div class="loading-line-fill" id="loadingLineFill"></div>
       </div>
     </div>
   </div>
@@ -2295,7 +2569,7 @@
     const AUTO_RETRY_SECONDS = 3;
     const MAX_AUTO_RETRY = 3;
     const COOLDOWN_SECONDS = 4;
-    const DRAFT_KEY = 'starHeartOtpEmailScreenBrandLockDraftV6OtpOnly';
+    const DRAFT_KEY = 'starHeartOtpEmailScreenBrandLockDraftV7MobilePercent';
 
     /************************************************************
      * STATE
@@ -2310,8 +2584,8 @@
     let isSubmitting = false;
     let toastTimer = null;
     let loadingTimer = null;
-    let loadingStepTimer = null;
-    let loadingStepIndex = 0;
+    let loadingPercentTimer = null;
+    let loadingPercent = 0;
     let autoRetryTimer = null;
     let autoRetryCount = 0;
     let autoRetryLeft = AUTO_RETRY_SECONDS;
@@ -2362,13 +2636,10 @@
     const loadingProgress = document.getElementById('loadingProgress');
 
     const loading = document.getElementById('loading');
-    const loadingMessage = document.getElementById('loadingMessage');
-
-    const loadStep1 = document.getElementById('loadStep1');
-    const loadStep2 = document.getElementById('loadStep2');
-    const loadStep3 = document.getElementById('loadStep3');
-    const loadStep4 = document.getElementById('loadStep4');
-    const loadingSteps = [loadStep1, loadStep2, loadStep3, loadStep4];
+    const percentRing = document.getElementById('percentRing');
+    const percentNumber = document.getElementById('percentNumber');
+    const loadingMini = document.getElementById('loadingMini');
+    const loadingLineFill = document.getElementById('loadingLineFill');
 
     const toast = document.getElementById('toast');
     const confetti = document.getElementById('confetti');
@@ -2499,17 +2770,17 @@
       options = options || {};
 
       if (isSubmitting) {
-        showToast('กำลังค้นหารหัสอยู่');
+        showToast('กำลังค้นหาอยู่');
         return;
       }
 
       if (!options.bypassCooldown && isCooldownActive()) {
-        showToast('รออีก ' + getCooldownLeft() + ' วินาที');
+        showToast('รออีก ' + getCooldownLeft() + ' วิ');
         return;
       }
 
       if (!validateForm(true)) {
-        showToast('กรอกข้อมูลให้ครบก่อน');
+        showToast('กรอกข้อมูลให้ครบ');
         updateSteps();
         return;
       }
@@ -2524,8 +2795,8 @@
       isSubmitting = true;
       autoRetryCount = options.autoRetry ? autoRetryCount : 0;
 
-      setLoading(true, options.autoRetry ? 'กำลังลองค้นหา OTP อีกครั้ง...' : 'กำลังค้นหา OTP ล่าสุด...');
-      updateStatus(options.autoRetry ? 'กำลังลองใหม่...' : 'กำลังรับรหัส...', 'idle');
+      setLoading(true);
+      updateStatus(options.autoRetry ? 'ลองใหม่...' : 'กำลังค้นหา...', 'idle');
       updateSecurityState('checking');
       startCooldown(COOLDOWN_SECONDS);
       markLastRequest();
@@ -2540,19 +2811,21 @@
 
       jsonpRequest(params, function(res) {
         isSubmitting = false;
-        setLoading(false);
+        finishLoadingPercent(function() {
+          setLoading(false);
 
-        if (!res) {
-          showError('ไม่ได้รับข้อมูลจากระบบ กรุณาลองใหม่อีกครั้ง');
-          return;
-        }
+          if (!res) {
+            showError('ไม่ได้รับข้อมูลจากระบบ กรุณาลองใหม่อีกครั้ง');
+            return;
+          }
 
-        if (!res.ok || !res.otp) {
-          handleOtpNotFound(res);
-          return;
-        }
+          if (!res.ok || !res.otp) {
+            handleOtpNotFound(res);
+            return;
+          }
 
-        handleOtpFound(res);
+          handleOtpFound(res);
+        });
       }, function() {
         isSubmitting = false;
         setLoading(false);
@@ -2562,13 +2835,13 @@
 
     function requestNewOtp() {
       if (!validateForm(true)) {
-        showToast('กรอกข้อมูลให้ครบก่อน');
+        showToast('กรอกข้อมูลให้ครบ');
         updateSteps();
         return;
       }
 
       if (isCooldownActive()) {
-        showToast('รออีก ' + getCooldownLeft() + ' วินาที');
+        showToast('รออีก ' + getCooldownLeft() + ' วิ');
         return;
       }
 
@@ -2584,7 +2857,7 @@
 
       copyText(latestOtp, function(ok) {
         if (ok) {
-          showToast('คัดลอก OTP แล้ว');
+          showToast('คัดลอกแล้ว');
           copyBtn.textContent = 'คัดลอกแล้ว ✓';
           copyBtn.classList.add('copied');
           burstAtElement(copyBtn);
@@ -2721,7 +2994,7 @@
       }
 
       updateStatus(msg, locked ? 'bad' : 'warn');
-      showToast(isScreenLocked(res) ? 'เมลนี้รับรหัสจอนี้ไปแล้ว' : 'ยังไม่พบ OTP');
+      showToast(isScreenLocked(res) ? 'รับซ้ำไม่ได้' : 'ยังไม่พบ OTP');
 
       if (shouldAutoRetry(res)) {
         startAutoRetry();
@@ -2814,7 +3087,7 @@
       autoRetryCount++;
       autoRetryLeft = AUTO_RETRY_SECONDS;
 
-      updateStatus('ยังไม่พบ OTP จะลองใหม่ใน ' + autoRetryLeft + ' วิ', 'warn');
+      updateStatus('ลองใหม่ใน ' + autoRetryLeft + ' วิ', 'warn');
 
       autoRetryTimer = setInterval(function() {
         autoRetryLeft--;
@@ -2828,7 +3101,7 @@
           return;
         }
 
-        updateStatus('ยังไม่พบ OTP จะลองใหม่ใน ' + autoRetryLeft + ' วิ', 'warn');
+        updateStatus('ลองใหม่ใน ' + autoRetryLeft + ' วิ', 'warn');
       }, 1000);
     }
 
@@ -2893,6 +3166,88 @@
         submitBtn.disabled = true;
         submitText.textContent = 'รอ ' + left + ' วิ';
       }
+    }
+
+    /************************************************************
+     * LOADING PERCENT
+     ************************************************************/
+
+    function setLoading(show) {
+      if (show) {
+        loading.classList.add('show');
+        loadingProgress.style.display = 'block';
+
+        submitBtn.disabled = true;
+        submitText.textContent = 'กำลังรับ...';
+
+        startLoadingPercent();
+        return;
+      }
+
+      loading.classList.remove('show');
+      loadingProgress.style.display = 'none';
+      stopLoadingPercent();
+      updateCooldown();
+    }
+
+    function startLoadingPercent() {
+      loadingPercent = 0;
+      renderLoadingPercent(0, 'เริ่มค้นหา');
+
+      if (loadingPercentTimer) {
+        clearInterval(loadingPercentTimer);
+      }
+
+      loadingPercentTimer = setInterval(function() {
+        let inc = 3 + Math.floor(Math.random() * 7);
+
+        if (loadingPercent >= 75) {
+          inc = 1 + Math.floor(Math.random() * 3);
+        }
+
+        loadingPercent = Math.min(92, loadingPercent + inc);
+
+        let text = 'กำลังค้นหา';
+
+        if (loadingPercent >= 25) text = 'ค้นเมลล่าสุด';
+        if (loadingPercent >= 55) text = 'ตรวจ OTP';
+        if (loadingPercent >= 80) text = 'ใกล้เสร็จแล้ว';
+
+        renderLoadingPercent(loadingPercent, text);
+      }, 260);
+    }
+
+    function finishLoadingPercent(callback) {
+      if (loadingPercentTimer) {
+        clearInterval(loadingPercentTimer);
+        loadingPercentTimer = null;
+      }
+
+      loadingPercent = 100;
+      renderLoadingPercent(100, 'เสร็จแล้ว');
+
+      setTimeout(function() {
+        if (typeof callback === 'function') callback();
+      }, 220);
+    }
+
+    function stopLoadingPercent() {
+      if (loadingPercentTimer) {
+        clearInterval(loadingPercentTimer);
+        loadingPercentTimer = null;
+      }
+
+      loadingPercent = 0;
+      renderLoadingPercent(0, 'กำลังเริ่มค้นหา');
+    }
+
+    function renderLoadingPercent(value, text) {
+      value = Math.max(0, Math.min(100, Number(value || 0)));
+
+      percentRing.style.setProperty('--p', value);
+      percentNumber.textContent = Math.round(value) + '%';
+      loadingMini.textContent = text || 'กำลังค้นหา';
+      loadingLineFill.style.width = value + '%';
     }
 
     /************************************************************
@@ -3086,88 +3441,8 @@
     }
 
     /************************************************************
-     * LOADING / STATUS / SECURITY
+     * STATUS / SECURITY
      ************************************************************/
-
-    function setLoading(show, message) {
-      if (show) {
-        loading.classList.add('show');
-        loadingProgress.style.display = 'block';
-        loadingMessage.textContent = message || 'กำลังตรวจสอบ...';
-
-        submitBtn.disabled = true;
-        submitText.textContent = 'กำลังรับ...';
-
-        const messages = [
-          'กำลังตรวจสอบข้อมูล...',
-          'กำลังค้นหาเมลล่าสุด...',
-          'กำลังมองหา OTP...',
-          'กำลังเตรียมแสดงรหัส...'
-        ];
-
-        let i = 0;
-
-        if (loadingTimer) {
-          clearInterval(loadingTimer);
-        }
-
-        loadingTimer = setInterval(function() {
-          i = (i + 1) % messages.length;
-          loadingMessage.textContent = messages[i];
-        }, 650);
-
-        startLoadingSteps();
-        return;
-      }
-
-      loading.classList.remove('show');
-      loadingProgress.style.display = 'none';
-
-      if (loadingTimer) {
-        clearInterval(loadingTimer);
-        loadingTimer = null;
-      }
-
-      stopLoadingSteps();
-      updateCooldown();
-    }
-
-    function startLoadingSteps() {
-      loadingStepIndex = 0;
-      renderLoadingSteps();
-
-      if (loadingStepTimer) {
-        clearInterval(loadingStepTimer);
-      }
-
-      loadingStepTimer = setInterval(function() {
-        loadingStepIndex = Math.min(loadingStepIndex + 1, loadingSteps.length - 1);
-        renderLoadingSteps();
-      }, 850);
-    }
-
-    function stopLoadingSteps() {
-      if (loadingStepTimer) {
-        clearInterval(loadingStepTimer);
-        loadingStepTimer = null;
-      }
-
-      loadingSteps.forEach(function(step) {
-        step.classList.remove('active', 'done');
-      });
-    }
-
-    function renderLoadingSteps() {
-      loadingSteps.forEach(function(step, index) {
-        step.classList.remove('active', 'done');
-
-        if (index < loadingStepIndex) {
-          step.classList.add('done');
-        } else if (index === loadingStepIndex) {
-          step.classList.add('active');
-        }
-      });
-    }
 
     function updateStatus(text, type) {
       statusText.textContent = text || 'พร้อมรับรหัส';
@@ -3255,7 +3530,7 @@
 
       toastTimer = setTimeout(function() {
         toast.classList.remove('show');
-      }, 1700);
+      }, 1600);
     }
 
     function scrollToResult() {
