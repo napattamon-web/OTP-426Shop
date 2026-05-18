@@ -9,26 +9,37 @@
 
   <style>
     :root {
-      --bg1: #fff5fb;
+      --bg1: #fff4fb;
       --bg2: #edf8ff;
-      --bg3: #f5f0ff;
-      --card: rgba(255,255,255,.82);
-      --card2: rgba(255,255,255,.62);
-      --text: #24304f;
-      --sub: rgba(36,48,79,.68);
-      --muted: rgba(36,48,79,.48);
-      --blue: #64b9ff;
+      --bg3: #f7f1ff;
+      --bg4: #fffdf5;
+
+      --card: rgba(255,255,255,.84);
+      --card2: rgba(255,255,255,.64);
+      --glass: rgba(255,255,255,.54);
+
+      --text: #2a3156;
+      --sub: rgba(42,49,86,.70);
+      --muted: rgba(42,49,86,.48);
+
+      --pink: #ff8bd2;
+      --pink2: #ffd7f0;
+      --pink3: #fff0fa;
+      --blue: #69bdff;
       --blue2: #3d7cff;
-      --pink: #ff8fd6;
-      --pink2: #ffd9f2;
-      --purple: #a79bff;
-      --yellow: #ffe78d;
-      --green: #48c994;
+      --purple: #a594ff;
+      --purple2: #eeeaff;
+      --yellow: #ffe78a;
+      --cream: #fff7d8;
+      --green: #49c994;
       --red: #ff6e91;
-      --orange: #ffae42;
+      --orange: #ffad42;
       --white: #ffffff;
-      --border: rgba(255,143,214,.22);
-      --shadow: 0 26px 72px rgba(92,75,140,.15);
+
+      --border: rgba(255,139,210,.22);
+      --border2: rgba(255,255,255,.82);
+      --shadow: 0 28px 76px rgba(106,78,150,.16);
+      --shadow2: 0 18px 46px rgba(255,139,210,.14);
     }
 
     * {
@@ -82,10 +93,11 @@
       justify-content: center;
       overflow: hidden;
       background:
-        radial-gradient(circle at 10% 8%, rgba(255,143,214,.32), transparent 30%),
-        radial-gradient(circle at 90% 13%, rgba(100,185,255,.30), transparent 30%),
-        radial-gradient(circle at 50% 100%, rgba(167,155,255,.25), transparent 42%),
-        linear-gradient(140deg, var(--bg1), var(--bg2) 50%, var(--bg3));
+        radial-gradient(circle at 12% 8%, rgba(255,139,210,.34), transparent 30%),
+        radial-gradient(circle at 88% 10%, rgba(105,189,255,.30), transparent 31%),
+        radial-gradient(circle at 18% 82%, rgba(255,231,138,.30), transparent 34%),
+        radial-gradient(circle at 78% 88%, rgba(165,148,255,.24), transparent 38%),
+        linear-gradient(135deg, var(--bg1) 0%, var(--bg2) 48%, var(--bg3) 100%);
     }
 
     .page:before {
@@ -93,82 +105,102 @@
       position: absolute;
       inset: 0;
       pointer-events: none;
-      opacity: .52;
+      opacity: .56;
       background-image:
-        radial-gradient(circle, rgba(255,255,255,.96) 0 1.45px, transparent 2px),
-        radial-gradient(circle, rgba(255,143,214,.24) 0 1px, transparent 2px),
-        radial-gradient(circle, rgba(100,185,255,.20) 0 1px, transparent 2px);
-      background-size: 44px 44px, 74px 74px, 98px 98px;
-      mask-image: linear-gradient(to bottom, rgba(0,0,0,.98), rgba(0,0,0,.55), transparent 94%);
+        radial-gradient(circle, rgba(255,255,255,.95) 0 1.6px, transparent 2.2px),
+        radial-gradient(circle, rgba(255,139,210,.28) 0 1.2px, transparent 2.2px),
+        radial-gradient(circle, rgba(105,189,255,.22) 0 1.2px, transparent 2.2px);
+      background-size: 38px 38px, 66px 66px, 92px 92px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,.98), rgba(0,0,0,.58), transparent 94%);
     }
 
-    .blob {
+    .soft-shape {
       position: absolute;
-      border-radius: 999px;
-      filter: blur(34px);
-      opacity: .72;
       pointer-events: none;
-      animation: blob 8s ease-in-out infinite;
+      opacity: .72;
+      filter: blur(30px);
+      border-radius: 999px;
+      animation: softMove 8s ease-in-out infinite;
     }
 
-    .blob.one {
-      width: 300px;
-      height: 300px;
-      left: -125px;
-      top: 86px;
-      background: rgba(255,143,214,.28);
+    .soft-shape.one {
+      width: 310px;
+      height: 310px;
+      left: -135px;
+      top: 82px;
+      background: rgba(255,139,210,.28);
     }
 
-    .blob.two {
-      width: 265px;
-      height: 265px;
-      right: -115px;
-      top: 120px;
-      background: rgba(100,185,255,.28);
+    .soft-shape.two {
+      width: 270px;
+      height: 270px;
+      right: -120px;
+      top: 110px;
+      background: rgba(105,189,255,.26);
       animation-delay: 1.2s;
     }
 
-    .blob.three {
-      width: 340px;
-      height: 340px;
-      left: 45%;
-      bottom: -214px;
-      background: rgba(167,155,255,.22);
+    .soft-shape.three {
+      width: 360px;
+      height: 360px;
+      left: 44%;
+      bottom: -230px;
+      background: rgba(165,148,255,.20);
       animation-delay: 2.1s;
     }
 
-    @keyframes blob {
+    .soft-shape.four {
+      width: 220px;
+      height: 220px;
+      left: 16%;
+      bottom: 5%;
+      background: rgba(255,231,138,.20);
+      animation-delay: 2.8s;
+    }
+
+    @keyframes softMove {
       0%, 100% { transform: translate3d(0,0,0) scale(1); }
       50% { transform: translate3d(18px,-18px,0) scale(1.06); }
     }
 
-    .decor {
+    .float {
       position: absolute;
       z-index: 1;
       pointer-events: none;
       font-weight: 1000;
-      text-shadow: 0 8px 24px rgba(255,143,214,.18);
-      animation: floatDecor 4s ease-in-out infinite;
+      text-shadow: 0 10px 24px rgba(255,139,210,.18);
+      animation: floatItem 4.4s ease-in-out infinite;
     }
 
-    .decor.star {
-      color: rgba(255,255,255,.96);
+    .float.star {
+      color: rgba(255,255,255,.98);
     }
 
-    .decor.heart {
-      color: rgba(255,143,214,.84);
+    .float.heart {
+      color: rgba(255,139,210,.86);
     }
 
-    .decor.d1 { left: 8%; top: 14%; font-size: 22px; }
-    .decor.d2 { right: 10%; top: 18%; font-size: 18px; animation-delay: .6s; }
-    .decor.d3 { left: 15%; bottom: 18%; font-size: 18px; animation-delay: 1s; }
-    .decor.d4 { right: 16%; bottom: 20%; font-size: 24px; animation-delay: 1.4s; }
-    .decor.d5 { left: 49%; top: 8%; font-size: 16px; animation-delay: 1.9s; }
-    .decor.d6 { left: 72%; top: 58%; font-size: 17px; animation-delay: 2.3s; }
+    .float.bubble {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.52);
+      border: 1px solid rgba(255,255,255,.72);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.9), 0 10px 24px rgba(105,189,255,.12);
+    }
 
-    @keyframes floatDecor {
-      0%, 100% { opacity: .55; transform: translateY(0) scale(.95) rotate(0); }
-      50% { opacity: 1; transform: translateY(-9px) scale(1.08) rotate(8deg); }
+    .float.f1 { left: 8%; top: 14%; font-size: 24px; }
+    .float.f2 { right: 10%; top: 17%; font-size: 19px; animation-delay: .6s; }
+    .float.f3 { left: 14%; bottom: 18%; font-size: 20px; animation-delay: 1s; }
+    .float.f4 { right: 16%; bottom: 20%; font-size: 26px; animation-delay: 1.4s; }
+    .float.f5 { left: 49%; top: 8%; font-size: 17px; animation-delay: 1.9s; }
+    .float.f6 { left: 72%; top: 58%; font-size: 18px; animation-delay: 2.3s; }
+    .float.f7 { left: 5%; top: 58%; animation-delay: 2.8s; }
+    .float.f8 { right: 7%; top: 70%; animation-delay: 3.1s; }
+
+    @keyframes floatItem {
+      0%, 100% { opacity: .56; transform: translateY(0) scale(.95) rotate(0); }
+      50% { opacity: 1; transform: translateY(-11px) scale(1.08) rotate(8deg); }
     }
 
     .wrap {
@@ -194,16 +226,16 @@
     }
 
     .brand-logo {
-      width: 60px;
-      height: 60px;
-      border-radius: 24px;
+      width: 62px;
+      height: 62px;
+      border-radius: 26px;
       display: grid;
       place-items: center;
       color: var(--white);
       background:
-        radial-gradient(circle at 25% 18%, rgba(255,255,255,.45), transparent 28%),
+        radial-gradient(circle at 25% 18%, rgba(255,255,255,.56), transparent 30%),
         linear-gradient(135deg, var(--blue), var(--purple), var(--pink));
-      box-shadow: 0 16px 34px rgba(255,143,214,.24);
+      box-shadow: 0 16px 36px rgba(255,139,210,.25);
       font-size: 24px;
       font-weight: 1000;
       position: relative;
@@ -215,7 +247,7 @@
       position: absolute;
       left: 12px;
       top: 9px;
-      font-size: 22px;
+      font-size: 23px;
     }
 
     .brand-logo:after {
@@ -224,11 +256,11 @@
       right: 10px;
       bottom: 8px;
       font-size: 18px;
-      color: rgba(255,255,255,.92);
+      color: rgba(255,255,255,.94);
     }
 
     .brand-title {
-      font-size: 19px;
+      font-size: 20px;
       line-height: 1.25;
       font-weight: 1000;
     }
@@ -243,31 +275,33 @@
     .hero-card {
       position: relative;
       overflow: hidden;
-      padding: 25px;
-      border-radius: 40px;
-      background: var(--card2);
-      border: 1px solid rgba(255,255,255,.76);
+      padding: 26px;
+      border-radius: 42px;
+      background:
+        radial-gradient(circle at 12% 0%, rgba(255,255,255,.72), transparent 34%),
+        linear-gradient(135deg, rgba(255,255,255,.72), rgba(255,255,255,.44));
+      border: 1px solid var(--border2);
       box-shadow: var(--shadow);
-      backdrop-filter: blur(22px);
+      backdrop-filter: blur(24px);
     }
 
     .hero-card:before {
       content: "";
       position: absolute;
-      width: 210px;
-      height: 210px;
-      right: -80px;
-      top: -85px;
+      width: 220px;
+      height: 220px;
+      right: -78px;
+      top: -86px;
       border-radius: 999px;
-      background: radial-gradient(circle, rgba(255,143,214,.32), transparent 70%);
+      background: radial-gradient(circle, rgba(255,139,210,.34), transparent 70%);
     }
 
     .hero-card:after {
       content: "♡ ★ ♡";
       position: absolute;
-      right: 22px;
+      right: 23px;
       top: 22px;
-      color: rgba(255,143,214,.44);
+      color: rgba(255,139,210,.42);
       font-size: 18px;
       letter-spacing: 6px;
       font-weight: 1000;
@@ -280,10 +314,11 @@
       padding: 9px 13px;
       border-radius: 999px;
       color: #c74791;
-      background: rgba(255,143,214,.13);
-      border: 1px solid rgba(255,143,214,.18);
+      background: rgba(255,139,210,.13);
+      border: 1px solid rgba(255,139,210,.18);
       font-size: 12px;
       font-weight: 1000;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.56);
     }
 
     .badge:before {
@@ -315,6 +350,28 @@
       font-weight: 650;
     }
 
+    .mini-ribbon {
+      width: fit-content;
+      margin-top: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 13px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.58);
+      border: 1px solid rgba(255,255,255,.76);
+      color: var(--sub);
+      font-size: 12px;
+      font-weight: 900;
+      box-shadow: 0 10px 26px rgba(255,139,210,.09);
+    }
+
+    .mini-ribbon:before {
+      content: "♥";
+      color: var(--pink);
+      font-weight: 1000;
+    }
+
     .info-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -324,8 +381,10 @@
     .info-card {
       min-height: 148px;
       padding: 18px;
-      border-radius: 32px;
-      background: rgba(255,255,255,.56);
+      border-radius: 34px;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(255,255,255,.86), transparent 40%),
+        rgba(255,255,255,.58);
       border: 1px solid rgba(255,255,255,.78);
       box-shadow: 0 18px 48px rgba(100,80,150,.10);
       position: relative;
@@ -335,29 +394,41 @@
     .info-card:before {
       content: "";
       position: absolute;
-      width: 130px;
-      height: 130px;
+      width: 132px;
+      height: 132px;
       right: -50px;
       bottom: -50px;
       border-radius: 999px;
-      background: radial-gradient(circle, rgba(100,185,255,.22), transparent 70%);
+      background: radial-gradient(circle, rgba(105,189,255,.22), transparent 70%);
+    }
+
+    .info-card:after {
+      content: "♡";
+      position: absolute;
+      right: 20px;
+      top: 18px;
+      color: rgba(255,139,210,.32);
+      font-size: 22px;
+      font-weight: 1000;
     }
 
     .info-card.pink:before {
-      background: radial-gradient(circle, rgba(255,143,214,.24), transparent 70%);
+      background: radial-gradient(circle, rgba(255,139,210,.24), transparent 70%);
     }
 
     .info-icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 22px;
+      width: 54px;
+      height: 54px;
+      border-radius: 24px;
       display: grid;
       place-items: center;
       color: var(--white);
-      background: linear-gradient(135deg, var(--blue), var(--purple), var(--pink));
+      background:
+        radial-gradient(circle at 25% 20%, rgba(255,255,255,.35), transparent 30%),
+        linear-gradient(135deg, var(--blue), var(--purple), var(--pink));
       font-size: 24px;
       font-weight: 1000;
-      box-shadow: 0 14px 26px rgba(255,143,214,.16);
+      box-shadow: 0 14px 26px rgba(255,139,210,.16);
     }
 
     .info-card strong {
@@ -381,19 +452,21 @@
       position: relative;
       overflow: hidden;
       padding: 18px;
-      border-radius: 38px;
-      background: var(--card);
-      border: 1px solid rgba(255,255,255,.78);
+      border-radius: 40px;
+      background:
+        radial-gradient(circle at 8% 0%, rgba(255,255,255,.78), transparent 38%),
+        linear-gradient(180deg, rgba(255,255,255,.86), rgba(255,255,255,.62));
+      border: 1px solid rgba(255,255,255,.82);
       box-shadow: var(--shadow);
-      backdrop-filter: blur(24px);
+      backdrop-filter: blur(26px);
     }
 
     .app-card:before {
       content: "";
       position: absolute;
       inset: 0 0 auto;
-      height: 6px;
-      background: linear-gradient(90deg, var(--pink), var(--purple), var(--blue), var(--yellow));
+      height: 7px;
+      background: linear-gradient(90deg, var(--pink), var(--purple), var(--blue), var(--yellow), var(--pink));
     }
 
     .app-card:after {
@@ -401,7 +474,7 @@
       position: absolute;
       right: 20px;
       top: 16px;
-      color: rgba(255,143,214,.26);
+      color: rgba(255,139,210,.25);
       font-size: 15px;
       font-weight: 1000;
       letter-spacing: 5px;
@@ -414,9 +487,10 @@
       justify-content: space-between;
       gap: 12px;
       padding: 14px;
-      border-radius: 27px;
-      background: rgba(255,255,255,.60);
-      border: 1px solid rgba(255,255,255,.78);
+      border-radius: 29px;
+      background: rgba(255,255,255,.62);
+      border: 1px solid rgba(255,255,255,.80);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.8);
       position: relative;
       z-index: 1;
     }
@@ -440,24 +514,31 @@
       padding: 9px 11px;
       border-radius: 999px;
       color: var(--white);
-      background: linear-gradient(135deg, var(--pink), var(--purple));
+      background:
+        radial-gradient(circle at 25% 18%, rgba(255,255,255,.28), transparent 32%),
+        linear-gradient(135deg, var(--pink), var(--purple));
       font-size: 12px;
       font-weight: 1000;
-      box-shadow: 0 10px 20px rgba(255,143,214,.18);
+      box-shadow: 0 10px 20px rgba(255,139,210,.18);
+    }
+
+    .hint,
+    .safe-hint {
+      margin-top: 11px;
+      padding: 12px 13px;
+      border-radius: 24px;
+      font-size: 12px;
+      line-height: 1.65;
+      font-weight: 800;
+      position: relative;
+      z-index: 1;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.68);
     }
 
     .hint {
-      margin-top: 12px;
-      padding: 12px 13px;
-      border-radius: 23px;
       color: var(--sub);
-      background: rgba(255,255,255,.52);
-      border: 1px solid rgba(255,255,255,.72);
-      font-size: 12px;
-      line-height: 1.65;
-      font-weight: 750;
-      position: relative;
-      z-index: 1;
+      background: rgba(255,255,255,.56);
+      border: 1px solid rgba(255,255,255,.74);
     }
 
     .hint:before {
@@ -468,17 +549,9 @@
     }
 
     .safe-hint {
-      margin-top: 10px;
-      padding: 12px 13px;
-      border-radius: 23px;
       color: #8a5a00;
-      background: rgba(255,231,141,.34);
-      border: 1px solid rgba(255,174,66,.24);
-      font-size: 12px;
-      line-height: 1.65;
-      font-weight: 800;
-      position: relative;
-      z-index: 1;
+      background: rgba(255,231,138,.35);
+      border: 1px solid rgba(255,173,66,.24);
     }
 
     .safe-hint:before {
@@ -546,27 +619,28 @@
 
     .req {
       color: #c74791;
-      background: rgba(255,143,214,.12);
+      background: rgba(255,139,210,.12);
     }
 
     .opt {
       color: var(--muted);
-      background: rgba(255,255,255,.58);
+      background: rgba(255,255,255,.60);
     }
 
     input,
     textarea {
       width: 100%;
-      border: 1px solid rgba(255,143,214,.18);
+      border: 1px solid rgba(255,139,210,.18);
       outline: none;
-      background: rgba(255,255,255,.76);
+      background: rgba(255,255,255,.78);
       color: var(--text);
-      border-radius: 21px;
+      border-radius: 22px;
       padding: 13px 14px;
       font-size: 16px;
       font-weight: 720;
       line-height: 1.5;
       transition: border-color .16s ease, box-shadow .16s ease, transform .16s ease;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.75);
     }
 
     input {
@@ -580,14 +654,14 @@
 
     input::placeholder,
     textarea::placeholder {
-      color: rgba(36,48,79,.36);
+      color: rgba(42,49,86,.36);
       font-weight: 600;
     }
 
     input:focus,
     textarea:focus {
-      border-color: rgba(255,143,214,.52);
-      box-shadow: 0 0 0 5px rgba(255,143,214,.11);
+      border-color: rgba(255,139,210,.54);
+      box-shadow: 0 0 0 5px rgba(255,139,210,.11), inset 0 1px 0 rgba(255,255,255,.82);
       transform: translateY(-1px);
     }
 
@@ -616,12 +690,13 @@
     .chip {
       min-height: 36px;
       padding: 8px 11px;
-      border-radius: 16px;
+      border-radius: 17px;
       color: var(--text);
-      background: rgba(255,255,255,.60);
-      border: 1px solid rgba(255,143,214,.14);
+      background: rgba(255,255,255,.62);
+      border: 1px solid rgba(255,139,210,.14);
       font-size: 12px;
       font-weight: 900;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.72);
     }
 
     .chip:before {
@@ -631,8 +706,10 @@
 
     .chip.selected {
       color: var(--white);
-      background: linear-gradient(135deg, var(--pink), var(--purple));
-      box-shadow: 0 10px 20px rgba(255,143,214,.17);
+      background:
+        radial-gradient(circle at 22% 16%, rgba(255,255,255,.30), transparent 32%),
+        linear-gradient(135deg, var(--pink), var(--purple));
+      box-shadow: 0 10px 20px rgba(255,139,210,.17);
     }
 
     .chip.selected:before {
@@ -647,13 +724,14 @@
 
     .screen-btn {
       min-height: 58px;
-      border-radius: 20px;
+      border-radius: 21px;
       color: var(--text);
-      background: rgba(255,255,255,.60);
-      border: 1px solid rgba(255,143,214,.14);
+      background: rgba(255,255,255,.62);
+      border: 1px solid rgba(255,139,210,.14);
       display: grid;
       place-items: center;
       padding: 8px 4px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.75);
     }
 
     .screen-btn strong {
@@ -671,8 +749,10 @@
 
     .screen-btn.selected {
       color: var(--white);
-      background: linear-gradient(135deg, var(--pink), var(--purple), var(--blue));
-      box-shadow: 0 12px 24px rgba(255,143,214,.18);
+      background:
+        radial-gradient(circle at 25% 18%, rgba(255,255,255,.32), transparent 32%),
+        linear-gradient(135deg, var(--pink), var(--purple), var(--blue));
+      box-shadow: 0 12px 24px rgba(255,139,210,.18);
       transform: translateY(-2px);
     }
 
@@ -701,7 +781,7 @@
     .btn-copy {
       min-height: 54px;
       padding: 12px 16px;
-      border-radius: 22px;
+      border-radius: 23px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -714,9 +794,9 @@
     .btn-primary {
       color: var(--white);
       background:
-        radial-gradient(circle at 18% 0%, rgba(255,255,255,.34), transparent 34%),
+        radial-gradient(circle at 18% 0%, rgba(255,255,255,.36), transparent 34%),
         linear-gradient(135deg, var(--pink), var(--purple), var(--blue));
-      box-shadow: 0 16px 30px rgba(255,143,214,.24);
+      box-shadow: 0 16px 30px rgba(255,139,210,.24);
     }
 
     .btn-primary:before {
@@ -725,8 +805,9 @@
 
     .btn-secondary {
       color: var(--text);
-      background: rgba(255,255,255,.64);
-      border: 1px solid rgba(255,143,214,.14);
+      background: rgba(255,255,255,.66);
+      border: 1px solid rgba(255,139,210,.14);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.72);
     }
 
     .btn-secondary:before {
@@ -736,7 +817,9 @@
 
     .btn-copy {
       color: var(--white);
-      background: linear-gradient(135deg, var(--purple), var(--pink));
+      background:
+        radial-gradient(circle at 18% 0%, rgba(255,255,255,.30), transparent 34%),
+        linear-gradient(135deg, var(--purple), var(--pink));
     }
 
     .btn-copy:before {
@@ -748,11 +831,12 @@
       display: grid;
       gap: 8px;
       padding: 12px 13px;
-      border-radius: 23px;
-      background: rgba(255,255,255,.56);
-      border: 1px solid rgba(255,255,255,.75);
+      border-radius: 24px;
+      background: rgba(255,255,255,.58);
+      border: 1px solid rgba(255,255,255,.76);
       position: relative;
       z-index: 1;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.72);
     }
 
     .status-line {
@@ -779,7 +863,7 @@
       border-radius: 999px;
       flex: 0 0 auto;
       background: var(--pink);
-      box-shadow: 0 0 0 5px rgba(255,143,214,.12);
+      box-shadow: 0 0 0 5px rgba(255,139,210,.12);
     }
 
     .status-dot.ok {
@@ -789,7 +873,7 @@
 
     .status-dot.warn {
       background: var(--orange);
-      box-shadow: 0 0 0 5px rgba(255,174,66,.14);
+      box-shadow: 0 0 0 5px rgba(255,173,66,.14);
     }
 
     .status-dot.bad {
@@ -802,7 +886,7 @@
       height: 8px;
       overflow: hidden;
       border-radius: 999px;
-      background: rgba(255,143,214,.13);
+      background: rgba(255,139,210,.13);
     }
 
     .cooldown-fill {
@@ -828,16 +912,17 @@
       display: none;
       margin-top: 14px;
       padding: 16px;
-      border-radius: 32px;
+      border-radius: 34px;
       text-align: center;
       background:
-        radial-gradient(circle at 50% 0%, rgba(255,255,255,.88), transparent 52%),
-        linear-gradient(135deg, rgba(255,143,214,.14), rgba(100,185,255,.12));
-      border: 1px solid rgba(255,255,255,.82);
+        radial-gradient(circle at 50% 0%, rgba(255,255,255,.90), transparent 52%),
+        linear-gradient(135deg, rgba(255,139,210,.15), rgba(105,189,255,.13));
+      border: 1px solid rgba(255,255,255,.84);
       animation: pop .24s ease both;
       position: relative;
       z-index: 1;
       overflow: hidden;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.74);
     }
 
     .result:before {
@@ -845,7 +930,7 @@
       position: absolute;
       left: 18px;
       top: 15px;
-      color: rgba(255,143,214,.34);
+      color: rgba(255,139,210,.34);
       font-size: 14px;
       letter-spacing: 4px;
       font-weight: 1000;
@@ -856,7 +941,7 @@
       position: absolute;
       right: 18px;
       bottom: 16px;
-      color: rgba(100,185,255,.30);
+      color: rgba(105,189,255,.30);
       font-size: 14px;
       letter-spacing: 4px;
       font-weight: 1000;
@@ -868,17 +953,19 @@
     }
 
     .result-icon {
-      width: 64px;
-      height: 64px;
+      width: 66px;
+      height: 66px;
       margin: 0 auto 10px;
-      border-radius: 25px;
+      border-radius: 27px;
       display: grid;
       place-items: center;
       color: var(--white);
-      background: linear-gradient(135deg, var(--pink), var(--purple), var(--blue));
-      font-size: 29px;
+      background:
+        radial-gradient(circle at 25% 18%, rgba(255,255,255,.34), transparent 32%),
+        linear-gradient(135deg, var(--pink), var(--purple), var(--blue));
+      font-size: 30px;
       font-weight: 1000;
-      box-shadow: 0 16px 34px rgba(255,143,214,.18);
+      box-shadow: 0 16px 34px rgba(255,139,210,.18);
       position: relative;
       z-index: 1;
     }
@@ -910,8 +997,8 @@
       padding: 8px 11px;
       border-radius: 999px;
       color: var(--muted);
-      background: rgba(255,255,255,.62);
-      border: 1px solid rgba(255,143,214,.12);
+      background: rgba(255,255,255,.64);
+      border: 1px solid rgba(255,139,210,.12);
       font-size: 11px;
       font-weight: 900;
       overflow-wrap: anywhere;
@@ -924,11 +1011,12 @@
       margin: 13px auto 0;
       max-width: 390px;
       padding: 14px;
-      border-radius: 27px;
-      background: rgba(255,255,255,.72);
-      border: 1px solid rgba(255,143,214,.16);
+      border-radius: 28px;
+      background: rgba(255,255,255,.74);
+      border: 1px solid rgba(255,139,210,.16);
       position: relative;
       z-index: 1;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.76);
     }
 
     .otp-label {
@@ -944,7 +1032,7 @@
       letter-spacing: 7px;
       font-weight: 1000;
       user-select: all;
-      text-shadow: 0 8px 24px rgba(255,143,214,.14);
+      text-shadow: 0 8px 24px rgba(255,139,210,.14);
     }
 
     .otp-note {
@@ -959,10 +1047,10 @@
       display: none;
       margin-top: 12px;
       padding: 12px;
-      border-radius: 23px;
+      border-radius: 24px;
       color: #8a5a00;
-      background: rgba(255,231,141,.34);
-      border: 1px solid rgba(255,174,66,.24);
+      background: rgba(255,231,138,.35);
+      border: 1px solid rgba(255,173,66,.24);
       font-size: 12px;
       line-height: 1.6;
       font-weight: 850;
@@ -989,16 +1077,16 @@
     .result-actions .btn-secondary,
     .result-actions .btn-copy {
       min-height: 48px;
-      border-radius: 19px;
+      border-radius: 20px;
       font-size: 13px;
     }
 
     .howto {
       margin-top: 16px;
       padding: 15px;
-      border-radius: 28px;
-      background: rgba(255,255,255,.56);
-      border: 1px solid rgba(255,255,255,.78);
+      border-radius: 30px;
+      background: rgba(255,255,255,.58);
+      border: 1px solid rgba(255,255,255,.80);
       box-shadow: 0 14px 34px rgba(100,80,150,.08);
       position: relative;
       overflow: hidden;
@@ -1010,7 +1098,7 @@
       position: absolute;
       right: 16px;
       top: 14px;
-      color: rgba(255,143,214,.28);
+      color: rgba(255,139,210,.28);
       font-weight: 1000;
       letter-spacing: 5px;
       pointer-events: none;
@@ -1045,14 +1133,16 @@
     .howto-num {
       width: 28px;
       height: 28px;
-      border-radius: 12px;
+      border-radius: 13px;
       display: grid;
       place-items: center;
       color: var(--white);
-      background: linear-gradient(135deg, var(--pink), var(--purple));
+      background:
+        radial-gradient(circle at 25% 18%, rgba(255,255,255,.28), transparent 32%),
+        linear-gradient(135deg, var(--pink), var(--purple));
       font-size: 12px;
       font-weight: 1000;
-      box-shadow: 0 8px 16px rgba(255,143,214,.15);
+      box-shadow: 0 8px 16px rgba(255,139,210,.15);
     }
 
     .loading {
@@ -1062,7 +1152,7 @@
       display: none;
       place-items: center;
       padding: 20px;
-      background: rgba(36,48,79,.18);
+      background: rgba(42,49,86,.18);
       backdrop-filter: blur(12px);
     }
 
@@ -1073,10 +1163,10 @@
     .loading-card {
       width: min(350px, 100%);
       padding: 22px;
-      border-radius: 34px;
+      border-radius: 36px;
       text-align: center;
-      background: rgba(255,255,255,.92);
-      border: 1px solid rgba(255,255,255,.84);
+      background: rgba(255,255,255,.94);
+      border: 1px solid rgba(255,255,255,.86);
       box-shadow: var(--shadow);
       position: relative;
       overflow: hidden;
@@ -1087,20 +1177,22 @@
       position: absolute;
       left: 20px;
       top: 16px;
-      color: rgba(255,143,214,.30);
+      color: rgba(255,139,210,.30);
       letter-spacing: 5px;
       font-weight: 1000;
     }
 
     .loading-icon {
-      width: 70px;
-      height: 70px;
+      width: 72px;
+      height: 72px;
       margin: 0 auto 12px;
-      border-radius: 27px;
+      border-radius: 29px;
       display: grid;
       place-items: center;
       color: var(--white);
-      background: linear-gradient(135deg, var(--pink), var(--purple), var(--blue));
+      background:
+        radial-gradient(circle at 25% 18%, rgba(255,255,255,.34), transparent 32%),
+        linear-gradient(135deg, var(--pink), var(--purple), var(--blue));
       font-size: 28px;
       font-weight: 1000;
       animation: pulse .95s ease-in-out infinite;
@@ -1136,8 +1228,8 @@
       padding: 12px 16px;
       border-radius: 999px;
       color: var(--white);
-      background: rgba(36,48,79,.94);
-      box-shadow: 0 18px 40px rgba(36,48,79,.22);
+      background: rgba(42,49,86,.94);
+      box-shadow: 0 18px 40px rgba(42,49,86,.22);
       font-size: 14px;
       font-weight: 900;
       text-align: center;
@@ -1186,8 +1278,10 @@
         text-align: center;
       }
 
-      .badge {
-        margin: 0 auto;
+      .badge,
+      .mini-ribbon {
+        margin-left: auto;
+        margin-right: auto;
       }
 
       .lead {
@@ -1212,7 +1306,7 @@
       .brand-logo {
         width: 50px;
         height: 50px;
-        border-radius: 19px;
+        border-radius: 20px;
       }
 
       .brand-logo:before {
@@ -1237,7 +1331,7 @@
 
       .hero-card {
         padding: 16px;
-        border-radius: 29px;
+        border-radius: 31px;
       }
 
       h1 {
@@ -1250,19 +1344,23 @@
         line-height: 1.6;
       }
 
+      .mini-ribbon {
+        font-size: 11px;
+      }
+
       .info-card {
         min-height: 126px;
-        border-radius: 26px;
+        border-radius: 28px;
       }
 
       .app-card {
         padding: 12px;
-        border-radius: 29px;
+        border-radius: 31px;
       }
 
       .app-top {
         padding: 12px;
-        border-radius: 23px;
+        border-radius: 24px;
       }
 
       .app-top h2 {
@@ -1281,12 +1379,12 @@
       input {
         min-height: 50px;
         font-size: 15px;
-        border-radius: 18px;
+        border-radius: 19px;
       }
 
       textarea {
         font-size: 14px;
-        border-radius: 18px;
+        border-radius: 19px;
       }
 
       .screen-grid {
@@ -1295,7 +1393,7 @@
 
       .screen-btn {
         min-height: 50px;
-        border-radius: 16px;
+        border-radius: 17px;
       }
 
       .actions {
@@ -1306,7 +1404,7 @@
       .btn-secondary,
       .btn-copy {
         min-height: 50px;
-        border-radius: 19px;
+        border-radius: 20px;
       }
 
       .status-line {
@@ -1338,16 +1436,19 @@
 
 <body>
   <main class="page">
-    <div class="blob one"></div>
-    <div class="blob two"></div>
-    <div class="blob three"></div>
+    <div class="soft-shape one"></div>
+    <div class="soft-shape two"></div>
+    <div class="soft-shape three"></div>
+    <div class="soft-shape four"></div>
 
-    <div class="decor star d1">★</div>
-    <div class="decor heart d2">♥</div>
-    <div class="decor star d3">✦</div>
-    <div class="decor heart d4">♡</div>
-    <div class="decor star d5">★</div>
-    <div class="decor heart d6">♥</div>
+    <div class="float star f1">★</div>
+    <div class="float heart f2">♥</div>
+    <div class="float star f3">✦</div>
+    <div class="float heart f4">♡</div>
+    <div class="float star f5">★</div>
+    <div class="float heart f6">♥</div>
+    <div class="float bubble f7"></div>
+    <div class="float bubble f8"></div>
 
     <section class="wrap">
       <div class="hero">
@@ -1365,6 +1466,7 @@
           <p class="lead">
             กรอกข้อมูลให้ครบ เลือกจอที่ใช้งาน แล้วกดรับรหัส ระบบจะแสดง OTP ล่าสุดให้เมื่อพบรหัส
           </p>
+          <div class="mini-ribbon">ใช้ข้อมูลให้ตรงกับรายการที่สั่งซื้อ</div>
         </div>
 
         <div class="info-grid">
@@ -1553,28 +1655,15 @@
   <div class="toast" id="toast">เรียบร้อย</div>
 
   <script>
-    /************************************************************
-     * CONFIG
-     ************************************************************/
-
     const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwe24EQaOFwra5jexOMg7VY5yskHBlbnqEW2E2VP35IMVfJERqY3tge-YHJt-iKvpF8kA/exec';
 
-    /*
-      ถ้า Apps Script ตั้ง WEB_TOKEN ไว้ ให้ใส่ค่าเดียวกันตรงนี้
-      ถ้าไม่ได้ตั้ง WEB_TOKEN ปล่อยว่างได้
-    */
     const WEB_TOKEN = '';
-
     const SERVICE_BRAND = 'disney';
     const REQUEST_TIMEOUT_MS = 15000;
     const AUTO_RETRY_SECONDS = 3;
     const MAX_AUTO_RETRY = 3;
     const COOLDOWN_SECONDS = 4;
-    const DRAFT_KEY = 'starHeartOtpEmailScreenBrandLockDraftV3';
-
-    /************************************************************
-     * STATE
-     ************************************************************/
+    const DRAFT_KEY = 'starHeartOtpEmailScreenBrandLockDraftV4';
 
     let selectedScreen = '';
     let selectedDevice = '';
@@ -1590,10 +1679,6 @@
     let autoRetryLeft = AUTO_RETRY_SECONDS;
     let cooldownTimer = null;
     let cooldownEndAt = 0;
-
-    /************************************************************
-     * ELEMENTS
-     ************************************************************/
 
     const customerNameInput = document.getElementById('customerName');
     const emailInput = document.getElementById('email');
@@ -1636,10 +1721,6 @@
 
     const screenButtons = Array.from(document.querySelectorAll('.screen-btn'));
     const chipButtons = Array.from(document.querySelectorAll('.chip'));
-
-    /************************************************************
-     * INIT
-     ************************************************************/
 
     init();
 
@@ -1720,10 +1801,6 @@
         } catch (err) {}
       });
     }
-
-    /************************************************************
-     * MAIN ACTIONS
-     ************************************************************/
 
     function submitRequest(options) {
       options = options || {};
@@ -1873,10 +1950,6 @@
       } catch (err) {}
     }
 
-    /************************************************************
-     * RESPONSE HANDLERS
-     ************************************************************/
-
     function handleOtpFound(res) {
       latestOtp = String(res.otp || '').replace(/[^\d]/g, '');
       latestExpireMinutes = res.expireMinutes || 15;
@@ -1954,10 +2027,6 @@
       copyBtn.disabled = false;
       copyBtn.textContent = 'คัดลอก OTP';
     }
-
-    /************************************************************
-     * AUTO RETRY / COOLDOWN
-     ************************************************************/
 
     function shouldAutoRetry(res) {
       if (!res) return false;
@@ -2069,10 +2138,6 @@
       }
     }
 
-    /************************************************************
-     * REQUEST
-     ************************************************************/
-
     function buildBaseParams(action) {
       return {
         action: action,
@@ -2166,10 +2231,6 @@
       document.body.appendChild(script);
     }
 
-    /************************************************************
-     * VALIDATION
-     ************************************************************/
-
     function validateForm(showFocus) {
       const name = customerNameInput.value.trim();
       const email = emailInput.value.trim();
@@ -2223,10 +2284,6 @@
     function isEmail(value) {
       return /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(String(value || '').trim());
     }
-
-    /************************************************************
-     * UI HELPERS
-     ************************************************************/
 
     function setLoading(show, message) {
       if (show) {
@@ -2331,8 +2388,8 @@
       confetti.innerHTML = '';
 
       const pieces = ['★', '✦', '✧', '♡', '♥', 'OTP'];
-      const colors = ['#ff8fd6', '#a79bff', '#64b9ff', '#ffe78d', '#48c994'];
-      const count = 32;
+      const colors = ['#ff8bd2', '#a594ff', '#69bdff', '#ffe78a', '#49c994'];
+      const count = 34;
 
       for (let i = 0; i < count; i++) {
         const el = document.createElement('div');
@@ -2351,10 +2408,6 @@
         confetti.innerHTML = '';
       }, 1500);
     }
-
-    /************************************************************
-     * STORAGE
-     ************************************************************/
 
     function saveDraft() {
       try {
@@ -2397,10 +2450,6 @@
         }
       } catch (err) {}
     }
-
-    /************************************************************
-     * MESSAGE HELPERS
-     ************************************************************/
 
     function buildOtpFoundMessage(res) {
       const lines = [
@@ -2498,10 +2547,6 @@
 
       return status === 'OTP_ALREADY_ISSUED' || status === 'OTP_ALREADY_USED';
     }
-
-    /************************************************************
-     * UTILITIES
-     ************************************************************/
 
     function createRequestToken() {
       return [
