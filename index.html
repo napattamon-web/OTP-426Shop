@@ -12,8 +12,6 @@
       --bg1: #f8fbff;
       --bg2: #ffffff;
       --bg3: #f4f0ff;
-      --card: rgba(255,255,255,.86);
-      --card2: rgba(255,255,255,.70);
       --text: #17203a;
       --sub: rgba(23,32,58,.68);
       --muted: rgba(23,32,58,.48);
@@ -22,7 +20,6 @@
       --blue: #5aa7ff;
       --blue2: #2f6fff;
       --pink: #ff8ccf;
-      --pink2: #ffe2f4;
       --purple: #9a8cff;
       --yellow: #ffe89b;
       --green: #32bf86;
@@ -37,8 +34,6 @@
       --bg1: #111827;
       --bg2: #172033;
       --bg3: #201a36;
-      --card: rgba(23,32,51,.86);
-      --card2: rgba(255,255,255,.07);
       --text: #f8fbff;
       --sub: rgba(248,251,255,.72);
       --muted: rgba(248,251,255,.50);
@@ -46,7 +41,6 @@
       --blue: #75bdff;
       --blue2: #86a6ff;
       --pink: #ff9fd8;
-      --pink2: rgba(255,159,216,.14);
       --purple: #b4aaff;
       --yellow: #ffe89b;
       --green: #5ee0ad;
@@ -2525,7 +2519,7 @@
     const SERVICE_BRAND = 'disney';
     const REQUEST_TIMEOUT_MS = 15000;
     const COOLDOWN_SECONDS = 4;
-    const DRAFT_KEY = 'cleanOtpDraftOnlyV2';
+    const DRAFT_KEY = 'cleanOtpDraftOnlyV3SettingsSheet';
 
     /************************************************************
      * STATE
@@ -3326,7 +3320,7 @@
     }
 
     /************************************************************
-     * STATUS / SECURITY
+     * STATUS
      ************************************************************/
 
     function updateStatus(text, type) {
@@ -3600,6 +3594,10 @@
 
       if (status === 'MAILY_ERROR') {
         return 'ระบบเช็ก OTP ไม่สำเร็จ กรุณากดขอรหัสใหม่อีกครั้ง';
+      }
+
+      if (status === 'MAINTENANCE') {
+        return msg || 'ระบบกำลังปรับปรุง กรุณาลองใหม่ภายหลัง';
       }
 
       if (msg) {
