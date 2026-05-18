@@ -1370,8 +1370,8 @@
         <div class="info-grid">
           <div class="info-card pink">
             <div class="info-icon">♥</div>
-            <strong>ล็อกตามจอที่รับรหัส</strong>
-            <span>ถ้าอีเมลเดียวกันรับรหัสที่จอ 6 แล้ว จอ 6 จะรับซ้ำไม่ได้ แต่จออื่นยังรับได้</span>
+            <strong>ล็อกตามเมลและจอ</strong>
+            <span>ถ้าเมลเดียวกันรับรหัสจอ 6 แล้ว เมลนั้นจะรับจอ 6 ซ้ำไม่ได้ แต่จออื่นยังรับได้</span>
           </div>
 
           <div class="info-card">
@@ -1396,7 +1396,7 @@
         </div>
 
         <div class="safe-hint">
-          เมื่อจอนี้ได้รับ OTP แล้ว ระบบจะบันทึกว่าอีเมลนี้ใช้สิทธิ์รับรหัสของจอนี้แล้ว
+          เมื่อเมลนี้ได้รับ OTP ของจอนี้แล้ว ระบบจะบันทึกว่าเมลนี้ใช้สิทธิ์รับรหัสของจอนี้แล้ว คนอื่นใช้เมลเดียวกันกับจอเดิมก็รับซ้ำไม่ได้
         </div>
 
         <div class="form">
@@ -1481,7 +1481,7 @@
         </div>
 
         <div class="privacy">
-          ระบบจะบันทึกเฉพาะข้อมูลที่ใช้ตรวจสอบการขอ OTP
+          ระบบล็อกด้วยอีเมล + จอ + บริการ เพื่อป้องกันการรับรหัสซ้ำ
         </div>
 
         <div class="result" id="resultBox">
@@ -1497,7 +1497,7 @@
           </div>
 
           <div class="lock-box" id="lockBox">
-            ระบบบันทึกจอนี้แล้ว หากอีเมลนี้กลับมาขอรหัสของจอเดิมอีก ระบบจะไม่ให้รับซ้ำ
+            ระบบบันทึกเมลนี้กับจอนี้แล้ว หากมีคนอื่นใช้เมลเดียวกันและจอเดิม ระบบจะไม่ให้รับ OTP ซ้ำ
           </div>
 
           <div class="result-actions">
@@ -1533,7 +1533,7 @@
             </li>
             <li>
               <span class="howto-num">6</span>
-              <span>ถ้าจอนี้เคยรับรหัสแล้ว ระบบจะไม่ให้รับซ้ำ ต้องติดต่อแอดมิน</span>
+              <span>ถ้าเมลนี้เคยรับรหัสของจอเดิมแล้ว ระบบจะไม่ให้รับซ้ำ ต้องติดต่อแอดมิน</span>
             </li>
           </ul>
         </div>
@@ -1570,7 +1570,7 @@
     const AUTO_RETRY_SECONDS = 3;
     const MAX_AUTO_RETRY = 3;
     const COOLDOWN_SECONDS = 4;
-    const DRAFT_KEY = 'starHeartOtpScreenLockDraftV2';
+    const DRAFT_KEY = 'starHeartOtpEmailScreenBrandLockDraftV3';
 
     /************************************************************
      * STATE
@@ -1908,7 +1908,7 @@
       latestOtp = '';
       resultBox.style.display = 'block';
       resultIcon.textContent = '♡';
-      resultTitle.textContent = isScreenLocked(res) ? 'จอนี้รับรหัสไปแล้ว' : 'ยังไม่พบรหัส';
+      resultTitle.textContent = isScreenLocked(res) ? 'เมลนี้รับรหัสจอนี้ไปแล้ว' : 'ยังไม่พบรหัส';
       resultMessage.textContent = msg;
       requestIdBox.textContent = 'เลขอ้างอิง: ' + (res && (res.requestId || res.id) ? (res.requestId || res.id) : '-');
 
@@ -1916,7 +1916,7 @@
       lockBox.style.display = isScreenLocked(res) || isIssuedLocked(res) ? 'block' : 'none';
 
       updateStatus(msg, isScreenLocked(res) || isIssuedLocked(res) ? 'bad' : 'warn');
-      showToast(isScreenLocked(res) ? 'จอนี้รับรหัสไปแล้ว' : 'ยังไม่พบ OTP');
+      showToast(isScreenLocked(res) ? 'เมลนี้รับรหัสจอนี้ไปแล้ว' : 'ยังไม่พบ OTP');
 
       if (shouldAutoRetry(res)) {
         startAutoRetry();
@@ -2405,7 +2405,7 @@
     function buildOtpFoundMessage(res) {
       const lines = [
         'พบรหัสแล้ว กรุณาคัดลอก OTP ไปใช้ล็อกอิน',
-        'ระบบบันทึกจอนี้แล้ว หากอีเมลนี้ขอรหัสจอเดิมอีก ระบบจะไม่ให้รับซ้ำ'
+        'ระบบบันทึกเมลนี้กับจอนี้แล้ว หากคนอื่นใช้เมลเดียวกันและจอเดิม ระบบจะไม่ให้รับซ้ำ'
       ];
 
       if (res.resultStatus) {
@@ -2432,7 +2432,7 @@
       const msg = String(res.message || '');
 
       if (status === 'SCREEN_ALREADY_USED') {
-        return 'จอนี้เคยรับรหัสแล้ว ไม่สามารถรับรหัสซ้ำได้ กรุณาติดต่อแอดมิน';
+        return 'เมลนี้เคยรับรหัสจอนี้แล้ว ไม่สามารถรับรหัสซ้ำได้ กรุณาติดต่อแอดมิน';
       }
 
       if (status === 'OTP_ALREADY_ISSUED') {
@@ -2441,18 +2441,6 @@
 
       if (status === 'OTP_ALREADY_USED') {
         return 'รหัสนี้ถูกใช้สิทธิ์แล้ว กรุณารอหรือแจ้งแอดมิน';
-      }
-
-      if (status === 'ALREADY_LOGIN_OTHER_DEVICE') {
-        return 'อีเมลนี้กำลังใช้งานอยู่บนอุปกรณ์อื่น กรุณาออกจากระบบก่อน';
-      }
-
-      if (status === 'DEVICE_MISMATCH') {
-        return 'รหัสนี้ถูกขอจากอุปกรณ์อื่น กรุณาตรวจสอบข้อมูล';
-      }
-
-      if (status === 'SCREEN_MISMATCH') {
-        return 'รหัสนี้ไม่ตรงกับจอที่เลือก กรุณาตรวจสอบจออีกครั้ง';
       }
 
       if (status === 'RATE_LIMITED') {
