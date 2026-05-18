@@ -1357,6 +1357,24 @@
       border-color: rgba(255,255,255,.12);
     }
 
+    .result.otp-only {
+      padding-top: 18px;
+    }
+
+    .result.otp-only .result-icon {
+      margin-bottom: 8px;
+    }
+
+    .result.otp-only h3 {
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    .result.otp-only .result-message,
+    .result.otp-only .request-id {
+      display: none;
+    }
+
     .otp-envelope {
       display: none;
       margin: 13px auto 0;
@@ -1477,6 +1495,10 @@
       gap: 10px;
       align-items: flex-start;
       animation: pop .24s ease both;
+    }
+
+    .result.otp-only .soft-alert {
+      display: none !important;
     }
 
     .soft-alert-icon {
@@ -2165,7 +2187,7 @@
 
         <div class="result" id="resultBox">
           <div class="result-icon" id="resultIcon">★</div>
-          <h3 id="resultTitle">รหัส OTP</h3>
+          <h3 id="resultTitle">OTP</h3>
           <div class="result-message" id="resultMessage">-</div>
           <div class="request-id" id="requestIdBox">เลขอ้างอิง: -</div>
 
@@ -2273,7 +2295,7 @@
     const AUTO_RETRY_SECONDS = 3;
     const MAX_AUTO_RETRY = 3;
     const COOLDOWN_SECONDS = 4;
-    const DRAFT_KEY = 'starHeartOtpEmailScreenBrandLockDraftV5';
+    const DRAFT_KEY = 'starHeartOtpEmailScreenBrandLockDraftV6OtpOnly';
 
     /************************************************************
      * STATE
@@ -2579,6 +2601,7 @@
 
     function editInfo() {
       resultBox.style.display = 'none';
+      resultBox.classList.remove('otp-only');
       updateStatus('แก้ไขข้อมูลได้เลย', 'idle');
       updateSecurityState('ready');
       updateSteps();
@@ -2641,28 +2664,26 @@
       latestRequestId = res.requestId || res.id || createLocalRequestId();
 
       resultBox.style.display = 'block';
-      resultIcon.textContent = '★';
-      resultTitle.textContent = 'พบรหัส OTP แล้ว';
-      resultMessage.textContent = buildOtpFoundMessage(res);
-      requestIdBox.textContent = 'เลขอ้างอิง: ' + latestRequestId;
+      resultBox.classList.add('otp-only');
+
+      resultIcon.textContent = '♥';
+      resultTitle.textContent = 'OTP';
+      resultMessage.textContent = '';
+      requestIdBox.textContent = '';
 
       otpEnvelope.classList.add('show');
       otpCode.textContent = latestOtp;
       otpNote.textContent = 'ใช้ภายใน ' + latestExpireMinutes + ' นาที';
 
-      showSoftAlert(
-        'บันทึกสิทธิ์จอนี้แล้ว',
-        'ระบบบันทึกเมลนี้กับจอนี้แล้ว หากมีคนอื่นใช้เมลเดียวกันและจอเดิม ระบบจะไม่ให้รับ OTP ซ้ำ',
-        '★'
-      );
+      softAlert.classList.remove('show');
 
       copyBtn.disabled = false;
       copyBtn.textContent = 'คัดลอก OTP';
 
-      updateStatus('พบ OTP แล้ว', 'ok');
+      updateStatus('พร้อมใช้งาน', 'ok');
       updateSecurityState('locked');
       updateSteps(true);
-      showToast('พบ OTP แล้ว');
+      showToast('คัดลอก OTP ได้เลย');
       launchConfetti();
       scrollToResult();
     }
@@ -2674,6 +2695,8 @@
       latestOtp = '';
 
       resultBox.style.display = 'block';
+      resultBox.classList.remove('otp-only');
+
       resultIcon.textContent = locked ? '♥' : '♡';
       resultTitle.textContent = isScreenLocked(res) ? 'เมลนี้รับรหัสจอนี้ไปแล้ว' : 'ยังไม่พบรหัส';
       resultMessage.textContent = msg;
@@ -2711,6 +2734,8 @@
       latestOtp = '';
 
       resultBox.style.display = 'block';
+      resultBox.classList.remove('otp-only');
+
       resultIcon.textContent = '♡';
       resultTitle.textContent = 'เกิดข้อผิดพลาด';
       resultMessage.textContent = message || 'กรุณาลองใหม่อีกครั้ง';
@@ -2734,10 +2759,14 @@
         resultBox.style.display = 'none';
       }
 
+      resultBox.classList.remove('otp-only');
       otpEnvelope.classList.remove('show');
       softAlert.classList.remove('show');
       otpCode.textContent = '------';
       requestIdBox.textContent = 'เลขอ้างอิง: -';
+      resultMessage.textContent = '-';
+      resultTitle.textContent = 'OTP';
+      resultIcon.textContent = '★';
 
       copyBtn.disabled = false;
       copyBtn.textContent = 'คัดลอก OTP';
@@ -2848,6 +2877,7 @@
         if (!isSubmitting) {
           submitBtn.disabled = false;
           submitText.textContent = 'รับรหัส';
+          validateForm();
         }
 
         return;
@@ -3355,27 +3385,6 @@
     /************************************************************
      * MESSAGE HELPERS
      ************************************************************/
-
-    function buildOtpFoundMessage(res) {
-      const lines = [
-        'พบรหัสแล้ว กรุณาคัดลอก OTP ไปใช้ล็อกอิน',
-        'ระบบบันทึกเมลนี้กับจอนี้แล้ว หากคนอื่นใช้เมลเดียวกันและจอเดิม ระบบจะไม่ให้รับซ้ำ'
-      ];
-
-      if (res.resultStatus) {
-        lines.push('สถานะ: ' + res.resultStatus);
-      }
-
-      if (res.thaiTime) {
-        lines.push('เวลาเมล: ' + res.thaiTime);
-      }
-
-      if (res.mailAgeMinutes !== undefined && res.mailAgeMinutes !== '') {
-        lines.push('อายุเมลประมาณ: ' + res.mailAgeMinutes + ' นาที');
-      }
-
-      return lines.join('\n');
-    }
 
     function getFriendlyMessage(res) {
       if (!res) {
