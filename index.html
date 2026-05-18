@@ -14,9 +14,9 @@
       --bg3: #f7f1ff;
       --bg4: #fffdf5;
 
-      --card: rgba(255,255,255,.84);
-      --card2: rgba(255,255,255,.64);
-      --glass: rgba(255,255,255,.54);
+      --card: rgba(255,255,255,.86);
+      --card2: rgba(255,255,255,.66);
+      --glass: rgba(255,255,255,.56);
 
       --text: #2a3156;
       --sub: rgba(42,49,86,.70);
@@ -40,6 +40,35 @@
       --border2: rgba(255,255,255,.82);
       --shadow: 0 28px 76px rgba(106,78,150,.16);
       --shadow2: 0 18px 46px rgba(255,139,210,.14);
+    }
+
+    body.theme-night {
+      --bg1: #171432;
+      --bg2: #111c3f;
+      --bg3: #21143a;
+      --bg4: #151a35;
+
+      --card: rgba(25,25,56,.78);
+      --card2: rgba(31,31,69,.68);
+      --glass: rgba(255,255,255,.08);
+
+      --text: #f8f6ff;
+      --sub: rgba(248,246,255,.72);
+      --muted: rgba(248,246,255,.50);
+
+      --pink: #ff9ddd;
+      --pink2: #ffc6ec;
+      --pink3: rgba(255,157,221,.10);
+      --blue: #76c8ff;
+      --blue2: #7aa0ff;
+      --purple: #b9adff;
+      --purple2: rgba(185,173,255,.12);
+      --yellow: #ffe98e;
+      --cream: rgba(255,247,216,.13);
+      --border: rgba(255,157,221,.22);
+      --border2: rgba(255,255,255,.16);
+      --shadow: 0 28px 86px rgba(0,0,0,.32);
+      --shadow2: 0 18px 46px rgba(255,157,221,.12);
     }
 
     * {
@@ -72,7 +101,7 @@
       appearance: none;
       border: 0;
       cursor: pointer;
-      transition: transform .16s ease, box-shadow .16s ease, opacity .16s ease, background .16s ease;
+      transition: transform .16s ease, box-shadow .16s ease, opacity .16s ease, background .16s ease, border-color .16s ease;
     }
 
     button:active {
@@ -100,6 +129,15 @@
         linear-gradient(135deg, var(--bg1) 0%, var(--bg2) 48%, var(--bg3) 100%);
     }
 
+    body.theme-night .page {
+      background:
+        radial-gradient(circle at 12% 8%, rgba(255,157,221,.18), transparent 30%),
+        radial-gradient(circle at 88% 10%, rgba(118,200,255,.18), transparent 31%),
+        radial-gradient(circle at 18% 82%, rgba(255,233,142,.12), transparent 34%),
+        radial-gradient(circle at 78% 88%, rgba(185,173,255,.18), transparent 38%),
+        linear-gradient(135deg, var(--bg1) 0%, var(--bg2) 48%, var(--bg3) 100%);
+    }
+
     .page:before {
       content: "";
       position: absolute;
@@ -112,6 +150,14 @@
         radial-gradient(circle, rgba(105,189,255,.22) 0 1.2px, transparent 2.2px);
       background-size: 38px 38px, 66px 66px, 92px 92px;
       mask-image: linear-gradient(to bottom, rgba(0,0,0,.98), rgba(0,0,0,.58), transparent 94%);
+    }
+
+    body.theme-night .page:before {
+      opacity: .35;
+      background-image:
+        radial-gradient(circle, rgba(255,255,255,.34) 0 1.4px, transparent 2.2px),
+        radial-gradient(circle, rgba(255,157,221,.20) 0 1.2px, transparent 2.2px),
+        radial-gradient(circle, rgba(118,200,255,.18) 0 1.2px, transparent 2.2px);
     }
 
     .soft-shape {
@@ -180,6 +226,14 @@
       color: rgba(255,139,210,.86);
     }
 
+    body.theme-night .float.star {
+      color: rgba(255,255,255,.58);
+    }
+
+    body.theme-night .float.heart {
+      color: rgba(255,157,221,.72);
+    }
+
     .float.bubble {
       width: 28px;
       height: 28px;
@@ -187,6 +241,11 @@
       background: rgba(255,255,255,.52);
       border: 1px solid rgba(255,255,255,.72);
       box-shadow: inset 0 1px 0 rgba(255,255,255,.9), 0 10px 24px rgba(105,189,255,.12);
+    }
+
+    body.theme-night .float.bubble {
+      background: rgba(255,255,255,.10);
+      border-color: rgba(255,255,255,.15);
     }
 
     .float.f1 { left: 8%; top: 14%; font-size: 24px; }
@@ -285,6 +344,12 @@
       backdrop-filter: blur(24px);
     }
 
+    body.theme-night .hero-card {
+      background:
+        radial-gradient(circle at 12% 0%, rgba(255,255,255,.12), transparent 34%),
+        linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.045));
+    }
+
     .hero-card:before {
       content: "";
       position: absolute;
@@ -319,6 +384,12 @@
       font-size: 12px;
       font-weight: 1000;
       box-shadow: inset 0 1px 0 rgba(255,255,255,.56);
+    }
+
+    body.theme-night .badge {
+      color: var(--pink2);
+      background: rgba(255,157,221,.11);
+      border-color: rgba(255,157,221,.18);
     }
 
     .badge:before {
@@ -366,6 +437,11 @@
       box-shadow: 0 10px 26px rgba(255,139,210,.09);
     }
 
+    body.theme-night .mini-ribbon {
+      background: rgba(255,255,255,.07);
+      border-color: rgba(255,255,255,.12);
+    }
+
     .mini-ribbon:before {
       content: "♥";
       color: var(--pink);
@@ -389,6 +465,13 @@
       box-shadow: 0 18px 48px rgba(100,80,150,.10);
       position: relative;
       overflow: hidden;
+    }
+
+    body.theme-night .info-card {
+      background:
+        radial-gradient(circle at 0% 0%, rgba(255,255,255,.11), transparent 40%),
+        rgba(255,255,255,.055);
+      border-color: rgba(255,255,255,.12);
     }
 
     .info-card:before {
@@ -461,6 +544,13 @@
       backdrop-filter: blur(26px);
     }
 
+    body.theme-night .app-card {
+      background:
+        radial-gradient(circle at 8% 0%, rgba(255,255,255,.11), transparent 38%),
+        linear-gradient(180deg, rgba(255,255,255,.095), rgba(255,255,255,.045));
+      border-color: rgba(255,255,255,.14);
+    }
+
     .app-card:before {
       content: "";
       position: absolute;
@@ -495,6 +585,11 @@
       z-index: 1;
     }
 
+    body.theme-night .app-top {
+      background: rgba(255,255,255,.065);
+      border-color: rgba(255,255,255,.12);
+    }
+
     .app-top h2 {
       margin: 0;
       font-size: 19px;
@@ -522,8 +617,85 @@
       box-shadow: 0 10px 20px rgba(255,139,210,.18);
     }
 
+    .stepper {
+      margin-top: 12px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step {
+      min-height: 54px;
+      padding: 9px 8px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.54);
+      border: 1px solid rgba(255,255,255,.72);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow: hidden;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+    }
+
+    body.theme-night .step {
+      background: rgba(255,255,255,.055);
+      border-color: rgba(255,255,255,.10);
+    }
+
+    .step.active {
+      background: linear-gradient(135deg, rgba(255,139,210,.18), rgba(105,189,255,.14));
+      border-color: rgba(255,139,210,.22);
+      transform: translateY(-1px);
+    }
+
+    .step.done {
+      background: linear-gradient(135deg, rgba(73,201,148,.18), rgba(105,189,255,.12));
+      border-color: rgba(73,201,148,.22);
+    }
+
+    .step-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--pink), var(--purple));
+      font-size: 12px;
+      font-weight: 1000;
+      box-shadow: 0 8px 16px rgba(255,139,210,.13);
+    }
+
+    .step.done .step-num {
+      background: linear-gradient(135deg, var(--green), var(--blue));
+    }
+
+    .step-text {
+      min-width: 0;
+    }
+
+    .step-text strong {
+      display: block;
+      font-size: 12px;
+      line-height: 1.25;
+      font-weight: 1000;
+    }
+
+    .step-text span {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.25;
+      font-weight: 800;
+    }
+
     .hint,
-    .safe-hint {
+    .safe-hint,
+    .security-mini {
       margin-top: 11px;
       padding: 12px 13px;
       border-radius: 24px;
@@ -541,6 +713,11 @@
       border: 1px solid rgba(255,255,255,.74);
     }
 
+    body.theme-night .hint {
+      background: rgba(255,255,255,.055);
+      border-color: rgba(255,255,255,.11);
+    }
+
     .hint:before {
       content: "♡";
       color: var(--pink);
@@ -554,11 +731,67 @@
       border: 1px solid rgba(255,173,66,.24);
     }
 
+    body.theme-night .safe-hint {
+      color: var(--yellow);
+      background: rgba(255,233,142,.10);
+      border-color: rgba(255,233,142,.16);
+    }
+
     .safe-hint:before {
       content: "★";
       color: var(--orange);
       font-weight: 1000;
       margin-right: 6px;
+    }
+
+    .security-mini {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      color: var(--sub);
+      background: rgba(255,255,255,.50);
+      border: 1px solid rgba(255,255,255,.72);
+    }
+
+    body.theme-night .security-mini {
+      background: rgba(255,255,255,.055);
+      border-color: rgba(255,255,255,.11);
+    }
+
+    .security-left {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .security-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--pink), var(--purple));
+      flex: 0 0 auto;
+      font-size: 14px;
+      font-weight: 1000;
+    }
+
+    .security-state {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .security-mini.locked .security-icon {
+      background: linear-gradient(135deg, var(--green), var(--blue));
+    }
+
+    .security-mini.locked .security-state {
+      color: var(--green);
     }
 
     .form {
@@ -622,9 +855,18 @@
       background: rgba(255,139,210,.12);
     }
 
+    body.theme-night .req {
+      color: var(--pink2);
+      background: rgba(255,157,221,.10);
+    }
+
     .opt {
       color: var(--muted);
       background: rgba(255,255,255,.60);
+    }
+
+    body.theme-night .opt {
+      background: rgba(255,255,255,.08);
     }
 
     input,
@@ -643,6 +885,13 @@
       box-shadow: inset 0 1px 0 rgba(255,255,255,.75);
     }
 
+    body.theme-night input,
+    body.theme-night textarea {
+      background: rgba(255,255,255,.08);
+      border-color: rgba(255,255,255,.13);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
+    }
+
     input {
       min-height: 56px;
     }
@@ -656,6 +905,11 @@
     textarea::placeholder {
       color: rgba(42,49,86,.36);
       font-weight: 600;
+    }
+
+    body.theme-night input::placeholder,
+    body.theme-night textarea::placeholder {
+      color: rgba(248,246,255,.38);
     }
 
     input:focus,
@@ -677,8 +931,16 @@
       color: #189263;
     }
 
+    body.theme-night .validation.ok {
+      color: #77e8bb;
+    }
+
     .validation.bad {
       color: #d84262;
+    }
+
+    body.theme-night .validation.bad {
+      color: #ff9dae;
     }
 
     .chips {
@@ -697,6 +959,11 @@
       font-size: 12px;
       font-weight: 900;
       box-shadow: inset 0 1px 0 rgba(255,255,255,.72);
+    }
+
+    body.theme-night .chip {
+      background: rgba(255,255,255,.07);
+      border-color: rgba(255,255,255,.12);
     }
 
     .chip:before {
@@ -732,6 +999,13 @@
       place-items: center;
       padding: 8px 4px;
       box-shadow: inset 0 1px 0 rgba(255,255,255,.75);
+      position: relative;
+      overflow: visible;
+    }
+
+    body.theme-night .screen-btn {
+      background: rgba(255,255,255,.07);
+      border-color: rgba(255,255,255,.12);
     }
 
     .screen-btn strong {
@@ -758,6 +1032,25 @@
 
     .screen-btn.selected span {
       color: rgba(255,255,255,.82);
+    }
+
+    .screen-btn.pop-select:after {
+      content: "♥";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      color: var(--pink);
+      font-size: 16px;
+      font-weight: 1000;
+      pointer-events: none;
+      animation: screenPop .75s ease-out forwards;
+      text-shadow: 0 8px 20px rgba(255,139,210,.22);
+    }
+
+    @keyframes screenPop {
+      0% { opacity: 0; transform: translate(-50%,-50%) scale(.65); }
+      25% { opacity: 1; }
+      100% { opacity: 0; transform: translate(-50%,-170%) scale(1.45) rotate(18deg); }
     }
 
     .note-count {
@@ -789,6 +1082,8 @@
       text-align: center;
       font-size: 15px;
       font-weight: 1000;
+      position: relative;
+      overflow: hidden;
     }
 
     .btn-primary {
@@ -803,11 +1098,31 @@
       content: "★";
     }
 
+    .btn-primary.ready-shine:after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.32), transparent);
+      transform: translateX(-120%);
+      animation: shine 2.6s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes shine {
+      0%, 55% { transform: translateX(-120%); }
+      100% { transform: translateX(120%); }
+    }
+
     .btn-secondary {
       color: var(--text);
       background: rgba(255,255,255,.66);
       border: 1px solid rgba(255,139,210,.14);
       box-shadow: inset 0 1px 0 rgba(255,255,255,.72);
+    }
+
+    body.theme-night .btn-secondary {
+      background: rgba(255,255,255,.07);
+      border-color: rgba(255,255,255,.12);
     }
 
     .btn-secondary:before {
@@ -826,6 +1141,12 @@
       content: "★";
     }
 
+    .btn-copy.copied {
+      background:
+        radial-gradient(circle at 18% 0%, rgba(255,255,255,.30), transparent 34%),
+        linear-gradient(135deg, var(--green), var(--blue));
+    }
+
     .status {
       margin-top: 12px;
       display: grid;
@@ -837,6 +1158,11 @@
       position: relative;
       z-index: 1;
       box-shadow: inset 0 1px 0 rgba(255,255,255,.72);
+    }
+
+    body.theme-night .status {
+      background: rgba(255,255,255,.055);
+      border-color: rgba(255,255,255,.11);
     }
 
     .status-line {
@@ -881,7 +1207,8 @@
       box-shadow: 0 0 0 5px rgba(255,110,145,.12);
     }
 
-    .cooldown {
+    .cooldown,
+    .loading-progress {
       display: none;
       height: 8px;
       overflow: hidden;
@@ -889,12 +1216,24 @@
       background: rgba(255,139,210,.13);
     }
 
-    .cooldown-fill {
+    .cooldown-fill,
+    .loading-progress-fill {
       width: 0%;
       height: 100%;
       border-radius: inherit;
       background: linear-gradient(90deg, var(--pink), var(--purple), var(--blue));
       transition: width .2s ease;
+    }
+
+    .loading-progress-fill {
+      width: 24%;
+      animation: progressFlow 1.1s ease-in-out infinite;
+    }
+
+    @keyframes progressFlow {
+      0% { transform: translateX(-80%); width: 24%; }
+      50% { width: 42%; }
+      100% { transform: translateX(420%); width: 24%; }
     }
 
     .privacy {
@@ -923,6 +1262,13 @@
       z-index: 1;
       overflow: hidden;
       box-shadow: inset 0 1px 0 rgba(255,255,255,.74);
+    }
+
+    body.theme-night .result {
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255,255,255,.12), transparent 52%),
+        linear-gradient(135deg, rgba(255,157,221,.12), rgba(118,200,255,.10));
+      border-color: rgba(255,255,255,.12);
     }
 
     .result:before {
@@ -1006,17 +1352,78 @@
       z-index: 1;
     }
 
-    .otp-box {
+    body.theme-night .request-id {
+      background: rgba(255,255,255,.07);
+      border-color: rgba(255,255,255,.12);
+    }
+
+    .otp-envelope {
       display: none;
       margin: 13px auto 0;
-      max-width: 390px;
-      padding: 14px;
-      border-radius: 28px;
-      background: rgba(255,255,255,.74);
-      border: 1px solid rgba(255,139,210,.16);
+      max-width: 400px;
+      perspective: 900px;
       position: relative;
+      z-index: 2;
+    }
+
+    .otp-envelope.show {
+      display: block;
+    }
+
+    .envelope-shell {
+      position: relative;
+      padding-top: 24px;
+      animation: envelopeIn .42s ease both;
+    }
+
+    @keyframes envelopeIn {
+      from { opacity: 0; transform: translateY(12px) scale(.96); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .envelope-flap {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      top: 0;
+      height: 54px;
+      border-radius: 24px 24px 10px 10px;
+      background: linear-gradient(135deg, rgba(255,139,210,.34), rgba(165,148,255,.28));
+      border: 1px solid rgba(255,255,255,.70);
+      transform-origin: bottom center;
+      animation: flapOpen .8s ease both;
       z-index: 1;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.76);
+    }
+
+    body.theme-night .envelope-flap {
+      border-color: rgba(255,255,255,.12);
+    }
+
+    @keyframes flapOpen {
+      0% { transform: rotateX(0); }
+      55% { transform: rotateX(-70deg); }
+      100% { transform: rotateX(-58deg); }
+    }
+
+    .otp-box {
+      position: relative;
+      padding: 16px 14px 15px;
+      border-radius: 28px;
+      background: rgba(255,255,255,.76);
+      border: 1px solid rgba(255,139,210,.16);
+      z-index: 2;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.76), 0 16px 30px rgba(255,139,210,.12);
+      animation: cardRise .7s ease both;
+    }
+
+    body.theme-night .otp-box {
+      background: rgba(255,255,255,.075);
+      border-color: rgba(255,255,255,.12);
+    }
+
+    @keyframes cardRise {
+      from { transform: translateY(14px); }
+      to { transform: translateY(0); }
     }
 
     .otp-label {
@@ -1043,25 +1450,61 @@
       font-weight: 700;
     }
 
-    .lock-box {
+    .soft-alert {
       display: none;
       margin-top: 12px;
-      padding: 12px;
-      border-radius: 24px;
-      color: #8a5a00;
-      background: rgba(255,231,138,.35);
-      border: 1px solid rgba(255,173,66,.24);
+      padding: 13px;
+      border-radius: 25px;
+      text-align: left;
       font-size: 12px;
-      line-height: 1.6;
+      line-height: 1.65;
       font-weight: 850;
       position: relative;
       z-index: 1;
+      background: rgba(255,231,138,.35);
+      border: 1px solid rgba(255,173,66,.24);
+      color: #8a5a00;
     }
 
-    .lock-box:before {
-      content: "★";
-      color: var(--orange);
-      margin-right: 6px;
+    body.theme-night .soft-alert {
+      color: var(--yellow);
+      background: rgba(255,233,142,.10);
+      border-color: rgba(255,233,142,.16);
+    }
+
+    .soft-alert.show {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      animation: pop .24s ease both;
+    }
+
+    .soft-alert-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--orange), var(--pink));
+      flex: 0 0 auto;
+      font-size: 14px;
+      font-weight: 1000;
+    }
+
+    .soft-alert strong {
+      display: block;
+      color: inherit;
+      font-size: 13px;
+      line-height: 1.35;
+      font-weight: 1000;
+    }
+
+    .soft-alert span {
+      display: block;
+      margin-top: 4px;
+      color: inherit;
+      opacity: .86;
     }
 
     .result-actions {
@@ -1091,6 +1534,11 @@
       position: relative;
       overflow: hidden;
       z-index: 1;
+    }
+
+    body.theme-night .howto {
+      background: rgba(255,255,255,.055);
+      border-color: rgba(255,255,255,.11);
     }
 
     .howto:before {
@@ -1160,8 +1608,12 @@
       display: grid;
     }
 
+    body.theme-night .loading {
+      background: rgba(0,0,0,.38);
+    }
+
     .loading-card {
-      width: min(350px, 100%);
+      width: min(370px, 100%);
       padding: 22px;
       border-radius: 36px;
       text-align: center;
@@ -1170,6 +1622,11 @@
       box-shadow: var(--shadow);
       position: relative;
       overflow: hidden;
+    }
+
+    body.theme-night .loading-card {
+      background: rgba(30,28,63,.94);
+      border-color: rgba(255,255,255,.13);
     }
 
     .loading-card:before {
@@ -1216,6 +1673,54 @@
       font-weight: 750;
     }
 
+    .loading-steps {
+      margin-top: 14px;
+      display: grid;
+      gap: 7px;
+      text-align: left;
+    }
+
+    .loading-step {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+    .loading-step-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      color: var(--white);
+      background: rgba(42,49,86,.18);
+      font-size: 10px;
+      font-weight: 1000;
+    }
+
+    body.theme-night .loading-step-dot {
+      background: rgba(255,255,255,.10);
+    }
+
+    .loading-step.active {
+      color: var(--text);
+    }
+
+    .loading-step.active .loading-step-dot {
+      background: linear-gradient(135deg, var(--pink), var(--purple));
+    }
+
+    .loading-step.done {
+      color: var(--green);
+    }
+
+    .loading-step.done .loading-step-dot {
+      background: linear-gradient(135deg, var(--green), var(--blue));
+    }
+
     .toast {
       position: fixed;
       left: 50%;
@@ -1241,7 +1746,8 @@
       transform: translateX(-50%) translateY(0);
     }
 
-    .confetti {
+    .confetti,
+    .micro-burst {
       position: fixed;
       inset: 0;
       z-index: 95;
@@ -1260,6 +1766,21 @@
       0% { opacity: 0; transform: translate3d(0,0,0) scale(.8) rotate(0); }
       12% { opacity: 1; }
       100% { opacity: 0; transform: translate3d(var(--x), -240px, 0) scale(1.25) rotate(200deg); }
+    }
+
+    .burst-piece {
+      position: fixed;
+      z-index: 96;
+      font-size: 15px;
+      font-weight: 1000;
+      pointer-events: none;
+      animation: burstPiece .78s ease-out forwards;
+    }
+
+    @keyframes burstPiece {
+      0% { opacity: 0; transform: translate3d(0,0,0) scale(.65) rotate(0); }
+      15% { opacity: 1; }
+      100% { opacity: 0; transform: translate3d(var(--bx), var(--by), 0) scale(1.25) rotate(160deg); }
     }
 
     @media (max-width: 920px) {
@@ -1371,9 +1892,27 @@
         display: none;
       }
 
+      .stepper {
+        grid-template-columns: 1fr;
+      }
+
+      .step {
+        min-height: 48px;
+      }
+
       .hint,
-      .safe-hint {
+      .safe-hint,
+      .security-mini {
         font-size: 11px;
+      }
+
+      .security-mini {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .security-state {
+        white-space: normal;
       }
 
       input {
@@ -1493,12 +2032,47 @@
           <div class="pill">★ Disney+</div>
         </div>
 
+        <div class="stepper" id="stepper">
+          <div class="step active" id="stepInfo">
+            <div class="step-num">1</div>
+            <div class="step-text">
+              <strong>กรอกข้อมูล</strong>
+              <span>ชื่อ LINE และอีเมล</span>
+            </div>
+          </div>
+          <div class="step" id="stepScreen">
+            <div class="step-num">2</div>
+            <div class="step-text">
+              <strong>เลือกจอ</strong>
+              <span>จอ / โปรไฟล์ 1–6</span>
+            </div>
+          </div>
+          <div class="step" id="stepOtp">
+            <div class="step-num">3</div>
+            <div class="step-text">
+              <strong>รับรหัส</strong>
+              <span>คัดลอก OTP ไปใช้</span>
+            </div>
+          </div>
+        </div>
+
         <div class="hint">
           หลังได้ OTP แล้ว ให้คัดลอกรหัสไปใส่ใน Disney+
         </div>
 
         <div class="safe-hint">
           เมื่อเมลนี้ได้รับ OTP ของจอนี้แล้ว ระบบจะบันทึกว่าเมลนี้ใช้สิทธิ์รับรหัสของจอนี้แล้ว คนอื่นใช้เมลเดียวกันกับจอเดิมก็รับซ้ำไม่ได้
+        </div>
+
+        <div class="security-mini" id="securityMini">
+          <div class="security-left">
+            <div class="security-icon">★</div>
+            <div>
+              <strong id="securityTitle">ล็อกด้วยอีเมล + จอ</strong>
+              <div id="securityDetail">พร้อมป้องกันการรับรหัสซ้ำของจอเดิม</div>
+            </div>
+          </div>
+          <div class="security-state" id="securityState">รอรับรหัส</div>
         </div>
 
         <div class="form">
@@ -1580,6 +2154,9 @@
           <div class="cooldown" id="cooldown">
             <div class="cooldown-fill" id="cooldownFill"></div>
           </div>
+          <div class="loading-progress" id="loadingProgress">
+            <div class="loading-progress-fill"></div>
+          </div>
         </div>
 
         <div class="privacy">
@@ -1592,14 +2169,23 @@
           <div class="result-message" id="resultMessage">-</div>
           <div class="request-id" id="requestIdBox">เลขอ้างอิง: -</div>
 
-          <div class="otp-box" id="otpBox">
-            <div class="otp-label">OTP</div>
-            <div class="otp-code" id="otpCode">------</div>
-            <div class="otp-note" id="otpNote">ใช้ภายใน 15 นาที</div>
+          <div class="otp-envelope" id="otpEnvelope">
+            <div class="envelope-shell">
+              <div class="envelope-flap"></div>
+              <div class="otp-box">
+                <div class="otp-label">OTP</div>
+                <div class="otp-code" id="otpCode">------</div>
+                <div class="otp-note" id="otpNote">ใช้ภายใน 15 นาที</div>
+              </div>
+            </div>
           </div>
 
-          <div class="lock-box" id="lockBox">
-            ระบบบันทึกเมลนี้กับจอนี้แล้ว หากมีคนอื่นใช้เมลเดียวกันและจอเดิม ระบบจะไม่ให้รับ OTP ซ้ำ
+          <div class="soft-alert" id="softAlert">
+            <div class="soft-alert-icon" id="softAlertIcon">★</div>
+            <div>
+              <strong id="softAlertTitle">แจ้งเตือน</strong>
+              <span id="softAlertText">-</span>
+            </div>
           </div>
 
           <div class="result-actions">
@@ -1648,13 +2234,37 @@
       <div class="loading-icon">♥</div>
       <div class="loading-title">กำลังหารหัส OTP</div>
       <div class="loading-message" id="loadingMessage">กำลังตรวจสอบข้อมูล...</div>
+
+      <div class="loading-steps">
+        <div class="loading-step active" id="loadStep1">
+          <div class="loading-step-dot">1</div>
+          <div>ตรวจสอบข้อมูล</div>
+        </div>
+        <div class="loading-step" id="loadStep2">
+          <div class="loading-step-dot">2</div>
+          <div>ค้นหาเมลล่าสุด</div>
+        </div>
+        <div class="loading-step" id="loadStep3">
+          <div class="loading-step-dot">3</div>
+          <div>ดึงรหัส OTP</div>
+        </div>
+        <div class="loading-step" id="loadStep4">
+          <div class="loading-step-dot">4</div>
+          <div>เตรียมแสดงผล</div>
+        </div>
+      </div>
     </div>
   </div>
 
   <div class="confetti" id="confetti"></div>
+  <div class="micro-burst" id="microBurst"></div>
   <div class="toast" id="toast">เรียบร้อย</div>
 
   <script>
+    /************************************************************
+     * CONFIG
+     ************************************************************/
+
     const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwe24EQaOFwra5jexOMg7VY5yskHBlbnqEW2E2VP35IMVfJERqY3tge-YHJt-iKvpF8kA/exec';
 
     const WEB_TOKEN = '';
@@ -1663,7 +2273,11 @@
     const AUTO_RETRY_SECONDS = 3;
     const MAX_AUTO_RETRY = 3;
     const COOLDOWN_SECONDS = 4;
-    const DRAFT_KEY = 'starHeartOtpEmailScreenBrandLockDraftV4';
+    const DRAFT_KEY = 'starHeartOtpEmailScreenBrandLockDraftV5';
+
+    /************************************************************
+     * STATE
+     ************************************************************/
 
     let selectedScreen = '';
     let selectedDevice = '';
@@ -1674,11 +2288,17 @@
     let isSubmitting = false;
     let toastTimer = null;
     let loadingTimer = null;
+    let loadingStepTimer = null;
+    let loadingStepIndex = 0;
     let autoRetryTimer = null;
     let autoRetryCount = 0;
     let autoRetryLeft = AUTO_RETRY_SECONDS;
     let cooldownTimer = null;
     let cooldownEndAt = 0;
+
+    /************************************************************
+     * ELEMENTS
+     ************************************************************/
 
     const customerNameInput = document.getElementById('customerName');
     const emailInput = document.getElementById('email');
@@ -1700,10 +2320,14 @@
     const resultMessage = document.getElementById('resultMessage');
     const requestIdBox = document.getElementById('requestIdBox');
 
-    const otpBox = document.getElementById('otpBox');
+    const otpEnvelope = document.getElementById('otpEnvelope');
     const otpCode = document.getElementById('otpCode');
     const otpNote = document.getElementById('otpNote');
-    const lockBox = document.getElementById('lockBox');
+
+    const softAlert = document.getElementById('softAlert');
+    const softAlertIcon = document.getElementById('softAlertIcon');
+    const softAlertTitle = document.getElementById('softAlertTitle');
+    const softAlertText = document.getElementById('softAlertText');
 
     const copyBtn = document.getElementById('copyBtn');
 
@@ -1713,23 +2337,48 @@
 
     const cooldown = document.getElementById('cooldown');
     const cooldownFill = document.getElementById('cooldownFill');
+    const loadingProgress = document.getElementById('loadingProgress');
 
     const loading = document.getElementById('loading');
     const loadingMessage = document.getElementById('loadingMessage');
+
+    const loadStep1 = document.getElementById('loadStep1');
+    const loadStep2 = document.getElementById('loadStep2');
+    const loadStep3 = document.getElementById('loadStep3');
+    const loadStep4 = document.getElementById('loadStep4');
+    const loadingSteps = [loadStep1, loadStep2, loadStep3, loadStep4];
+
     const toast = document.getElementById('toast');
     const confetti = document.getElementById('confetti');
+    const microBurst = document.getElementById('microBurst');
 
     const screenButtons = Array.from(document.querySelectorAll('.screen-btn'));
     const chipButtons = Array.from(document.querySelectorAll('.chip'));
 
+    const stepInfo = document.getElementById('stepInfo');
+    const stepScreen = document.getElementById('stepScreen');
+    const stepOtp = document.getElementById('stepOtp');
+
+    const securityMini = document.getElementById('securityMini');
+    const securityTitle = document.getElementById('securityTitle');
+    const securityDetail = document.getElementById('securityDetail');
+    const securityState = document.getElementById('securityState');
+
+    /************************************************************
+     * INIT
+     ************************************************************/
+
     init();
 
     function init() {
+      applyAutoTheme();
       restoreDraft();
       updateNoteCount();
       validateForm();
       bindEvents();
       updateStatus('พร้อมรับรหัส', 'idle');
+      updateSteps();
+      updateSecurityState('ready');
 
       setTimeout(function() {
         try {
@@ -1744,6 +2393,7 @@
           if (input === customerNoteInput) updateNoteCount();
           validateForm();
           saveDraft();
+          updateSteps();
         });
 
         input.addEventListener('keydown', function(e) {
@@ -1752,7 +2402,10 @@
           }
         });
 
-        input.addEventListener('blur', validateForm);
+        input.addEventListener('blur', function() {
+          validateForm();
+          updateSteps();
+        });
       });
 
       screenButtons.forEach(function(btn) {
@@ -1764,9 +2417,15 @@
           });
 
           btn.classList.add('selected');
+          btn.classList.remove('pop-select');
+          void btn.offsetWidth;
+          btn.classList.add('pop-select');
+
           validateForm();
           saveDraft();
+          updateSteps();
           showToast('เลือกจอ ' + selectedScreen + ' แล้ว');
+          burstAtElement(btn);
         });
       });
 
@@ -1782,7 +2441,9 @@
           btn.classList.add('selected');
           validateForm();
           saveDraft();
+          updateSteps();
           showToast('เลือก ' + selectedDevice + ' แล้ว');
+          burstAtElement(btn);
         });
       });
 
@@ -1800,7 +2461,17 @@
           saveDraft();
         } catch (err) {}
       });
+
+      document.addEventListener('visibilitychange', function() {
+        if (!document.hidden) {
+          applyAutoTheme();
+        }
+      });
     }
+
+    /************************************************************
+     * MAIN ACTIONS
+     ************************************************************/
 
     function submitRequest(options) {
       options = options || {};
@@ -1817,6 +2488,7 @@
 
       if (!validateForm(true)) {
         showToast('กรอกข้อมูลให้ครบก่อน');
+        updateSteps();
         return;
       }
 
@@ -1832,6 +2504,7 @@
 
       setLoading(true, options.autoRetry ? 'กำลังลองค้นหา OTP อีกครั้ง...' : 'กำลังค้นหา OTP ล่าสุด...');
       updateStatus(options.autoRetry ? 'กำลังลองใหม่...' : 'กำลังรับรหัส...', 'idle');
+      updateSecurityState('checking');
       startCooldown(COOLDOWN_SECONDS);
       markLastRequest();
 
@@ -1868,6 +2541,7 @@
     function requestNewOtp() {
       if (!validateForm(true)) {
         showToast('กรอกข้อมูลให้ครบก่อน');
+        updateSteps();
         return;
       }
 
@@ -1890,9 +2564,12 @@
         if (ok) {
           showToast('คัดลอก OTP แล้ว');
           copyBtn.textContent = 'คัดลอกแล้ว ✓';
+          copyBtn.classList.add('copied');
+          burstAtElement(copyBtn);
 
           setTimeout(function() {
             copyBtn.textContent = 'คัดลอก OTP';
+            copyBtn.classList.remove('copied');
           }, 1800);
         } else {
           showToast('คัดลอกไม่ได้');
@@ -1903,6 +2580,8 @@
     function editInfo() {
       resultBox.style.display = 'none';
       updateStatus('แก้ไขข้อมูลได้เลย', 'idle');
+      updateSecurityState('ready');
+      updateSteps();
 
       try {
         document.getElementById('app').scrollIntoView({
@@ -1942,6 +2621,8 @@
       resetResult(true);
       updateNoteCount();
       validateForm();
+      updateSteps();
+      updateSecurityState('ready');
       updateStatus('ล้างข้อมูลแล้ว', 'idle');
       showToast('ล้างข้อมูลแล้ว');
 
@@ -1949,6 +2630,10 @@
         customerNameInput.focus();
       } catch (err) {}
     }
+
+    /************************************************************
+     * RESPONSE HANDLERS
+     ************************************************************/
 
     function handleOtpFound(res) {
       latestOtp = String(res.otp || '').replace(/[^\d]/g, '');
@@ -1961,15 +2646,22 @@
       resultMessage.textContent = buildOtpFoundMessage(res);
       requestIdBox.textContent = 'เลขอ้างอิง: ' + latestRequestId;
 
-      otpBox.style.display = 'block';
+      otpEnvelope.classList.add('show');
       otpCode.textContent = latestOtp;
       otpNote.textContent = 'ใช้ภายใน ' + latestExpireMinutes + ' นาที';
 
-      lockBox.style.display = 'block';
+      showSoftAlert(
+        'บันทึกสิทธิ์จอนี้แล้ว',
+        'ระบบบันทึกเมลนี้กับจอนี้แล้ว หากมีคนอื่นใช้เมลเดียวกันและจอเดิม ระบบจะไม่ให้รับ OTP ซ้ำ',
+        '★'
+      );
+
       copyBtn.disabled = false;
       copyBtn.textContent = 'คัดลอก OTP';
 
       updateStatus('พบ OTP แล้ว', 'ok');
+      updateSecurityState('locked');
+      updateSteps(true);
       showToast('พบ OTP แล้ว');
       launchConfetti();
       scrollToResult();
@@ -1977,18 +2669,35 @@
 
     function handleOtpNotFound(res) {
       const msg = getFriendlyMessage(res);
+      const locked = isScreenLocked(res) || isIssuedLocked(res);
 
       latestOtp = '';
+
       resultBox.style.display = 'block';
-      resultIcon.textContent = '♡';
+      resultIcon.textContent = locked ? '♥' : '♡';
       resultTitle.textContent = isScreenLocked(res) ? 'เมลนี้รับรหัสจอนี้ไปแล้ว' : 'ยังไม่พบรหัส';
       resultMessage.textContent = msg;
       requestIdBox.textContent = 'เลขอ้างอิง: ' + (res && (res.requestId || res.id) ? (res.requestId || res.id) : '-');
 
-      otpBox.style.display = 'none';
-      lockBox.style.display = isScreenLocked(res) || isIssuedLocked(res) ? 'block' : 'none';
+      otpEnvelope.classList.remove('show');
 
-      updateStatus(msg, isScreenLocked(res) || isIssuedLocked(res) ? 'bad' : 'warn');
+      if (locked) {
+        showSoftAlert(
+          isScreenLocked(res) ? 'เมลนี้เคยรับรหัสจอนี้แล้ว' : 'จอนี้เพิ่งรับรหัสไปแล้ว',
+          msg,
+          '♥'
+        );
+        updateSecurityState('blocked');
+      } else {
+        showSoftAlert(
+          'ยังไม่พบ OTP',
+          'หากเพิ่งกดส่งรหัสจาก Disney+ กรุณารอสักครู่ ระบบจะลองค้นหาให้อัตโนมัติ',
+          '♡'
+        );
+        updateSecurityState('waiting');
+      }
+
+      updateStatus(msg, locked ? 'bad' : 'warn');
       showToast(isScreenLocked(res) ? 'เมลนี้รับรหัสจอนี้ไปแล้ว' : 'ยังไม่พบ OTP');
 
       if (shouldAutoRetry(res)) {
@@ -2006,10 +2715,16 @@
       resultTitle.textContent = 'เกิดข้อผิดพลาด';
       resultMessage.textContent = message || 'กรุณาลองใหม่อีกครั้ง';
       requestIdBox.textContent = 'เลขอ้างอิง: -';
-      otpBox.style.display = 'none';
-      lockBox.style.display = 'none';
+      otpEnvelope.classList.remove('show');
+
+      showSoftAlert(
+        'ตรวจสอบอีกครั้ง',
+        message || 'กรุณาลองใหม่อีกครั้ง',
+        '♡'
+      );
 
       updateStatus(message || 'เกิดข้อผิดพลาด', 'bad');
+      updateSecurityState('ready');
       showToast(message || 'เกิดข้อผิดพลาด');
       scrollToResult();
     }
@@ -2019,14 +2734,26 @@
         resultBox.style.display = 'none';
       }
 
-      otpBox.style.display = 'none';
-      lockBox.style.display = 'none';
+      otpEnvelope.classList.remove('show');
+      softAlert.classList.remove('show');
       otpCode.textContent = '------';
       requestIdBox.textContent = 'เลขอ้างอิง: -';
 
       copyBtn.disabled = false;
       copyBtn.textContent = 'คัดลอก OTP';
+      copyBtn.classList.remove('copied');
     }
+
+    function showSoftAlert(title, text, icon) {
+      softAlertTitle.textContent = title || 'แจ้งเตือน';
+      softAlertText.textContent = text || '';
+      softAlertIcon.textContent = icon || '★';
+      softAlert.classList.add('show');
+    }
+
+    /************************************************************
+     * AUTO RETRY / COOLDOWN
+     ************************************************************/
 
     function shouldAutoRetry(res) {
       if (!res) return false;
@@ -2138,6 +2865,10 @@
       }
     }
 
+    /************************************************************
+     * REQUEST
+     ************************************************************/
+
     function buildBaseParams(action) {
       return {
         action: action,
@@ -2231,6 +2962,10 @@
       document.body.appendChild(script);
     }
 
+    /************************************************************
+     * VALIDATION / STEPS
+     ************************************************************/
+
     function validateForm(showFocus) {
       const name = customerNameInput.value.trim();
       const email = emailInput.value.trim();
@@ -2245,6 +2980,10 @@
       setValidation(emailValidation, emailOk, email ? (emailOk ? 'อีเมลถูกต้อง' : 'อีเมลไม่ถูกต้อง') : 'กรอกอีเมลก่อน');
       setValidation(deviceValidation, deviceOk, device ? (deviceOk ? 'อุปกรณ์ถูกต้อง' : 'ชื่ออุปกรณ์สั้นเกินไป') : 'เลือกหรือกรอกอุปกรณ์');
       setValidation(screenValidation, screenOk, screenOk ? 'เลือกจอ ' + selectedScreen + ' แล้ว' : 'เลือกจอ');
+
+      const ok = nameOk && emailOk && deviceOk && screenOk;
+
+      submitBtn.classList.toggle('ready-shine', ok && !isSubmitting && !isCooldownActive());
 
       if (showFocus) {
         if (!nameOk) {
@@ -2267,7 +3006,7 @@
         }
       }
 
-      return nameOk && emailOk && deviceOk && screenOk;
+      return ok;
     }
 
     function setValidation(el, ok, text) {
@@ -2281,13 +3020,49 @@
       }
     }
 
+    function updateSteps(otpDone) {
+      const name = customerNameInput.value.trim();
+      const email = emailInput.value.trim();
+      const device = deviceInput.value.trim();
+
+      const infoDone = name.length >= 2 && isEmail(email) && device.length >= 2;
+      const screenDone = !!selectedScreen;
+
+      [stepInfo, stepScreen, stepOtp].forEach(function(step) {
+        step.classList.remove('active', 'done');
+      });
+
+      if (infoDone) {
+        stepInfo.classList.add('done');
+      } else {
+        stepInfo.classList.add('active');
+      }
+
+      if (infoDone && screenDone) {
+        stepScreen.classList.add('done');
+      } else if (infoDone) {
+        stepScreen.classList.add('active');
+      }
+
+      if (otpDone) {
+        stepOtp.classList.add('done');
+      } else if (infoDone && screenDone) {
+        stepOtp.classList.add('active');
+      }
+    }
+
     function isEmail(value) {
       return /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(String(value || '').trim());
     }
 
+    /************************************************************
+     * LOADING / STATUS / SECURITY
+     ************************************************************/
+
     function setLoading(show, message) {
       if (show) {
         loading.classList.add('show');
+        loadingProgress.style.display = 'block';
         loadingMessage.textContent = message || 'กำลังตรวจสอบ...';
 
         submitBtn.disabled = true;
@@ -2311,17 +3086,57 @@
           loadingMessage.textContent = messages[i];
         }, 650);
 
+        startLoadingSteps();
         return;
       }
 
       loading.classList.remove('show');
+      loadingProgress.style.display = 'none';
 
       if (loadingTimer) {
         clearInterval(loadingTimer);
         loadingTimer = null;
       }
 
+      stopLoadingSteps();
       updateCooldown();
+    }
+
+    function startLoadingSteps() {
+      loadingStepIndex = 0;
+      renderLoadingSteps();
+
+      if (loadingStepTimer) {
+        clearInterval(loadingStepTimer);
+      }
+
+      loadingStepTimer = setInterval(function() {
+        loadingStepIndex = Math.min(loadingStepIndex + 1, loadingSteps.length - 1);
+        renderLoadingSteps();
+      }, 850);
+    }
+
+    function stopLoadingSteps() {
+      if (loadingStepTimer) {
+        clearInterval(loadingStepTimer);
+        loadingStepTimer = null;
+      }
+
+      loadingSteps.forEach(function(step) {
+        step.classList.remove('active', 'done');
+      });
+    }
+
+    function renderLoadingSteps() {
+      loadingSteps.forEach(function(step, index) {
+        step.classList.remove('active', 'done');
+
+        if (index < loadingStepIndex) {
+          step.classList.add('done');
+        } else if (index === loadingStepIndex) {
+          step.classList.add('active');
+        }
+      });
     }
 
     function updateStatus(text, type) {
@@ -2338,12 +3153,66 @@
       }
     }
 
+    function updateSecurityState(state) {
+      securityMini.classList.remove('locked');
+
+      if (state === 'locked') {
+        securityMini.classList.add('locked');
+        securityTitle.textContent = 'บันทึกสิทธิ์จอนี้แล้ว';
+        securityDetail.textContent = 'เมลนี้กับจอนี้จะรับรหัสซ้ำไม่ได้';
+        securityState.textContent = 'ล็อกแล้ว';
+        return;
+      }
+
+      if (state === 'blocked') {
+        securityTitle.textContent = 'เมลนี้เคยรับจอนี้แล้ว';
+        securityDetail.textContent = 'กรุณาติดต่อแอดมินหากต้องการตรวจสอบ';
+        securityState.textContent = 'รับซ้ำไม่ได้';
+        return;
+      }
+
+      if (state === 'checking') {
+        securityTitle.textContent = 'กำลังตรวจสอบสิทธิ์';
+        securityDetail.textContent = 'ระบบกำลังตรวจสอบเมลและจอที่เลือก';
+        securityState.textContent = 'กำลังเช็ก';
+        return;
+      }
+
+      if (state === 'waiting') {
+        securityTitle.textContent = 'ยังไม่พบ OTP';
+        securityDetail.textContent = 'ระบบจะลองค้นหาอีกครั้งถ้ายังไม่ถูกล็อก';
+        securityState.textContent = 'รอ OTP';
+        return;
+      }
+
+      securityTitle.textContent = 'ล็อกด้วยอีเมล + จอ';
+      securityDetail.textContent = 'พร้อมป้องกันการรับรหัสซ้ำของจอเดิม';
+      securityState.textContent = 'รอรับรหัส';
+    }
+
     function markLastRequest() {
       const now = new Date();
       lastRequestText.textContent = 'ขอล่าสุด ' + now.toLocaleTimeString('th-TH', {
         hour: '2-digit',
         minute: '2-digit'
       }) + ' น.';
+    }
+
+    /************************************************************
+     * UI HELPERS
+     ************************************************************/
+
+    function applyAutoTheme() {
+      const hour = new Date().getHours();
+      const isNight = hour < 7 || hour >= 18;
+
+      document.body.classList.toggle('theme-night', isNight);
+
+      const metaTheme = document.querySelector('meta[name="theme-color"]');
+
+      if (metaTheme) {
+        metaTheme.setAttribute('content', isNight ? '#171432' : '#ff9fdc');
+      }
     }
 
     function showToast(message) {
@@ -2409,6 +3278,38 @@
       }, 1500);
     }
 
+    function burstAtElement(el) {
+      if (!el || !el.getBoundingClientRect) return;
+
+      const rect = el.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const pieces = ['★', '♡', '♥', '✦'];
+      const colors = ['#ff8bd2', '#a594ff', '#69bdff', '#ffe78a'];
+
+      for (let i = 0; i < 10; i++) {
+        const item = document.createElement('div');
+        item.className = 'burst-piece';
+        item.textContent = pieces[Math.floor(Math.random() * pieces.length)];
+        item.style.left = cx + 'px';
+        item.style.top = cy + 'px';
+        item.style.color = colors[Math.floor(Math.random() * colors.length)];
+        item.style.setProperty('--bx', ((Math.random() * 96) - 48) + 'px');
+        item.style.setProperty('--by', ((Math.random() * -80) - 20) + 'px');
+        item.style.animationDelay = (Math.random() * .08) + 's';
+
+        microBurst.appendChild(item);
+      }
+
+      setTimeout(function() {
+        microBurst.innerHTML = '';
+      }, 900);
+    }
+
+    /************************************************************
+     * STORAGE
+     ************************************************************/
+
     function saveDraft() {
       try {
         localStorage.setItem(DRAFT_KEY, JSON.stringify({
@@ -2450,6 +3351,10 @@
         }
       } catch (err) {}
     }
+
+    /************************************************************
+     * MESSAGE HELPERS
+     ************************************************************/
 
     function buildOtpFoundMessage(res) {
       const lines = [
@@ -2547,6 +3452,10 @@
 
       return status === 'OTP_ALREADY_ISSUED' || status === 'OTP_ALREADY_USED';
     }
+
+    /************************************************************
+     * UTILITIES
+     ************************************************************/
 
     function createRequestToken() {
       return [
