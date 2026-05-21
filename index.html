@@ -41,7 +41,7 @@
 
     body{min-height:100dvh}
 
-    button,input,textarea{font-family:inherit}
+    button,input{font-family:inherit}
 
     button{
       border:0;
@@ -179,7 +179,7 @@
       white-space:nowrap;
     }
 
-    input,textarea{
+    input{
       width:100%;
       border:1px solid var(--line);
       border-radius:14px;
@@ -187,6 +187,7 @@
       color:var(--text);
       outline:none;
       padding:13px 14px;
+      min-height:52px;
       font-size:15px;
       line-height:1.45;
       font-weight:620;
@@ -194,19 +195,12 @@
       box-shadow:inset 0 1px 0 rgba(255,255,255,.9);
     }
 
-    input{min-height:52px}
-
-    textarea{
-      min-height:78px;
-      resize:vertical;
-    }
-
-    input:focus,textarea:focus{
+    input:focus{
       border-color:rgba(11,92,171,.62);
       box-shadow:0 0 0 4px rgba(11,92,171,.10);
     }
 
-    input::placeholder,textarea::placeholder{
+    input::placeholder{
       color:#9aa5b1;
       font-weight:500;
     }
@@ -270,13 +264,6 @@
 
     .chip:active,.screen-btn:active,.btn:active{
       transform:scale(.985);
-    }
-
-    .note-count{
-      color:var(--muted);
-      font-size:11px;
-      text-align:right;
-      font-weight:650;
     }
 
     .actions{
@@ -550,7 +537,8 @@
 
     .result.error-only .request-id,
     .result.error-only .soft-alert,
-    .result.error-only .otp-envelope{
+    .result.error-only .otp-envelope,
+    .result.error-only .result-actions{
       display:none!important;
     }
 
@@ -757,15 +745,6 @@
             <div class="validation" id="screenValidation">เลือกจอ</div>
           </div>
 
-          <div class="field">
-            <div class="label">
-              <span>หมายเหตุ</span>
-              <span class="tag">ถ้ามี</span>
-            </div>
-            <textarea id="customerNote" maxlength="700" placeholder=""></textarea>
-            <div class="note-count" id="noteCount">0/700</div>
-          </div>
-
           <div class="actions">
             <button type="button" class="btn btn-primary" id="submitBtn" onclick="submitRequest()">
               <span id="submitText">รับรหัส</span>
@@ -813,7 +792,7 @@
             <span id="softAlertText">-</span>
           </div>
 
-          <div class="result-actions">
+          <div class="result-actions" id="resultActions">
             <button type="button" class="btn btn-copy" id="copyBtn" onclick="copyOtp()">คัดลอก OTP</button>
             <button type="button" class="btn btn-primary" onclick="requestNewOtp()">ขอรหัสใหม่</button>
             <button type="button" class="btn btn-secondary" onclick="editInfo()">แก้ไข</button>
@@ -841,7 +820,7 @@
     const SERVICE_BRAND = 'disney';
     const REQUEST_TIMEOUT_MS = 15000;
     const COOLDOWN_SECONDS = 4;
-    const DRAFT_KEY = 'trustedAltDisneyOtpIndexV1';
+    const DRAFT_KEY = 'trustedNoNoteDisneyOtpIndexV1';
 
     let selectedScreen = '';
     let selectedDevice = '';
@@ -859,13 +838,11 @@
     const customerNameInput = document.getElementById('customerName');
     const emailInput = document.getElementById('email');
     const deviceInput = document.getElementById('device');
-    const customerNoteInput = document.getElementById('customerNote');
 
     const nameValidation = document.getElementById('nameValidation');
     const emailValidation = document.getElementById('emailValidation');
     const deviceValidation = document.getElementById('deviceValidation');
     const screenValidation = document.getElementById('screenValidation');
-    const noteCount = document.getElementById('noteCount');
 
     const submitBtn = document.getElementById('submitBtn');
     const submitText = document.getElementById('submitText');
@@ -884,6 +861,7 @@
     const softAlertText = document.getElementById('softAlertText');
 
     const copyBtn = document.getElementById('copyBtn');
+    const resultActions = document.getElementById('resultActions');
 
     const statusText = document.getElementById('statusText');
     const lastRequestText = document.getElementById('lastRequestText');
@@ -905,7 +883,6 @@
 
     function init() {
       restoreDraft();
-      updateNoteCount();
       validateForm();
       bindEvents();
       updateStatus('พร้อมรับรหัส');
@@ -919,15 +896,14 @@
     }
 
     function bindEvents() {
-      [customerNameInput, emailInput, deviceInput, customerNoteInput].forEach(function(input) {
+      [customerNameInput, emailInput, deviceInput].forEach(function(input) {
         input.addEventListener('input', function() {
-          if (input === customerNoteInput) updateNoteCount();
           validateForm();
           saveDraft();
         });
 
         input.addEventListener('keydown', function(e) {
-          if (e.key === 'Enter' && input !== customerNoteInput) {
+          if (e.key === 'Enter') {
             submitRequest();
           }
         });
@@ -1108,7 +1084,6 @@
       customerNameInput.value = '';
       emailInput.value = '';
       deviceInput.value = '';
-      customerNoteInput.value = '';
 
       selectedScreen = '';
       selectedDevice = '';
@@ -1129,7 +1104,6 @@
       } catch (err) {}
 
       resetResult(true);
-      updateNoteCount();
       validateForm();
       updateStatus('ล้างข้อมูลแล้ว');
       showToast('ล้างข้อมูลแล้ว');
@@ -1147,6 +1121,10 @@
 
       resultBox.style.display = 'block';
       resultBox.classList.remove('error-only');
+
+      if (resultActions) {
+        resultActions.style.display = 'grid';
+      }
 
       resultTitle.textContent = 'พบรหัส OTP';
       resultMessage.textContent = '';
@@ -1175,6 +1153,10 @@
       resultBox.style.display = 'block';
       resultBox.classList.add('error-only');
 
+      if (resultActions) {
+        resultActions.style.display = 'none';
+      }
+
       resultTitle.textContent = '';
       resultMessage.textContent = msg;
       requestIdBox.textContent = '';
@@ -1194,6 +1176,10 @@
       resultBox.style.display = 'block';
       resultBox.classList.add('error-only');
 
+      if (resultActions) {
+        resultActions.style.display = 'none';
+      }
+
       resultTitle.textContent = '';
       resultMessage.textContent = message || 'กรุณากดขอรหัสใหม่อีกครั้ง';
       requestIdBox.textContent = '';
@@ -1212,6 +1198,11 @@
       }
 
       resultBox.classList.remove('error-only');
+
+      if (resultActions) {
+        resultActions.style.display = 'grid';
+      }
+
       otpEnvelope.classList.remove('show');
       softAlert.classList.remove('show');
       otpCode.textContent = '------';
@@ -1375,8 +1366,8 @@
         device: deviceInput.value.trim(),
         screen: selectedScreen,
 
-        customerNote: customerNoteInput.value.trim(),
-        note: customerNoteInput.value.trim(),
+        customerNote: '',
+        note: '',
 
         userAgent: navigator.userAgent || '',
         pageUrl: window.location.href || '',
@@ -1553,17 +1544,12 @@
       } catch (err) {}
     }
 
-    function updateNoteCount() {
-      noteCount.textContent = customerNoteInput.value.length + '/700';
-    }
-
     function saveDraft() {
       try {
         localStorage.setItem(DRAFT_KEY, JSON.stringify({
           customerName: customerNameInput.value || '',
           email: emailInput.value || '',
           device: deviceInput.value || '',
-          note: customerNoteInput.value || '',
           screen: selectedScreen || '',
           selectedDevice: selectedDevice || '',
           savedAt: new Date().toISOString()
@@ -1581,7 +1567,6 @@
         customerNameInput.value = data.customerName || '';
         emailInput.value = data.email || '';
         deviceInput.value = data.device || '';
-        customerNoteInput.value = data.note || '';
         selectedScreen = data.screen || '';
         selectedDevice = data.selectedDevice || '';
 
